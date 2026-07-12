@@ -112,16 +112,20 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 .scrim{position:fixed;inset:0;background:rgba(7,24,41,.42);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:.2s;z-index:40}
 .scrim.show{opacity:1;pointer-events:auto}
-.drawer{position:fixed;top:0;right:0;height:100vh;width:452px;max-width:94vw;background:var(--paper);box-shadow:var(--shadow-lg);transform:translateX(100%);transition:.25s cubic-bezier(.4,0,.2,1);z-index:50;display:flex;flex-direction:column}
-.drawer.show{transform:translateX(0)}
-.dh{background:linear-gradient(120deg,var(--brand),var(--brand-2));color:#EAF3F8;padding:18px 20px;position:relative}
-.dh .cls{position:absolute;top:14px;right:14px;color:rgba(255,255,255,.7)}.dh .cls svg{width:20px;height:20px}
+.drawer{position:fixed;inset:0;height:100vh;width:100%;background:var(--mist);z-index:50;display:none;flex-direction:column;overflow:hidden}
+.drawer.show{display:flex}
+.dh{background:linear-gradient(120deg,var(--brand),var(--brand-2));color:#EAF3F8;padding:16px 24px 22px;position:relative}
+.dh .dhwrap{max-width:860px;margin:0 auto;width:100%}
+.dh .back{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);color:#EAF3F8;font-size:12.5px;font-weight:600;padding:7px 13px;border-radius:9px;margin-bottom:14px;cursor:pointer}
+.dh .back:hover{background:var(--gold);color:var(--brand);border-color:var(--gold)}
+.dh .back svg{width:15px;height:15px}
 .dh .ty{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);font-family:var(--ff-mono)}
 .dh h2{font-family:var(--ff-display);font-weight:600;font-size:18px;margin:5px 0 0;line-height:1.25}
 .dh .dhmeta{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap}
 .dh .dhmeta .k{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.55)}
 .dh .dhmeta .v{font-size:12.5px;font-weight:600;color:#fff;margin-top:2px}
-.db{padding:18px 20px;overflow-y:auto;flex:1}
+.db{padding:28px 24px 80px;overflow-y:auto;flex:1}
+.db .dbwrap{max-width:860px;margin:0 auto;width:100%}
 .dsec{margin-bottom:20px}
 .dsec h3{font-family:var(--ff-display);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin:0 0 10px;display:flex;align-items:center;gap:8px}
 .dsec h3 svg{width:14px;height:14px;color:var(--accent)}
@@ -237,7 +241,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 </style>
 </head>
 <body>
-<div class="mocktag">Next2DMS v0.6.1 · MOCKUP</div>
+<div class="mocktag">Next2DMS v0.6.2 · MOCKUP</div>
 
 <div class="app">
   <aside class="side">
@@ -569,12 +573,14 @@ function openDoc(name){const d=T().docs.find(x=>x.n===name);if(!d)return;const s
   const medBanner=d.medical?`<div class="medlock">${lockIcon()}<span><b>${tt('med.t')}.</b> ${tt('med.d')}</span></div>`:"";
   const expAlert=d.expiry?`<div class="alertrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>${tt('exp.t')} ${d.expiry}</b> ${tt('exp.d')}</span></div>`:"";
   $("#drawer").innerHTML=`
-    <div class="dh"><button class="cls" onclick="closeDrawer()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    <div class="dh"><div class="dhwrap">
+      <button class="back" onclick="closeDrawer()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg>${lang==='el'?'Πίσω στα έγγραφα':'Back to documents'}</button>
       <div class="ty">${d.t}${d.medical?' · 🔒 medical':''}</div><h2>${d.n}</h2>
       <div class="dhmeta"><div><div class="k">${lang==='el'?'Έκδοση':'Version'}</div><div class="v">v${d.v}</div></div>
         <div><div class="k">Status</div><div class="v">${stName(d.st)}</div></div>
-        <div><div class="k">${clLabel()}</div><div class="v">${d.cl}</div></div></div></div>
-    <div class="db">
+        <div><div class="k">${clLabel()}</div><div class="v">${d.cl}</div></div></div>
+    </div></div>
+    <div class="db"><div class="dbwrap">
       <div class="dsec"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M7 7h.01M3 5a2 2 0 0 1 2-2h6l8 8-8 8-8-8z"/></svg>${tt('d.ids')}</h3>
         <div class="idbox">
           <div class="row"><span class="k">${tt('id.code')}</span><span class="v code">${docCode(d)}</span></div>
@@ -592,7 +598,7 @@ function openDoc(name){const d=T().docs.find(x=>x.n===name);if(!d)return;const s
       <div class="dsec"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 17l6-6 4 4 8-8"/></svg>${tt('d.sign')}</h3>${sign}</div>
       <div class="dsec"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>${tt('d.comp')}</h3>${compBadges(d)}</div>
       <div class="dsec"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/></svg>${tt('d.audit')}</h3><div class="audit">${audit}</div></div>
-    </div>`;
+    </div></div>`;
   $("#drawer").classList.add("show");$("#scrim").classList.add("show");}
 function closeDrawer(){$("#drawer").classList.remove("show");$("#scrim").classList.remove("show");}
 
