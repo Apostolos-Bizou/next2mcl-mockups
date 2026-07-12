@@ -237,7 +237,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 </style>
 </head>
 <body>
-<div class="mocktag">Next2DMS v0.6 · MOCKUP</div>
+<div class="mocktag">Next2DMS v0.6.1 · MOCKUP</div>
 
 <div class="app">
   <aside class="side">
@@ -609,8 +609,8 @@ function refresh(){renderSourceStrip();renderClientChips();renderRows();renderCr
 
 function switchTenant(){const order=["next2mcl","meridian","generic"];tenant=order[(order.indexOf(tenant)+1)%order.length];loadTenant();toast(tt('t.tenant'));}
 function loadTenant(){const t=T();applyTheme();
-  $("#tMk").textContent=t.mk;$("#tNm").textContent=t.wl;$("#tPk").textContent=t.pack.toLowerCase()+" pack";
-  $("#wlName").textContent=t.wl;$("#tenantLabel").textContent=t.label;
+  $("#tMk").textContent=t.mk;$("#tNm").textContent="Next2DMS";$("#tPk").textContent=t.pack.toLowerCase()+" pack";
+  $("#wlName").textContent="Next2DMS";$("#tenantLabel").textContent=t.label;
   coll="all";source=null;client=null;$$("#nav a.lib").forEach(a=>a.classList.toggle("on",a.dataset.coll==="all"));
   $("#collTitle").textContent=tt('coll.all');$("#collSub").textContent=COLLSUB[lang].all;
   renderCounts();renderSourceNav();renderTypeOptions();updateBanner();refresh();if($("#guideView").classList.contains("show"))renderGuide();}
