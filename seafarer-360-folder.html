@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Seafarer 360° · Shared Core / CBMS (Mockup)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* =========================================================================
+   Seafarer 360° Folder  ·  Next2MCL Layer 2 — Master Data Hub (CBMS)
+   SHARED module: consumed by Next2Peme · ShipCare · PostMed · Care.
+   Tokens identical to the Next2Peme mockup → one Tailwind theme later.
+   ========================================================================= */
+:root{
+  --navy:#071E33;--navy-2:#0B2A45;--teal:#0E8C93;--teal-2:#12A7AF;
+  --gold:#E7A33E;--gold-2:#F2B860;--coral:#E5544B;--green:#2FA36B;--amber:#D9902A;
+  --mist:#F4F7F9;--paper:#FFFFFF;--ink:#152532;--ink-2:#4C6072;--ink-3:#8AA0B0;
+  --line:#DCE6EC;--line-2:#EAF0F4;
+  --radius:14px;--radius-sm:9px;
+  --shadow:0 1px 2px rgba(7,30,51,.04),0 8px 24px rgba(7,30,51,.06);
+  --ff-display:'Sora',system-ui,sans-serif;--ff-body:'Inter',system-ui,sans-serif;--ff-mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{font-family:var(--ff-body);color:var(--ink);background:var(--mist);-webkit-font-smoothing:antialiased;line-height:1.45}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus-visible{outline:2px solid var(--teal);outline-offset:2px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* shared-core banner — makes the "not a product screen" point visible */
+.corebar{background:linear-gradient(90deg,var(--navy),var(--navy-2));color:#CFE0EC;
+  display:flex;align-items:center;gap:12px;padding:8px 20px;font-size:12px;flex-wrap:wrap}
+.corebar .tag{font-family:var(--ff-mono);font-size:10.5px;letter-spacing:.08em;background:rgba(23,167,175,.2);
+  color:#8FE3E8;padding:3px 9px;border-radius:6px;border:1px solid rgba(23,167,175,.35)}
+.corebar .used{color:#7EA2BC}
+.corebar .used b{color:#DCEAF3;font-weight:600}
+.corebar .lens{margin-left:auto;display:flex;align-items:center;gap:8px}
+.corebar .lens .from{color:#7EA2BC}
+.corebar .lens .prod{display:inline-flex;align-items:center;gap:6px;background:rgba(231,163,62,.16);
+  color:var(--gold-2);border:1px solid rgba(231,163,62,.35);padding:3px 10px;border-radius:999px;font-weight:600;font-size:11.5px}
+.corebar .lens .prod i{width:6px;height:6px;border-radius:50%;background:currentColor}
+.langtog{display:inline-flex;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:2px;gap:2px;margin-left:8px}
+.langtog button{padding:4px 10px;border-radius:6px;font-size:11.5px;font-weight:600;color:#9FBBD0}
+.langtog button.on{background:var(--gold);color:var(--navy)}
+
+.wrap{max-width:1200px;margin:0 auto;padding:22px 24px 70px}
+
+/* ============================ SEAFARER HEADER (demographics on top) ===== */
+.hdr{background:linear-gradient(112deg,var(--navy) 0%,var(--navy-2) 58%,#123a5c 100%);
+  border-radius:var(--radius);color:#EAF3F8;padding:20px 22px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.hdr::after{content:"";position:absolute;right:-50px;top:-60px;width:260px;height:260px;
+  background:radial-gradient(circle,rgba(23,167,175,.2),transparent 68%);pointer-events:none}
+.hdr .top{display:flex;gap:18px;align-items:flex-start}
+.hdr .photo{width:74px;height:74px;border-radius:14px;flex:0 0 74px;background:linear-gradient(135deg,#1c4a6e,#0d2c46);
+  display:grid;place-items:center;font-family:var(--ff-display);font-weight:700;font-size:24px;color:#9FD6DA;border:1px solid rgba(255,255,255,.12)}
+.hdr .who h1{font-family:var(--ff-display);font-weight:600;font-size:23px;margin:0;letter-spacing:-.01em}
+.hdr .idline{display:flex;align-items:center;gap:10px;margin-top:5px;flex-wrap:wrap}
+.hdr .sid{font-family:var(--ff-mono);font-size:12.5px;color:var(--gold-2);letter-spacing:.02em}
+.hdr .lifetag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.1);
+  padding:3px 8px;border-radius:6px;color:#B9D3E4;border:1px solid rgba(255,255,255,.14)}
+.hdr .barcode{height:22px;display:flex;gap:1.5px;align-items:stretch;margin-top:2px}
+.hdr .barcode i{width:2px;background:#CFE0EC;opacity:.75}
+.hdr .fit{margin-left:auto;text-align:right}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600}
+.chip.pending{background:rgba(231,163,62,.16);color:var(--gold-2);border:1px solid rgba(231,163,62,.35)}
+.chip i{width:7px;height:7px;border-radius:50%;background:currentColor}
+.hdr .meta{display:flex;gap:30px;flex-wrap:wrap;margin:16px 0 0;padding-top:14px;border-top:1px solid rgba(255,255,255,.1)}
+.hdr .meta .k{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#7EA2BC}
+.hdr .meta .v{font-size:14px;font-weight:600;color:#fff;margin-top:3px}
+
+/* cross-product presence strip — THE MCL point */
+.xprod{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+.xcard{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-sm);padding:13px 14px;box-shadow:var(--shadow);position:relative}
+.xcard .pl{display:flex;align-items:center;gap:8px;font-family:var(--ff-display);font-weight:600;font-size:12.5px}
+.xcard .pl .dot{width:9px;height:9px;border-radius:50%}
+.xcard.care .pl .dot{background:var(--teal)} .xcard.peme .pl .dot{background:var(--gold)}
+.xcard.post .pl .dot{background:var(--coral)} .xcard.ship .pl .dot{background:#5B8DB8}
+.xcard .st{font-size:12px;color:var(--ink-2);margin-top:7px;line-height:1.35}
+.xcard .st b{color:var(--ink)}
+.xcard .link{position:absolute;top:12px;right:12px;color:var(--ink-3)}
+.xcard .link svg{width:14px;height:14px}
+
+/* ============================ TABS ===================================== */
+.tabs{display:flex;gap:2px;margin:20px 0 0;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{padding:11px 15px;font-size:13.5px;font-weight:600;color:var(--ink-2);white-space:nowrap;border-bottom:2px solid transparent;display:flex;align-items:center;gap:8px}
+.tab svg{width:16px;height:16px}
+.tab:hover{color:var(--ink)}
+.tab.on{color:var(--navy-2);border-bottom-color:var(--teal)}
+.tab .badge{font-family:var(--ff-mono);font-size:10px;background:var(--mist);border:1px solid var(--line);color:var(--ink-3);padding:1px 6px;border-radius:6px}
+
+.panel{padding-top:20px;display:none}
+.panel.on{display:block}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.card .ch{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line-2)}
+.card .ch .ic{width:30px;height:30px;border-radius:8px;background:var(--mist);display:grid;place-items:center;color:var(--teal);flex:0 0 30px}
+.card .ch .ic svg{width:16px;height:16px}
+.card .ch h3{font-family:var(--ff-display);font-size:13.5px;font-weight:600;margin:0}
+.card .ch .cnt{margin-left:auto;font-family:var(--ff-mono);font-size:11px;color:var(--ink-3)}
+.card .cb{padding:14px 16px}
+.kv{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px dashed var(--line-2)}
+.kv:last-child{border-bottom:none}
+.kv .k{color:var(--ink-3)} .kv .v{font-weight:600}
+.tagrow{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.pill{font-size:11.5px;padding:4px 10px;border-radius:999px;background:var(--mist);border:1px solid var(--line);color:var(--ink-2)}
+.pill.warn{background:rgba(217,144,42,.1);border-color:rgba(217,144,42,.35);color:var(--amber)}
+.pill.bad{background:rgba(229,84,75,.1);border-color:rgba(229,84,75,.35);color:var(--coral)}
+.pill.ok{background:rgba(47,163,107,.1);border-color:rgba(47,163,107,.35);color:var(--green)}
+.muted{color:var(--ink-3);font-size:12.5px}
+.seclead{font-family:var(--ff-display);font-size:14px;font-weight:600;margin:2px 0 14px}
+.sub{color:var(--ink-2);font-size:13px;margin:-8px 0 16px}
+
+/* heartscore gauge */
+.hs{display:flex;align-items:center;gap:16px}
+.hsdial{width:92px;height:92px;border-radius:50%;flex:0 0 92px;display:grid;place-items:center;
+  background:conic-gradient(var(--coral) 0 18%, var(--mist) 18% 100%);position:relative}
+.hsdial::before{content:"";position:absolute;inset:9px;background:var(--paper);border-radius:50%}
+.hsdial .val{position:relative;font-family:var(--ff-display);font-weight:700;font-size:20px;color:var(--coral)}
+.hsdial .val small{display:block;font-size:9px;color:var(--ink-3);font-weight:600;letter-spacing:.06em}
+.hsinfo b{font-size:13px} .hsinfo p{margin:4px 0 0;font-size:12.5px;color:var(--ink-2)}
+
+/* cases list */
+.caselist{display:flex;flex-direction:column;gap:12px}
+.caserow{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
+.caserow .ct{display:flex;align-items:center;gap:10px}
+.caserow .ct .badge{font-size:10.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:6px;font-family:var(--ff-mono)}
+.b-peme{background:rgba(231,163,62,.16);color:var(--amber)} .b-med{background:rgba(14,140,147,.14);color:var(--teal)}
+.b-pome{background:rgba(229,84,75,.14);color:var(--coral)} .b-ship{background:rgba(91,141,184,.16);color:#3F6C93}
+.b-claim{background:rgba(47,163,107,.14);color:var(--green)}
+.caserow .ct h4{font-family:var(--ff-display);font-size:14px;font-weight:600;margin:0}
+.caserow .ct .prod{margin-left:auto;font-size:11px;color:var(--ink-3);font-family:var(--ff-mono)}
+.caserow .cx{font-size:12.5px;color:var(--ink-2);margin-top:8px}
+.caserow .st{font-size:11.5px;color:var(--ink-3);margin-top:6px}
+/* mini tracking bar for the PEME case */
+.mtrack{display:flex;gap:4px;margin-top:12px}
+.mtrack .n{flex:1;height:5px;border-radius:3px;background:var(--line)}
+.mtrack .n.done{background:var(--teal)} .mtrack .n.active{background:var(--gold)}
+.mtrack + .mcap{font-size:11px;color:var(--ink-3);margin-top:6px;font-family:var(--ff-mono)}
+
+/* files table */
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:600;padding:8px 10px;border-bottom:1px solid var(--line)}
+.tbl td{padding:9px 10px;border-bottom:1px solid var(--line-2)}
+.tbl tr:last-child td{border-bottom:none}
+.tbl .up{font-size:11px;color:var(--ink-3)}
+.who-badge{font-size:10.5px;padding:2px 7px;border-radius:5px;font-weight:600}
+.who-doc{background:rgba(14,140,147,.12);color:var(--teal)} .who-pat{background:var(--mist);color:var(--ink-2)}
+
+/* vaccinations */
+.vax{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.vcard{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-sm);padding:13px 14px;box-shadow:var(--shadow)}
+.vcard .vn{font-weight:600;font-size:13.5px} .vcard .vs{font-size:11.5px;color:var(--ink-3);margin-top:2px}
+.vbar{height:6px;border-radius:4px;background:var(--line-2);margin-top:10px;overflow:hidden}
+.vbar i{display:block;height:100%;background:var(--green)}
+.vdose{font-size:11px;color:var(--ink-2);margin-top:6px;font-family:var(--ff-mono)}
+
+/* risk table */
+.riskprofiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:18px}
+.rp{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 13px;box-shadow:var(--shadow)}
+.rp.hot{border-color:rgba(229,84,75,.4);background:rgba(229,84,75,.04)}
+.rp .rn{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600}
+.rp .rn .d{width:8px;height:8px;border-radius:50%}
+.rp .rc{font-family:var(--ff-display);font-size:22px;font-weight:700;margin-top:6px}
+.rp .rl{font-size:10.5px;color:var(--ink-3)}
+.mhie{background:linear-gradient(100deg,rgba(14,140,147,.08),rgba(231,163,62,.08));border:1px solid var(--line);
+  border-radius:var(--radius-sm);padding:12px 14px;font-size:12.5px;color:var(--ink-2);margin-top:14px;display:flex;gap:10px;align-items:flex-start}
+.mhie svg{width:18px;height:18px;color:var(--gold);flex:0 0 18px;margin-top:1px}
+.mhie b{color:var(--ink)}
+
+.footnote{margin-top:22px;font-size:11.5px;color:var(--ink-3);border-top:1px solid var(--line);padding-top:14px}
+.mocktag{position:fixed;top:0;right:0;background:var(--coral);color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 10px;border-bottom-left-radius:8px;z-index:90;font-family:var(--ff-mono)}
+
+@media (max-width:820px){.xprod{grid-template-columns:repeat(2,1fr)}.hdr .fit{margin-left:0}}
+@media (max-width:520px){.xprod{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="mocktag">PHASE 1 · MOCKUP · FAKE DATA</div>
+
+<div class="corebar">
+  <span class="tag">SEAFARER 360°</span>
+  <span class="used" data-i18n="core.used">Shared Core · CBMS (Layer 2) — used by <b>Next2Peme</b> · <b>ShipCare</b> · <b>PostMed</b> · <b>Care</b></span>
+  <span class="lens">
+    <span class="from" data-i18n="core.from">Opened from</span>
+    <span class="prod"><i></i>Next2Peme</span>
+    <span class="langtog" id="langTog"><button data-lang="en" class="on">EN</button><button data-lang="el">EL</button></span>
+  </span>
+</div>
+
+<div class="wrap">
+  <!-- ===== HEADER (demographics on top, per doctor's spec) ===== -->
+  <div class="hdr">
+    <div class="top">
+      <div class="photo">JS</div>
+      <div class="who">
+        <h1>Juan D. Santos</h1>
+        <div class="idline">
+          <span class="sid">SF-PH-039281</span>
+          <span class="lifetag" data-i18n="hdr.life">One Seafarer ID · for life</span>
+        </div>
+        <div class="barcode" id="barcode" aria-hidden="true"></div>
+      </div>
+      <div class="fit"><span class="chip pending"><i></i><span data-i18n="hdr.fit">PEME disposition pending</span></span></div>
+    </div>
+    <div class="meta">
+      <div><div class="k" data-i18n="m.rank">Rank</div><div class="v" data-i18n="v.rank">Able Seaman</div></div>
+      <div><div class="k" data-i18n="m.nat">Nationality</div><div class="v">🇵🇭 Filipino</div></div>
+      <div><div class="k" data-i18n="m.agency">Agency</div><div class="v">Manila Crewing Corp.</div></div>
+      <div><div class="k" data-i18n="m.company">Maritime company</div><div class="v">Crossworld Marine</div></div>
+      <div><div class="k" data-i18n="m.dob">Date of birth</div><div class="v">14 Mar 1992 · 34</div></div>
+      <div><div class="k" data-i18n="m.family">Family</div><div class="v" data-i18n="v.family">Spouse + 2 (Next2Care)</div></div>
+    </div>
+  </div>
+
+  <!-- ===== CROSS-PRODUCT PRESENCE (the MCL point) ===== -->
+  <div class="xprod">
+    <div class="xcard care"><span class="link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></span>
+      <div class="pl"><span class="dot"></span>Next2Care</div>
+      <div class="st" data-i18n="x.care"><b>Active member</b> · Gold+ tier · family covered</div></div>
+    <div class="xcard peme"><span class="link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></span>
+      <div class="pl"><span class="dot"></span>Next2Peme</div>
+      <div class="st" data-i18n="x.peme"><b>PEME in progress</b> · stage 4/11 · HPDC Manila</div></div>
+    <div class="xcard post"><span class="link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></span>
+      <div class="pl"><span class="dot"></span>Next2PostMed</div>
+      <div class="st" data-i18n="x.post"><b>1 past case</b> · 2023 · closed (fit to return)</div></div>
+    <div class="xcard ship"><span class="link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></span>
+      <div class="pl"><span class="dot"></span>Next2ShipCare</div>
+      <div class="st" data-i18n="x.ship"><b>1 on-board incident</b> · 2024 · MV Aegean Trader</div></div>
+  </div>
+
+  <!-- ===== TABS ===== -->
+  <div class="tabs" id="tabs">
+    <button class="tab on" data-tab="overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="5" rx="1.5"/><rect x="13" y="10" width="8" height="11" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/></svg><span data-i18n="tab.overview">Overview</span></button>
+    <button class="tab" data-tab="cases"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v6H4z"/><path d="M4 14h16v6H4z"/></svg><span data-i18n="tab.cases">Cases &amp; Care</span><span class="badge">5</span></button>
+    <button class="tab" data-tab="files"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></svg><span data-i18n="tab.files">Files &amp; Exams</span><span class="badge">48</span></button>
+    <button class="tab" data-tab="profiles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 8.5c0 5-8 9.5-8 9.5S4 13.5 4 8.5A4 4 0 0 1 12 6a4 4 0 0 1 8 2.5z"/></svg><span data-i18n="tab.profiles">Clinical Profiles</span></button>
+    <button class="tab" data-tab="vax"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 4l6 6M17 7l-9 9-4 4 1-5 8-8"/></svg><span data-i18n="tab.vax">Vaccinations</span><span class="badge">18</span></button>
+    <button class="tab" data-tab="risk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l9 5v6c0 5-4 8-9 9-5-1-9-4-9-9V7z"/><path d="M12 8v4M12 16v.01"/></svg><span data-i18n="tab.risk">Risk</span></button>
+  </div>
+
+  <!-- ===== OVERVIEW (doctor's main page) ===== -->
+  <div class="panel on" data-panel="overview">
+    <div class="grid">
+      <div class="card">
+        <div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16M4 12h16M4 19h10"/></svg></div><h3 data-i18n="c.genhist">General History</h3></div>
+        <div class="cb">
+          <div class="kv"><span class="k" data-i18n="k.height">Height</span><span class="v">172 cm</span></div>
+          <div class="kv"><span class="k" data-i18n="k.weight">Weight</span><span class="v">84 kg</span></div>
+          <div class="kv"><span class="k">BMI</span><span class="v">28.4 <span class="pill warn" style="margin-left:6px" data-i18n="k.overweight">overweight</span></span></div>
+          <div class="kv"><span class="k" data-i18n="k.blood">Blood type</span><span class="v">O+</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ic" style="color:var(--coral)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21C7 18 3 14 3 9a4 4 0 0 1 9-1 4 4 0 0 1 9 1c0 5-4 9-9 12z"/></svg></div><h3 data-i18n="c.cvd">Cardiovascular Profile</h3></div>
+        <div class="cb">
+          <div class="muted" data-i18n="c.cvdlead" style="margin-bottom:8px">Major CVD risk factors</div>
+          <div class="tagrow"><span class="pill bad" data-i18n="rf.smoker">Smoker</span><span class="pill warn" data-i18n="rf.htn">Hypertension</span><span class="pill warn" data-i18n="rf.dysl">Dyslipidemia</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3s6 6 6 11a6 6 0 0 1-12 0c0-5 6-11 6-11z"/></svg></div><h3 data-i18n="c.diab">Diabetic Profile</h3></div>
+        <div class="cb">
+          <div class="kv"><span class="k">HbA1c</span><span class="v">5.9%</span></div>
+          <div class="kv"><span class="k" data-i18n="k.status">Status</span><span class="v"><span class="pill warn" data-i18n="k.prediab">Pre-diabetic</span></span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ic" style="color:var(--coral)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16v.01"/></svg></div><h3 data-i18n="c.allerg">Allergies</h3></div>
+        <div class="cb"><div class="tagrow"><span class="pill" data-i18n="al.rhin">Allergic rhinitis (spring)</span></div></div>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 3v4M14 3v4M8 7h8l1 5a5 5 0 0 1-10 0z M12 17v4"/></svg></div><h3 data-i18n="c.meds">Medications</h3><span class="cnt">2</span></div>
+        <div class="cb">
+          <div class="kv"><span class="k">Amlodipine 5mg</span><span class="v muted" data-i18n="k.daily">daily</span></div>
+          <div class="kv"><span class="k">Atorvastatin 20mg</span><span class="v muted" data-i18n="k.daily">daily</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ic" style="color:var(--green)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 4l6 6M17 7l-9 9-4 4 1-5 8-8"/></svg></div><h3 data-i18n="c.vax">Vaccinations</h3><span class="cnt" data-i18n="cnt.vax">18 done</span></div>
+        <div class="cb"><div class="tagrow"><span class="pill ok">COVID-19 ×3</span><span class="pill ok">HepA</span><span class="pill ok">BCG</span></div></div>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></svg></div><h3 data-i18n="c.files">Files &amp; Exams</h3><span class="cnt" data-i18n="cnt.files">48 files</span></div>
+        <div class="cb"><div class="muted" data-i18n="c.fileslead">Chest X-ray, ECG, blood panels, ultrasounds — uploaded across visits &amp; PEMEs.</div></div>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="9" r="2.2"/><path d="M15 20c0-2 2-3.5 4-3.5"/></svg></div><h3 data-i18n="c.family">Family Profile</h3></div>
+        <div class="cb">
+          <div class="kv"><span class="k" data-i18n="k.spouse">Spouse</span><span class="v">Maria S. · Gold+</span></div>
+          <div class="kv"><span class="k" data-i18n="k.children">Children</span><span class="v">2 · covered</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CASES & CARE (cross-product) ===== -->
+  <div class="panel" data-panel="cases">
+    <div class="seclead" data-i18n="cases.lead">Every case, every product — one continuous history</div>
+    <div class="sub" data-i18n="cases.sub">The Case Lifecycle Engine links PEME, TPA claims, on-board incidents and post-medical cases under one Seafarer ID.</div>
+    <div class="caselist">
+      <div class="caserow">
+        <div class="ct"><span class="badge b-peme">PEME</span><h4 data-i18n="case.peme">Pre-Employment Medical Exam — 2026</h4><span class="prod">Next2Peme</span></div>
+        <div class="cx" data-i18n="case.pemecx">Deck rank · Crossworld Standard package · HPDC Manila. Currently at Laboratory stage.</div>
+        <div class="mtrack"><span class="n done"></span><span class="n done"></span><span class="n done"></span><span class="n active"></span><span class="n"></span><span class="n"></span><span class="n"></span><span class="n"></span><span class="n"></span><span class="n"></span><span class="n"></span></div>
+        <div class="mcap">4 / 11 · LAB</div>
+      </div>
+      <div class="caserow">
+        <div class="ct"><span class="badge b-claim">CLAIM</span><h4 data-i18n="case.claim">Outpatient claim — chest infection</h4><span class="prod">Next2Care</span></div>
+        <div class="cx" data-i18n="case.claimcx">Gold+ coverage · settled in 3 days · provider paid directly.</div>
+        <div class="st">Nov 2025 · <span class="pill ok" data-i18n="st.settled">Settled</span></div>
+      </div>
+      <div class="caserow">
+        <div class="ct"><span class="badge b-med">MEDICAL</span><h4 data-i18n="case.med">Acute tonsillitis + bronchitis</h4><span class="prod">Next2Care · clinic</span></div>
+        <div class="cx" data-i18n="case.medcx">Treated with amoxicillin/clav., azithromycin; full recovery. Logged in profile.</div>
+        <div class="st">May 2022 · <span class="pill" data-i18n="st.closed">Closed</span></div>
+      </div>
+      <div class="caserow">
+        <div class="ct"><span class="badge b-ship">INCIDENT</span><h4 data-i18n="case.ship">On-board hand injury</h4><span class="prod">Next2ShipCare</span></div>
+        <div class="cx" data-i18n="case.shipcx">PARON teleconsult · MV Aegean Trader · no disembarkation required.</div>
+        <div class="st">Aug 2024 · <span class="pill" data-i18n="st.closed">Closed</span></div>
+      </div>
+      <div class="caserow">
+        <div class="ct"><span class="badge b-pome">POME</span><h4 data-i18n="case.pome">Post-medical case — lumbar strain</h4><span class="prod">Next2PostMed</span></div>
+        <div class="cx" data-i18n="case.pomecx">Medical · Legal · Financial tracks. Closed fit-to-return after 41 days.</div>
+        <div class="st">2023 · <span class="pill ok" data-i18n="st.fit">Fit to return</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FILES & EXAMS ===== -->
+  <div class="panel" data-panel="files">
+    <div class="seclead" data-i18n="files.lead">Medical exams &amp; files</div>
+    <div class="sub" data-i18n="files.sub">Stored in Azure Blob (Layer 1) with signed URLs — foldered by year, tagged by exam type and uploader.</div>
+    <div class="card"><div class="cb" style="padding:6px 8px">
+      <table class="tbl">
+        <thead><tr><th data-i18n="th.title">Title</th><th data-i18n="th.type">Exam type</th><th data-i18n="th.date">Date</th><th data-i18n="th.up">Uploader</th></tr></thead>
+        <tbody>
+          <tr><td>Chest X-ray</td><td data-i18n="ex.cxr">Chest X-ray</td><td>2026-07</td><td><span class="who-badge who-doc" data-i18n="up.doc">Doctor</span></td></tr>
+          <tr><td>ECG 12-lead</td><td>ECG</td><td>2026-07</td><td><span class="who-badge who-doc" data-i18n="up.doc">Doctor</span></td></tr>
+          <tr><td>Blood panel</td><td data-i18n="ex.blood">Blood test</td><td>2026-07</td><td><span class="who-badge who-doc" data-i18n="up.doc">Doctor</span></td></tr>
+          <tr><td>Abdominal US</td><td data-i18n="ex.us">Ultrasound</td><td>2026-07</td><td><span class="who-badge who-doc" data-i18n="up.doc">Doctor</span></td></tr>
+          <tr><td>Prior PEME cert</td><td data-i18n="ex.cert">Certificate</td><td>2025-06</td><td><span class="who-badge who-pat" data-i18n="up.pat">Patient</span></td></tr>
+        </tbody>
+      </table>
+    </div></div>
+  </div>
+
+  <!-- ===== CLINICAL PROFILES ===== -->
+  <div class="panel" data-panel="profiles">
+    <div class="seclead" data-i18n="prof.lead">Cardiovascular Profile</div>
+    <div class="grid">
+      <div class="card"><div class="cb">
+        <div class="hs">
+          <div class="hsdial"><span class="val">7.2%<small>HeartScore</small></span></div>
+          <div class="hsinfo"><b data-i18n="hs.title">10-yr CVD risk</b><p data-i18n="hs.body">Elevated for age band. Driven by smoking + hypertension + dyslipidemia.</p></div>
+        </div>
+      </div></div>
+      <div class="card">
+        <div class="ch"><h3 data-i18n="prof.factors">Risk factors</h3></div>
+        <div class="cb"><div class="tagrow">
+          <span class="pill bad" data-i18n="rf.smoker">Smoker</span>
+          <span class="pill warn" data-i18n="rf.htn">Hypertension</span>
+          <span class="pill warn" data-i18n="rf.dysl">Dyslipidemia</span>
+          <span class="pill warn" data-i18n="rf.bmi">BMI 28.4</span>
+          <span class="pill" data-i18n="rf.fam">Family hx (father DM)</span>
+        </div></div>
+      </div>
+      <div class="card">
+        <div class="ch"><h3 data-i18n="prof.diab">Diabetic Profile</h3></div>
+        <div class="cb">
+          <div class="kv"><span class="k">HbA1c</span><span class="v">5.9%</span></div>
+          <div class="kv"><span class="k" data-i18n="k.fasting">Fasting glucose</span><span class="v">104 mg/dL</span></div>
+          <div class="kv"><span class="k" data-i18n="k.status">Status</span><span class="v"><span class="pill warn" data-i18n="k.prediab">Pre-diabetic</span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== VACCINATIONS ===== -->
+  <div class="panel" data-panel="vax">
+    <div class="seclead" data-i18n="vax.lead">Vaccination schedule</div>
+    <div class="vax">
+      <div class="vcard"><div class="vn">COVID-19</div><div class="vs">Pfizer</div><div class="vbar"><i style="width:100%"></i></div><div class="vdose">3 / 3 · <span data-i18n="vx.done">completed</span></div></div>
+      <div class="vcard"><div class="vn">Hepatitis A</div><div class="vs">HepA</div><div class="vbar"><i style="width:100%"></i></div><div class="vdose">2 / 2 · <span data-i18n="vx.done">completed</span></div></div>
+      <div class="vcard"><div class="vn">Tuberculosis</div><div class="vs">BCG</div><div class="vbar"><i style="width:100%"></i></div><div class="vdose">1 / 1 · <span data-i18n="vx.done">completed</span></div></div>
+      <div class="vcard"><div class="vn">Tetanus</div><div class="vs">Td</div><div class="vbar"><i style="width:60%"></i></div><div class="vdose">3 / 5 · <span data-i18n="vx.sched">scheduled</span></div></div>
+      <div class="vcard"><div class="vn">Yellow Fever</div><div class="vs">YF</div><div class="vbar"><i style="width:0%;background:var(--coral)"></i></div><div class="vdose">0 / 1 · <span data-i18n="vx.over">overdue</span></div></div>
+    </div>
+  </div>
+
+  <!-- ===== RISK (doctor's slide 23 + MHIE) ===== -->
+  <div class="panel" data-panel="risk">
+    <div class="seclead" data-i18n="risk.lead">Risk scores</div>
+    <div class="sub" data-i18n="risk.sub">Which risk profiles this seafarer falls under — the pre-visit signal the Medical Director sees before the PEME.</div>
+    <div class="riskprofiles">
+      <div class="rp hot"><div class="rn"><span class="d" style="background:var(--coral)"></span><span data-i18n="rk.cvd">Cardiovascular</span></div><div class="rc" style="color:var(--coral)">High</div><div class="rl">HeartScore 7.2%</div></div>
+      <div class="rp"><div class="rn"><span class="d" style="background:var(--amber)"></span><span data-i18n="rk.diab">Diabetic</span></div><div class="rc" style="color:var(--amber)">Med</div><div class="rl" data-i18n="rk.prediab">Pre-diabetic</div></div>
+      <div class="rp"><div class="rn"><span class="d" style="background:var(--teal)"></span><span data-i18n="rk.resp">Respiratory</span></div><div class="rc" style="color:var(--teal)">Low</div><div class="rl" data-i18n="rk.hxonly">History only</div></div>
+      <div class="rp"><div class="rn"><span class="d" style="background:var(--green)"></span><span data-i18n="rk.covid">Covid-19</span></div><div class="rc" style="color:var(--green)">—</div><div class="rl" data-i18n="rk.vaxed">Vaccinated ×3</div></div>
+    </div>
+    <div class="mhie">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3l1.2 3L9 7 6.2 8 5 11 3.8 8 1 7l2.8-1z" transform="translate(2 1)"/><path d="M16 11l1.4 3.2L20 15l-2.6 1L16 19l-1.4-3L12 15l2.6-.8z"/></svg>
+      <div data-i18n="risk.mhie"><b>MHIE signal (Phase 4):</b> seafarers with this PEME + claims pattern are ~3.2× more likely to generate a cardiac claim within 18 months. Human decides — the AI only flags.</div>
+    </div>
+  </div>
+
+  <div class="footnote" data-i18n="foot">Seafarer 360° is a Shared Core / CBMS module (Next2MCL Layer 2). Doctor's spec applied — no IDIKA / AMKA / patient-portal fields. Fake data only.</div>
+</div>
+
+<script>
+/* ---- barcode (visual only) ---- */
+(function(){const b=document.getElementById('barcode');let s='SF-PH-039281';let h=7;
+  for(let i=0;i<52;i++){h=(h*31+s.charCodeAt(i%s.length))>>>0;const bar=document.createElement('i');
+    bar.style.width=((h%3)+1)+'px';bar.style.opacity=(h%2)?'.8':'.45';b.appendChild(bar);}})();
+
+/* ---- tabs ---- */
+document.getElementById('tabs').addEventListener('click',e=>{
+  const t=e.target.closest('.tab'); if(!t)return;
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===t));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on',p.dataset.panel===t.dataset.tab));
+});
+
+/* ---- i18n ---- */
+const I18N={
+  el:{
+    "core.used":"Shared Core · CBMS (Layer 2) — χρησιμοποιείται από <b>Next2Peme</b> · <b>ShipCare</b> · <b>PostMed</b> · <b>Care</b>",
+    "core.from":"Άνοιξε από","hdr.life":"Ένα Seafarer ID · εφ' όρου ζωής","hdr.fit":"Εκκρεμεί απόφαση PEME",
+    "m.rank":"Βαθμός","v.rank":"Ναύτης","m.nat":"Εθνικότητα","m.agency":"Πρακτορείο","m.company":"Ναυτιλιακή","m.dob":"Ημ. γέννησης","m.family":"Οικογένεια","v.family":"Σύζυγος + 2 (Next2Care)",
+    "x.care":"<b>Ενεργό μέλος</b> · Gold+ tier · οικογένεια καλυμμένη","x.peme":"<b>PEME σε εξέλιξη</b> · στάδιο 4/11 · HPDC Manila","x.post":"<b>1 παλιά υπόθεση</b> · 2023 · έκλεισε (fit to return)","x.ship":"<b>1 on-board incident</b> · 2024 · MV Aegean Trader",
+    "tab.overview":"Επισκόπηση","tab.cases":"Υποθέσεις & Φροντίδα","tab.files":"Αρχεία & Εξετάσεις","tab.profiles":"Κλινικά Προφίλ","tab.vax":"Εμβολιασμοί","tab.risk":"Ρίσκο",
+    "c.genhist":"Γενικό Ιστορικό","k.height":"Ύψος","k.weight":"Βάρος","k.overweight":"υπέρβαρος","k.blood":"Ομάδα αίματος",
+    "c.cvd":"Καρδιαγγειακό Προφίλ","c.cvdlead":"Κύριοι παράγοντες κινδύνου ΚΑ","rf.smoker":"Καπνιστής","rf.htn":"Υπέρταση","rf.dysl":"Δυσλιπιδαιμία",
+    "c.diab":"Διαβητικό Προφίλ","k.status":"Κατάσταση","k.prediab":"Προ-διαβητικός","c.allerg":"Αλλεργίες","al.rhin":"Αλλεργική ρινίτιδα (άνοιξη)",
+    "c.meds":"Φαρμακευτική Αγωγή","k.daily":"ημερησίως","c.vax":"Εμβολιασμοί","cnt.vax":"18 ✓","c.files":"Αρχεία & Εξετάσεις","cnt.files":"48 αρχεία",
+    "c.fileslead":"Ακτινογραφίες, ΗΚΓ, αιματολογικά, υπέρηχοι — από επισκέψεις & PEME.","c.family":"Οικογενειακό Προφίλ","k.spouse":"Σύζυγος","k.children":"Παιδιά",
+    "cases.lead":"Κάθε υπόθεση, κάθε προϊόν — ένα συνεχές ιστορικό","cases.sub":"Το Case Lifecycle Engine συνδέει PEME, TPA claims, on-board incidents και post-medical cases κάτω από ένα Seafarer ID.",
+    "case.peme":"Pre-Employment Medical Exam — 2026","case.pemecx":"Βαθμός καταστρώματος · πακέτο Crossworld Standard · HPDC Manila. Τώρα στο στάδιο Εργαστηρίου.",
+    "case.claim":"Εξωνοσοκομειακό claim — λοίμωξη θώρακα","case.claimcx":"Κάλυψη Gold+ · εξοφλήθηκε σε 3 μέρες · απευθείας στον πάροχο.","st.settled":"Εξοφλήθηκε",
+    "case.med":"Οξεία αμυγδαλίτιδα + βρογχίτιδα","case.medcx":"Αγωγή αμοξικιλλίνη/clav., αζιθρομυκίνη· πλήρης ανάρρωση. Καταγράφηκε στο προφίλ.","st.closed":"Κλειστό",
+    "case.ship":"Τραυματισμός χεριού εν πλω","case.shipcx":"PARON teleconsult · MV Aegean Trader · χωρίς αποβίβαση.",
+    "case.pome":"Post-medical case — οσφυϊκή καταπόνηση","case.pomecx":"Tracks Medical · Legal · Financial. Έκλεισε fit-to-return μετά 41 μέρες.","st.fit":"Fit to return",
+    "files.lead":"Ιατρικές εξετάσεις & αρχεία","files.sub":"Αποθηκευμένα σε Azure Blob (Layer 1) με signed URLs — φάκελοι ανά έτος, tags ανά τύπο & uploader.",
+    "th.title":"Τίτλος","th.type":"Τύπος","th.date":"Ημ/νία","th.up":"Uploader","ex.cxr":"Ακτινογρ. Θώρακος","ex.blood":"Αιματολογικές","ex.us":"Υπέρηχος","ex.cert":"Πιστοποιητικό","up.doc":"Ιατρός","up.pat":"Ασθενής",
+    "prof.lead":"Καρδιαγγειακό Προφίλ","hs.title":"10ετές CVD risk","hs.body":"Αυξημένο για την ηλικία. Οφείλεται σε κάπνισμα + υπέρταση + δυσλιπιδαιμία.","prof.factors":"Παράγοντες κινδύνου",
+    "rf.bmi":"BMI 28.4","rf.fam":"Οικογ. ιστορικό (πατέρας ΣΔ)","prof.diab":"Διαβητικό Προφίλ","k.fasting":"Γλυκόζη νηστείας",
+    "vax.lead":"Πρόγραμμα εμβολιασμών","vx.done":"ολοκληρώθηκε","vx.sched":"προγραμματισμένο","vx.over":"εκπρόθεσμο",
+    "risk.lead":"Δείκτες ρίσκου","risk.sub":"Σε ποια risk profiles εμπίπτει ο ναυτικός — το pre-visit σήμα που βλέπει ο Ιατρικός Διευθυντής πριν το PEME.",
+    "rk.cvd":"Καρδιαγγειακό","rk.diab":"Διαβητικό","rk.prediab":"Προ-διαβητικός","rk.resp":"Αναπνευστικό","rk.hxonly":"Μόνο ιστορικό","rk.covid":"Covid-19","rk.vaxed":"Εμβολιασμένος ×3",
+    "risk.mhie":"<b>MHIE signal (Phase 4):</b> ναυτικοί με αυτό το PEME + claims pattern έχουν ~3,2× πιθανότητα cardiac claim εντός 18 μηνών. Ο άνθρωπος αποφασίζει — το AI μόνο flag-άρει.",
+    "foot":"Το Seafarer 360° είναι Shared Core / CBMS module (Next2MCL Layer 2). Εφαρμόστηκε το spec του γιατρού — χωρίς ΗΔΙΚΑ / AMKA / patient-portal. Μόνο fake data."
+  }
+};
+let lang="en";
+const EN={}; document.querySelectorAll('[data-i18n]').forEach(el=>EN[el.dataset.i18n]=el.innerHTML);
+function setLang(l){
+  lang=l; document.documentElement.lang=l;
+  document.querySelectorAll('#langTog button').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.dataset.i18n; el.innerHTML=(l==='el'&&I18N.el[k])?I18N.el[k]:EN[k];
+  });
+}
+document.querySelectorAll('#langTog button').forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
+</script>
+</body>
+</html>

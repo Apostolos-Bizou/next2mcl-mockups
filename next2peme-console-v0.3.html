@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Next2Peme Console v0.3 · full PEME journey (Mockup)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#071E33;--navy-2:#0B2A45;--teal:#0E8C93;--teal-2:#12A7AF;
+  --gold:#E7A33E;--gold-2:#F2B860;--coral:#E5544B;--green:#2FA36B;--amber:#D9902A;
+  --mist:#F4F7F9;--paper:#FFFFFF;--ink:#152532;--ink-2:#4C6072;--ink-3:#8AA0B0;
+  --line:#DCE6EC;--line-2:#EAF0F4;--radius:14px;--radius-sm:9px;
+  --shadow:0 1px 2px rgba(7,30,51,.04),0 8px 24px rgba(7,30,51,.06);--shadow-lg:0 12px 40px rgba(7,30,51,.14);
+  --ff-display:'Sora',system-ui,sans-serif;--ff-body:'Inter',system-ui,sans-serif;--ff-mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{font-family:var(--ff-body);color:var(--ink);background:var(--mist);-webkit-font-smoothing:antialiased;line-height:1.45}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus-visible{outline:2px solid var(--teal);outline-offset:2px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.app{display:grid;grid-template-columns:262px 1fr;min-height:100vh}
+/* sidebar */
+.side{background:linear-gradient(180deg,var(--navy),#061829);color:#CFE0EC;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;padding:18px 15px}
+.brand{display:flex;align-items:center;gap:11px;padding:4px 6px 8px}
+.brand .mark{width:36px;height:36px;flex:0 0 36px}
+.brand .wm{font-family:var(--ff-display);font-weight:700;font-size:18px;color:#fff;line-height:1}
+.brand .wm b{color:var(--gold)}
+.brand .sub{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#6E8DA5;margin-top:3px}
+.vbadge{font-family:var(--ff-mono);font-size:9.5px;color:#8FE3E8;background:rgba(23,167,175,.16);border:1px solid rgba(23,167,175,.3);padding:1px 6px;border-radius:5px;margin-left:auto}
+.nav{display:flex;flex-direction:column;gap:1px;margin-top:8px;overflow-y:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav .lbl{font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:#5C7B95;margin:13px 8px 5px}
+.nav a{display:flex;align-items:center;gap:10px;padding:8px 11px;border-radius:9px;color:#B7CBDA;font-size:13px;font-weight:500;text-decoration:none;transition:.15s}
+.nav a svg{width:16px;height:16px;opacity:.85;flex:0 0 16px}
+.nav a:hover{background:rgba(255,255,255,.05);color:#fff}
+.nav a.on{background:rgba(23,167,175,.16);color:#fff;box-shadow:inset 2px 0 0 var(--teal)}
+.nav a.on svg{opacity:1;color:var(--teal-2)}
+.nav a .st{margin-left:auto;font-family:var(--ff-mono);font-size:9.5px;color:#5C7B95}
+.side .foot{margin-top:auto;padding-top:12px;border-top:1px solid rgba(255,255,255,.08)}
+.rolebox label{font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:#5C7B95;display:block;margin:0 4px 5px}
+.rolebox select{width:100%;background:#0A2136;color:#EAF3F8;border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:8px 9px;font-family:var(--ff-body);font-size:12px;font-weight:500}
+.envtag{display:flex;align-items:center;gap:7px;margin-top:10px;font-size:10px;color:#7893A8}
+.envtag i{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(231,163,62,.18)}
+
+.main{display:flex;flex-direction:column;min-width:0}
+.top{display:flex;align-items:center;gap:14px;padding:13px 24px;background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.crumb{font-size:12.5px;color:var(--ink-3)}.crumb b{color:var(--ink);font-weight:600}
+.top .grow{flex:1}
+.langtog{display:inline-flex;background:var(--mist);border:1px solid var(--line);border-radius:8px;padding:3px;gap:2px}
+.langtog button{padding:5px 10px;border-radius:6px;font-size:12px;font-weight:600;color:var(--ink-2)}
+.langtog button.on{background:var(--navy-2);color:#fff}
+.whoami{display:flex;align-items:center;gap:9px}
+.whoami .av{width:33px;height:33px;border-radius:9px;background:linear-gradient(135deg,var(--teal),var(--navy-2));color:#fff;display:grid;place-items:center;font-weight:600;font-size:12px;font-family:var(--ff-display)}
+.whoami .nm{font-size:12.5px;font-weight:600;line-height:1.2}.whoami .rl{font-size:11px;color:var(--ink-3)}
+
+.scroll{padding:22px 24px 64px;overflow-y:auto}
+.pagehead{margin-bottom:16px}
+.pagehead .ey{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:5px}
+.pagehead h1{font-family:var(--ff-display);font-weight:600;font-size:23px;letter-spacing:-.02em;margin:0}
+.pagehead p{margin:6px 0 0;color:var(--ink-2);font-size:13.5px;max-width:60ch}
+
+/* priority banner */
+.prio{display:flex;align-items:center;gap:10px;background:linear-gradient(90deg,rgba(229,84,75,.12),rgba(231,163,62,.1));border:1px solid rgba(229,84,75,.3);border-radius:var(--radius);padding:11px 15px;margin-bottom:16px;font-size:13px;color:var(--coral);font-weight:600}
+.prio svg{width:17px;height:17px}
+body.prio-on .sf360{outline:2px solid rgba(229,84,75,.5);outline-offset:2px}
+
+/* seafarer 360 header (compact) */
+.sf360{background:linear-gradient(112deg,var(--navy),var(--navy-2) 60%,#123a5c);border-radius:var(--radius);color:#EAF3F8;padding:16px 18px;display:flex;gap:16px;align-items:center;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.sf360::after{content:"";position:absolute;right:-40px;top:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(23,167,175,.2),transparent 68%)}
+.sf360 .photo{width:56px;height:56px;border-radius:12px;flex:0 0 56px;background:linear-gradient(135deg,#1c4a6e,#0d2c46);display:grid;place-items:center;font-family:var(--ff-display);font-weight:700;font-size:19px;color:#9FD6DA;border:1px solid rgba(255,255,255,.12)}
+.sf360 h2{font-family:var(--ff-display);font-weight:600;font-size:17px;margin:0}
+.sf360 .sid{font-family:var(--ff-mono);font-size:11.5px;color:var(--gold-2);margin-top:2px}
+.sf360 .meta{display:flex;gap:22px;flex-wrap:wrap;margin-left:6px}
+.sf360 .meta .k{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#7EA2BC}
+.sf360 .meta .v{font-size:12.5px;font-weight:600;color:#fff;margin-top:2px}
+.sf360 .open360{margin-left:auto;display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);color:#EAF3F8;padding:8px 12px;border-radius:9px;font-size:12px;font-weight:600;white-space:nowrap}
+.sf360 .open360:hover{background:rgba(23,167,175,.25)}
+.sf360 .open360 svg{width:14px;height:14px}
+
+/* tracking bar */
+.track{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:18px 16px 12px;margin-top:14px;box-shadow:var(--shadow)}
+.track .thead{display:flex;justify-content:space-between;align-items:baseline;margin:0 4px 14px}
+.track .thead h3{font-family:var(--ff-display);font-size:12.5px;font-weight:600;margin:0}
+.track .thead .prog{font-family:var(--ff-mono);font-size:11.5px;color:var(--ink-2)}
+.rail{display:flex;position:relative;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}
+.rail::-webkit-scrollbar{height:6px}.rail::-webkit-scrollbar-thumb{background:var(--line);border-radius:9px}
+.node{flex:1 0 92px;min-width:92px;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;padding:0 3px;cursor:pointer}
+.node .bar{position:absolute;top:14px;left:-50%;width:100%;height:2px;background:var(--line);z-index:0}
+.node:first-child .bar{display:none}
+.node.done .bar,.node.active .bar{background:var(--teal)}
+.node .dot{width:30px;height:30px;border-radius:50%;background:var(--paper);border:2px solid var(--line);display:grid;place-items:center;z-index:1;position:relative;font-family:var(--ff-mono);font-size:11px;font-weight:600;color:var(--ink-3);transition:.2s}
+.node .dot svg{width:14px;height:14px}
+.node.done .dot{background:var(--teal);border-color:var(--teal);color:#fff}
+.node.active .dot{background:var(--gold);border-color:var(--gold);color:var(--navy);box-shadow:0 0 0 5px rgba(231,163,62,.2)}
+.node:hover .dot{border-color:var(--teal)}
+.node .cap{font-size:10px;margin-top:7px;color:var(--ink-3);line-height:1.2;font-weight:500;max-width:11ch}
+.node.done .cap{color:var(--ink-2)}.node.active .cap{color:var(--ink);font-weight:600}
+.node .stc{font-size:8.5px;font-family:var(--ff-mono);color:var(--ink-3);margin-top:2px}
+
+/* generic cards */
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.card .ch{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line-2)}
+.card .ch .ic{width:30px;height:30px;border-radius:8px;background:var(--mist);display:grid;place-items:center;color:var(--teal);flex:0 0 30px}
+.card .ch .ic svg{width:16px;height:16px}
+.card .ch h3{font-family:var(--ff-display);font-size:14px;font-weight:600;margin:0}
+.card .ch .stepstat{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--ink-3)}
+.card .ch .stepstat.ok{color:var(--green)}
+.card .ch .stepstat svg{width:14px;height:14px}
+.card .cb{padding:16px}
+.feeds{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 16px 14px;font-size:11px;color:var(--ink-3)}
+.feeds .fp{background:var(--mist);border:1px solid var(--line);border-radius:999px;padding:3px 9px;color:var(--ink-2);font-weight:500}
+
+/* form fields */
+.field{margin-bottom:13px}
+.field label{display:block;font-size:11.5px;font-weight:600;color:var(--ink-2);margin-bottom:5px}
+.field .req{color:var(--coral)}
+.inp,select.inp,textarea.inp{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:var(--radius-sm);font-family:inherit;font-size:13px;color:var(--ink);background:var(--paper)}
+.inp:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(14,140,147,.12)}
+textarea.inp{min-height:78px;resize:vertical}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.sectitle{font-family:var(--ff-display);font-size:12px;font-weight:600;color:var(--navy-2);margin:6px 0 10px;text-transform:uppercase;letter-spacing:.04em}
+.filebox{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--mist);border:1px dashed var(--line);border-radius:var(--radius-sm);font-size:12px;color:var(--ink-3)}
+.filebox svg{width:18px;height:18px}
+.mini{padding:8px 13px;border-radius:8px;font-size:12px;font-weight:600;background:var(--navy-2);color:#fff}
+.mini:hover{background:var(--teal)}
+.mini.ghost{background:var(--mist);color:var(--teal);border:1px solid var(--teal)}
+
+/* magic complete button */
+.completebar{margin-top:16px;display:flex;gap:12px;align-items:center}
+.magic{flex:1;padding:13px;border-radius:11px;font-family:var(--ff-display);font-weight:600;font-size:14px;color:var(--navy);background:linear-gradient(100deg,var(--gold),var(--gold-2));display:flex;align-items:center;justify-content:center;gap:9px;box-shadow:0 6px 18px rgba(231,163,62,.3)}
+.magic svg{width:17px;height:17px}
+.magic:hover{transform:translateY(-1px)}
+.magic:disabled{background:var(--line);color:var(--ink-3);box-shadow:none;cursor:not-allowed;transform:none}
+
+/* pills / chips */
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;padding:4px 10px;border-radius:999px;font-weight:600}
+.pill.done{background:rgba(47,163,107,.12);color:var(--green);border:1px solid rgba(47,163,107,.35)}
+.pill.pend{background:rgba(231,163,62,.14);color:var(--amber);border:1px solid rgba(231,163,62,.35)}
+.pill.wait{background:var(--mist);color:var(--ink-3);border:1px solid var(--line)}
+.pill.hi{background:rgba(229,84,75,.12);color:var(--coral);border:1px solid rgba(229,84,75,.35)}
+
+/* case board table */
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:600;padding:9px 12px;border-bottom:1px solid var(--line)}
+.tbl td{padding:11px 12px;border-bottom:1px solid var(--line-2)}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr.clk:hover{background:var(--mist);cursor:pointer}
+.tbl .nm{font-weight:600}.tbl .sid{font-family:var(--ff-mono);font-size:11px;color:var(--ink-3)}
+.miniprog{display:flex;gap:2px;width:110px}
+.miniprog i{flex:1;height:5px;border-radius:3px;background:var(--line)}
+.miniprog i.d{background:var(--teal)}.miniprog i.a{background:var(--gold)}
+
+/* MD disposition */
+.disp{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:6px 0 4px}
+.dispbtn{padding:14px;border-radius:var(--radius-sm);border:1.5px solid var(--line);background:var(--paper);text-align:center;font-weight:600;font-size:13.5px;color:var(--ink-2);transition:.15s}
+.dispbtn:hover{border-color:var(--teal)}
+.dispbtn.sel-fit{border-color:var(--green);background:rgba(47,163,107,.08);color:var(--green)}
+.dispbtn.sel-temp{border-color:var(--amber);background:rgba(217,144,42,.08);color:var(--amber)}
+.dispbtn.sel-unfit{border-color:var(--coral);background:rgba(229,84,75,.08);color:var(--coral)}
+.dispbtn small{display:block;font-weight:500;font-size:11px;color:var(--ink-3);margin-top:3px}
+
+/* certificates */
+.certlist{display:flex;flex-direction:column;gap:8px}
+.certrow{display:flex;align-items:center;gap:12px;padding:11px 14px;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-sm)}
+.certrow .cn{font-weight:600;font-size:13px}.certrow .cf{font-size:11px;color:var(--ink-3)}
+.certrow .act{margin-left:auto;display:flex;gap:8px;align-items:center}
+.certrow .flag{font-family:var(--ff-mono);font-size:10px;color:var(--ink-3);background:var(--mist);border:1px solid var(--line);padding:2px 7px;border-radius:5px}
+
+/* 360 embed (compact) */
+.xprod{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+.xcard{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 13px;box-shadow:var(--shadow)}
+.xcard .pl{display:flex;align-items:center;gap:8px;font-family:var(--ff-display);font-weight:600;font-size:12px}
+.xcard .pl .dot{width:9px;height:9px;border-radius:50%}
+.xcard.care .pl .dot{background:var(--teal)}.xcard.peme .pl .dot{background:var(--gold)}
+.xcard.post .pl .dot{background:var(--coral)}.xcard.ship .pl .dot{background:#5B8DB8}
+.xcard .st{font-size:11.5px;color:var(--ink-2);margin-top:6px;line-height:1.35}.xcard .st b{color:var(--ink)}
+.corenote{background:linear-gradient(90deg,var(--navy),var(--navy-2));color:#CFE0EC;border-radius:var(--radius-sm);padding:11px 14px;font-size:12px;display:flex;align-items:center;gap:10px;margin-top:14px}
+.corenote .tag{font-family:var(--ff-mono);font-size:10px;background:rgba(23,167,175,.2);color:#8FE3E8;padding:2px 8px;border-radius:5px;border:1px solid rgba(23,167,175,.3)}
+
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);opacity:0;background:var(--navy);color:#fff;padding:12px 20px;border-radius:11px;font-size:13px;font-weight:500;box-shadow:var(--shadow-lg);z-index:80;transition:.25s;display:flex;align-items:center;gap:10px;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast svg{width:17px;height:17px;color:var(--gold)}
+.mocktag{position:fixed;top:0;right:0;background:var(--coral);color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 10px;border-bottom-left-radius:8px;z-index:90;font-family:var(--ff-mono)}
+
+@media (max-width:900px){.app{grid-template-columns:1fr}.side{display:none}.grid3{grid-template-columns:1fr}.disp{grid-template-columns:1fr}.xprod{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="mocktag">v0.3 · MOCKUP · FAKE DATA</div>
+
+<div class="app">
+  <aside class="side">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 40 40" fill="none"><rect x="1.5" y="1.5" width="37" height="37" rx="10" fill="#0B2A45" stroke="#E7A33E" stroke-width="1.5"/><path d="M9 24 H15 L17.5 15 L22.5 27 L25 21 H31" stroke="#12A7AF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="9.5" r="2.2" fill="#E7A33E"/></svg>
+      <div><div class="wm">Next2<b>Peme</b></div><div class="sub">Next2MCL · PEME</div></div>
+      <span class="vbadge">v0.3</span>
+    </div>
+    <nav class="nav" id="nav">
+      <span class="lbl" data-i18n="nav.ops">Operations</span>
+      <a href="#" data-view="board"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg><span data-i18n="nav.board">Case Board</span></a>
+      <a href="#" data-view="appointment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span data-i18n="nav.appt">New Appointment</span></a>
+      <span class="lbl" data-i18n="nav.journey">PEME Journey</span>
+      <a href="#" data-stage="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V8l7-4 7 4v13"/></svg><span data-i18n="nav.frontdesk">Frontdesk</span><span class="st" data-stst="2"></span></a>
+      <a href="#" data-stage="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 3v6l-5 9a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3l-5-9V3M8 3h8"/></svg><span data-i18n="st.LAB">Laboratory</span><span class="st" data-stst="3"></span></a>
+      <a href="#" data-stage="4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 14l5-4 4 3 3-3 6 5"/></svg><span data-i18n="st.IMG">Imaging &amp; Cardio</span><span class="st" data-stst="4"></span></a>
+      <a href="#" data-stage="5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h4l2 6 4-12 2 6h6"/></svg><span data-i18n="st.VITL">Vitals &amp; Spiro</span><span class="st" data-stst="5"></span></a>
+      <a href="#" data-stage="6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-6 10-6 10 6 10 6-3 6-10 6-10-6-10-6z"/></svg><span data-i18n="st.SPEC">Specialty Exams</span><span class="st" data-stst="6"></span></a>
+      <a href="#" data-stage="7"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="7" r="3.2"/><path d="M5 21c0-4 3-6 7-6s7 2 7 6"/></svg><span data-i18n="st.PHYS">Physical Exam</span><span class="st" data-stst="7"></span></a>
+      <a href="#" data-stage="8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v6c0 4-3.5 7-8 8-4.5-1-8-4-8-8V7z"/><path d="M9 12l2 2 4-4"/></svg><span data-i18n="st.MDRV">MD Review</span><span class="st" data-stst="8"></span></a>
+      <a href="#" data-stage="10"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span data-i18n="st.CERT">Certificates</span><span class="st" data-stst="10"></span></a>
+      <span class="lbl" data-i18n="nav.core">Shared Core</span>
+      <a href="#" data-view="folder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18M3 12h18"/></svg><span data-i18n="nav.folder">Seafarer 360°</span></a>
+    </nav>
+    <div class="foot">
+      <div class="rolebox"><label data-i18n="role.acting">Acting as</label><select id="roleSel"></select></div>
+      <div class="envtag"><i></i><span data-i18n="env.tag">Interim mockup · no live data</span></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="top">
+      <div class="crumb">Next2Peme · <b id="crumbView">Case Board</b></div>
+      <div class="grow"></div>
+      <div class="langtog" id="langTog"><button data-lang="en" class="on">EN</button><button data-lang="el">EL</button></div>
+      <div class="whoami"><div class="av" id="whoAv">FD</div><div><div class="nm" id="whoName">Frontdesk</div><div class="rl" id="whoRole">Reception</div></div></div>
+    </header>
+    <div class="scroll" id="scroll"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span id="toastMsg"></span></div>
+
+<script>
+/* ===================== DATA (fake) — portability seed ===================== */
+const SEAFARER={id:"SF-PH-039281",first:"Juan",middle:"D.",last:"Santos",initials:"JS",
+  rank:{en:"Able Seaman",el:"Ναύτης"},age:34,principal:"Crossworld Marine",agency:"Manila Crewing Corp.",
+  vessel:"MV Aegean Trader",caseId:"PEME-2026-04127",priority:false};
+
+const STAGES=[
+  {code:"BOOK",en:"Appointment",el:"Ραντεβού"},{code:"PRED",en:"Pre-Arrival",el:"Προ-άφιξη"},
+  {code:"CHKI",en:"Check-in",el:"Check-in"},{code:"LAB",en:"Laboratory",el:"Εργαστήριο"},
+  {code:"IMG",en:"Imaging & Cardio",el:"Απεικόνιση"},{code:"VITL",en:"Vitals & Spiro",el:"Ζωτικά"},
+  {code:"SPEC",en:"Specialty",el:"Ειδικές"},{code:"PHYS",en:"Physical Exam",el:"Κλινική"},
+  {code:"MDRV",en:"MD Review",el:"MD Review"},{code:"REFR",en:"Referrals",el:"Παραπομπές"},
+  {code:"CERT",en:"Certificates",el:"Πιστοποιητικά"}];
+
+/* Station config = the "Data Collection Forms" spec table (fields + feeds) */
+const STATIONS={
+  3:{icon:"lab",feeds:["Lab Consent","Drug Test Request","HIV Form","Custody & Control","COVID Declaration","Medical Questionnaire"],
+     sections:[
+      {t:"Blood & Chemistry",f:[["FBS (mg/dL)","in"],["Cholesterol","in"],["Creatinine","in"],["Blood type","in"]]},
+      {t:"Drug & Alcohol",f:[["Drug test panel","sel:10-panel|5-panel"],["Alcohol","sel:Negative|Positive"],["Custody & control #","in"]]},
+      {t:"Serology",f:[["HIV","sel:Non-reactive|Reactive"],["HBsAg","sel:Non-reactive|Reactive"]]},
+      {t:"Machine files",f:[["Analyzer results (PDF)","file"]]}]},
+  4:{icon:"img",feeds:["Medical Questionnaire"],
+     sections:[
+      {t:"Chest X-ray",f:[["Findings","ta"],["X-ray image (DICOM)","file"]]},
+      {t:"Abdominal Ultrasound",f:[["Findings","ta"],["US image","file"]]},
+      {t:"Cardiology — ECG / Treadmill",f:[["ECG interpretation","in"],["Stress echo findings","in"],["ECG strip","file"]]}]},
+  5:{icon:"vit",feeds:["Medical Questionnaire"],
+     sections:[
+      {t:"General metrics",f:[["BP (mmHg)","in"],["Pulse rate","in"],["Height (cm)","in"],["Weight (kg)","in"],["BMI","in"]]},
+      {t:"Spirometry",f:[["FVC","in"],["FEV1","in"],["FEV1/FVC","in"],["Spirometry file","file"]]}]},
+  6:{icon:"spec",feeds:["Ishihara Certification","Ishihara Form","Dental Health Exam","Psychological Evaluation","Medical Questionnaire"],
+     sections:[
+      {t:"Sight",f:[["Visual acuity (R/L)","in"],["Ishihara","sel:Normal|Deficient"],["Color vision","sel:Pass|Fail"]]},
+      {t:"Hearing",f:[["Audiometry (R/L dB)","in"],["Result","sel:Normal|Impaired"]]},
+      {t:"Dental",f:[["Dental status","sel:Fit|Needs treatment"],["Notes","in"]]},
+      {t:"Psychological",f:[["Temperament","in"],["Mental status","sel:Normal|Refer"]]}]},
+  7:{icon:"phys",feeds:["Medical Questionnaire"],
+     sections:[
+      {t:"Systems examination",f:[["HEENT","in"],["Cardiovascular","in"],["Chest / Lungs","in"],["Abdomen","in"],["Genitourinary","in"],["Extremities","in"],["Neurological","in"]]},
+      {t:"Physician remarks",f:[["Clinical remarks","ta"]]}]}
+};
+
+const PRINTABLES=[
+  ["Routing Slip","Welcome Form"],["Laboratory Consent Form","Lab"],["Drug Test Request","Lab"],["Drug Testing Consent","Lab"],
+  ["Custody & Control Form","Lab"],["HIV Form","Lab"],["Laboratory Form","Lab"],["COVID-19 Health Declaration","Lab"],
+  ["Ishihara Examination Form","Sight"],["Ishihara Certification","Sight"],["Dental Health Examination","Dental"],
+  ["Psychological Evaluation","Psych"],["Medical History & Physical Exam Questionnaire","Final Eval"],
+  ["Certificate for Service at Sea","Final Eval"],["Crew Endorsement Report","Final Eval"],["Oath of Undertaking","Final Eval"],
+  ["Customer Satisfaction Survey","Seafarer"],["Flag-state certificate (Panama)","Records"]];
+
+const ROLES=[
+  {id:"frontdesk",stage:2,initials:"FD",en:{name:"Frontdesk",sub:"Reception"},el:{name:"Frontdesk",sub:"Ρεσεψιόν"}},
+  {id:"manning",view:"appointment",initials:"MA",en:{name:"Manning Agency",sub:"Manila Crewing"},el:{name:"Πρακτορείο",sub:"Manila Crewing"}},
+  {id:"lab",stage:3,initials:"LT",en:{name:"Lab Technician",sub:"Laboratory"},el:{name:"Εργαστήριο",sub:"Laboratory"}},
+  {id:"radiology",stage:4,initials:"RT",en:{name:"Radiology / Cardio",sub:"Imaging"},el:{name:"Ακτινολογικό",sub:"Imaging"}},
+  {id:"nurse",stage:5,initials:"CN",en:{name:"Cardio / Nurse",sub:"Vitals"},el:{name:"Νοσηλευτής",sub:"Vitals"}},
+  {id:"specialist",stage:6,initials:"SP",en:{name:"Specialists",sub:"Sight/Dental/Psych"},el:{name:"Ειδικοί",sub:"Sight/Dental/Psych"}},
+  {id:"physician",stage:7,initials:"EP",en:{name:"Examining Physician",sub:"Physical Exam"},el:{name:"Εξετάζων Ιατρός",sub:"Physical Exam"}},
+  {id:"md",stage:8,initials:"MD",en:{name:"Medical Director",sub:"Final Evaluation"},el:{name:"Ιατρικός Διευθυντής",sub:"Τελική Απόφαση"}},
+  {id:"records",stage:10,initials:"MR",en:{name:"Medical Records",sub:"Certificates"},el:{name:"Ιατρικά Αρχεία",sub:"Certificates"}}];
+
+/* case board */
+const CASES=[
+  {id:"PEME-2026-04127",nm:"Juan D. Santos",sid:"SF-PH-039281",rank:"Able Seaman",prin:"Crossworld",stage:3,prio:false,me:true},
+  {id:"PEME-2026-04131",nm:"Ramon T. Cruz",sid:"SF-PH-041002",rank:"2nd Officer",prin:"Diana Shipping",stage:7,prio:true},
+  {id:"PEME-2026-04119",nm:"Elias P. Reyes",sid:"SF-PH-038820",rank:"Oiler",prin:"Marlow",stage:8,prio:false},
+  {id:"PEME-2026-04140",nm:"Noel A. Bautista",sid:"SF-PH-041290",rank:"Chief Cook",prin:"Golden Union",stage:1,prio:false},
+  {id:"PEME-2026-04102",nm:"Vicente M. Lim",sid:"SF-PH-037551",rank:"Master",prin:"Bourbon",stage:10,prio:false}];
+
+const CASE={currentStage:3,done:{2:true},disposition:null,certsIssued:false};
+
+/* ===================== i18n (chrome) ===================== */
+const I18N={en:{},el:{
+  "nav.ops":"Λειτουργίες","nav.board":"Πίνακας Υποθέσεων","nav.appt":"Νέο Ραντεβού","nav.journey":"Διαδρομή PEME",
+  "nav.frontdesk":"Frontdesk","nav.core":"Shared Core","nav.folder":"Φάκελος Ναυτικού 360°",
+  "st.LAB":"Εργαστήριο","st.IMG":"Απεικόνιση & Καρδιο","st.VITL":"Ζωτικά & Σπιρο","st.SPEC":"Ειδικές Εξετάσεις","st.PHYS":"Κλινική Εξέταση","st.MDRV":"Έλεγχος Ιατρ. Δ/ντή","st.CERT":"Πιστοποιητικά",
+  "role.acting":"Ρόλος","env.tag":"Ενδιάμεσο mockup · χωρίς live data",
+  "board.h":"Πίνακας Υποθέσεων","board.p":"Όλα τα PEME σε εξέλιξη στο HPDC Manila. Κλικ σε γραμμή για άνοιγμα.",
+  "th.seafarer":"Ναυτικός","th.rank":"Βαθμός","th.prin":"Principal","th.stage":"Στάδιο","th.prog":"Πρόοδος","th.prio":"Προτ/τα",
+  "appt.h":"Νέο Αίτημα PEME","appt.p":"Το πρακτορείο υποβάλλει αίτημα· η κλινική επιβεβαιώνει και επιστρέφει digital proof.",
+  "appt.company":"Εταιρεία / Principal","appt.rank":"Βαθμός","appt.date":"Επιθυμητή ημερομηνία","appt.pkg":"Πακέτο PEME","appt.hi":"Επείγον (high priority)","appt.hihint":"Όλη η ροή του PEME επισημαίνεται με κόκκινο ώστε κάθε σταθμός να ξέρει ότι είναι επείγον.","appt.submit":"Υποβολή & επιβεβαίωση",
+  "hdr.fit":"Εκκρεμεί απόφαση","open360":"Άνοιγμα Φακέλου 360°","track.title":"Διαδρομή PEME","track.of":"από",
+  "feeds":"Τροφοδοτεί:","complete":"Ολοκλήρωση σταθμού","completed":"Ολοκληρώθηκε","upload":"Μεταφόρτωση","attached":"Επισυνάφθηκε",
+  "md.h":"Τελική Αξιολόγηση","md.p":"Ο Ιατρικός Διευθυντής ελέγχει όλο τον φάκελο και αποφασίζει. Η υπογραφή τροφοδοτεί τα certificates.","md.summary":"Σύνοψη ευρημάτων","md.meds":"Απαιτούμενη αγωγή","md.disp":"Απόφαση καταλληλότητας","md.fit":"Fit","md.temp":"Temp. Unfit","md.unfit":"Unfit","md.fitsub":"Κατάλληλος","md.tempsub":"Προσωρινά ακατάλληλος","md.unfitsub":"Ακατάλληλος","md.sign":"Υπογραφή & έκδοση απόφασης",
+  "cert.h":"Έκδοση Πιστοποιητικών","cert.p":"Auto-generated από τα δεδομένα του PEME. Print → sign → scan → attach (hybrid για e-MER).","cert.gen":"Έκδοση όλων","cert.view":"Προβολή","cert.issued":"Εκδόθηκε",
+  "folder.note":"Ο Φάκελος 360° είναι shared module του CBMS (Layer 2) — τον ανοίγουν όλα τα προϊόντα. Εδώ βλέπεις σύνοψη· ο πλήρης φάκελος είναι ξεχωριστό artifact.",
+  "x.care":"<b>Ενεργό μέλος</b> · Gold+","x.peme":"<b>PEME σε εξέλιξη</b>","x.post":"<b>1 παλιό POME</b> · 2023","x.ship":"<b>1 incident</b> · 2024",
+  "t.saved":"Ο σταθμός ολοκληρώθηκε","t.appt":"Το αίτημα υποβλήθηκε · digital proof στη CW","t.md":"Η απόφαση εκδόθηκε","t.cert":"Τα certificates εκδόθηκαν","t.lang":"Άλλαξε η γλώσσα","t.prio":"Το PEME σημάνθηκε ως επείγον"
+}};
+let lang="en",activeRole="frontdesk",activeView="board";
+const t=k=>(lang==="el"&&I18N.el[k])?I18N.el[k]:(EN[k]??k);
+const EN={};
+const L=o=>o?(o[lang]||o.en):"";
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+function toast(k){const e=$("#toast");$("#toastMsg").textContent=t(k);e.classList.add("show");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("show"),2500);}
+
+/* ===================== shared renders ===================== */
+function sf360head(showOpen){
+  const s=SEAFARER;
+  return `<div class="sf360"><div class="photo">${s.initials}</div>
+    <div><h2>${s.first} ${s.last}</h2><div class="sid">${s.id}</div></div>
+    <div class="meta">
+      <div><div class="k">Rank</div><div class="v">${L(s.rank)}</div></div>
+      <div><div class="k">Principal</div><div class="v">${s.principal}</div></div>
+      <div><div class="k">Case</div><div class="v" style="font-family:var(--ff-mono);font-size:11px">${s.caseId}</div></div>
+    </div>
+    ${showOpen?`<button class="open360" onclick="go('folder')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/></svg>${t("open360")}</button>`:``}
+  </div>`;
+}
+function trackBar(){
+  const cur=CASE.currentStage,check=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>`;
+  const nodes=STAGES.map((st,i)=>{
+    const done=CASE.done[i]||i<cur;const cls=done?"done":(i===cur?"active":"");
+    return `<div class="node ${cls}" onclick="openStage(${i})"><div class="bar"></div><div class="dot">${done?check:i+1}</div><div class="cap">${L(st)}</div><div class="stc">${st.code}</div></div>`;
+  }).join("");
+  return `<div class="track"><div class="thead"><h3>${t("track.title")}</h3><span class="prog">${cur+1} ${t("track.of")} ${STAGES.length} · ${STAGES[cur].code}</span></div><div class="rail">${nodes}</div></div>`;
+}
+
+/* ===================== views ===================== */
+function vBoard(){
+  const rows=CASES.map(c=>{
+    const mp=STAGES.map((_,i)=>`<i class="${i<c.stage?'d':(i===c.stage?'a':'')}"></i>`).join("");
+    return `<tr class="clk" ${c.me?'onclick="openMyCase()"':''}>
+      <td><div class="nm">${c.nm}</div><div class="sid">${c.sid}</div></td>
+      <td>${c.rank}</td><td>${c.prin}</td>
+      <td><span class="pill wait" style="font-family:var(--ff-mono);font-size:10.5px">${STAGES[c.stage].code}</span></td>
+      <td><div class="miniprog">${mp}</div></td>
+      <td>${c.prio?'<span class="pill hi">HIGH</span>':'<span class="muted" style="color:var(--ink-3)">—</span>'}</td></tr>`;
+  }).join("");
+  return `<div class="pagehead"><div class="ey">HPDC Manila</div><h1>${t("board.h")}</h1><p>${t("board.p")}</p></div>
+    <div class="card"><div class="cb" style="padding:6px 6px"><table class="tbl">
+      <thead><tr><th>${t("th.seafarer")}</th><th>${t("th.rank")}</th><th>${t("th.prin")}</th><th>${t("th.stage")}</th><th>${t("th.prog")}</th><th>${t("th.prio")}</th></tr></thead>
+      <tbody>${rows}</tbody></table></div></div>`;
+}
+
+function vAppointment(){
+  return `<div class="pagehead"><div class="ey">Manning Agency → HPDC</div><h1>${t("appt.h")}</h1><p>${t("appt.p")}</p></div>
+  <div class="card" style="max-width:640px"><div class="cb">
+    <div class="grid2">
+      <div class="field"><label>${t("appt.company")}</label><input class="inp" value="Crossworld Marine"></div>
+      <div class="field"><label>${t("appt.rank")}</label><input class="inp" value="Able Seaman"></div>
+      <div class="field"><label>${t("appt.date")}</label><input class="inp" value="2026-07-15"></div>
+      <div class="field"><label>${t("appt.pkg")}</label><select class="inp"><option>Crossworld Standard — Deck</option><option>Officer package</option><option>First-time seafarer</option></select></div>
+    </div>
+    <div class="field" style="margin-top:6px;padding:12px;background:var(--mist);border-radius:9px">
+      <label style="display:flex;align-items:center;gap:9px;cursor:pointer"><input type="checkbox" id="prioChk" ${SEAFARER.priority?'checked':''} onchange="togglePrio(this.checked)"> <span style="color:var(--coral)">⚑ ${t("appt.hi")}</span></label>
+      <p class="muted" style="font-size:11.5px;color:var(--ink-3);margin:8px 0 0">${t("appt.hihint")}</p>
+    </div>
+    <button class="magic" style="margin-top:14px" onclick="toast('t.appt')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg>${t("appt.submit")}</button>
+  </div></div>`;
+}
+
+function iconSvg(k){const m={
+  lab:'<path d="M9 3v6l-5 9a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3l-5-9V3M8 3h8"/>',
+  img:'<rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 14l5-4 4 3 3-3 6 5"/>',
+  vit:'<path d="M3 12h4l2 6 4-12 2 6h6"/>',
+  spec:'<circle cx="12" cy="12" r="3"/><path d="M2 12s3-6 10-6 10 6 10 6-3 6-10 6-10-6-10-6z"/>',
+  phys:'<circle cx="12" cy="7" r="3.2"/><path d="M5 21c0-4 3-6 7-6s7 2 7 6"/>'};return m[k]||m.lab;}
+
+function fieldHTML(f){
+  const [label,type]=f;
+  if(type==="ta")return `<div class="field" style="grid-column:1/-1"><label>${label}</label><textarea class="inp"></textarea></div>`;
+  if(type==="file")return `<div class="field" style="grid-column:1/-1"><label>${label}</label><div class="filebox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 15V3M7 8l5-5 5 5M5 21h14"/></svg><span>${t("upload")}</span><button class="mini ghost" style="margin-left:auto" onclick="this.textContent='✓ '+t('attached')">${t("upload")}</button></div></div>`;
+  if(type&&type.startsWith("sel:")){const opts=type.slice(4).split("|").map(o=>`<option>${o}</option>`).join("");return `<div class="field"><label>${label}</label><select class="inp">${opts}</select></div>`;}
+  return `<div class="field"><label>${label}</label><input class="inp"></div>`;
+}
+function vStation(stage){
+  const cfg=STATIONS[stage],st=STAGES[stage];
+  const done=CASE.done[stage];
+  const okIcon=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>`;
+  const sections=cfg.sections.map(sec=>`<div class="sectitle">${sec.t}</div><div class="grid3">${sec.f.map(fieldHTML).join("")}</div>`).join('<div style="height:8px"></div>');
+  const feeds=cfg.feeds.map(f=>`<span class="fp">${f}</span>`).join("");
+  return `<div class="pagehead"><div class="ey">${st.code} · ${t("track.title")}</div><h1>${L(st)}</h1></div>
+    ${sf360head(true)}${trackBar()}
+    <div class="card" style="margin-top:16px">
+      <div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">${iconSvg(cfg.icon)}</svg></div><h3>${L(st)} — Data Collection</h3>
+        <span class="stepstat ${done?'ok':''}">${done?okIcon+t("completed"):''}</span></div>
+      <div class="feeds"><span>${t("feeds")}</span>${feeds}</div>
+      <div class="cb">${sections}
+        <div class="completebar"><button class="magic" onclick="completeStage(${stage})" ${done?'disabled':''}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>${done?t("completed"):t("complete")}</button></div>
+      </div>
+    </div>`;
+}
+
+function vMD(){
+  const st=STAGES[8],d=CASE.disposition;
+  return `<div class="pagehead"><div class="ey">MDRV · ${t("track.title")}</div><h1>${t("md.h")}</h1><p>${t("md.p")}</p></div>
+    ${sf360head(true)}${trackBar()}
+    <div class="card" style="margin-top:16px"><div class="cb">
+      <div class="field"><label>${t("md.summary")}</label><textarea class="inp">No abnormal findings. Elevated BP noted (138/88) — advise monitoring. HbA1c 5.9% (pre-diabetic).</textarea></div>
+      <div class="field"><label>${t("md.meds")}</label><input class="inp" value="Amlodipine 5mg OD; lifestyle advice"></div>
+      <div class="sectitle" style="margin-top:8px">${t("md.disp")}</div>
+      <div class="disp">
+        <button class="dispbtn ${d==='fit'?'sel-fit':''}" onclick="setDisp('fit')">${t("md.fit")}<small>${t("md.fitsub")}</small></button>
+        <button class="dispbtn ${d==='temp'?'sel-temp':''}" onclick="setDisp('temp')">${t("md.temp")}<small>${t("md.tempsub")}</small></button>
+        <button class="dispbtn ${d==='unfit'?'sel-unfit':''}" onclick="setDisp('unfit')">${t("md.unfit")}<small>${t("md.unfitsub")}</small></button>
+      </div>
+      <div class="completebar"><button class="magic" onclick="signMD()" ${d?'':'disabled'}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/></svg>${t("md.sign")}</button></div>
+    </div></div>`;
+}
+
+function vCerts(){
+  const rows=PRINTABLES.map(([n,f])=>`<div class="certrow">
+    <div><div class="cn">${n}</div><div class="cf">feeds from: ${f}</div></div>
+    <div class="act"><span class="flag">${f}</span>${CASE.certsIssued?'<span class="pill done">'+t("cert.issued")+'</span>':'<button class="mini ghost">'+t("cert.view")+'</button>'}</div></div>`).join("");
+  return `<div class="pagehead"><div class="ey">CERT · ${t("track.title")}</div><h1>${t("cert.h")}</h1><p>${t("cert.p")}</p></div>
+    ${sf360head(true)}
+    <div class="card" style="margin-top:16px"><div class="cb">
+      <button class="magic" style="margin-bottom:14px" onclick="issueCerts()" ${CASE.certsIssued?'disabled':''}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2 5 5 .5-4 3.5 1.5 5-4.5-3-4.5 3 1.5-5-4-3.5 5-.5z"/></svg>${CASE.certsIssued?t("cert.issued"):t("cert.gen")} (${PRINTABLES.length})</button>
+      <div class="certlist">${rows}</div>
+    </div></div>`;
+}
+
+function vFolder(){
+  return `<div class="pagehead"><div class="ey">CBMS · Layer 2</div><h1>Seafarer 360°</h1></div>
+    ${sf360head(false)}
+    <div class="xprod">
+      <div class="xcard care"><div class="pl"><span class="dot"></span>Next2Care</div><div class="st">${t("x.care")}</div></div>
+      <div class="xcard peme"><div class="pl"><span class="dot"></span>Next2Peme</div><div class="st">${t("x.peme")}</div></div>
+      <div class="xcard post"><div class="pl"><span class="dot"></span>Next2PostMed</div><div class="st">${t("x.post")}</div></div>
+      <div class="xcard ship"><div class="pl"><span class="dot"></span>Next2ShipCare</div><div class="st">${t("x.ship")}</div></div>
+    </div>
+    <div class="corenote"><span class="tag">SHARED CORE</span><span>${t("folder.note")}</span></div>`;
+}
+
+/* ===================== router ===================== */
+function render(){
+  const h=$("#scroll");
+  if(activeView==="board")h.innerHTML=vBoard();
+  else if(activeView==="appointment")h.innerHTML=vAppointment();
+  else if(activeView==="folder")h.innerHTML=vFolder();
+  else if(activeView==="stage"){
+    const s=CASE._openStage;
+    if(s===2)h.innerHTML=vFrontdesk();
+    else if(STATIONS[s])h.innerHTML=vStation(s);
+    else if(s===8)h.innerHTML=vMD();
+    else if(s===10)h.innerHTML=vCerts();
+    else h.innerHTML=vStation(3);
+  }
+  document.body.classList.toggle("prio-on",SEAFARER.priority);
+  syncNav();
+}
+function syncNav(){
+  $$("#nav a").forEach(a=>a.classList.remove("on"));
+  if(activeView==="board")$('#nav a[data-view="board"]')?.classList.add("on");
+  else if(activeView==="appointment")$('#nav a[data-view="appointment"]')?.classList.add("on");
+  else if(activeView==="folder")$('#nav a[data-view="folder"]')?.classList.add("on");
+  else if(activeView==="stage"){const s=CASE._openStage;$(`#nav a[data-stage="${s}"]`)?.classList.add("on");}
+  // stage status ticks
+  STAGES.forEach((_,i)=>{const el=$(`[data-stst="${i}"]`);if(el)el.textContent=(CASE.done[i]||i<CASE.currentStage)?"✓":(i===CASE.currentStage?"•":"");});
+}
+
+/* Frontdesk (from v0.1, condensed + short code) */
+const fd={idVerified:false,photo:false,signed:false,slip:false};
+function vFrontdesk(){
+  const okIcon=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>`;
+  const ready=fd.idVerified&&fd.photo&&fd.signed;
+  return `<div class="pagehead"><div class="ey">CHKI · ${t("track.title")}</div><h1 data-i18n="fd.h1">Frontdesk Check-in</h1></div>
+    ${sf360head(true)}${trackBar()}
+    <div class="card" style="margin-top:16px"><div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="12" r="2.4"/><path d="M14 10h4M14 14h4"/></svg></div><h3>Identity · Consent · Package</h3><span class="stepstat ${ready?'ok':''}">${ready?okIcon+t("completed"):''}</span></div>
+    <div class="cb">
+      <div class="grid3">
+        <div class="field"><label>ID number <span class="req">*</span></label><input class="inp" value="C1-8842019"></div>
+        <div class="field"><label>Live photo <span class="req">*</span></label><button class="mini ${fd.photo?'':'ghost'}" onclick="fd.photo=true;render()">${fd.photo?okIcon+'Captured':'Capture'}</button></div>
+        <div class="field"><label>ID verify <span class="req">*</span></label><button class="mini ${fd.idVerified?'':'ghost'}" onclick="fd.idVerified=true;render()">${fd.idVerified?okIcon+'Verified':'Verify'}</button></div>
+      </div>
+      <div class="field"><label>e-Signature (RA 8792) <span class="req">*</span></label><button class="mini ${fd.signed?'':'ghost'}" onclick="fd.signed=true;render()">${fd.signed?okIcon+'Signed':'Tap to sign'}</button></div>
+      <div class="completebar"><button class="magic" onclick="issueSlip()" ${ready?'':'disabled'}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/></svg>${fd.slip?'Re-issue Routing Slip':'Generate QR + Short Code Routing Slip'}</button></div>
+      ${fd.slip?`<div class="corenote" style="margin-top:14px"><span class="tag">ROUTING</span><span>QR + Short code <b style="color:#fff;font-family:var(--ff-mono)">CW-4127</b> · scan at each station.</span></div>`:''}
+    </div></div>`;
+}
+
+/* ===================== actions ===================== */
+function go(v){activeView=v;$("#crumbView").textContent=({board:"Case Board",appointment:"New Appointment",folder:"Seafarer 360°"})[v]||"";render();}
+function openStage(i){CASE._openStage=i;activeView="stage";$("#crumbView").textContent=STAGES[i].en;render();}
+function openMyCase(){openStage(CASE.currentStage);}
+function completeStage(s){CASE.done[s]=true;if(s===CASE.currentStage&&CASE.currentStage<STAGES.length-1)CASE.currentStage=Math.min(CASE.currentStage+1,STAGES.length-1);toast("t.saved");render();}
+function issueSlip(){fd.slip=true;CASE.done[2]=true;if(CASE.currentStage<3)CASE.currentStage=3;toast("t.saved");render();}
+function setDisp(d){CASE.disposition=d;render();}
+function signMD(){CASE.done[8]=true;if(CASE.currentStage<10)CASE.currentStage=10;toast("t.md");render();}
+function issueCerts(){CASE.certsIssued=true;CASE.done[10]=true;toast("t.cert");render();}
+function togglePrio(v){SEAFARER.priority=v;document.body.classList.toggle("prio-on",v);if(v)toast("t.prio");}
+
+/* role switch */
+function setRole(id){const r=ROLES.find(x=>x.id===id);if(!r)return;activeRole=id;
+  $("#whoAv").textContent=r.initials;$("#whoName").textContent=r[lang].name;$("#whoRole").textContent=r[lang].sub;$("#roleSel").value=id;
+  if(r.view){go(r.view);}else{openStage(r.stage);}
+}
+
+/* language */
+function applyStatic(){$$("[data-i18n]").forEach(el=>{const k=el.dataset.i18n;el.textContent=(lang==="el"&&I18N.el[k])?I18N.el[k]:(EN[k]||el.textContent);});}
+function setLang(l){lang=l;document.documentElement.lang=l;$$("#langTog button").forEach(b=>b.classList.toggle("on",b.dataset.lang===l));
+  const r=ROLES.find(x=>x.id===activeRole);$("#whoName").textContent=r[lang].name;$("#whoRole").textContent=r[lang].sub;
+  applyStatic();render();toast("t.lang");}
+
+/* init */
+function init(){
+  $$("[data-i18n]").forEach(el=>EN[el.dataset.i18n]=el.textContent);
+  const sel=$("#roleSel");sel.innerHTML=ROLES.map(r=>`<option value="${r.id}">${r[lang].name}</option>`).join("");sel.onchange=e=>setRole(e.target.value);
+  $("#nav").addEventListener("click",e=>{const a=e.target.closest("a");if(!a)return;e.preventDefault();
+    if(a.dataset.view)go(a.dataset.view);else if(a.dataset.stage)openStage(+a.dataset.stage);});
+  $$("#langTog button").forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
+  applyStatic();go("board");
+}
+init();
+</script>
+</body>
+</html>

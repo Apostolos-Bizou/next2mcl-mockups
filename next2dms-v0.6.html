@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Next2DMS · Document Management (Mockup v0.3)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brand:#071E33;--brand-2:#0B2A45;--accent:#0E8C93;--accent-2:#12A7AF;--gold:#E7A33E;
+  --green:#2FA36B;--amber:#D9902A;--coral:#E5544B;--slate:#5A6B7A;--blue:#5B8DB8;--violet:#7B61A8;
+  --mist:#F4F7F9;--paper:#FFFFFF;--ink:#152532;--ink-2:#4C6072;--ink-3:#8AA0B0;
+  --line:#DCE6EC;--line-2:#EAF0F4;--radius:14px;--radius-sm:9px;
+  --shadow:0 1px 2px rgba(7,30,51,.04),0 8px 24px rgba(7,30,51,.06);--shadow-lg:0 16px 44px rgba(7,30,51,.16);
+  --ff-display:'Sora',system-ui,sans-serif;--ff-body:'Inter',system-ui,sans-serif;--ff-mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{font-family:var(--ff-body);color:var(--ink);background:var(--mist);-webkit-font-smoothing:antialiased;line-height:1.45}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.app{display:grid;grid-template-columns:238px 1fr;min-height:100vh}
+.side{background:var(--paper);border-right:1px solid var(--line);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;padding:16px 12px;overflow-y:auto}
+.tenantbar{display:flex;align-items:center;gap:10px;padding:8px 8px 14px;border-bottom:1px solid var(--line-2);margin-bottom:8px}
+.tenantbar .mk{width:36px;height:36px;flex:0 0 36px;border-radius:10px;display:grid;place-items:center;color:#fff;font-family:var(--ff-display);font-weight:700;font-size:14px;background:linear-gradient(135deg,var(--brand-2),var(--accent))}
+.tenantbar .nm{font-family:var(--ff-display);font-weight:700;font-size:15px;line-height:1.1}
+.tenantbar .pk{font-size:10px;color:var(--ink-3);margin-top:2px;font-family:var(--ff-mono)}
+.nav{display:flex;flex-direction:column;gap:1px}
+.nav .lbl{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:12px 8px 5px}
+.nav a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:var(--ink-2);font-size:13px;font-weight:500;cursor:pointer}
+.nav a svg{width:16px;height:16px;flex:0 0 16px;opacity:.8}
+.nav a .pdot{width:9px;height:9px;border-radius:3px;flex:0 0 9px}
+.nav a:hover{background:var(--mist)}
+.nav a.on{background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--brand-2);font-weight:600}
+.nav a.on svg{color:var(--accent);opacity:1}
+.nav a .ct{margin-left:auto;font-family:var(--ff-mono);font-size:10.5px;color:var(--ink-3)}
+.side .foot{margin-top:auto;font-size:10px;color:var(--ink-3);padding:12px 8px 0;border-top:1px solid var(--line-2);line-height:1.5}
+.side .foot b{color:var(--ink-2)}
+
+.main{display:flex;flex-direction:column;min-width:0}
+.top{background:linear-gradient(100deg,var(--brand),var(--brand-2));color:#EAF3F8;padding:0 22px;height:56px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:20}
+.top .wl{font-family:var(--ff-display);font-weight:600;font-size:14px}
+.top .wl small{font-weight:400;color:rgba(255,255,255,.6);font-size:11px}
+.tswitch{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:9px;padding:6px 11px;font-size:12.5px;font-weight:600;color:#EAF3F8}
+.tswitch svg{width:13px;height:13px;opacity:.7}
+.planpill{display:flex;align-items:center;gap:6px;background:rgba(231,163,62,.16);border:1px solid rgba(231,163,62,.34);color:var(--gold);border-radius:8px;padding:5px 10px;font-size:11px;font-weight:600;font-family:var(--ff-mono)}
+.planpill svg{width:12px;height:12px}
+.top .search{margin-left:auto;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:9px;padding:7px 12px;width:200px;color:rgba(255,255,255,.6)}
+.top .search svg{width:14px;height:14px}
+.top .search input{background:none;border:none;color:#fff;font-family:inherit;font-size:12.5px;width:100%}
+.top .search input::placeholder{color:rgba(255,255,255,.5)}.top .search input:focus{outline:none}
+.langtog{display:inline-flex;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:2px}
+.langtog button{padding:4px 9px;border-radius:6px;font-size:11px;font-weight:600;color:rgba(255,255,255,.7)}
+.langtog button.on{background:var(--gold);color:var(--brand)}
+
+.scroll{padding:18px 22px 40px;overflow-y:auto}
+.corebanner{display:flex;align-items:flex-start;gap:10px;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-sm);padding:11px 14px;font-size:12px;color:var(--ink-2);margin-bottom:14px;line-height:1.5}
+.corebanner .tag{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.06em;background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);padding:3px 8px;border-radius:5px;flex:0 0 auto;margin-top:1px}
+.corebanner b{color:var(--ink)}
+
+.crumb{font-size:12px;color:var(--ink-3);margin-bottom:6px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.crumb b{color:var(--ink-2);font-weight:600}.crumb svg{width:12px;height:12px}
+.pagehead{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:14px;flex-wrap:wrap}
+.pagehead h1{font-family:var(--ff-display);font-weight:600;font-size:20px;margin:0}
+.pagehead .sub{font-size:12.5px;color:var(--ink-3);margin-top:3px}
+.newbtn{display:inline-flex;align-items:center;gap:8px;background:var(--brand-2);color:#fff;padding:9px 15px;border-radius:9px;font-weight:600;font-size:13px}
+.newbtn:hover{background:var(--accent)}.newbtn svg{width:15px;height:15px}
+
+.srcstrip{display:none;align-items:center;gap:16px;background:linear-gradient(100deg,var(--brand),var(--brand-2));color:#EAF3F8;border-radius:var(--radius);padding:15px 18px;margin-bottom:14px;box-shadow:var(--shadow)}
+.srcstrip.show{display:flex;flex-wrap:wrap}
+.srcstrip .sic{width:42px;height:42px;flex:0 0 42px;border-radius:11px;display:grid;place-items:center;color:#fff}
+.srcstrip .sic svg{width:21px;height:21px}
+.srcstrip .snm{font-family:var(--ff-display);font-weight:600;font-size:16px;display:flex;align-items:center;gap:9px}
+.srcstrip .conn{font-family:var(--ff-mono);font-size:9.5px;background:rgba(47,163,107,.2);color:#8ff0c0;border:1px solid rgba(47,163,107,.4);padding:2px 7px;border-radius:5px;letter-spacing:.04em}
+.srcstrip .sprod{font-size:11.5px;color:#9FBBD0;margin-top:3px}
+.srcstrip .sright{margin-left:auto;display:flex;gap:22px}
+.srcstrip .si .k{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:#7EA2BC}
+.srcstrip .si .v{font-size:13px;font-weight:600;color:#fff;margin-top:3px}
+.srcstrip .si .v.mono{font-family:var(--ff-mono);font-size:12px;color:#8FE3E8}
+
+.filters{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center}
+.filters .flabel{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-right:2px}
+.chip{font-size:12px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink-2);font-weight:500}
+.chip.on{background:var(--brand-2);color:#fff;border-color:var(--brand-2)}
+.chip .n{font-family:var(--ff-mono);font-size:10px;opacity:.7;margin-left:4px}
+
+.tbl{width:100%;border-collapse:collapse;font-size:13px;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.tbl th{text-align:left;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:600;padding:11px 14px;border-bottom:1px solid var(--line);background:var(--mist)}
+.tbl td{padding:12px 14px;border-bottom:1px solid var(--line-2)}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tbody tr{cursor:pointer}.tbl tbody tr:hover{background:var(--mist)}
+.doc-nm{font-weight:600;display:flex;align-items:center;gap:9px}
+.doc-nm .fi{width:26px;height:26px;flex:0 0 26px;border-radius:7px;display:grid;place-items:center;background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent)}
+.doc-nm .fi svg{width:14px;height:14px}
+.doc-nm .lock{width:26px;height:26px;flex:0 0 26px;border-radius:7px;display:grid;place-items:center;background:rgba(229,84,75,.12);color:var(--coral)}
+.doc-ty{font-size:11px;color:var(--ink-3);margin-top:1px;font-weight:400;display:flex;align-items:center;gap:6px}
+.doc-ty .med{color:var(--coral);font-weight:600}
+.doc-ty .exp{color:var(--amber);font-weight:600}
+.srcpill{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:6px;background:var(--mist);border:1px solid var(--line);color:var(--ink-2)}
+.srcpill .pdot{width:8px;height:8px;border-radius:3px}
+.ver{font-family:var(--ff-mono);font-size:11.5px;color:var(--ink-2)}
+.st{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:999px}
+.st i{width:7px;height:7px;border-radius:50%;background:currentColor}
+.st-draft{background:var(--mist);color:var(--slate);border:1px solid var(--line)}
+.st-pending{background:rgba(217,144,42,.12);color:var(--amber);border:1px solid rgba(217,144,42,.3)}
+.st-signed{background:rgba(47,163,107,.12);color:var(--green);border:1px solid rgba(47,163,107,.3)}
+.st-archived{background:rgba(90,107,122,.1);color:var(--slate);border:1px solid var(--line)}
+.cl-mini{font-size:12px;color:var(--ink-2)}
+
+.scrim{position:fixed;inset:0;background:rgba(7,24,41,.42);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:.2s;z-index:40}
+.scrim.show{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100vh;width:452px;max-width:94vw;background:var(--paper);box-shadow:var(--shadow-lg);transform:translateX(100%);transition:.25s cubic-bezier(.4,0,.2,1);z-index:50;display:flex;flex-direction:column}
+.drawer.show{transform:translateX(0)}
+.dh{background:linear-gradient(120deg,var(--brand),var(--brand-2));color:#EAF3F8;padding:18px 20px;position:relative}
+.dh .cls{position:absolute;top:14px;right:14px;color:rgba(255,255,255,.7)}.dh .cls svg{width:20px;height:20px}
+.dh .ty{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);font-family:var(--ff-mono)}
+.dh h2{font-family:var(--ff-display);font-weight:600;font-size:18px;margin:5px 0 0;line-height:1.25}
+.dh .dhmeta{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap}
+.dh .dhmeta .k{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.dh .dhmeta .v{font-size:12.5px;font-weight:600;color:#fff;margin-top:2px}
+.db{padding:18px 20px;overflow-y:auto;flex:1}
+.dsec{margin-bottom:20px}
+.dsec h3{font-family:var(--ff-display);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin:0 0 10px;display:flex;align-items:center;gap:8px}
+.dsec h3 svg{width:14px;height:14px;color:var(--accent)}
+.kv{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;padding:6px 0;border-bottom:1px dashed var(--line-2)}
+.kv:last-child{border-bottom:none}.kv .k{color:var(--ink-3)}.kv .v{font-weight:600;font-family:var(--ff-mono);font-size:12px;text-align:right}
+/* single source of truth + references */
+.sot{background:linear-gradient(120deg,color-mix(in srgb,var(--accent) 10%,#fff),#fff);border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line));border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:10px}
+.sot .t{font-size:12.5px;font-weight:600;display:flex;align-items:center;gap:8px}
+.sot .t svg{width:15px;height:15px;color:var(--accent)}
+.sot .d{font-size:11.5px;color:var(--ink-2);margin-top:5px;line-height:1.4}
+.refby{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.refby .r{font-size:11px;font-family:var(--ff-mono);background:var(--mist);border:1px solid var(--line);color:var(--ink-2);padding:3px 8px;border-radius:6px}
+.medlock{background:rgba(229,84,75,.07);border:1px solid rgba(229,84,75,.32);border-radius:var(--radius-sm);padding:12px 14px;display:flex;gap:10px;font-size:12px;color:#8a2f29;line-height:1.45}
+.medlock svg{width:17px;height:17px;color:var(--coral);flex:0 0 17px;margin-top:1px}
+.medlock b{color:#6f231e}
+.alertrow{display:flex;gap:10px;align-items:center;background:rgba(217,144,42,.1);border:1px solid rgba(217,144,42,.34);border-radius:var(--radius-sm);padding:10px 13px;font-size:12px;color:#8a5a12;margin-bottom:10px}
+.alertrow svg{width:16px;height:16px;color:var(--amber);flex:0 0 16px}
+.alertrow b{color:#6f4610}
+.compbadges{display:flex;flex-wrap:wrap;gap:7px}
+.compbadges .b{font-size:11px;font-weight:600;padding:4px 10px;border-radius:7px;background:var(--mist);border:1px solid var(--line);color:var(--ink-2);display:flex;align-items:center;gap:6px}
+.compbadges .b.ok{background:rgba(47,163,107,.1);border-color:rgba(47,163,107,.3);color:var(--green)}
+.compbadges .b svg{width:12px;height:12px}
+.vrow{display:flex;align-items:center;gap:11px;padding:8px 0;border-bottom:1px dashed var(--line-2)}
+.vrow:last-child{border-bottom:none}
+.vrow .vb{font-family:var(--ff-mono);font-size:11px;font-weight:600;background:var(--mist);border:1px solid var(--line);padding:3px 8px;border-radius:6px;color:var(--ink-2)}
+.vrow.cur .vb{background:color-mix(in srgb,var(--accent) 14%,transparent);border-color:color-mix(in srgb,var(--accent) 34%,transparent);color:var(--accent)}
+.vrow .vi{font-size:12px}.vrow .vi .by{color:var(--ink-3);font-size:11px}
+.vrow .vt{margin-left:auto;font-size:10.5px;color:var(--ink-3);font-family:var(--ff-mono)}
+.sig{display:flex;align-items:center;gap:10px;padding:9px 11px;border:1px solid var(--line);border-radius:var(--radius-sm);margin-bottom:8px}
+.sig .av{width:30px;height:30px;flex:0 0 30px;border-radius:8px;background:var(--mist);display:grid;place-items:center;font-family:var(--ff-display);font-weight:600;font-size:11px;color:var(--ink-2)}
+.sig .snm{font-size:12.5px;font-weight:600}.sig .sr{font-size:11px;color:var(--ink-3)}
+.sig .sst{margin-left:auto;font-size:11px;font-weight:600}.sig .sst.ok{color:var(--green)}.sig .sst.wait{color:var(--amber)}
+.audit{position:relative;padding-left:16px}
+.audit .ev{position:relative;padding:0 0 12px 12px;border-left:2px solid var(--line-2)}
+.audit .ev:last-child{border-left-color:transparent;padding-bottom:0}
+.audit .ev::before{content:"";position:absolute;left:-5px;top:3px;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.audit .ev .ea{font-size:12px;font-weight:600}.audit .ev .em{font-size:11px;color:var(--ink-3);font-family:var(--ff-mono);margin-top:1px}
+
+.stackfoot{margin-top:20px;background:linear-gradient(100deg,var(--brand),var(--brand-2));color:#B9D3E4;border-radius:var(--radius);padding:14px 18px;font-size:11.5px;line-height:1.6}
+.stackfoot .l{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#7EA2BC;margin-bottom:4px}
+.stackfoot b{color:#fff}
+.stackfoot .sep{color:#3d5f7d;margin:0 4px}
+
+.toolbar{display:flex;gap:9px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+.toolbar .sbox{flex:1;min-width:240px;display:flex;align-items:center;gap:9px;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 13px}
+.toolbar .sbox svg{width:16px;height:16px;color:var(--ink-3);flex:0 0 16px}
+.toolbar .sbox input{flex:1;border:none;background:none;font-family:inherit;font-size:13px;color:var(--ink)}
+.toolbar .sbox input:focus{outline:none}
+.toolbar select{font-family:inherit;font-size:12.5px;color:var(--ink-2);background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:10px 12px;cursor:pointer}
+.toolbar .reset{font-size:12.5px;color:var(--ink-3);padding:10px 13px;border:1px solid var(--line);border-radius:9px;background:var(--paper)}
+.toolbar .reset:hover{background:var(--mist)}
+.toolbar .rescount{font-size:11.5px;color:var(--ink-3);font-family:var(--ff-mono);margin-left:2px}
+.tbl th.sortable{cursor:pointer;user-select:none;white-space:nowrap}
+.tbl th.sortable:hover{color:var(--accent)}
+.tbl th .sar{opacity:.35;font-size:9px;margin-left:3px}
+.tbl th.sorted{color:var(--accent)}.tbl th.sorted .sar{opacity:1}
+.tbl td.code{font-family:var(--ff-mono);font-size:11.5px;color:var(--accent);font-weight:600;white-space:nowrap}
+.tbl td.date{font-family:var(--ff-mono);font-size:12px;color:var(--ink-2);white-space:nowrap}
+.tbl .desc-nm{font-weight:600}
+.tbl .desc-ty{font-size:11px;color:var(--ink-3);margin-top:1px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tbl .desc-ty .med{color:var(--coral);font-weight:600}.tbl .desc-ty .exp{color:var(--amber);font-weight:600}
+.norez{text-align:center;color:var(--ink-3);padding:26px;font-size:13px}
+.doc-code{font-family:var(--ff-mono);font-size:10.5px;color:var(--accent);margin-top:2px;font-weight:500}
+.nav a.guide{background:linear-gradient(100deg,color-mix(in srgb,var(--gold) 16%,#fff),#fff);border:1px solid color-mix(in srgb,var(--gold) 34%,var(--line));color:var(--ink)}
+.nav a.guide svg{color:var(--gold);opacity:1}
+.nav a.guide.on{background:linear-gradient(100deg,var(--gold),var(--gold));color:var(--brand)}
+.nav a.guide.on svg{color:var(--brand)}
+/* Identifiers block in drawer */
+.idbox{background:var(--mist);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 14px}
+.idbox .row{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px dashed var(--line);align-items:center}
+.idbox .row:last-child{border-bottom:none}
+.idbox .k{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em}
+.idbox .v{font-family:var(--ff-mono);font-size:12px;font-weight:600;color:var(--ink);text-align:right;word-break:break-all}
+.idbox .v.code{color:var(--accent)}
+.idbox .v.uuid{color:var(--ink-3);font-weight:400;font-size:11px}
+/* guide view */
+.guideview{display:none}
+.guideview.show{display:block}
+.gbanner{background:linear-gradient(110deg,var(--brand),var(--brand-2) 60%,#123a5c);color:#EAF3F8;border-radius:var(--radius);padding:20px 22px;margin-bottom:18px}
+.gbanner h1{font-family:var(--ff-display);font-weight:600;font-size:21px;margin:0 0 6px;color:#fff;display:flex;align-items:center;gap:10px}
+.gbanner p{font-size:12.5px;color:#B9D3E4;margin:0;line-height:1.5}
+.gbanner .grp{display:inline-flex;align-items:center;gap:7px;background:rgba(231,163,62,.16);border:1px solid rgba(231,163,62,.34);color:var(--gold-2,#F2B860);font-family:var(--ff-mono);font-size:10px;padding:4px 10px;border-radius:6px;margin-top:12px}
+.gsec{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;margin-bottom:16px}
+.gsec .gh{display:flex;align-items:center;gap:11px;margin:0 0 6px}
+.gsec .gh .num{width:28px;height:28px;flex:0 0 28px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;display:grid;place-items:center;font-family:var(--ff-display);font-weight:700;font-size:14px}
+.gsec .gh h2{font-family:var(--ff-display);font-weight:600;font-size:16px;margin:0}
+.gsec .lead{font-size:12.5px;color:var(--ink-2);margin:0 0 14px;line-height:1.5}
+.codebox{background:var(--brand);color:#EAF3F8;border-radius:var(--radius-sm);padding:14px 16px;font-family:var(--ff-mono);font-size:13px;margin:12px 0;overflow-x:auto}
+.codebox .hl{color:var(--gold-2,#F2B860)}
+.codebox .ex{color:#8FE3E8;font-size:14px;margin-top:8px;display:block}
+.codebox .mut{color:#7EA2BC;font-size:11px}
+.gtable{width:100%;border-collapse:collapse;font-size:12.5px;margin:10px 0}
+.gtable th{text-align:left;font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);font-weight:600;padding:8px 10px;border-bottom:1px solid var(--line);background:var(--mist)}
+.gtable td{padding:8px 10px;border-bottom:1px solid var(--line-2);vertical-align:top}
+.gtable td:first-child{font-family:var(--ff-mono);font-weight:600;color:var(--accent);white-space:nowrap}
+.gtable tr:last-child td{border-bottom:none}
+.grule{display:flex;gap:11px;padding:9px 0;border-bottom:1px dashed var(--line-2);font-size:12.5px;color:var(--ink-2);line-height:1.45}
+.grule:last-child{border-bottom:none}
+.grule .n{width:22px;height:22px;flex:0 0 22px;border-radius:6px;background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent);display:grid;place-items:center;font-weight:700;font-size:11px;font-family:var(--ff-mono)}
+.grule b{color:var(--ink)}
+.gchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.gchips .c{font-size:11px;font-family:var(--ff-mono);background:var(--mist);border:1px solid var(--line);color:var(--ink-2);padding:3px 9px;border-radius:6px}
+.gchips .c.core{background:color-mix(in srgb,var(--accent) 10%,#fff);border-color:color-mix(in srgb,var(--accent) 30%,var(--line));color:var(--accent)}
+.gsrc{font-size:11px;color:var(--ink-3);line-height:1.6}.gsrc b{color:var(--ink-2)}
+.mclhome{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:9px;padding:6px 11px;font-size:12px;font-weight:600;color:#EAF3F8;margin-right:4px}
+.mclhome:hover{background:rgba(231,163,62,.9);color:var(--brand)}
+.srcpill{cursor:pointer}.srcpill:hover{border-color:var(--accent);color:var(--accent)}
+.refby .r{cursor:pointer}.refby .r:hover{border-color:var(--accent);color:var(--accent)}
+.mocktag{position:fixed;top:0;right:0;background:var(--coral);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;padding:3px 10px;border-bottom-left-radius:8px;z-index:90;font-family:var(--ff-mono)}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);opacity:0;background:var(--brand);color:#fff;padding:11px 20px;border-radius:11px;font-size:13px;font-weight:500;box-shadow:var(--shadow-lg);z-index:80;transition:.25s;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media (max-width:900px){.app{grid-template-columns:1fr}.side{display:none}.top .search{display:none}.srcstrip .sright{width:100%;margin-left:0;margin-top:8px}}
+</style>
+</head>
+<body>
+<div class="mocktag">Next2DMS v0.6 · MOCKUP</div>
+
+<div class="app">
+  <aside class="side">
+    <div class="tenantbar">
+      <div class="mk" id="tMk">N2</div>
+      <div><div class="nm" id="tNm">Next2DMS</div><div class="pk" id="tPk">core</div></div>
+    </div>
+    <nav class="nav" id="nav">
+      <a class="guide" id="guideNav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5a2 2 0 0 1 2-2h11v18H6a2 2 0 0 0-2 2z"/><path d="M9 7h5M9 11h5"/></svg><span data-i18n="nav.guide">Coding standard</span></a>
+      <span class="lbl" data-i18n="nav.lib">Library</span>
+      <a class="lib on" data-coll="all"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span data-i18n="coll.all">All documents</span><span class="ct" id="ctAll"></span></a>
+      <a class="lib" data-coll="pending"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l2 5 5 .5-4 3.5 1.5 5-4.5-3-4.5 3 1.5-5-4-3.5 5-.5z"/></svg><span data-i18n="coll.pending">Pending signature</span><span class="ct" id="ctPend"></span></a>
+      <a class="lib" data-coll="signed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="coll.signed">Signed</span><span class="ct" id="ctSign"></span></a>
+      <a class="lib" data-coll="archived"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="4"/><path d="M5 8v12h14V8M10 12h4"/></svg><span data-i18n="coll.arch">Archived</span><span class="ct" id="ctArch"></span></a>
+      <span class="lbl" data-i18n="nav.sources">Sources · connected apps</span>
+      <div id="srcNav"></div>
+      <span class="lbl" data-i18n="nav.gov">Governance</span>
+      <a class="gov" onclick="toast(tt('t.gov'))"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-i18n="coll.ret">Retention & GDPR</span></a>
+      <a class="gov" onclick="toast(tt('t.gov'))"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/></svg><span data-i18n="coll.audit">Audit trail</span></a>
+    </nav>
+    <div class="foot" id="sideFoot"></div>
+  </aside>
+
+  <div class="main">
+    <header class="top">
+      <a class="mclhome" href="mcl-shell-v0.2.html" title="Back to MCL Command Center">◄ MCL</a>
+      <div class="wl"><span id="wlName">Next2DMS</span> <small data-i18n="wl.docs">· Documents</small></div>
+      <button class="tswitch" id="tenantBtn"><span data-i18n="tenant">Tenant</span>: <b id="tenantLabel">Next2MCL</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="planpill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span data-i18n="plan">Regulated · monthly</span></div>
+      <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input placeholder="Search documents…" data-i18n-ph="search"></div>
+      <div class="langtog" id="langTog"><button data-lang="en" class="on">EN</button><button data-lang="el">EL</button></div>
+    </header>
+
+    <div class="scroll">
+      <div class="corebanner"><span class="tag">CORE</span><span data-i18n="core.banner"></span></div>
+
+      <div id="guideView" class="guideview"></div>
+      <div id="libView">
+      <div class="crumb" id="crumb"></div>
+      <div class="pagehead">
+        <div><h1 id="collTitle">All documents</h1><div class="sub" id="collSub"></div></div>
+        <button class="newbtn" onclick="toast(tt('t.new'))"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg><span data-i18n="new">New document</span></button>
+      </div>
+
+      <div class="srcstrip" id="srcStrip"></div>
+      <div class="filters" id="clientChips"></div>
+
+      <div class="toolbar">
+        <div class="sbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input id="mainSearch" placeholder="Search: code, description, principal, type, status…" data-i18n-ph="search2"></div>
+        <select id="typeSel"></select>
+        <select id="statusSel">
+          <option value="all" data-i18n="f.allstatus">All status</option>
+          <option value="draft">Draft</option>
+          <option value="pending">Pending signature</option>
+          <option value="signed">Signed</option>
+          <option value="archived">Archived</option>
+        </select>
+        <button class="reset" id="resetBtn" data-i18n="reset">Reset</button>
+        <span class="rescount" id="resCount"></span>
+      </div>
+
+      <table class="tbl">
+        <thead><tr id="thead">
+          <th class="sortable" data-sort="code">Code<span class="sar">↕</span></th>
+          <th class="sortable" data-sort="date">Date<span class="sar">↕</span></th>
+          <th class="sortable" data-sort="name">Description<span class="sar">↕</span></th>
+          <th class="sortable" data-sort="src">Source<span class="sar">↕</span></th>
+          <th class="sortable" data-sort="cl" id="thClient">Principal<span class="sar">↕</span></th>
+          <th class="sortable" data-sort="v">Version<span class="sar">↕</span></th>
+          <th class="sortable" data-sort="st">Status<span class="sar">↕</span></th>
+        </tr></thead>
+        <tbody id="docRows"></tbody>
+      </table>
+
+      <div class="stackfoot" id="stackFoot"></div>
+      </div><!--/libView-->
+    </div>
+  </div>
+</div>
+
+<div class="scrim" id="scrim" onclick="closeDrawer()"></div>
+<aside class="drawer" id="drawer"></aside>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===== Next2DMS core: ONE store (single source of truth). Packs inject types, metadata,
+   compliance & branding. Products that generate docs hold READ-ONLY references — never copies.
+   Medical records live ONLY here (no-copy rule). Stack (real build): .NET 8 / React + Fluent UI /
+   Elsa / Elasticsearch / Azure. ===== */
+const TENANTS={
+  next2mcl:{ label:"Next2MCL", mk:"N2", pack:"Maritime", wl:"Next2MCL", clientLabel:{en:"Principal",el:"Principal"},
+    theme:{brand:"#071E33","brand-2":"#0B2A45",accent:"#0E8C93","accent-2":"#12A7AF"},
+    compBase:["GDPR","ISO 27001"], compMedical:["ISO 13485","EU MDR","HL7 FHIR R4"], compVertical:"ISM/ISPS · STCW templates",
+    sources:[
+      {id:"peme",name:"Next2Peme",color:"#E7A33E",produces:"PEME certs · fitness · endorsements · oaths"},
+      {id:"care",name:"Next2Care",color:"#0E8C93",produces:"ASA / NDA / DPA · policies · claim letters"},
+      {id:"postmed",name:"Next2PostMed",color:"#E5544B",produces:"POME reports · medical · legal · financial"},
+      {id:"ship",name:"Next2ShipCare",color:"#5B8DB8",produces:"incident reports · teleconsult notes"}],
+    docs:[
+      {n:"Medical Fitness Certificate — J. Santos",t:"Fitness Certificate",src:"peme",cl:"Crossworld",v:2,st:"signed",own:"Dr. R. Cruz",
+        medical:true,expiry:"45 days",refBy:["Next2Peme","Next2Care","Next2MCL"],
+        meta:{"Seafarer ID":"SF-PH-039281","Vessel":"MV Aegean Trader"},
+        versions:[[2,"Final signed","R. Cruz","today 10:40"],[1,"Draft from PEME","system","today 09:50"]],
+        signers:[["R. Cruz","Medical Director","ok"],["J. Santos","Seafarer","ok"]],
+        audit:[["Signed (e-sign · RA 8792)","R. Cruz · today 10:40"],["Generated by Next2Peme","system · today 09:50"]]},
+      {n:"PEME Certificate — J. Santos",t:"PEME Certificate",src:"peme",cl:"Crossworld",v:2,st:"signed",own:"Dr. R. Cruz",
+        medical:true,refBy:["Next2Peme","Next2MCL"],
+        meta:{"Seafarer ID":"SF-PH-039281"},versions:[[2,"Final signed","R. Cruz","today 10:41"]],
+        signers:[["R. Cruz","Medical Director","ok"]],audit:[["Signed","R. Cruz · today 10:41"]]},
+      {n:"STCW Certificate — E. Reyes",t:"STCW Certificate",src:"peme",cl:"Marlow",v:1,st:"signed",own:"E. Reyes",
+        expiry:"20 days",refBy:["Next2Peme","Next2ShipCare"],
+        meta:{"Seafarer ID":"SF-PH-038820","Standard":"STCW II/4"},versions:[[1,"Signed","E. Reyes","2026-06-30"]],
+        signers:[["E. Reyes","Seafarer","ok"]],audit:[["Signed","E. Reyes · 2026-06-30"]]},
+      {n:"ASA — Crossworld Marine 2026",t:"ASA / NDA / DPA",src:"care",cl:"Crossworld",v:3,st:"signed",own:"Legal",
+        refBy:["Next2Care","Next2MCL"],
+        meta:{"Type":"ASA","Effective":"2026-06-11"},versions:[[3,"Countersigned","Crossworld","2026-06-11"],[2,"Sent","Legal","2026-06-09"]],
+        signers:[["A. Kagkelaris","Next2Me","ok"],["Crossworld","Principal","ok"]],audit:[["Countersigned","Crossworld · 2026-06-11"]]},
+      {n:"DPA — Diana Shipping",t:"ASA / NDA / DPA",src:"care",cl:"Diana Shipping",v:2,st:"signed",own:"Legal",
+        refBy:["Next2Care"],meta:{"Type":"DPA","Effective":"2026-05-30"},versions:[[2,"Executed","Diana","2026-05-30"]],
+        signers:[["Diana Shipping","Principal","ok"]],audit:[["Executed","Diana · 2026-05-30"]]},
+      {n:"POME Report — lumbar strain",t:"POME Report",src:"postmed",cl:"Crossworld",v:4,st:"archived",own:"Case Mgmt",
+        medical:true,refBy:["Next2PostMed","Next2MCL"],
+        meta:{"Seafarer ID":"SF-PH-039281","Case ID":"POME-2023-0881"},versions:[[4,"Closed — fit to return","Case Mgmt","2023-08-30"]],
+        signers:[["Case Mgmt","Next2PostMed","ok"]],audit:[["Closed by Next2PostMed","Case Mgmt · 2023-08-30"]]},
+      {n:"Incident Report — MV Aegean Trader",t:"Incident Report",src:"ship",cl:"Crossworld",v:1,st:"signed",own:"PARON",
+        refBy:["Next2ShipCare","Next2MCL"],meta:{"Vessel":"MV Aegean Trader","Date":"2024-08-14"},versions:[[1,"Filed","PARON","2024-08-14"]],
+        signers:[["PARON Ops","Next2ShipCare","ok"]],audit:[["Filed by Next2ShipCare","PARON · 2024-08-14"]]}
+    ]},
+  meridian:{ label:"Meridian Legal", mk:"ML", pack:"Legal", wl:"Meridian Legal", clientLabel:{en:"Client",el:"Client"},
+    theme:{brand:"#4A1F2B","brand-2":"#5B2333",accent:"#B08968","accent-2":"#C79E7B"},
+    compBase:["GDPR","ISO 27001"], compMedical:[], compVertical:"Bar-council retention rules",
+    sources:[
+      {id:"corp",name:"Corporate",color:"#B08968",produces:"contracts · NDAs · engagement letters"},
+      {id:"lit",name:"Litigation",color:"#8A5A6B",produces:"filings · motions · briefs"}],
+    docs:[
+      {n:"Master Services Agreement — Nexus Corp",t:"Contract",src:"corp",cl:"Nexus Corp",v:3,st:"signed",own:"J. Ellison",
+        refBy:["Billing"],meta:{"Matter":"M-2291","Jurisdiction":"NY"},versions:[[3,"Executed","Nexus","2026-05-20"]],
+        signers:[["J. Ellison","Partner","ok"],["Nexus Corp","Client","ok"]],audit:[["Executed","Nexus · 2026-05-20"]]},
+      {n:"NDA — Project Falcon",t:"NDA",src:"corp",cl:"Falcon Ltd",v:1,st:"pending",own:"S. Park",
+        refBy:[],meta:{"Matter":"M-2310"},versions:[[1,"Out for signature","S. Park","today"]],
+        signers:[["Falcon Ltd","Counterparty","wait"]],audit:[["Sent","S. Park · today"]]},
+      {n:"Motion to Dismiss — Case 8842",t:"Court Filing",src:"lit",cl:"Orion Inc",v:2,st:"draft",own:"S. Park",
+        refBy:[],meta:{"Matter":"M-2277","Court":"SDNY"},versions:[[2,"Revised","S. Park","today"]],
+        signers:[],audit:[["Revised","S. Park · today"]]}
+    ]},
+  generic:{ label:"Generic / Unbranded", mk:"◻", pack:"Generic (core)", wl:"Next2DMS", clientLabel:{en:"Category",el:"Category"},
+    theme:{brand:"#22303C","brand-2":"#2B3A4A",accent:"#4C6072","accent-2":"#5E7488"},
+    compBase:["GDPR"], compMedical:[], compVertical:"Tenant-configured policy",
+    sources:[
+      {id:"fin",name:"Finance",color:"#4C6072",produces:"reports · decks · statements"},
+      {id:"ops",name:"Operations",color:"#5E7488",produces:"forms · SOPs · onboarding"}],
+    docs:[
+      {n:"Q3 Board Deck",t:"Document",src:"fin",cl:"Internal",v:5,st:"draft",own:"A. Kagkelaris",
+        refBy:[],meta:{"Tags":"finance, board"},versions:[[5,"WIP","A.K.","today"]],signers:[],audit:[["Edited","A.K. · today"]]},
+      {n:"Vendor Onboarding Form",t:"Form",src:"ops",cl:"Procurement",v:1,st:"pending",own:"Ops",
+        refBy:[],meta:{"Tags":"vendor"},versions:[[1,"Awaiting sign-off","Ops","today"]],signers:[["Vendor","External","wait"]],audit:[["Sent","Ops · today"]]},
+      {n:"Annual Report 2025",t:"Report",src:"fin",cl:"Public",v:2,st:"signed",own:"Finance",
+        refBy:["Website"],meta:{"Tags":"annual, 2025"},versions:[[2,"Final","Finance","2026-02-01"]],signers:[["CFO","Finance","ok"]],audit:[["Published","Finance · 2026-02-01"]]}
+    ]}
+};
+
+let tenant="next2mcl", coll="all", source=null, client=null, lang="en", q="", typeFilter=null, sortKey="date", sortDir=-1;
+
+const I18N={en:{
+  "nav.guide":"Coding standard","d.ids":"Identifiers","id.code":"Document code","id.rev":"Revision","id.uuid":"Machine ID (UUID)","id.note":"The UUID is the immutable primary key other systems reference. The document code is assigned at approval and stays constant across revisions.",
+  "src.all":"All sources","src.origin":"Origin app","src.store":"Stored in","src.count":"Documents","src.connected":"CONNECTED","src.sot":"Next2DMS · single source of truth",
+  "d.storage":"Storage & references","d.meta":"Metadata (from the vertical pack)","d.versions":"Version history","d.sign":"Signatures (e-signature)","d.comp":"Compliance","d.audit":"Audit trail","d.nosign":"No signature required yet.",
+  "sot.t":"Single source of truth","sot.d":"This document lives once in Next2DMS (immutable, customer-managed keys). Other systems hold a read-only reference + signed URL — never a copy.",
+  "sot.refby":"Referenced by (read-only):","med.t":"Medical record — no-copy rule","med.d":"Held ONLY in Next2DMS (encrypted, separate access logs, strict RBAC). Other systems see a fit / not-fit flag only, never a copy. Solves GDPR + MDR by architecture.",
+  "exp.t":"Expires in","exp.d":"— auto-alert pushed to connected systems (event webhook).",
+  "t.new":"Create new document (mockup)","t.tenant":"Switched tenant — same core, different vertical pack + branding","t.gov":"Governance view — see per-document in the drawer","allclients":"All"
+},el:{
+  "reset":"Reset","f.allstatus":"Όλα status",
+  "nav.guide":"Κωδικοποίηση","d.ids":"Ταυτότητες","id.code":"Κωδικός εγγράφου","id.rev":"Revision","id.uuid":"Machine ID (UUID)","id.note":"Το UUID είναι το αμετάβλητο primary key που αναφέρουν τα άλλα συστήματα. Ο κωδικός εγγράφου δίνεται στην έγκριση και μένει σταθερός σε όλες τις εκδόσεις.",
+  "nav.lib":"Βιβλιοθήκη","nav.sources":"Πηγές · connected apps","nav.gov":"Διακυβέρνηση",
+  "coll.all":"Όλα τα έγγραφα","coll.pending":"Εκκρεμεί υπογραφή","coll.signed":"Υπογεγραμμένα","coll.arch":"Αρχειοθετημένα","coll.ret":"Retention & GDPR","coll.audit":"Audit trail",
+  "wl.docs":"· Έγγραφα",tenant:"Tenant","new":"Νέο έγγραφο",plan:"Regulated · μηνιαία",
+  "th.name":"Έγγραφο","th.src":"Πηγή","th.client":"Principal","th.ver":"Έκδοση","th.status":"Κατάσταση",
+  "src.all":"Όλες οι πηγές","src.origin":"App προέλευσης","src.store":"Αποθηκεύεται στο","src.count":"Έγγραφα","src.connected":"CONNECTED","src.sot":"Next2DMS · single source of truth",
+  "d.storage":"Αποθήκευση & references","d.meta":"Metadata (από το vertical pack)","d.versions":"Ιστορικό εκδόσεων","d.sign":"Υπογραφές (e-signature)","d.comp":"Συμμόρφωση","d.audit":"Audit trail","d.nosign":"Καμία υπογραφή απαιτείται ακόμη.",
+  "sot.t":"Single source of truth","sot.d":"Το έγγραφο ζει μία φορά στο Next2DMS (immutable, customer-managed keys). Τα άλλα συστήματα κρατούν read-only reference + signed URL — ποτέ copy.",
+  "sot.refby":"Το αναφέρουν (read-only):","med.t":"Ιατρικό record — κανόνας no-copy","med.d":"Κρατείται ΜΟΝΟ στο Next2DMS (encrypted, ξεχωριστά access logs, αυστηρό RBAC). Τα άλλα συστήματα βλέπουν μόνο fit / not-fit flag, ποτέ copy. Λύνει GDPR + MDR από την αρχιτεκτονική.",
+  "exp.t":"Λήγει σε","exp.d":"— auto-alert προς τα connected συστήματα (event webhook).",
+  "t.new":"Δημιουργία νέου εγγράφου (mockup)","t.tenant":"Άλλαξε tenant — ίδιος πυρήνας, άλλο vertical pack + branding","t.gov":"Governance view — δες ανά έγγραφο στο drawer","allclients":"Όλοι"
+}};
+const STLABEL={en:{draft:"Draft",pending:"Pending signature",signed:"Signed",archived:"Archived"},el:{draft:"Πρόχειρο",pending:"Εκκρεμεί υπογραφή",signed:"Υπογεγραμμένο",archived:"Αρχειοθετημένο"}};
+const COREBANNER={en:"<b>White-label-first regulated-document platform.</b> Clean, multi-tenant, industry-agnostic core + pluggable <b>vertical packs</b>. Active pack: <b class='pkn'></b>. White-label = how it's delivered · regulated packs = the value · <b>monthly SaaS subscription</b> per tenant.",
+                  el:"<b>White-label-first platform για regulated έγγραφα.</b> Καθαρός, multi-tenant, industry-agnostic πυρήνας + pluggable <b>vertical packs</b>. Ενεργό pack: <b class='pkn'></b>. White-label = ο τρόπος διάθεσης · regulated packs = η αξία · <b>μηνιαία SaaS συνδρομή</b> ανά tenant."};
+const SIDEFOOT={en:"<b>Single source of truth.</b> Documents live once here; every other system references, never copies. Medical records: no-copy, DMS-only.",el:"<b>Single source of truth.</b> Τα έγγραφα ζουν μία φορά εδώ· κάθε άλλο σύστημα κάνει reference, ποτέ copy. Ιατρικά: no-copy, μόνο στο DMS."};
+const COLLSUB={en:{all:"Every document in this tenant.",pending:"Awaiting one or more e-signatures.",signed:"Fully executed.",archived:"Retained, read-only."},el:{all:"Όλα τα έγγραφα αυτού του tenant.",pending:"Περιμένουν e-signature.",signed:"Πλήρως υπογεγραμμένα.",archived:"Αρχειοθετημένα, read-only."}};
+const STACKFOOT={en:"<div class='l'>Build stack (real build — Notion-aligned)</div><b>.NET 8</b> · ASP.NET Core<span class='sep'>·</span><b>React 18 + Fluent UI</b><span class='sep'>·</span>Elsa Workflows<span class='sep'>·</span>Elasticsearch<span class='sep'>·</span>Azure (Blob immutable/CMK · AI Document Intelligence · Health Data Services FHIR)<span class='sep'>·</span>Entra ID<br><b>Single source of truth</b> — others reference, never copy<span class='sep'>·</span><b>White-label SaaS</b>, monthly subscription per tenant<span class='sep'>·</span>3-layer: Integration Fabric → Platform Core → Vertical packs",
+  el:"<div class='l'>Build stack (πραγματικό build — ευθυγραμμισμένο με Notion)</div><b>.NET 8</b> · ASP.NET Core<span class='sep'>·</span><b>React 18 + Fluent UI</b><span class='sep'>·</span>Elsa Workflows<span class='sep'>·</span>Elasticsearch<span class='sep'>·</span>Azure (Blob immutable/CMK · AI Document Intelligence · Health Data Services FHIR)<span class='sep'>·</span>Entra ID<br><b>Single source of truth</b> — reference, ποτέ copy<span class='sep'>·</span><b>White-label SaaS</b>, μηνιαία συνδρομή ανά tenant<span class='sep'>·</span>3-layer: Integration Fabric → Platform Core → Vertical packs"};
+
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const tt=k=>(lang==="el"&&I18N.el[k])?I18N.el[k]:(EN[k]??I18N.en[k]??k);
+const EN={},ENPH={};
+function toast(m){const e=$("#toast");e.textContent=m;e.classList.add("show");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("show"),2600);}
+function T(){return TENANTS[tenant];}
+function srcObj(id){return T().sources.find(s=>s.id===id);}
+function stName(st){return STLABEL[lang][st];}
+function clLabel(){return T().clientLabel[lang]||T().clientLabel.en;}
+const check=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>`;
+function applyTheme(){const th=T().theme,r=document.documentElement.style;Object.entries(th).forEach(([k,v])=>r.setProperty("--"+k,v));}
+
+/* ---- document coding scheme (TENANT-PACK-ORIGIN-TYPE-YYYY-SEQ + UUID) ---- */
+const TCODE={next2mcl:'MCL',meridian:'MRD',generic:'DMS'};
+const PCODE={next2mcl:'MAR',meridian:'LEG',generic:'GEN'};
+const OCODE={peme:'PEME',care:'CARE',postmed:'POST',ship:'SHIP',corp:'CORP',lit:'LIT',fin:'FIN',ops:'OPS'};
+const TYCODE={'Fitness Certificate':'FIT','PEME Certificate':'PEC','Crew Endorsement':'END','STCW Certificate':'STC','ASA / NDA / DPA':'AGR','POME Report':'POM','Incident Report':'INC','Teleconsult Note':'TEL','Contract':'CON','NDA':'NDA','Court Filing':'FIL','Document':'DOC','Form':'FRM','Report':'RPT'};
+function seqOf(d){let h=7;for(const c of d.n)h=(h*31+c.charCodeAt(0))%1000000;return String(h).padStart(6,'0');}
+function yearOf(d){const t=(d.versions&&d.versions.length&&d.versions[d.versions.length-1][3])||'';const m=(''+t).match(/(20\d\d)/);return m?m[1]:'2026';}
+function docCode(d){return `${TCODE[tenant]}-${PCODE[tenant]}-${OCODE[d.src]||'GEN'}-${TYCODE[d.t]||'DOC'}-${yearOf(d)}-${seqOf(d)}`;}
+function docDate(d){const raw=(d.versions&&d.versions[0]&&d.versions[0][3])||'';let s=(''+raw).replace(/\s+\d{1,2}:\d{2}$/,'');
+  if(/today/i.test(s))return '2026-07-12';if(/yesterday/i.test(s))return '2026-07-11';
+  const m=s.match(/\d{4}-\d{2}-\d{2}/);return m?m[0]:'2026-07-12';}
+function fmtDate(iso){const p=iso.split('-');return `${p[2]}/${p[1]}/${p[0].slice(2)}`;}
+function revLetter(d){return String.fromCharCode(64+Math.max(1,d.v));}
+function docUuid(d){let h=2166136261>>>0;const s=d.n+tenant;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0;}
+  const nx=()=>{h^=h<<13;h>>>=0;h^=h>>>17;h^=h<<5;h>>>=0;return h>>>0;};
+  const hx=()=>('00000000'+nx().toString(16)).slice(-8);
+  const a=hx(),b=hx(),c=hx(),e=hx();
+  return `${a}-${b.slice(0,4)}-7${b.slice(4,7)}-${((parseInt(c[0],16)&3)|8).toString(16)}${c.slice(1,4)}-${c.slice(4)}${e.slice(0,4)}`;}
+
+/* ---- in-app guide (coding + metadata standard) ---- */
+function openGuide(){$("#guideNav").classList.add("on");$$("#nav a.lib,#nav a.src,#nav a.gov").forEach(a=>a.classList.remove("on"));
+  $("#libView").style.display="none";$("#guideView").classList.add("show");renderGuide();}
+function closeGuide(){$("#guideNav").classList.remove("on");$("#guideView").classList.remove("show");$("#libView").style.display="";}
+function renderGuide(){const el=lang==='el';
+  const dc=["Title","Creator","Subject","Description","Publisher","Contributor","Date","Type","Format","Identifier","Source","Language","Relation","Coverage","Rights"];
+  const ctrl=["Document code","Revision","Status","Owner","Approver","Approval date","Retention class","Legal hold","Security class","Access (RBAC)"];
+  const comps=[["TENANT",el?"white-label tenant":"white-label tenant","MCL"],["PACK",el?"vertical (κλάδος)":"vertical","MAR"],["ORIGIN",el?"source app — αποτρέπει συγκρούσεις":"source app — prevents collisions","PEME"],["TYPE",el?"controlled τύπος":"controlled type","FIT"],["YYYY",el?"έτος":"year","2026"],["SEQ",el?"zero-padded σειρά":"zero-padded sequence","000482"]];
+  const rules=el?[
+    "Δύο ταυτότητες ανά έγγραφο: αμετάβλητο <b>UUID</b> (primary key) + ομιλών <b>κωδικός</b>.",
+    "Ο κωδικός <b>μένει σταθερός</b>· αλλάζει μόνο το revision/version — ιχνηλάσιμη ιστορία.",
+    "Ο κωδικός δίνεται <b>στην έγκριση</b>, όχι στο draft.",
+    "Ένα κεντρικό <b>register</b> = single source of truth· τα άλλα προϊόντα κρατούν read-only reference.",
+    "Το <b>ORIGIN code</b> αποτρέπει συγκρούσεις όταν πολλά apps/tenants παράγουν έγγραφα."]:[
+    "Two IDs per document: an immutable <b>UUID</b> (primary key) + a human <b>code</b>.",
+    "The code <b>stays constant</b>; only the revision/version changes — traceable history.",
+    "The code is assigned <b>at approval</b>, never on a draft.",
+    "One central <b>register</b> = single source of truth; other products hold read-only references.",
+    "The <b>ORIGIN code</b> prevents collisions when many apps/tenants create documents."];
+  const packFields=[["Maritime","Seafarer ID · Vessel · Principal · Flag state · STCW standard · Expiry"],["Medical","Patient ID · FHIR/DICOM UID · MDR class · fit / not-fit"],["Legal","Matter · Client · Jurisdiction · Court"]];
+  const lbl=(e0,e1)=>el?e0:e1;
+  $("#guideView").innerHTML=`
+  <div class="gbanner"><h1>📖 ${lbl('Πρότυπο Κωδικοποίησης & Metadata','Document Coding & Metadata Standard')}</h1>
+    <p>${lbl('Ένα pattern, κάθε tenant. Όποιος φτιάχνει έγγραφο — σε οποιαδήποτε εταιρεία — ακολουθεί αυτό. Θεμελιωμένο σε ISO 15836 (Dublin Core), ISO 9001 document control, DICOM/FHIR.','One pattern, every tenant. Anyone creating a document — in any company — follows this. Grounded in ISO 15836 (Dublin Core), ISO 9001 document control, DICOM/FHIR.')}</p>
+    <div class="grp">GROUP-WIDE · ${lbl('ΥΠΟΧΡΕΩΤΙΚΟ','MANDATORY')}</div></div>
+  <div class="gsec"><div class="gh"><span class="num">1</span><h2>${lbl('Πώς κωδικοποιούμε','How we codify')}</h2></div>
+    <p class="lead">${lbl('Κάθε έγγραφο παίρνει <b>δύο ταυτότητες</b>: ένα αμετάβλητο μηχανικό UUID (το primary key που αναφέρουν τα άλλα συστήματα) και έναν ανθρώπινο, ομιλών κωδικό.','Every document gets <b>two identities</b>: an immutable machine UUID (the primary key other systems reference) and a human, meaningful code.')}</p>
+    <div class="codebox"><span class="mut">${lbl('ανθρώπινος κωδικός','human code')}</span><br><span class="hl">TENANT</span>-<span class="hl">PACK</span>-<span class="hl">ORIGIN</span>-<span class="hl">TYPE</span>-<span class="hl">YYYY</span>-<span class="hl">SEQ</span>  <span class="mut">( + rev/version ${lbl('χωριστά','separate')} )</span><span class="ex">MCL-MAR-PEME-FIT-2026-000482 · rev B / v2</span></div>
+    <table class="gtable"><thead><tr><th>${lbl('Πεδίο','Field')}</th><th>${lbl('Σημασία','Meaning')}</th><th>${lbl('Παράδειγμα','Example')}</th></tr></thead><tbody>
+    ${comps.map(c=>`<tr><td>${c[0]}</td><td>${c[1]}</td><td>${c[2]}</td></tr>`).join("")}</tbody></table>
+    ${rules.map((r,i)=>`<div class="grule"><span class="n">${i+1}</span><span>${r}</span></div>`).join("")}</div>
+  <div class="gsec"><div class="gh"><span class="num">2</span><h2>${lbl('Πώς περιγράφουμε (metadata)','How we describe (metadata)')}</h2></div>
+    <p class="lead">${lbl('Κάθε έγγραφο περιγράφεται με τα 15 στοιχεία <b>Dublin Core (ISO 15836)</b>, ένα records-management layer, και τα πεδία του <b>vertical pack</b>.','Every document is described with the 15 <b>Dublin Core (ISO 15836)</b> elements, a records-management layer, and the <b>vertical pack</b> fields.')}</p>
+    <div style="font-size:11px;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">Core — Dublin Core (15)</div>
+    <div class="gchips">${dc.map(x=>`<span class="c core">${x}</span>`).join("")}</div>
+    <div style="font-size:11px;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em;margin:14px 0 6px">Records / Control layer</div>
+    <div class="gchips">${ctrl.map(x=>`<span class="c">${x}</span>`).join("")}</div>
+    <div style="font-size:11px;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em;margin:14px 0 6px">${lbl('Pack fields (ανά κλάδο)','Pack fields (per vertical)')}</div>
+    <table class="gtable"><tbody>${packFields.map(p=>`<tr><td>${p[0]}</td><td>${p[1]}</td></tr>`).join("")}</tbody></table></div>
+  <div class="gsec"><div class="gh"><span class="num" style="background:linear-gradient(135deg,var(--gold),#F2B860)">§</span><h2>${lbl('Πηγές / Πρότυπα','Sources / Standards')}</h2></div>
+    <div class="gsrc"><b>Dublin Core</b> — ISO 15836 / ANSI-NISO Z39.85 (${lbl('περιγραφή','description')})<br><b>Document control</b> — ISO 9001 cl. 7.5 (${lbl('μοναδικός κωδικός, revision χωριστά, register','unique number, revision separate, register')})<br><b>Medical IDs</b> — DICOM UID (urn:oid:) · HL7 FHIR resource identifiers<br><b>Config mgmt</b> — NIST (${lbl('σταθερά identifiers στις εκδόσεις','stable identifiers across revisions')})</div></div>`;}
+
+function baseDocs(){let d=T().docs;
+  if(["draft","pending","signed","archived"].includes(coll))d=d.filter(x=>x.st===coll);
+  if(source)d=d.filter(x=>x.src===source);if(client)d=d.filter(x=>x.cl===client);
+  if(typeFilter)d=d.filter(x=>x.t===typeFilter);
+  if(q){const qq=q.toLowerCase();d=d.filter(x=>[docCode(x),x.n,x.t,x.cl,stName(x.st),srcObj(x.src).name,fmtDate(docDate(x)),...Object.values(x.meta||{})].join(" ").toLowerCase().includes(qq));}
+  const key=sortKey;d=d.slice().sort((a,b)=>{let av,bv;
+    if(key==="code"){av=docCode(a);bv=docCode(b);}else if(key==="date"){av=docDate(a);bv=docDate(b);}
+    else if(key==="name"){av=a.n;bv=b.n;}else if(key==="src"){av=srcObj(a.src).name;bv=srcObj(b.src).name;}
+    else if(key==="cl"){av=a.cl;bv=b.cl;}else if(key==="v"){av=a.v;bv=b.v;}else if(key==="st"){av=a.st;bv=b.st;}else{av=0;bv=0;}
+    return (av>bv?1:av<bv?-1:0)*sortDir;});
+  return d;}
+function renderCounts(){const d=T().docs;$("#ctAll").textContent=d.length;$("#ctPend").textContent=d.filter(x=>x.st==="pending").length;$("#ctSign").textContent=d.filter(x=>x.st==="signed").length;$("#ctArch").textContent=d.filter(x=>x.st==="archived").length;}
+function renderSourceNav(){const d=T().docs;
+  let html=`<a class="src ${!source?'on':''}" data-src=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>${tt('src.all')}</span></a>`;
+  html+=T().sources.map(s=>{const c=d.filter(x=>x.src===s.id).length;return `<a class="src ${source===s.id?'on':''}" data-src="${s.id}"><span class="pdot" style="background:${s.color}"></span><span>${s.name}</span><span class="ct">${c}</span></a>`;}).join("");
+  $("#srcNav").innerHTML=html;}
+function renderSourceStrip(){const strip=$("#srcStrip");
+  if(!source){strip.classList.remove("show");strip.innerHTML="";return;}
+  const s=srcObj(source),c=T().docs.filter(x=>x.src===source).length;
+  strip.innerHTML=`<div class="sic" style="background:linear-gradient(135deg,${s.color},${s.color}bb)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9"><path d="M6 2h8l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M14 2v4h4"/></svg></div>
+    <div><div class="snm">${s.name}<span class="conn">${tt('src.connected')}</span></div><div class="sprod">${s.produces}</div></div>
+    <div class="sright"><div class="si"><div class="k">${tt('src.store')}</div><div class="v mono">${tt('src.sot')}</div></div><div class="si"><div class="k">${tt('src.count')}</div><div class="v">${c}</div></div></div>`;
+  strip.classList.add("show");}
+function renderClientChips(){const box=$("#clientChips");if(!source){box.innerHTML="";return;}
+  const clients=[...new Set(T().docs.filter(x=>x.src===source).map(x=>x.cl))];
+  box.innerHTML=`<span class="flabel">${clLabel()}</span><button class="chip ${!client?'on':''}" onclick="setClient(null)">${tt('allclients')}</button>`+
+    clients.map(cl=>`<button class="chip ${client===cl?'on':''}" onclick="setClient('${cl.replace(/'/g,"\\'")}')">${cl}<span class="n">${T().docs.filter(x=>x.src===source&&x.cl===cl).length}</span></button>`).join("");}
+function fileIcon(){return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 2h8l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M14 2v4h4"/></svg>`;}
+function lockIcon(){return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>`;}
+function renderThead(){const L={en:{code:"Code",date:"Date",name:"Description",src:"Source",v:"Version",st:"Status"},el:{code:"Κωδικός",date:"Ημ/νία",name:"Περιγραφή",src:"Πηγή",v:"Έκδοση",st:"Κατάσταση"}}[lang];
+  $$('#thead th.sortable').forEach(th=>{const k=th.dataset.sort;const label=(k==='cl')?clLabel():L[k];const on=k===sortKey;const arrow=on?(sortDir>0?'↑':'↓'):'↕';
+    th.innerHTML=`${label}<span class="sar">${arrow}</span>`;th.classList.toggle('sorted',on);});}
+function renderTypeOptions(){const types=[...new Set(T().docs.map(x=>x.t))];
+  const sel=$("#typeSel");if(!sel)return;sel.innerHTML=`<option value="">${lang==='el'?'Όλοι οι τύποι':'All types'}</option>`+types.map(t=>`<option value="${t}" ${typeFilter===t?'selected':''}>${t}</option>`).join("");}
+function renderRows(){const rows=baseDocs();renderThead();
+  const rc=$("#resCount");if(rc)rc.textContent=rows.length+" "+(lang==='el'?'έγγραφα':'docs');
+  $("#docRows").innerHTML=rows.map(d=>{const s=srcObj(d.src);
+    const sub=[`${d.t}`];if(d.medical)sub.push(`<span class="med">🔒 ${lang==='el'?'ιατρικό':'medical'}</span>`);if(d.expiry)sub.push(`<span class="exp">⏰ ${d.expiry}</span>`);
+    return `<tr onclick="openDoc('${d.n.replace(/'/g,"\\'")}')">
+      <td class="code">${docCode(d)}</td>
+      <td class="date">${fmtDate(docDate(d))}</td>
+      <td><div class="desc-nm">${d.medical?'🔒 ':''}${d.n}</div><div class="desc-ty">${sub.join(" · ")}</div></td>
+      <td><span class="srcpill" onclick="event.stopPropagation();openProduct('${d.src}')" title="${lang==='el'?'Άνοιγμα προϊόντος':'Open product'}"><span class="pdot" style="background:${s.color}"></span>${s.name}</span></td>
+      <td><span class="cl-mini">${d.cl}</span></td>
+      <td><span class="ver">v${d.v}</span></td>
+      <td><span class="st st-${d.st}"><i></i>${stName(d.st)}</span></td></tr>`;}).join("")
+    || `<tr><td colspan="7" class="norez">${q?(lang==='el'?'Κανένα έγγραφο για «'+q+'»':'No documents for "'+q+'"'):'—'}</td></tr>`;}
+function renderCrumb(){const c=$("#crumb");const sep=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>`;
+  let parts=[`<span onclick="resetAll()" style="cursor:pointer">${lang==='el'?'Όλα τα έγγραφα':'All documents'}</span>`];
+  if(source)parts.push(`<b>${srcObj(source).name}</b>`);if(client)parts.push(`<b>${client}</b>`);
+  c.innerHTML=parts.join(sep);}
+
+function compBadges(d){const T0=T();let list=[...T0.compBase];
+  if(source||true){/* pack vertical */ if(T0.compVertical)list.push(T0.compVertical);}
+  if(d.medical&&T0.compMedical.length)list=list.concat(T0.compMedical);
+  return `<div class="compbadges">`+list.map(x=>`<span class="b ok">${check}${x}</span>`).join("")+`</div>`;}
+
+function openDoc(name){const d=T().docs.find(x=>x.n===name);if(!d)return;const s=srcObj(d.src);
+  const meta=Object.entries(d.meta).map(([k,v])=>`<div class="kv"><span class="k">${k}</span><span class="v">${v}</span></div>`).join("");
+  const versions=d.versions.map((v,i)=>`<div class="vrow ${i===0?'cur':''}"><span class="vb">v${v[0]}</span><div class="vi">${v[1]}<div class="by">${v[2]}</div></div><span class="vt">${v[3]}</span></div>`).join("");
+  const sign=d.signers.length?d.signers.map(x=>`<div class="sig"><div class="av">${x[0].split(' ').map(w=>w[0]).join('').slice(0,2)}</div><div><div class="snm">${x[0]}</div><div class="sr">${x[1]}</div></div><span class="sst ${x[2]}">${x[2]==='ok'?(lang==='el'?'Υπογράφηκε':'Signed'):(lang==='el'?'Εκκρεμεί':'Pending')}</span></div>`).join(""):`<div style="font-size:12.5px;color:var(--ink-3)">${tt('d.nosign')}</div>`;
+  const audit=d.audit.map(a=>`<div class="ev"><div class="ea">${a[0]}</div><div class="em">${a[1]}</div></div>`).join("");
+  const refby=(d.refBy&&d.refBy.length)?`<div class="refby">${d.refBy.map(r=>`<span class="r" onclick="openRef('${r}')">${r}</span>`).join("")}</div>`:"";
+  const medBanner=d.medical?`<div class="medlock">${lockIcon()}<span><b>${tt('med.t')}.</b> ${tt('med.d')}</span></div>`:"";
+  const expAlert=d.expiry?`<div class="alertrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>${tt('exp.t')} ${d.expiry}</b> ${tt('exp.d')}</span></div>`:"";
+  $("#drawer").innerHTML=`
+    <div class="dh"><button class="cls" onclick="closeDrawer()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      <div class="ty">${d.t}${d.medical?' · 🔒 medical':''}</div><h2>${d.n}</h2>
+      <div class="dhmeta"><div><div class="k">${lang==='el'?'Έκδοση':'Version'}</div><div class="v">v${d.v}</div></div>
+        <div><div class="k">Status</div><div class="v">${stName(d.st)}</div></div>
+        <div><div class="k">${clLabel()}</div><div class="v">${d.cl}</div></div></div></div>
+    <div class="db">
+      <div class="dsec"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M7 7h.01M3 5a2 2 0 0 1 2-2h6l8 8-8 8-8-8z"/></svg>${tt('d.ids')}</h3>
+        <div class="idbox">
+          <div class="row"><span class="k">${tt('id.code')}</span><span class="v code">${docCode(d)}</span></div>
+          <div class="row"><span class="k">${tt('id.rev')}</span><span class="v">rev ${revLetter(d)} · v${d.v}</span></div>
+          <div class="row"><span class="k">${tt('id.uuid')}</span><span class="v uuid">${docUuid(d)}</span></div>
+        </div>
+        <div style="font-size:10.5px;color:var(--ink-3);margin-top:7px;line-height:1.5">${tt('id.note')}</div></div>
+      ${expAlert}${medBanner}
+      <div class="dsec"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3l8 4v6c0 4-3.5 7-8 8-4.5-1-8-4-8-8V7z"/></svg>${tt('d.storage')}</h3>
+        <div class="sot"><div class="t">${check}${tt('sot.t')}</div><div class="d">${tt('sot.d')}</div>
+          <div style="font-size:11px;color:var(--ink-3);margin-top:8px">${tt('src.origin')}: <b style="color:var(--ink-2)">${s.name}</b></div>
+          ${refby?`<div style="font-size:11px;color:var(--ink-3);margin-top:8px">${tt('sot.refby')}</div>${refby}`:""}</div></div>
+      <div class="dsec"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 7h16M4 12h16M4 17h10"/></svg>${tt('d.meta')}</h3>${meta}</div>
+      <div class="dsec"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 3v5h5M3 8a9 9 0 1 0 3-5"/></svg>${tt('d.versions')}</h3>${versions}</div>
+      <div class="dsec"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 17l6-6 4 4 8-8"/></svg>${tt('d.sign')}</h3>${sign}</div>
+      <div class="dsec"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>${tt('d.comp')}</h3>${compBadges(d)}</div>
+      <div class="dsec"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/></svg>${tt('d.audit')}</h3><div class="audit">${audit}</div></div>
+    </div>`;
+  $("#drawer").classList.add("show");$("#scrim").classList.add("show");}
+function closeDrawer(){$("#drawer").classList.remove("show");$("#scrim").classList.remove("show");}
+
+function setColl(c){coll=c;$$("#nav a.lib").forEach(a=>a.classList.toggle("on",a.dataset.coll===c));
+  const titles={all:tt('coll.all'),pending:tt('coll.pending'),signed:tt('coll.signed'),archived:tt('coll.arch')};
+  $("#collTitle").textContent=titles[c]||tt('coll.all');$("#collSub").textContent=COLLSUB[lang][c]||COLLSUB[lang].all;refresh();}
+function setSource(id){source=id||null;client=null;renderSourceNav();
+  if(source){const s=srcObj(source);$("#collTitle").textContent=s.name;$("#collSub").textContent=(lang==='el'?'Έγγραφα με προέλευση ':'Documents originating from ')+s.name+" — "+tt('src.sot');}
+  else{$("#collTitle").textContent=({all:tt('coll.all'),pending:tt('coll.pending'),signed:tt('coll.signed'),archived:tt('coll.arch')})[coll];$("#collSub").textContent=COLLSUB[lang][coll];}
+  refresh();}
+function setClient(cl){client=cl;renderClientChips();renderRows();renderCrumb();}
+function resetAll(){source=null;client=null;coll="all";$$("#nav a.lib").forEach(a=>a.classList.toggle("on",a.dataset.coll==="all"));$("#collTitle").textContent=tt('coll.all');$("#collSub").textContent=COLLSUB[lang].all;renderSourceNav();refresh();}
+function refresh(){renderSourceStrip();renderClientChips();renderRows();renderCrumb();}
+
+function switchTenant(){const order=["next2mcl","meridian","generic"];tenant=order[(order.indexOf(tenant)+1)%order.length];loadTenant();toast(tt('t.tenant'));}
+function loadTenant(){const t=T();applyTheme();
+  $("#tMk").textContent=t.mk;$("#tNm").textContent=t.wl;$("#tPk").textContent=t.pack.toLowerCase()+" pack";
+  $("#wlName").textContent=t.wl;$("#tenantLabel").textContent=t.label;
+  coll="all";source=null;client=null;$$("#nav a.lib").forEach(a=>a.classList.toggle("on",a.dataset.coll==="all"));
+  $("#collTitle").textContent=tt('coll.all');$("#collSub").textContent=COLLSUB[lang].all;
+  renderCounts();renderSourceNav();renderTypeOptions();updateBanner();refresh();if($("#guideView").classList.contains("show"))renderGuide();}
+function updateBanner(){const el=document.querySelector('[data-i18n="core.banner"]');el.innerHTML=(lang==='el'?COREBANNER.el:COREBANNER.en);const pk=el.querySelector('.pkn');if(pk)pk.textContent=T().pack;
+  $("#sideFoot").innerHTML=(lang==='el'?SIDEFOOT.el:SIDEFOOT.en);$("#stackFoot").innerHTML=(lang==='el'?STACKFOOT.el:STACKFOOT.en);}
+
+function cacheEN(){$$("[data-i18n]").forEach(el=>EN[el.dataset.i18n]=el.textContent);$$("[data-i18n-ph]").forEach(el=>ENPH[el.dataset.i18nPh]=el.getAttribute('placeholder'));}
+function applyLang(){$$("[data-i18n]").forEach(el=>{const k=el.dataset.i18n;if(k==="core.banner")return;el.textContent=(lang==="el"&&I18N.el[k])?I18N.el[k]:EN[k];});
+  const PHEL={search:"Αναζήτηση εγγράφων…",search2:"Αναζήτηση: κωδικός, περιγραφή, principal, τύπος, status…"};
+  $$("[data-i18n-ph]").forEach(el=>{const k=el.dataset.i18nPh;el.setAttribute('placeholder',(lang==="el"&&PHEL[k])?PHEL[k]:ENPH[k]);});}
+function setLang(l){lang=l;document.documentElement.lang=l;$$("#langTog button").forEach(b=>b.classList.toggle("on",b.dataset.lang===l));applyLang();loadTenant();}
+
+document.getElementById("nav").addEventListener("click",e=>{const g=e.target.closest("a.guide");if(g){openGuide();return;}const lib=e.target.closest("a.lib");if(lib){closeGuide();setColl(lib.dataset.coll);return;}const s=e.target.closest("a.src");if(s){closeGuide();setSource(s.dataset.src);}});
+document.getElementById("tenantBtn").onclick=switchTenant;
+$$("#langTog button").forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
+
+function doSearch(v){q=v;renderRows();}
+$("#mainSearch").addEventListener("input",e=>doSearch(e.target.value));
+const topS=document.querySelector('.top .search input');if(topS){topS.id="topSearch";topS.addEventListener("input",e=>{const v=e.target.value;const m=$("#mainSearch");if(m)m.value=v;doSearch(v);});}
+$("#typeSel").addEventListener("change",e=>{typeFilter=e.target.value||null;renderRows();});
+$("#statusSel").addEventListener("change",e=>{setColl(e.target.value);});
+$("#resetBtn").addEventListener("click",()=>{q="";typeFilter=null;source=null;client=null;coll="all";
+  $("#mainSearch").value="";const t2=$("#topSearch");if(t2)t2.value="";$("#statusSel").value="all";
+  $$("#nav a.lib").forEach(a=>a.classList.toggle("on",a.dataset.coll==="all"));
+  $("#collTitle").textContent=tt('coll.all');$("#collSub").textContent=COLLSUB[lang].all;
+  renderSourceNav();renderTypeOptions();refresh();});
+$("#thead").addEventListener("click",e=>{const th=e.target.closest("th.sortable");if(!th)return;const k=th.dataset.sort;if(sortKey===k)sortDir=-sortDir;else{sortKey=k;sortDir=1;}renderRows();});
+
+cacheEN();loadTenant();
+
+/* ---- cross-app navigation ---- */
+function openProduct(src){if(src==='peme'){location.href='next2peme-console-v0.3.html';return;}
+  toast(lang==='el'?'Το προϊόν είναι σε planning — δεν ανοίγει ακόμη.':'Product is in planning — not open yet.');}
+function openRef(name){if(name==='Next2Peme'){location.href='next2peme-console-v0.3.html';return;}
+  if(name==='Next2MCL'){location.href='mcl-shell-v0.2.html';return;}
+  toast(lang==='el'?'Σε planning — δεν ανοίγει ακόμη.':'In planning — not open yet.');}
+
+/* ---- incoming context from other apps (?tenant=&source=&q=) ---- */
+(function initURL(){const p=new URLSearchParams(location.search);
+  const tn=p.get('tenant');if(tn&&TENANTS[tn]){tenant=tn;loadTenant();}
+  const src=p.get('source');if(src&&srcObj(src))setSource(src);
+  const qq=p.get('q');if(qq){q=qq;const m=$("#mainSearch");if(m)m.value=qq;const t2=document.querySelector('.top .search input');if(t2)t2.value=qq;renderRows();}
+})();
+</script>
+</body>
+</html>
