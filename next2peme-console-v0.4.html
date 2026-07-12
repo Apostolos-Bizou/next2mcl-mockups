@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Next2Peme Console v0.3 · full PEME journey (Mockup)</title>
+<title>Next2Peme Console v0.4 · full PEME journey (Mockup)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -173,6 +173,36 @@ textarea.inp{min-height:78px;resize:vertical}
 .tbl th.sorted{color:var(--teal)}.tbl th.sorted .sar{opacity:1}
 .tbl td.code{font-family:var(--ff-mono);font-size:11px;color:var(--teal);font-weight:600;white-space:nowrap}
 .norez{text-align:center;color:var(--ink-3);padding:26px;font-size:13px}
+.nmlink{cursor:pointer;display:inline-block}
+.tbl .nmlink:hover{color:var(--teal);text-decoration:underline}
+.sfgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.sfgrid .full{grid-column:1 / -1}
+.kvs{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px}
+.kvs.one{grid-template-columns:1fr}
+.kv .k{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.kv .v{font-size:13.5px;color:var(--ink);font-weight:600;margin-top:3px;line-height:1.3}
+.kv .v.mono{font-family:var(--ff-mono);font-size:12px}
+.medflag{margin-top:12px;background:var(--mist);border:1px solid var(--line);border-radius:9px;padding:10px 12px;font-size:11.5px;color:var(--ink-2);display:flex;gap:9px;align-items:flex-start}
+.medflag .lk{flex:0 0 auto}
+.sfacts{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.sfacts a,.sfacts button{display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-size:12.5px;font-weight:600;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink-2);cursor:pointer;text-decoration:none}
+.sfacts a:hover,.sfacts button:hover{border-color:var(--teal);color:var(--teal)}
+.sfacts a svg,.sfacts button svg{width:15px;height:15px}
+.sfacts .prim{background:linear-gradient(100deg,var(--gold),var(--gold-2));color:var(--navy);border:none}
+.docnote{background:var(--mist);border:1px solid var(--line);border-radius:9px;padding:10px 12px;font-size:11.5px;color:var(--ink-2);display:flex;gap:9px;align-items:flex-start;margin-bottom:12px;line-height:1.5}
+.docnote .lk{flex:0 0 auto}
+.docrow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;margin-bottom:8px}
+.docrow .dl b{font-size:13px;color:var(--ink)}
+.docrow .tag{font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);font-family:var(--ff-mono);margin-left:8px}
+.docrow .tag.r{color:var(--coral)}
+.scanbtn{display:inline-flex;align-items:center;gap:7px;font-family:inherit;font-size:12px;font-weight:600;padding:8px 12px;border-radius:8px;border:1px solid var(--teal);background:var(--mist);color:var(--teal);cursor:pointer;white-space:nowrap}
+.scanbtn svg{width:14px;height:14px}
+.scanbtn.on{background:rgba(47,163,107,.14);border-color:rgba(47,163,107,.5);color:var(--green)}
+.doclist{display:flex;flex-direction:column;gap:2px;margin-top:12px}
+.docstat{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--ink-2);padding:7px 2px;border-bottom:1px solid var(--line-2)}
+.docstat:last-child{border-bottom:none}
+.docstat .s{font-family:var(--ff-mono);font-size:10.5px;color:var(--ink-3)}
+.docstat.ok .s{color:var(--green)}
 
 /* MD disposition */
 .disp{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:6px 0 4px}
@@ -217,21 +247,22 @@ textarea.inp{min-height:78px;resize:vertical}
 .toast svg{width:17px;height:17px;color:var(--gold)}
 .mocktag{position:fixed;top:0;right:0;background:var(--coral);color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 10px;border-bottom-left-radius:8px;z-index:90;font-family:var(--ff-mono)}
 
-@media (max-width:900px){.app{grid-template-columns:1fr}.side{display:none}.grid3{grid-template-columns:1fr}.disp{grid-template-columns:1fr}.xprod{grid-template-columns:1fr 1fr}}
+@media (max-width:900px){.app{grid-template-columns:1fr}.side{display:none}.grid3{grid-template-columns:1fr}.disp{grid-template-columns:1fr}.xprod{grid-template-columns:1fr 1fr}.sfgrid{grid-template-columns:1fr}.kvs{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="mocktag">v0.3 · MOCKUP · FAKE DATA</div>
+<div class="mocktag">v0.4 · MOCKUP · FAKE DATA</div>
 
 <div class="app">
   <aside class="side">
     <div class="brand">
       <svg class="mark" viewBox="0 0 40 40" fill="none"><rect x="1.5" y="1.5" width="37" height="37" rx="10" fill="#0B2A45" stroke="#E7A33E" stroke-width="1.5"/><path d="M9 24 H15 L17.5 15 L22.5 27 L25 21 H31" stroke="#12A7AF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="9.5" r="2.2" fill="#E7A33E"/></svg>
       <div><div class="wm">Next2<b>Peme</b></div><div class="sub">Next2MCL · PEME</div></div>
-      <span class="vbadge">v0.3</span>
+      <span class="vbadge">v0.4</span>
     </div>
     <nav class="nav" id="nav">
       <span class="lbl" data-i18n="nav.ops">Operations</span>
+      <a href="#" data-view="newseafarer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="8" r="3.4"/><path d="M4 21c0-4 3-6.5 7-6.5c1 0 1.9.15 2.7.43"/><path d="M18 14v6M15 17h6"/></svg><span data-i18n="nav.newsf">New Seafarer</span></a>
       <a href="#" data-view="board"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg><span data-i18n="nav.board">Case Board</span></a>
       <a href="#" data-view="appointment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span data-i18n="nav.appt">New Appointment</span></a>
       <span class="lbl" data-i18n="nav.journey">PEME Journey</span>
@@ -269,9 +300,45 @@ textarea.inp{min-height:78px;resize:vertical}
 
 <script>
 /* ===================== DATA (fake) — portability seed ===================== */
-const SEAFARER={id:"SF-PH-039281",first:"Juan",middle:"D.",last:"Santos",initials:"JS",
-  rank:{en:"Able Seaman",el:"Ναύτης"},age:34,principal:"Crossworld Marine",agency:"Manila Crewing Corp.",
-  vessel:"MV Aegean Trader",caseId:"PEME-2026-04127",priority:false};
+const SEAFARERS=[
+  {id:"SF-PH-039281",first:"Juan",middle:"D.",last:"Santos",initials:"JS",me:true,
+   rank:{en:"Able Seaman",el:"Ναύτης"},age:34,dob:"1991-06-14",sex:{en:"Male",el:"Άνδρας"},
+   nationality:{en:"Filipino",el:"Φιλιππινέζος"},civil:{en:"Married",el:"Έγγαμος"},birthplace:"Cebu City",
+   sirb:"SB-2019-448120",passport:"P1234567A",phone:"+63 917 555 0142",email:"juan.santos@crewmail.ph",
+   address:"Lapu-Lapu City, Cebu, PH",kin:{name:"Maria Santos",rel:{en:"Wife",el:"Σύζυγος"},phone:"+63 917 555 0199"},
+   principal:"Crossworld Marine",agency:"Manila Crewing Corp.",vessel:"MV Aegean Trader",
+   bloodType:"O+",allergies:{en:"None known",el:"Καμία γνωστή"},caseId:"PEME-2026-04127",priority:false},
+  {id:"SF-PH-041002",first:"Ramon",middle:"T.",last:"Cruz",initials:"RC",
+   rank:{en:"2nd Officer",el:"Β΄ Πλοίαρχος"},age:37,dob:"1988-02-03",sex:{en:"Male",el:"Άνδρας"},
+   nationality:{en:"Filipino",el:"Φιλιππινέζος"},civil:{en:"Married",el:"Έγγαμος"},birthplace:"Manila",
+   sirb:"SB-2018-330210",passport:"P7788221B",phone:"+63 918 444 0231",email:"ramon.cruz@crewmail.ph",
+   address:"Quezon City, Metro Manila, PH",kin:{name:"Ana Cruz",rel:{en:"Wife",el:"Σύζυγος"},phone:"+63 918 444 0288"},
+   principal:"Diana Shipping",agency:"Seacrest Manning",vessel:"MV Ionian Star",
+   bloodType:"A+",allergies:{en:"Penicillin",el:"Πενικιλλίνη"},caseId:"PEME-2026-04131",priority:true},
+  {id:"SF-PH-038820",first:"Elias",middle:"P.",last:"Reyes",initials:"ER",
+   rank:{en:"Oiler",el:"Λιπαντής"},age:29,dob:"1995-09-21",sex:{en:"Male",el:"Άνδρας"},
+   nationality:{en:"Filipino",el:"Φιλιππινέζος"},civil:{en:"Single",el:"Άγαμος"},birthplace:"Davao City",
+   sirb:"SB-2020-551002",passport:"P4451900C",phone:"+63 920 333 0110",email:"elias.reyes@crewmail.ph",
+   address:"Davao City, PH",kin:{name:"Rosa Reyes",rel:{en:"Mother",el:"Μητέρα"},phone:"+63 920 333 0177"},
+   principal:"Marlow Navigation",agency:"Marlow Manila",vessel:"MV Cretan Wave",
+   bloodType:"B+",allergies:{en:"None known",el:"Καμία γνωστή"},caseId:"PEME-2026-04119",priority:false},
+  {id:"SF-PH-041290",first:"Noel",middle:"A.",last:"Bautista",initials:"NB",
+   rank:{en:"Chief Cook",el:"Αρχιμάγειρας"},age:42,dob:"1983-11-30",sex:{en:"Male",el:"Άνδρας"},
+   nationality:{en:"Filipino",el:"Φιλιππινέζος"},civil:{en:"Married",el:"Έγγαμος"},birthplace:"Iloilo City",
+   sirb:"SB-2016-220944",passport:"P2093311D",phone:"+63 915 222 0455",email:"noel.bautista@crewmail.ph",
+   address:"Iloilo City, PH",kin:{name:"Grace Bautista",rel:{en:"Wife",el:"Σύζυγος"},phone:"+63 915 222 0499"},
+   principal:"Golden Union",agency:"Golden Manning",vessel:"MV Santorini",
+   bloodType:"O-",allergies:{en:"Seafood",el:"Θαλασσινά"},caseId:"PEME-2026-04140",priority:false},
+  {id:"SF-PH-037551",first:"Vicente",middle:"M.",last:"Lim",initials:"VL",
+   rank:{en:"Master",el:"Πλοίαρχος"},age:46,dob:"1979-04-08",sex:{en:"Male",el:"Άνδρας"},
+   nationality:{en:"Filipino",el:"Φιλιππινέζος"},civil:{en:"Married",el:"Έγγαμος"},birthplace:"Batangas City",
+   sirb:"SB-2015-118765",passport:"P1180022E",phone:"+63 917 111 0300",email:"vicente.lim@crewmail.ph",
+   address:"Batangas City, PH",kin:{name:"Elena Lim",rel:{en:"Wife",el:"Σύζυγος"},phone:"+63 917 111 0399"},
+   principal:"Bourbon",agency:"Bourbon Crewing",vessel:"MV Mykonos",
+   bloodType:"AB+",allergies:{en:"None known",el:"Καμία γνωστή"},caseId:"PEME-2026-04102",priority:false}];
+const SEAFARER=SEAFARERS.find(s=>s.me);
+const sfById=id=>SEAFARERS.find(s=>s.id===id);
+const caseBySid=sid=>CASES.find(c=>c.sid===sid);
 
 const STAGES=[
   {code:"BOOK",en:"Appointment",el:"Ραντεβού"},{code:"PRED",en:"Pre-Arrival",el:"Προ-άφιξη"},
@@ -348,6 +415,15 @@ const I18N={en:{
   "board.h":"Case Board","board.p":"All PEMEs in progress at HPDC Manila. Click a row to open.",
   "th.code":"Case Code","th.seafarer":"Seafarer","th.rank":"Rank","th.prin":"Principal","th.stage":"Stage","th.prog":"Progress","th.prio":"Priority",
   "bd.search":"Search: code, seafarer, ID, rank, principal, stage…","bd.allstage":"All stages","bd.allprio":"All priority","bd.hi":"High priority","bd.no":"Normal","bd.reset":"Reset","bd.cases":"cases","bd.norez":"No cases match",
+  "nav.newsf":"New Seafarer",
+  "sf.hh":"Seafarer Record","sf.identity":"Identity & Demographics","sf.docs":"Seafarer Documents","sf.work":"Employment","sf.contact":"Contact & Next of Kin","sf.med":"Medical (flags)","sf.peme":"Current PEME",
+  "sf.fullname":"Full name","sf.dob":"Date of birth","sf.age":"Age","sf.sex":"Sex","sf.nat":"Nationality","sf.civil":"Civil status","sf.birth":"Place of birth","sf.sirb":"Seaman's Book (SIRB)","sf.pass":"Passport","sf.rank":"Rank","sf.prin":"Principal","sf.agency":"Manning agency","sf.vessel":"Vessel","sf.phone":"Phone","sf.email":"Email","sf.addr":"Address","sf.kin":"Next of kin","sf.kinrel":"Relationship","sf.kinphone":"NOK phone","sf.blood":"Blood type","sf.allerg":"Allergies","sf.stage":"Current stage","sf.casecode":"Case code",
+  "sf.mednote":"Full medical detail lives in Next2DMS / Seafarer 360° (no-copy). Others see only fit / not-fit.",
+  "sf.journey":"Open PEME case",
+  "nsf.h":"Register New Seafarer","nsf.p":"This is where a seafarer enters the system — one Seafarer ID for life. Fill the profile, then register.","nsf.submit":"Register seafarer","nsf.prio":"Urgent (high priority)","nsf.opt":"optional",
+  "t.reg":"Seafarer registered · card opened",
+  "sf.docsscan":"Documents to scan","doc.scan":"Scan / Upload","doc.scanned":"Scanned","doc.onfile":"On file","doc.missing":"Missing","doc.req":"required",
+  "sf.docnote":"We scan the original of each document. Each file is kept ONCE in Next2DMS (single source of truth) — other products hold a read-only reference, never a copy. Certificates the PEME produces (MER · Certificate for Service at Sea · Crew Endorsement · Oath · flag-state) are issued later and stored in DMS too.",
   "appt.h":"New PEME Request","appt.p":"The agency submits a request; the clinic confirms and returns digital proof.",
   "appt.company":"Company / Principal","appt.rank":"Rank","appt.date":"Preferred date","appt.pkg":"PEME package","appt.hi":"Urgent (high priority)","appt.hihint":"The whole PEME flow is flagged red so every station knows it's urgent.","appt.submit":"Submit & confirm",
   "hdr.fit":"Disposition pending","open360":"Open 360° Folder","track.title":"PEME Journey","track.of":"of",
@@ -366,6 +442,15 @@ const I18N={en:{
   "board.h":"Πίνακας Υποθέσεων","board.p":"Όλα τα PEME σε εξέλιξη στο HPDC Manila. Κλικ σε γραμμή για άνοιγμα.",
   "th.code":"Κωδικός","th.seafarer":"Ναυτικός","th.rank":"Βαθμός","th.prin":"Principal","th.stage":"Στάδιο","th.prog":"Πρόοδος","th.prio":"Προτ/τα",
   "bd.search":"Αναζήτηση: κωδικός, ναυτικός, ID, βαθμός, principal, στάδιο…","bd.allstage":"Όλα τα στάδια","bd.allprio":"Όλες προτ/τες","bd.hi":"Επείγον","bd.no":"Κανονικό","bd.reset":"Reset","bd.cases":"υποθέσεις","bd.norez":"Καμία υπόθεση",
+  "nav.newsf":"Νέος Ναυτικός",
+  "sf.hh":"Καρτέλα Ναυτικού","sf.identity":"Ταυτότητα & Δημογραφικά","sf.docs":"Ναυτιλιακά Έγγραφα","sf.work":"Ναυτολόγηση","sf.contact":"Επικοινωνία & Συγγενής","sf.med":"Ιατρικά (flags)","sf.peme":"Τρέχον PEME",
+  "sf.fullname":"Ονοματεπώνυμο","sf.dob":"Ημ. γέννησης","sf.age":"Ηλικία","sf.sex":"Φύλο","sf.nat":"Εθνικότητα","sf.civil":"Οικογ. κατάσταση","sf.birth":"Τόπος γέννησης","sf.sirb":"Ναυτικό Φυλλάδιο (SIRB)","sf.pass":"Διαβατήριο","sf.rank":"Βαθμός","sf.prin":"Principal","sf.agency":"Πρακτορείο","sf.vessel":"Πλοίο","sf.phone":"Τηλέφωνο","sf.email":"Email","sf.addr":"Διεύθυνση","sf.kin":"Συγγενής (Next of Kin)","sf.kinrel":"Σχέση","sf.kinphone":"Τηλ. συγγενή","sf.blood":"Ομάδα αίματος","sf.allerg":"Αλλεργίες","sf.stage":"Τρέχον στάδιο","sf.casecode":"Κωδικός υπόθεσης",
+  "sf.mednote":"Το πλήρες ιατρικό ζει στο Next2DMS / Seafarer 360° (no-copy). Οι άλλοι βλέπουν μόνο fit / not-fit.",
+  "sf.journey":"Άνοιγμα υπόθεσης PEME",
+  "nsf.h":"Καταχώριση Νέου Ναυτικού","nsf.p":"Εδώ μπαίνει ο ναυτικός στο σύστημα — ένα Seafarer ID για μια ζωή. Συμπλήρωσε το προφίλ και καταχώρισε.","nsf.submit":"Καταχώριση ναυτικού","nsf.prio":"Επείγον (high priority)","nsf.opt":"προαιρετικό",
+  "t.reg":"Ο ναυτικός καταχωρίστηκε · άνοιξε η καρτέλα",
+  "sf.docsscan":"Δικαιολογητικά προς σκανάρισμα","doc.scan":"Σκανάρισμα","doc.scanned":"Σκαναρίστηκε","doc.onfile":"Στον φάκελο","doc.missing":"Λείπει","doc.req":"υποχρεωτικό",
+  "sf.docnote":"Σκανάρουμε το πρωτότυπο κάθε δικαιολογητικού. Κάθε έγγραφο κρατιέται ΜΙΑ φορά στο Next2DMS (single source of truth) — τα άλλα προϊόντα κρατούν read-only reference, ποτέ αντίγραφο. Τα πιστοποιητικά που παράγει το PEME (MER · Certificate for Service at Sea · Crew Endorsement · Oath · flag-state) εκδίδονται αργότερα και αποθηκεύονται κι αυτά στο DMS.",
   "appt.h":"Νέο Αίτημα PEME","appt.p":"Το πρακτορείο υποβάλλει αίτημα· η κλινική επιβεβαιώνει και επιστρέφει digital proof.",
   "appt.company":"Εταιρεία / Principal","appt.rank":"Βαθμός","appt.date":"Επιθυμητή ημερομηνία","appt.pkg":"Πακέτο PEME","appt.hi":"Επείγον (high priority)","appt.hihint":"Όλη η ροή του PEME επισημαίνεται με κόκκινο ώστε κάθε σταθμός να ξέρει ότι είναι επείγον.","appt.submit":"Υποβολή & επιβεβαίωση",
   "hdr.fit":"Εκκρεμεί απόφαση","open360":"Άνοιγμα Φακέλου 360°","track.title":"Διαδρομή PEME","track.of":"από",
@@ -431,7 +516,7 @@ function bdRender(){
     const mp=STAGES.map((_,i)=>`<i class="${i<c.stage?'d':(i===c.stage?'a':'')}"></i>`).join("");
     return `<tr class="clk" ${c.me?'onclick="openMyCase()"':''}>
       <td class="code">${caseCode(c)}</td>
-      <td><div class="nm">${c.nm}</div><div class="sid">${c.sid}</div></td>
+      <td><div class="nm nmlink" onclick="event.stopPropagation();openSeafarerCard('${c.sid}')" title="${t('sf.hh')}">${c.nm}</div><div class="sid">${c.sid}</div></td>
       <td>${c.rank}</td><td>${c.prin}</td>
       <td><span class="pill wait" style="font-family:var(--ff-mono);font-size:10.5px">${STAGES[c.stage].code}</span></td>
       <td><div class="miniprog">${mp}</div></td>
@@ -557,12 +642,123 @@ function vFolder(){
     <div class="corenote"><span class="tag">SHARED CORE</span><span>${t("folder.note")}</span></div>`;
 }
 
+/* ===================== Seafarer Card + New Seafarer ===================== */
+let CARD_SID=null;
+const LX=v=>(v&&typeof v==="object")?(v[lang]||v.en):(v||"");
+function ageFrom(dob){const m=(''+dob).match(/(\d{4})-(\d{2})-(\d{2})/);if(!m)return "—";const b=new Date(+m[1],+m[2]-1,+m[3]);const n=new Date(2026,6,12);let a=n.getFullYear()-b.getFullYear();if(n.getMonth()<b.getMonth()||(n.getMonth()===b.getMonth()&&n.getDate()<b.getDate()))a--;return a;}
+
+let nsDocs={};
+const DOCTYPES=[
+  {id:"passport",en:"Passport",el:"Διαβατήριο",req:true},
+  {id:"sirb",en:"Seaman's Book (SIRB)",el:"Ναυτικό Φυλλάδιο (SIRB)",req:true},
+  {id:"govid",en:"Government ID",el:"Ταυτότητα (Gov ID)",req:true},
+  {id:"stcw",en:"STCW Certificates",el:"Πιστοποιητικά STCW",req:true},
+  {id:"coc",en:"Certificate of Competency / Proficiency",el:"Πιστοποιητικό Ικανότητας (COC/COP)",req:false},
+  {id:"contract",en:"Employment Contract (POEA-SEC)",el:"Σύμβαση Εργασίας (POEA-SEC)",req:false},
+  {id:"vaccine",en:"Vaccination Card (ICV)",el:"Κάρτα Εμβολιασμών (ICV)",req:false},
+  {id:"prevpeme",en:"Previous PEME / MER",el:"Προηγούμενο PEME / MER",req:false}];
+const hasDoc=(s,id)=>{if(s.docs)return s.docs.includes(id);return ["passport","sirb","govid","stcw"].includes(id);};
+function sfDocsList(s){return `<div class="doclist">`+DOCTYPES.map(d=>{const on=hasDoc(s,d.id);return `<div class="docstat ${on?'ok':''}"><span>${LX(d)}</span><span class="s">${on?'✓ '+t("doc.onfile"):'— '+t("doc.missing")}</span></div>`;}).join("")+`</div><div class="docnote" style="margin-top:12px"><span class="lk">🔒</span><span>${t("sf.docnote")}</span></div>`;}
+function toggleDoc(id,btn){nsDocs[id]=!nsDocs[id];const on=nsDocs[id];btn.classList.toggle('on',on);btn.innerHTML=on?`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>${t("doc.scanned")}`:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M12 3v12M7 10l5 5 5-5"/></svg>${t("doc.scan")}`;}
+
+function seafarerHero(s){
+  return `<div class="sf360"><div class="photo">${s.initials}</div>
+    <div><h2>${s.first} ${s.middle?s.middle+" ":""}${s.last}</h2><div class="sid">${s.id}</div></div>
+    <div class="meta">
+      <div><div class="k">${t("sf.rank")}</div><div class="v">${LX(s.rank)}</div></div>
+      <div><div class="k">${t("sf.prin")}</div><div class="v">${s.principal}</div></div>
+      <div><div class="k">${t("sf.vessel")}</div><div class="v">${s.vessel||'—'}</div></div>
+    </div>
+    ${s.priority?`<span class="pill hi" style="margin-left:auto">⚑ HIGH</span>`:``}
+  </div>`;
+}
+function vSeafarerCard(sid){
+  const s=sfById(sid);if(!s)return vBoard();
+  const c=caseBySid(sid);
+  const kv=(k,v,mono)=>`<div class="kv"><div class="k">${k}</div><div class="v${mono?' mono':''}">${(v===0||v)?v:'—'}</div></div>`;
+  const sec=(icon,title,inner)=>`<div class="card"><div class="ch"><div class="ic">${icon}</div><h3>${title}</h3></div><div class="cb">${inner}</div></div>`;
+  const iId=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="12" r="2.4"/><path d="M14 10h4M14 14h4"/></svg>`;
+  const iDoc=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2h8l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M14 2v4h4"/></svg>`;
+  const iWork=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>`;
+  const iCon=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5a2 2 0 0 1 2-2h2l2 5-2 1a12 12 0 0 0 5 5l1-2 5 2v2a2 2 0 0 1-2 2A16 16 0 0 1 4 5z"/></svg>`;
+  const iMed=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v6c0 4-3.5 7-8 8-4.5-1-8-4-8-8V7z"/><path d="M12 8v6M9 11h6"/></svg>`;
+  const iPeme=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h4l2 6 4-12 2 6h6"/></svg>`;
+  const dmsLink=`next2dms-v0.6.html?tenant=next2mcl&source=peme&q=${s.id}`;
+  const pemeKV=c?`${kv(t("sf.stage"),`${STAGES[c.stage].code} · ${L(STAGES[c.stage])}`)}${kv(t("sf.casecode"),caseCode(c),true)}`:kv(t("sf.stage"),lang==='el'?'— καμία ενεργή υπόθεση':'— no active case');
+  return `<div class="pagehead"><div class="ey">CBMS · Shared Core · ${t("sf.hh")}</div><h1>${s.first} ${s.last}</h1><p>${lang==='el'?'Πλήρες προφίλ ναυτικού — μία ταυτότητα για μια ζωή (One Seafarer ID).':'Full seafarer profile — one identity for life (One Seafarer ID).'}</p></div>
+    ${seafarerHero(s)}
+    <div class="sfgrid">
+      ${sec(iId,t("sf.identity"),`<div class="kvs">${kv(t("sf.fullname"),`${s.first} ${s.middle?s.middle+" ":""}${s.last}`)}${kv(t("sf.dob"),s.dob,true)}${kv(t("sf.age"),s.age)}${kv(t("sf.sex"),LX(s.sex))}${kv(t("sf.nat"),LX(s.nationality))}${kv(t("sf.civil"),LX(s.civil))}${kv(t("sf.birth"),s.birthplace)}</div>`)}
+      ${sec(iWork,t("sf.work"),`<div class="kvs">${kv(t("sf.rank"),LX(s.rank))}${kv(t("sf.prin"),s.principal)}${kv(t("sf.agency"),s.agency)}${kv(t("sf.vessel"),s.vessel)}</div>`)}
+      ${sec(iDoc,t("sf.docs"),`<div class="kvs">${kv(t("sf.sirb"),s.sirb,true)}${kv(t("sf.pass"),s.passport,true)}</div>${sfDocsList(s)}`)}
+      ${sec(iCon,t("sf.contact"),`<div class="kvs">${kv(t("sf.phone"),s.phone,true)}${kv(t("sf.email"),s.email)}${kv(t("sf.addr"),s.address)}${kv(t("sf.kin"),s.kin&&s.kin.name)}${kv(t("sf.kinrel"),LX(s.kin&&s.kin.rel))}${kv(t("sf.kinphone"),s.kin&&s.kin.phone,true)}</div>`)}
+      ${sec(iMed,t("sf.med"),`<div class="kvs">${kv(t("sf.blood"),s.bloodType)}${kv(t("sf.allerg"),LX(s.allergies))}</div><div class="medflag"><span class="lk">🔒</span><span>${t("sf.mednote")}</span></div>`)}
+      <div class="full">${sec(iPeme,t("sf.peme"),`<div class="kvs">${pemeKV}</div>
+        <div class="sfacts">
+          <a class="prim" href="${dmsLink}">${iDoc}Documents (DMS)</a>
+          ${s.me?`<button onclick="go('folder')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/></svg>${t("open360")}</button>`:``}
+          ${s.me&&c?`<button onclick="openMyCase()">${iPeme}${t("sf.journey")}</button>`:``}
+        </div>`)}</div>
+    </div>`;
+}
+function openSeafarerCard(sid){CARD_SID=sid;activeView="seafarercard";const s=sfById(sid);$("#crumbView").textContent=s?`${s.first} ${s.last}`:t("sf.hh");render();}
+
+/* --- New Seafarer registration --- */
+const gv=id=>{const e=document.getElementById(id);return e?e.value.trim():"";};
+function vNewSeafarer(){
+  nsDocs={};
+  const F=(id,label,ph,req)=>`<div class="field"><label>${label}${req?' <span class="req">*</span>':` <span style="color:var(--ink-3);font-weight:400">· ${t("nsf.opt")}</span>`}</label><input class="inp" id="${id}" placeholder="${ph||''}"></div>`;
+  const opt=(id,label,opts)=>`<div class="field"><label>${label}</label><select class="inp" id="${id}">${opts.map(o=>`<option>${o}</option>`).join("")}</select></div>`;
+  return `<div class="pagehead"><div class="ey">Operations · ${t("nav.newsf")}</div><h1>${t("nsf.h")}</h1><p>${t("nsf.p")}</p></div>
+    <div class="card"><div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="12" r="2.4"/><path d="M14 10h4M14 14h4"/></svg></div><h3>${t("sf.identity")}</h3></div><div class="cb">
+      <div class="grid3">${F("nsFirst","First name","Juan",true)}${F("nsMiddle","Middle","D.")}${F("nsLast","Last name","Santos",true)}</div>
+      <div class="grid3">${F("nsDob",t("sf.dob"),"1991-06-14")}${opt("nsSex",t("sf.sex"),[lang==='el'?'Άνδρας':'Male',lang==='el'?'Γυναίκα':'Female'])}${F("nsNat",t("sf.nat"),"Filipino")}</div>
+      <div class="grid3">${opt("nsCivil",t("sf.civil"),[lang==='el'?'Άγαμος':'Single',lang==='el'?'Έγγαμος':'Married',lang==='el'?'Άλλο':'Other'])}${F("nsBirth",t("sf.birth"),"Cebu City")}${F("nsBlood",t("sf.blood"),"O+")}</div>
+    </div></div>
+    <div class="card" style="margin-top:14px"><div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2h8l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M14 2v4h4"/></svg></div><h3>${t("sf.docs")} & ${t("sf.work")}</h3></div><div class="cb">
+      <div class="grid2">${F("nsSirb",t("sf.sirb"),"SB-2026-000000")}${F("nsPass",t("sf.pass"),"P0000000A")}</div>
+      <div class="grid2">${F("nsRank",t("sf.rank"),"Able Seaman",true)}${F("nsPrin",t("sf.prin"),"Crossworld Marine",true)}</div>
+      <div class="grid2">${F("nsAgency",t("sf.agency"),"Manila Crewing Corp.")}${F("nsVessel",t("sf.vessel"),"MV Aegean Trader")}</div>
+    </div></div>
+    <div class="card" style="margin-top:14px"><div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M12 3v12M7 10l5 5 5-5"/></svg></div><h3>${t("sf.docsscan")}</h3></div><div class="cb">
+      <div class="docnote"><span class="lk">🔒</span><span>${t("sf.docnote")}</span></div>
+      ${DOCTYPES.map(d=>`<div class="docrow"><div class="dl"><b>${LX(d)}</b><span class="tag ${d.req?'r':''}">${d.req?t("doc.req"):t("nsf.opt")}</span></div><button type="button" class="scanbtn" onclick="toggleDoc('${d.id}',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M12 3v12M7 10l5 5 5-5"/></svg>${t("doc.scan")}</button></div>`).join("")}
+    </div></div>
+    <div class="card" style="margin-top:14px"><div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5a2 2 0 0 1 2-2h2l2 5-2 1a12 12 0 0 0 5 5l1-2 5 2v2a2 2 0 0 1-2 2A16 16 0 0 1 4 5z"/></svg></div><h3>${t("sf.contact")}</h3></div><div class="cb">
+      <div class="grid3">${F("nsPhone",t("sf.phone"),"+63 917 000 0000")}${F("nsEmail",t("sf.email"),"name@crewmail.ph")}${F("nsAddr",t("sf.addr"),"City, PH")}</div>
+      <div class="grid3">${F("nsKinName",t("sf.kin"),"Maria Santos")}${F("nsKinRel",t("sf.kinrel"),lang==='el'?'Σύζυγος':'Wife')}${F("nsKinPhone",t("sf.kinphone"),"+63 917 000 0000")}</div>
+      <div class="grid2">${F("nsAllerg",t("sf.allerg"),lang==='el'?'Καμία γνωστή':'None known')}<div class="field" style="display:flex;align-items:flex-end"><label style="display:flex;align-items:center;gap:9px;cursor:pointer;margin:0"><input type="checkbox" id="nsPrio"> <span style="color:var(--coral)">⚑ ${t("nsf.prio")}</span></label></div></div>
+      <div class="completebar"><button class="magic" onclick="registerSeafarer()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="8" r="3.4"/><path d="M4 21c0-4 3-6.5 7-6.5c1 0 1.9.15 2.7.43"/><path d="M18 14v6M15 17h6"/></svg>${t("nsf.submit")}</button></div>
+    </div></div>`;
+}
+function registerSeafarer(){
+  const first=gv("nsFirst")||"New",last=gv("nsLast")||"Seafarer";
+  const initials=((first[0]||"")+(last[0]||"")).toUpperCase();
+  const sid="SF-PH-0"+String(40000+Math.floor(Math.random()*9000)).slice(0,5);
+  const seq=String(4150+CASES.length).padStart(5,'0');
+  const rank=gv("nsRank")||"Able Seaman",prin=gv("nsPrin")||"—";
+  const prio=(document.getElementById("nsPrio")||{}).checked||false;
+  const dob=gv("nsDob");
+  const s={id:sid,first,middle:gv("nsMiddle"),last,initials,
+    rank:{en:rank,el:rank},age:dob?ageFrom(dob):"—",dob,
+    sex:gv("nsSex"),nationality:gv("nsNat")||"Filipino",civil:gv("nsCivil"),birthplace:gv("nsBirth"),
+    sirb:gv("nsSirb"),passport:gv("nsPass"),phone:gv("nsPhone"),email:gv("nsEmail"),address:gv("nsAddr"),
+    kin:{name:gv("nsKinName"),rel:gv("nsKinRel"),phone:gv("nsKinPhone")},
+    principal:prin,agency:gv("nsAgency"),vessel:gv("nsVessel"),
+    bloodType:gv("nsBlood"),allergies:gv("nsAllerg"),docs:Object.keys(nsDocs).filter(k=>nsDocs[k]),caseId:"PEME-2026-"+seq,priority:prio};
+  SEAFARERS.push(s);
+  CASES.push({id:s.caseId,nm:`${first} ${last}`,sid,rank,prin,stage:0,prio});
+  toast("t.reg");openSeafarerCard(sid);
+}
+
 /* ===================== router ===================== */
 function render(){
   const h=$("#scroll");
   if(activeView==="board"){h.innerHTML=vBoard();bdRender();}
   else if(activeView==="appointment")h.innerHTML=vAppointment();
   else if(activeView==="folder")h.innerHTML=vFolder();
+  else if(activeView==="newseafarer")h.innerHTML=vNewSeafarer();
+  else if(activeView==="seafarercard")h.innerHTML=vSeafarerCard(CARD_SID);
   else if(activeView==="stage"){
     const s=CASE._openStage;
     if(s===2)h.innerHTML=vFrontdesk();
@@ -578,6 +774,7 @@ function syncNav(){
   $$("#nav a").forEach(a=>a.classList.remove("on"));
   if(activeView==="board")$('#nav a[data-view="board"]')?.classList.add("on");
   else if(activeView==="appointment")$('#nav a[data-view="appointment"]')?.classList.add("on");
+  else if(activeView==="newseafarer")$('#nav a[data-view="newseafarer"]')?.classList.add("on");
   else if(activeView==="folder")$('#nav a[data-view="folder"]')?.classList.add("on");
   else if(activeView==="stage"){const s=CASE._openStage;$(`#nav a[data-stage="${s}"]`)?.classList.add("on");}
   // stage status ticks
@@ -605,7 +802,7 @@ function vFrontdesk(){
 }
 
 /* ===================== actions ===================== */
-function go(v){activeView=v;$("#crumbView").textContent=({board:"Case Board",appointment:"New Appointment",folder:"Seafarer 360°"})[v]||"";render();}
+function go(v){activeView=v;$("#crumbView").textContent=({board:"Case Board",appointment:"New Appointment",folder:"Seafarer 360°",newseafarer:"New Seafarer"})[v]||"";render();}
 function openStage(i){CASE._openStage=i;activeView="stage";$("#crumbView").textContent=STAGES[i].en;render();}
 function openMyCase(){openStage(CASE.currentStage);}
 function completeStage(s){CASE.done[s]=true;if(s===CASE.currentStage&&CASE.currentStage<STAGES.length-1)CASE.currentStage=Math.min(CASE.currentStage+1,STAGES.length-1);toast("t.saved");render();}
