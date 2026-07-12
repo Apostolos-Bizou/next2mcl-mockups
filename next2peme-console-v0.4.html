@@ -514,7 +514,7 @@ function bdRender(){
   const body=$("#boardRows");if(!body)return;
   body.innerHTML=rows.map(c=>{
     const mp=STAGES.map((_,i)=>`<i class="${i<c.stage?'d':(i===c.stage?'a':'')}"></i>`).join("");
-    return `<tr class="clk" ${c.me?'onclick="openMyCase()"':''}>
+    return `<tr class="clk" onclick="openSeafarerCard('${c.sid}')">
       <td class="code">${caseCode(c)}</td>
       <td><div class="nm nmlink" onclick="event.stopPropagation();openSeafarerCard('${c.sid}')" title="${t('sf.hh')}">${c.nm}</div><div class="sid">${c.sid}</div></td>
       <td>${c.rank}</td><td>${c.prin}</td>
