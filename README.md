@@ -15,7 +15,7 @@ the live hub is served from the repo root.
 | File | Role |
 |------|------|
 | `mcl-shell-v0.2.html` | **MCL Shell** — the hub / entry point that launches the other apps |
-| `next2peme-console-v0.3.html` | **Next2Peme Console** — PEME workflow console |
+| `next2peme-console-v0.4.html` | **Next2Peme Console** — PEME workflow console |
 | `next2dms-v0.6.html` | **Next2DMS** — document management |
 | `seafarer-360-folder.html` | **Seafarer 360** — the seafarer folder view |
 
