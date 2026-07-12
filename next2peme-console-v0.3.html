@@ -158,6 +158,21 @@ textarea.inp{min-height:78px;resize:vertical}
 .miniprog{display:flex;gap:2px;width:110px}
 .miniprog i{flex:1;height:5px;border-radius:3px;background:var(--line)}
 .miniprog i.d{background:var(--teal)}.miniprog i.a{background:var(--gold)}
+.toolbar{display:flex;gap:9px;align-items:center;margin:4px 4px 12px;flex-wrap:wrap}
+.toolbar .sbox{flex:1;min-width:220px;display:flex;align-items:center;gap:9px;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+.toolbar .sbox svg{width:15px;height:15px;color:var(--ink-3);flex:0 0 15px}
+.toolbar .sbox input{flex:1;border:none;background:none;font-family:inherit;font-size:12.5px;color:var(--ink)}
+.toolbar .sbox input:focus{outline:none}
+.toolbar select{font-family:inherit;font-size:12px;color:var(--ink-2);background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:9px 11px;cursor:pointer}
+.toolbar .reset{font-family:inherit;font-size:12px;color:var(--ink-3);padding:9px 12px;border:1px solid var(--line);border-radius:9px;background:var(--paper);cursor:pointer}
+.toolbar .reset:hover{background:var(--mist)}
+.toolbar .rescount{font-size:11px;color:var(--ink-3);font-family:var(--ff-mono);margin-left:2px}
+.tbl th.sortable{cursor:pointer;user-select:none;white-space:nowrap}
+.tbl th.sortable:hover{color:var(--teal)}
+.tbl th .sar{opacity:.35;font-size:9px;margin-left:3px}
+.tbl th.sorted{color:var(--teal)}.tbl th.sorted .sar{opacity:1}
+.tbl td.code{font-family:var(--ff-mono);font-size:11px;color:var(--teal);font-weight:600;white-space:nowrap}
+.norez{text-align:center;color:var(--ink-3);padding:26px;font-size:13px}
 
 /* MD disposition */
 .disp{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:6px 0 4px}
@@ -331,7 +346,8 @@ const I18N={en:{
   "st.LAB":"Laboratory","st.IMG":"Imaging & Cardio","st.VITL":"Vitals & Spiro","st.SPEC":"Specialty Exams","st.PHYS":"Physical Exam","st.MDRV":"MD Review","st.CERT":"Certificates",
   "role.acting":"Acting as","env.tag":"Interim mockup · no live data",
   "board.h":"Case Board","board.p":"All PEMEs in progress at HPDC Manila. Click a row to open.",
-  "th.seafarer":"Seafarer","th.rank":"Rank","th.prin":"Principal","th.stage":"Stage","th.prog":"Progress","th.prio":"Priority",
+  "th.code":"Case Code","th.seafarer":"Seafarer","th.rank":"Rank","th.prin":"Principal","th.stage":"Stage","th.prog":"Progress","th.prio":"Priority",
+  "bd.search":"Search: code, seafarer, ID, rank, principal, stage…","bd.allstage":"All stages","bd.allprio":"All priority","bd.hi":"High priority","bd.no":"Normal","bd.reset":"Reset","bd.cases":"cases","bd.norez":"No cases match",
   "appt.h":"New PEME Request","appt.p":"The agency submits a request; the clinic confirms and returns digital proof.",
   "appt.company":"Company / Principal","appt.rank":"Rank","appt.date":"Preferred date","appt.pkg":"PEME package","appt.hi":"Urgent (high priority)","appt.hihint":"The whole PEME flow is flagged red so every station knows it's urgent.","appt.submit":"Submit & confirm",
   "hdr.fit":"Disposition pending","open360":"Open 360° Folder","track.title":"PEME Journey","track.of":"of",
@@ -348,7 +364,8 @@ const I18N={en:{
   "st.LAB":"Εργαστήριο","st.IMG":"Απεικόνιση & Καρδιο","st.VITL":"Ζωτικά & Σπιρο","st.SPEC":"Ειδικές Εξετάσεις","st.PHYS":"Κλινική Εξέταση","st.MDRV":"Έλεγχος Ιατρ. Δ/ντή","st.CERT":"Πιστοποιητικά",
   "role.acting":"Ρόλος","env.tag":"Ενδιάμεσο mockup · χωρίς live data",
   "board.h":"Πίνακας Υποθέσεων","board.p":"Όλα τα PEME σε εξέλιξη στο HPDC Manila. Κλικ σε γραμμή για άνοιγμα.",
-  "th.seafarer":"Ναυτικός","th.rank":"Βαθμός","th.prin":"Principal","th.stage":"Στάδιο","th.prog":"Πρόοδος","th.prio":"Προτ/τα",
+  "th.code":"Κωδικός","th.seafarer":"Ναυτικός","th.rank":"Βαθμός","th.prin":"Principal","th.stage":"Στάδιο","th.prog":"Πρόοδος","th.prio":"Προτ/τα",
+  "bd.search":"Αναζήτηση: κωδικός, ναυτικός, ID, βαθμός, principal, στάδιο…","bd.allstage":"Όλα τα στάδια","bd.allprio":"Όλες προτ/τες","bd.hi":"Επείγον","bd.no":"Κανονικό","bd.reset":"Reset","bd.cases":"υποθέσεις","bd.norez":"Καμία υπόθεση",
   "appt.h":"Νέο Αίτημα PEME","appt.p":"Το πρακτορείο υποβάλλει αίτημα· η κλινική επιβεβαιώνει και επιστρέφει digital proof.",
   "appt.company":"Εταιρεία / Principal","appt.rank":"Βαθμός","appt.date":"Επιθυμητή ημερομηνία","appt.pkg":"Πακέτο PEME","appt.hi":"Επείγον (high priority)","appt.hihint":"Όλη η ροή του PEME επισημαίνεται με κόκκινο ώστε κάθε σταθμός να ξέρει ότι είναι επείγον.","appt.submit":"Υποβολή & επιβεβαίωση",
   "hdr.fit":"Εκκρεμεί απόφαση","open360":"Άνοιγμα Φακέλου 360°","track.title":"Διαδρομή PEME","track.of":"από",
@@ -361,6 +378,7 @@ const I18N={en:{
   "ctx.t":"Όψη κοινού φακέλου.","ctx.d":"Αυτός είναι ο cross-product φάκελος του ναυτικού (CBMS · Shared Core) — όχι η λίστα αρχείων του Peme. Τα αρχεία του Peme είναι στο αριστερό μενού (Διαδρομή PEME).","ctx.cur":"ΤΡΕΧΟΝ","acc.full":"πλήρης πρόσβαση","acc.ref":"reference · RBAC","acc.med":"🔒 μόνο fit / not-fit"
 }};
 let lang="en",activeRole="frontdesk",activeView="board";
+let bdQ="",bdStageF=null,bdPrioF=null,bdSortK="code",bdSortD=1;
 const t=k=>(lang==="el"&&I18N.el[k])?I18N.el[k]:(EN[k]??I18N.en[k]??k);
 const EN={};
 const L=o=>o?(o[lang]||o.en):"";
@@ -390,20 +408,61 @@ function trackBar(){
 }
 
 /* ===================== views ===================== */
-function vBoard(){
-  const rows=CASES.map(c=>{
+/* ---- case coding scheme (TENANT-PACK-ORIGIN-TYPE-YYYY-SEQ) — mirrors Next2DMS ---- */
+function caseCode(c){const m=(''+c.id).match(/(\d{4})-(\d+)/);const yr=m?m[1]:'2026';const seq=m?m[2]:'00000';return `MCL-MAR-PEME-C-${yr}-${seq}`;}
+function stageName(i){return `${STAGES[i].code} · ${L(STAGES[i])}`;}
+/* ---- board filter + sort (spreadsheet bar) ---- */
+function bdRows(){let d=CASES.slice();
+  if(bdStageF!==null)d=d.filter(c=>c.stage===bdStageF);
+  if(bdPrioF!==null)d=d.filter(c=>(!!c.prio)===bdPrioF);
+  if(bdQ){const qq=bdQ.toLowerCase();d=d.filter(c=>[caseCode(c),c.nm,c.sid,c.rank,c.prin,STAGES[c.stage].code,L(STAGES[c.stage]),c.prio?'high επείγον':'normal'].join(" ").toLowerCase().includes(qq));}
+  const k=bdSortK;d.sort((a,b)=>{let av,bv;
+    if(k==="code"){av=caseCode(a);bv=caseCode(b);}else if(k==="nm"){av=a.nm;bv=b.nm;}
+    else if(k==="rank"){av=a.rank;bv=b.rank;}else if(k==="prin"){av=a.prin;bv=b.prin;}
+    else if(k==="stage"){av=a.stage;bv=b.stage;}else if(k==="prio"){av=a.prio?1:0;bv=b.prio?1:0;}else{av=0;bv=0;}
+    return (av>bv?1:av<bv?-1:0)*bdSortD;});
+  return d;}
+function bdRender(){
+  const rows=bdRows();
+  $$("#boardThead th.sortable").forEach(th=>{const on=th.dataset.sort===bdSortK;const ar=on?(bdSortD>0?'↑':'↓'):'↕';const s=th.querySelector('.sar');if(s)s.textContent=ar;th.classList.toggle('sorted',on);});
+  const rc=$("#boardResCount");if(rc)rc.textContent=`${rows.length} ${t("bd.cases")}`;
+  const body=$("#boardRows");if(!body)return;
+  body.innerHTML=rows.map(c=>{
     const mp=STAGES.map((_,i)=>`<i class="${i<c.stage?'d':(i===c.stage?'a':'')}"></i>`).join("");
     return `<tr class="clk" ${c.me?'onclick="openMyCase()"':''}>
+      <td class="code">${caseCode(c)}</td>
       <td><div class="nm">${c.nm}</div><div class="sid">${c.sid}</div></td>
       <td>${c.rank}</td><td>${c.prin}</td>
       <td><span class="pill wait" style="font-family:var(--ff-mono);font-size:10.5px">${STAGES[c.stage].code}</span></td>
       <td><div class="miniprog">${mp}</div></td>
       <td>${c.prio?'<span class="pill hi">HIGH</span>':'<span class="muted" style="color:var(--ink-3)">—</span>'}</td></tr>`;
-  }).join("");
+  }).join("") || `<tr><td colspan="7" class="norez">${bdQ?`${t("bd.norez")} · «${bdQ}»`:'—'}</td></tr>`;
+}
+function bdSetSearch(v){bdQ=v;bdRender();}
+function bdSetStage(v){bdStageF=(v==="")?null:+v;bdRender();}
+function bdSetPrio(v){bdPrioF=(v==="")?null:(v==="hi");bdRender();}
+function bdSort(k){if(bdSortK===k)bdSortD=-bdSortD;else{bdSortK=k;bdSortD=1;}bdRender();}
+function bdReset(){bdQ="";bdStageF=null;bdPrioF=null;bdSortK="code";bdSortD=1;
+  const s=$("#bdSearch");if(s)s.value="";const st=$("#boardStageSel");if(st)st.value="";const pr=$("#boardPrioSel");if(pr)pr.value="";bdRender();}
+function vBoard(){
+  const stagesIn=[...new Set(CASES.map(c=>c.stage))].sort((a,b)=>a-b);
+  const stageOpts=`<option value="">${t("bd.allstage")}</option>`+stagesIn.map(i=>`<option value="${i}" ${bdStageF===i?'selected':''}>${stageName(i)}</option>`).join("");
+  const prioOpts=`<option value="">${t("bd.allprio")}</option><option value="hi" ${bdPrioF===true?'selected':''}>${t("bd.hi")}</option><option value="no" ${bdPrioF===false?'selected':''}>${t("bd.no")}</option>`;
+  const th=(k,l)=>`<th class="sortable" data-sort="${k}" onclick="bdSort('${k}')">${l}<span class="sar">↕</span></th>`;
+  const qEsc=bdQ.replace(/"/g,'&quot;');
   return `<div class="pagehead"><div class="ey">HPDC Manila</div><h1>${t("board.h")}</h1><p>${t("board.p")}</p></div>
-    <div class="card"><div class="cb" style="padding:6px 6px"><table class="tbl">
-      <thead><tr><th>${t("th.seafarer")}</th><th>${t("th.rank")}</th><th>${t("th.prin")}</th><th>${t("th.stage")}</th><th>${t("th.prog")}</th><th>${t("th.prio")}</th></tr></thead>
-      <tbody>${rows}</tbody></table></div></div>`;
+    <div class="card"><div class="cb" style="padding:8px 8px">
+      <div class="toolbar">
+        <div class="sbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input id="bdSearch" value="${qEsc}" oninput="bdSetSearch(this.value)" placeholder="${t("bd.search")}"></div>
+        <select id="boardStageSel" onchange="bdSetStage(this.value)">${stageOpts}</select>
+        <select id="boardPrioSel" onchange="bdSetPrio(this.value)">${prioOpts}</select>
+        <button class="reset" onclick="bdReset()">${t("bd.reset")}</button>
+        <span class="rescount" id="boardResCount"></span>
+      </div>
+      <table class="tbl">
+        <thead><tr id="boardThead">${th("code",t("th.code"))}${th("nm",t("th.seafarer"))}${th("rank",t("th.rank"))}${th("prin",t("th.prin"))}${th("stage",t("th.stage"))}<th>${t("th.prog")}</th>${th("prio",t("th.prio"))}</tr></thead>
+        <tbody id="boardRows"></tbody></table>
+    </div></div>`;
 }
 
 function vAppointment(){
@@ -501,7 +560,7 @@ function vFolder(){
 /* ===================== router ===================== */
 function render(){
   const h=$("#scroll");
-  if(activeView==="board")h.innerHTML=vBoard();
+  if(activeView==="board"){h.innerHTML=vBoard();bdRender();}
   else if(activeView==="appointment")h.innerHTML=vAppointment();
   else if(activeView==="folder")h.innerHTML=vFolder();
   else if(activeView==="stage"){
