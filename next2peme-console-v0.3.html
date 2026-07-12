@@ -49,6 +49,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .main{display:flex;flex-direction:column;min-width:0}
 .top{display:flex;align-items:center;gap:14px;padding:13px 24px;background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
 .crumb{font-size:12.5px;color:var(--ink-3)}.crumb b{color:var(--ink);font-weight:600}
+.ecolink{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;text-decoration:none;color:#0E8C93;background:rgba(14,140,147,.1);border:1px solid rgba(14,140,147,.28);border-radius:8px;padding:5px 10px}
+.ecolink:hover{background:#0E8C93;color:#fff}
+.ecolink.alt{color:#0B2A45;background:rgba(11,42,69,.08);border-color:rgba(11,42,69,.2)}
+.ecolink.alt:hover{background:#0B2A45;color:#fff}
 .top .grow{flex:1}
 .langtog{display:inline-flex;background:var(--mist);border:1px solid var(--line);border-radius:8px;padding:3px;gap:2px}
 .langtog button{padding:5px 10px;border-radius:6px;font-size:12px;font-weight:600;color:var(--ink-2)}
@@ -181,6 +185,17 @@ textarea.inp{min-height:78px;resize:vertical}
 .xcard .st{font-size:11.5px;color:var(--ink-2);margin-top:6px;line-height:1.35}.xcard .st b{color:var(--ink)}
 .corenote{background:linear-gradient(90deg,var(--navy),var(--navy-2));color:#CFE0EC;border-radius:var(--radius-sm);padding:11px 14px;font-size:12px;display:flex;align-items:center;gap:10px;margin-top:14px}
 .corenote .tag{font-family:var(--ff-mono);font-size:10px;background:rgba(23,167,175,.2);color:#8FE3E8;padding:2px 8px;border-radius:5px;border:1px solid rgba(23,167,175,.3)}
+.ctxbanner{display:flex;gap:11px;align-items:flex-start;background:rgba(231,163,62,.1);border:1px solid rgba(231,163,62,.34);border-radius:var(--radius-sm);padding:11px 14px;font-size:12.5px;color:var(--ink-2);margin:14px 0;line-height:1.45}
+.ctxbanner .ic{font-size:16px;flex:0 0 auto}.ctxbanner b{color:var(--ink)}
+.xcard{position:relative}
+.xcard.current{border-color:var(--gold);box-shadow:0 0 0 2px rgba(231,163,62,.25),var(--shadow)}
+.xcard.current .pl{display:flex;align-items:center}
+.xcard.current .pl .cur{margin-left:auto;font-family:var(--ff-mono);font-size:8.5px;letter-spacing:.06em;background:var(--gold);color:var(--navy);padding:2px 7px;border-radius:5px}
+.xcard.ref{opacity:.58;background:var(--mist);transition:opacity .15s}
+.xcard.ref:hover{opacity:1}
+.xlabel{font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin:16px 2px -2px}
+.xcard .acc{font-size:10px;color:var(--ink-3);margin-top:8px;display:flex;align-items:center;gap:5px;font-family:var(--ff-mono)}
+.xcard .acc.ok{color:var(--teal)}
 
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);opacity:0;background:var(--navy);color:#fff;padding:12px 20px;border-radius:11px;font-size:13px;font-weight:500;box-shadow:var(--shadow-lg);z-index:80;transition:.25s;display:flex;align-items:center;gap:10px;pointer-events:none}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -225,6 +240,8 @@ textarea.inp{min-height:78px;resize:vertical}
   <div class="main">
     <header class="top">
       <div class="crumb">Next2Peme · <b id="crumbView">Case Board</b></div>
+      <a class="ecolink" href="mcl-shell-v0.2.html" title="Back to MCL">◄ MCL</a>
+      <a class="ecolink alt" href="next2dms-v0.6.html?tenant=next2mcl&source=peme&q=SF-PH-039281" title="Open this seafarer's documents in Next2DMS">📄 Documents (DMS)</a>
       <div class="grow"></div>
       <div class="langtog" id="langTog"><button data-lang="en" class="on">EN</button><button data-lang="el">EL</button></div>
       <div class="whoami"><div class="av" id="whoAv">FD</div><div><div class="nm" id="whoName">Frontdesk</div><div class="rl" id="whoRole">Reception</div></div></div>
@@ -308,7 +325,24 @@ const CASES=[
 const CASE={currentStage:3,done:{2:true},disposition:null,certsIssued:false};
 
 /* ===================== i18n (chrome) ===================== */
-const I18N={en:{},el:{
+const I18N={en:{
+  "nav.ops":"Operations","nav.board":"Case Board","nav.appt":"New Appointment","nav.journey":"PEME Journey",
+  "nav.frontdesk":"Frontdesk","nav.core":"Shared Core","nav.folder":"Seafarer 360°",
+  "st.LAB":"Laboratory","st.IMG":"Imaging & Cardio","st.VITL":"Vitals & Spiro","st.SPEC":"Specialty Exams","st.PHYS":"Physical Exam","st.MDRV":"MD Review","st.CERT":"Certificates",
+  "role.acting":"Acting as","env.tag":"Interim mockup · no live data",
+  "board.h":"Case Board","board.p":"All PEMEs in progress at HPDC Manila. Click a row to open.",
+  "th.seafarer":"Seafarer","th.rank":"Rank","th.prin":"Principal","th.stage":"Stage","th.prog":"Progress","th.prio":"Priority",
+  "appt.h":"New PEME Request","appt.p":"The agency submits a request; the clinic confirms and returns digital proof.",
+  "appt.company":"Company / Principal","appt.rank":"Rank","appt.date":"Preferred date","appt.pkg":"PEME package","appt.hi":"Urgent (high priority)","appt.hihint":"The whole PEME flow is flagged red so every station knows it's urgent.","appt.submit":"Submit & confirm",
+  "hdr.fit":"Disposition pending","open360":"Open 360° Folder","track.title":"PEME Journey","track.of":"of",
+  "feeds":"Feeds:","complete":"Complete station","completed":"Completed","upload":"Upload","attached":"Attached",
+  "md.h":"Final Evaluation","md.p":"The Medical Director reviews the whole folder and decides. The signature feeds the certificates.","md.summary":"Findings summary","md.meds":"Required medication","md.disp":"Fitness disposition","md.fit":"Fit","md.temp":"Temp. Unfit","md.unfit":"Unfit","md.fitsub":"Fit to work","md.tempsub":"Temporarily unfit","md.unfitsub":"Unfit","md.sign":"Sign & issue decision",
+  "cert.h":"Issue Certificates","cert.p":"Auto-generated from the PEME data. Print \u2192 sign \u2192 scan \u2192 attach (hybrid for e-MER).","cert.gen":"Issue all","cert.view":"View","cert.issued":"Issued",
+  "folder.note":"The 360\u00b0 folder is a shared CBMS module (Layer 2) \u2014 every product opens it. Here you see a summary; the full folder is a separate artifact.",
+  "x.care":"<b>Active member</b> \u00b7 Gold+","x.peme":"<b>PEME in progress</b>","x.across":"This seafarer across the products (not Peme files)","x.post":"<b>1 past POME</b> \u00b7 2023","x.ship":"<b>1 incident</b> \u00b7 2024",
+  "t.saved":"Station completed","t.appt":"Request submitted \u00b7 digital proof to CW","t.md":"Decision issued","t.cert":"Certificates issued","t.lang":"Language changed","t.prio":"PEME flagged urgent",
+  "ctx.t":"Shared folder view.","ctx.d":"This is the seafarer's cross-product folder (CBMS \u00b7 Shared Core) \u2014 not the Peme file list. Peme's own files are in the left menu (PEME Journey).","ctx.cur":"CURRENT","acc.full":"full access","acc.ref":"reference \u00b7 RBAC","acc.med":"\ud83d\udd12 fit / not-fit only"
+},el:{
   "nav.ops":"Λειτουργίες","nav.board":"Πίνακας Υποθέσεων","nav.appt":"Νέο Ραντεβού","nav.journey":"Διαδρομή PEME",
   "nav.frontdesk":"Frontdesk","nav.core":"Shared Core","nav.folder":"Φάκελος Ναυτικού 360°",
   "st.LAB":"Εργαστήριο","st.IMG":"Απεικόνιση & Καρδιο","st.VITL":"Ζωτικά & Σπιρο","st.SPEC":"Ειδικές Εξετάσεις","st.PHYS":"Κλινική Εξέταση","st.MDRV":"Έλεγχος Ιατρ. Δ/ντή","st.CERT":"Πιστοποιητικά",
@@ -322,11 +356,12 @@ const I18N={en:{},el:{
   "md.h":"Τελική Αξιολόγηση","md.p":"Ο Ιατρικός Διευθυντής ελέγχει όλο τον φάκελο και αποφασίζει. Η υπογραφή τροφοδοτεί τα certificates.","md.summary":"Σύνοψη ευρημάτων","md.meds":"Απαιτούμενη αγωγή","md.disp":"Απόφαση καταλληλότητας","md.fit":"Fit","md.temp":"Temp. Unfit","md.unfit":"Unfit","md.fitsub":"Κατάλληλος","md.tempsub":"Προσωρινά ακατάλληλος","md.unfitsub":"Ακατάλληλος","md.sign":"Υπογραφή & έκδοση απόφασης",
   "cert.h":"Έκδοση Πιστοποιητικών","cert.p":"Auto-generated από τα δεδομένα του PEME. Print → sign → scan → attach (hybrid για e-MER).","cert.gen":"Έκδοση όλων","cert.view":"Προβολή","cert.issued":"Εκδόθηκε",
   "folder.note":"Ο Φάκελος 360° είναι shared module του CBMS (Layer 2) — τον ανοίγουν όλα τα προϊόντα. Εδώ βλέπεις σύνοψη· ο πλήρης φάκελος είναι ξεχωριστό artifact.",
-  "x.care":"<b>Ενεργό μέλος</b> · Gold+","x.peme":"<b>PEME σε εξέλιξη</b>","x.post":"<b>1 παλιό POME</b> · 2023","x.ship":"<b>1 incident</b> · 2024",
-  "t.saved":"Ο σταθμός ολοκληρώθηκε","t.appt":"Το αίτημα υποβλήθηκε · digital proof στη CW","t.md":"Η απόφαση εκδόθηκε","t.cert":"Τα certificates εκδόθηκαν","t.lang":"Άλλαξε η γλώσσα","t.prio":"Το PEME σημάνθηκε ως επείγον"
+  "x.care":"<b>Ενεργό μέλος</b> · Gold+","x.peme":"<b>PEME σε εξέλιξη</b>","x.across":"Ο ναυτικός στα προϊόντα (όχι αρχεία Peme)","x.post":"<b>1 παλιό POME</b> · 2023","x.ship":"<b>1 incident</b> · 2024",
+  "t.saved":"Ο σταθμός ολοκληρώθηκε","t.appt":"Το αίτημα υποβλήθηκε · digital proof στη CW","t.md":"Η απόφαση εκδόθηκε","t.cert":"Τα certificates εκδόθηκαν","t.lang":"Άλλαξε η γλώσσα","t.prio":"Το PEME σημάνθηκε ως επείγον",
+  "ctx.t":"Όψη κοινού φακέλου.","ctx.d":"Αυτός είναι ο cross-product φάκελος του ναυτικού (CBMS · Shared Core) — όχι η λίστα αρχείων του Peme. Τα αρχεία του Peme είναι στο αριστερό μενού (Διαδρομή PEME).","ctx.cur":"ΤΡΕΧΟΝ","acc.full":"πλήρης πρόσβαση","acc.ref":"reference · RBAC","acc.med":"🔒 μόνο fit / not-fit"
 }};
 let lang="en",activeRole="frontdesk",activeView="board";
-const t=k=>(lang==="el"&&I18N.el[k])?I18N.el[k]:(EN[k]??k);
+const t=k=>(lang==="el"&&I18N.el[k])?I18N.el[k]:(EN[k]??I18N.en[k]??k);
 const EN={};
 const L=o=>o?(o[lang]||o.en):"";
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
@@ -450,13 +485,15 @@ function vCerts(){
 }
 
 function vFolder(){
-  return `<div class="pagehead"><div class="ey">CBMS · Layer 2</div><h1>Seafarer 360°</h1></div>
+  return `<div class="pagehead"><div class="ey">CBMS · Layer 2 · Shared Core</div><h1>Seafarer 360°</h1></div>
+    <div class="ctxbanner"><span class="ic">📁</span><div><b>${t("ctx.t")}</b> ${t("ctx.d")}</div></div>
     ${sf360head(false)}
+    <div class="xlabel">${t("x.across")}</div>
     <div class="xprod">
-      <div class="xcard care"><div class="pl"><span class="dot"></span>Next2Care</div><div class="st">${t("x.care")}</div></div>
-      <div class="xcard peme"><div class="pl"><span class="dot"></span>Next2Peme</div><div class="st">${t("x.peme")}</div></div>
-      <div class="xcard post"><div class="pl"><span class="dot"></span>Next2PostMed</div><div class="st">${t("x.post")}</div></div>
-      <div class="xcard ship"><div class="pl"><span class="dot"></span>Next2ShipCare</div><div class="st">${t("x.ship")}</div></div>
+      <div class="xcard peme current"><div class="pl"><span class="dot"></span>Next2Peme<span class="cur">${t("ctx.cur")}</span></div><div class="st">${t("x.peme")}</div><div class="acc ok">✓ ${t("acc.full")}</div></div>
+      <div class="xcard care ref"><div class="pl"><span class="dot"></span>Next2Care</div><div class="st">${t("x.care")}</div><div class="acc">${t("acc.ref")}</div></div>
+      <div class="xcard post ref"><div class="pl"><span class="dot"></span>Next2PostMed</div><div class="st">${t("x.post")}</div><div class="acc">${t("acc.med")}</div></div>
+      <div class="xcard ship ref"><div class="pl"><span class="dot"></span>Next2ShipCare</div><div class="st">${t("x.ship")}</div><div class="acc">${t("acc.ref")}</div></div>
     </div>
     <div class="corenote"><span class="tag">SHARED CORE</span><span>${t("folder.note")}</span></div>`;
 }
