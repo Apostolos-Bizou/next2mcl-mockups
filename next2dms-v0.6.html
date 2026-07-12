@@ -115,7 +115,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .drawer{position:fixed;inset:0;height:100vh;width:100%;background:var(--mist);z-index:50;display:none;flex-direction:column;overflow:hidden}
 .drawer.show{display:flex}
 .dh{background:linear-gradient(120deg,var(--brand),var(--brand-2));color:#EAF3F8;padding:16px 24px 22px;position:relative}
-.dh .dhwrap{max-width:860px;margin:0 auto;width:100%}
+.dh .dhwrap{max-width:1500px;margin:0 auto;width:100%}
 .dh .back{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);color:#EAF3F8;font-size:12.5px;font-weight:600;padding:7px 13px;border-radius:9px;margin-bottom:14px;cursor:pointer}
 .dh .back:hover{background:var(--gold);color:var(--brand);border-color:var(--gold)}
 .dh .back svg{width:15px;height:15px}
@@ -124,8 +124,29 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .dh .dhmeta{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap}
 .dh .dhmeta .k{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.55)}
 .dh .dhmeta .v{font-size:12.5px;font-weight:600;color:#fff;margin-top:2px}
-.db{padding:28px 24px 80px;overflow-y:auto;flex:1}
-.db .dbwrap{max-width:860px;margin:0 auto;width:100%}
+.db{padding:32px max(40px,4vw) 90px;overflow-y:auto;flex:1}
+.db .dbwrap{max-width:1500px;margin:0 auto;width:100%}
+@media(min-width:1040px){
+  .db .dbwrap{display:grid;grid-template-columns:1fr 1fr;gap:8px 40px;align-items:start}
+  .db .dbwrap>.dsec.span2,.db .dbwrap>.alertrow,.db .dbwrap>.medlock{grid-column:1 / -1}
+}
+/* full-screen doc view — larger, readable type */
+.drawer .dh h2{font-size:30px}
+.drawer .dh .ty{font-size:13px}
+.drawer .dh .dhmeta{gap:26px;margin-top:14px}
+.drawer .dh .dhmeta .k{font-size:11px}.drawer .dh .dhmeta .v{font-size:17px}
+.drawer .dsec{margin-bottom:8px}
+.drawer .dsec h3{font-size:15px;margin-bottom:14px}.drawer .dsec h3 svg{width:19px;height:19px}
+.drawer .kv{font-size:16px;padding:12px 0}.drawer .kv .k{font-size:15px}.drawer .kv .v{font-size:15px}
+.drawer .idbox{padding:20px 22px}.drawer .idbox .row{padding:13px 0}.drawer .idbox .k{font-size:14px}.drawer .idbox .v{font-size:17px}.drawer .idbox .v.uuid{font-size:14px}
+.drawer .sot{padding:20px 22px}.drawer .sot .t{font-size:18px}.drawer .sot .t svg{width:19px;height:19px}.drawer .sot .d{font-size:15px;line-height:1.55}
+.drawer .refby{gap:9px;margin-top:12px}.drawer .refby .r{font-size:14px;padding:7px 14px}
+.drawer .medlock{font-size:15.5px;padding:18px 20px;line-height:1.55}.drawer .medlock svg{width:24px;height:24px}
+.drawer .alertrow{font-size:15.5px;padding:16px 20px}.drawer .alertrow svg{width:22px;height:22px}
+.drawer .compbadges{gap:9px}.drawer .compbadges .b{font-size:14px;padding:8px 15px}.drawer .compbadges .b svg{width:15px;height:15px}
+.drawer .vrow{padding:13px 0}.drawer .vrow .vb{font-size:14px;padding:4px 10px}.drawer .vrow .vi{font-size:16px}.drawer .vrow .vi .by{font-size:13.5px}.drawer .vrow .vt{font-size:13px}
+.drawer .sig{padding:14px 17px;margin-bottom:11px}.drawer .sig .av{width:42px;height:42px;font-size:14px}.drawer .sig .snm{font-size:16px}.drawer .sig .sr{font-size:13.5px}.drawer .sig .sst{font-size:14px}
+.drawer .audit .ev .ea{font-size:16px}.drawer .audit .ev .em{font-size:13.5px}
 .dsec{margin-bottom:20px}
 .dsec h3{font-family:var(--ff-display);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin:0 0 10px;display:flex;align-items:center;gap:8px}
 .dsec h3 svg{width:14px;height:14px;color:var(--accent)}
@@ -241,7 +262,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 </style>
 </head>
 <body>
-<div class="mocktag">Next2DMS v0.6.2 · MOCKUP</div>
+<div class="mocktag">Next2DMS v0.6.3 · MOCKUP</div>
 
 <div class="app">
   <aside class="side">
@@ -581,18 +602,18 @@ function openDoc(name){const d=T().docs.find(x=>x.n===name);if(!d)return;const s
         <div><div class="k">${clLabel()}</div><div class="v">${d.cl}</div></div></div>
     </div></div>
     <div class="db"><div class="dbwrap">
-      <div class="dsec"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M7 7h.01M3 5a2 2 0 0 1 2-2h6l8 8-8 8-8-8z"/></svg>${tt('d.ids')}</h3>
+      <div class="dsec span2"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M7 7h.01M3 5a2 2 0 0 1 2-2h6l8 8-8 8-8-8z"/></svg>${tt('d.ids')}</h3>
         <div class="idbox">
           <div class="row"><span class="k">${tt('id.code')}</span><span class="v code">${docCode(d)}</span></div>
           <div class="row"><span class="k">${tt('id.rev')}</span><span class="v">rev ${revLetter(d)} · v${d.v}</span></div>
           <div class="row"><span class="k">${tt('id.uuid')}</span><span class="v uuid">${docUuid(d)}</span></div>
         </div>
-        <div style="font-size:10.5px;color:var(--ink-3);margin-top:7px;line-height:1.5">${tt('id.note')}</div></div>
+        <div style="font-size:13px;color:var(--ink-3);margin-top:10px;line-height:1.55">${tt('id.note')}</div></div>
       ${expAlert}${medBanner}
-      <div class="dsec"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3l8 4v6c0 4-3.5 7-8 8-4.5-1-8-4-8-8V7z"/></svg>${tt('d.storage')}</h3>
+      <div class="dsec span2"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3l8 4v6c0 4-3.5 7-8 8-4.5-1-8-4-8-8V7z"/></svg>${tt('d.storage')}</h3>
         <div class="sot"><div class="t">${check}${tt('sot.t')}</div><div class="d">${tt('sot.d')}</div>
-          <div style="font-size:11px;color:var(--ink-3);margin-top:8px">${tt('src.origin')}: <b style="color:var(--ink-2)">${s.name}</b></div>
-          ${refby?`<div style="font-size:11px;color:var(--ink-3);margin-top:8px">${tt('sot.refby')}</div>${refby}`:""}</div></div>
+          <div style="font-size:14px;color:var(--ink-3);margin-top:12px">${tt('src.origin')}: <b style="color:var(--ink-2)">${s.name}</b></div>
+          ${refby?`<div style="font-size:14px;color:var(--ink-3);margin-top:12px">${tt('sot.refby')}</div>${refby}`:""}</div></div>
       <div class="dsec"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 7h16M4 12h16M4 17h10"/></svg>${tt('d.meta')}</h3>${meta}</div>
       <div class="dsec"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 3v5h5M3 8a9 9 0 1 0 3-5"/></svg>${tt('d.versions')}</h3>${versions}</div>
       <div class="dsec"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 17l6-6 4 4 8-8"/></svg>${tt('d.sign')}</h3>${sign}</div>
