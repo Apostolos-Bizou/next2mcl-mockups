@@ -533,6 +533,77 @@ Object.assign(TYCODE,{'Scanned Document':'SCN','Declaration':'DEC','Consent Form
   });
 })();
 
+/* ---- Other seafarers: stage-appropriate PEME folders (each doc born in DMS as the journey advances) ---- */
+(function seedOtherSeafarers(){
+  var EM="\u2014";
+  var others=[
+    {id:"SF-PH-041002",nm:"R. Cruz",cl:"Diana Shipping",vessel:"MV Diana Star",stage:7},
+    {id:"SF-PH-038820",nm:"E. Reyes",cl:"Marlow",vessel:"MV Marlow Trader",stage:8},
+    {id:"SF-PH-041290",nm:"N. Bautista",cl:"Golden Union",vessel:"MV Golden Sky",stage:1},
+    {id:"SF-PH-037551",nm:"V. Lim",cl:"Bourbon",vessel:"MV Bourbon Explorer",stage:10}
+  ];
+  // [nameBase, type, station, gateStage, medical]
+  var T=[
+    ["Passport (scan)","Scanned Document","Intake",1,false],
+    ["Seaman's Book SIRB (scan)","Scanned Document","Intake",1,false],
+    ["POEA-SEC Contract (scan)","Scanned Document","Intake",1,false],
+    ["Medical History Questionnaire","Declaration","Self-service intake",2,true],
+    ["Consent to Release Information","Consent Form","Self-service intake",2,false],
+    ["HIV Testing Consent (Form A)","Consent Form","Self-service intake",2,true],
+    ["Drug & Alcohol Testing Consent","Consent Form","Self-service intake",2,false],
+    ["COVID-19 Health Declaration","Declaration","Self-service intake",2,false],
+    ["Laboratory Result Report","Lab Report","Laboratory",3,true],
+    ["Chest X-ray Report","Imaging Report","Imaging & Cardiology",4,true],
+    ["Ultrasound (KUB) Report","Imaging Report","Imaging & Cardiology",4,true],
+    ["ECG Report (12-lead)","Imaging Report","Imaging & Cardiology",4,true],
+    ["Vitals & Spirometry Report","Vitals Report","Vitals & Spiro",5,true],
+    ["Colour Vision (Ishihara) Report","Specialty Report","Specialty Exams",6,true],
+    ["Audiometry Report","Specialty Report","Specialty Exams",6,true],
+    ["Dental Examination Report","Specialty Report","Specialty Exams",6,true],
+    ["Psychological Evaluation","Specialty Report","Specialty Exams",6,true],
+    ["Medical History & Physical Exam","Physical Exam","Physical Examination",7,true],
+    ["Crew Endorsement Report","Crew Endorsement","Final Evaluation",8,true],
+    ["Medical Examination Report (MER)","MER","Final Evaluation",8,true],
+    ["Medical Fitness Certificate","Fitness Certificate","Certificates",10,true],
+    ["PEME Certificate","PEME Certificate","Certificates",10,true],
+    ["Certificate for Service at Sea","Certificate of Service","Certificates",10,false],
+    ["Oath of Undertaking","Oath","Certificates",10,false],
+    ["Flag-state Certificate (Panama)","Flag-state Certificate","Records",10,false]
+  ];
+  function signer(station){
+    if(station==="Self-service intake")return null; // seafarer signs (set per-seafarer)
+    if(station==="Laboratory")return ["L. Tan, RMT","Medical Technologist"];
+    if(station==="Imaging & Cardiology")return ["Dr. J. Valdez","Radiologist"];
+    if(station==="Vitals & Spiro")return ["C. Nurse","Nurse"];
+    if(station==="Specialty Exams")return ["Specialist","Specialist"];
+    if(station==="Physical Examination")return ["Examining Physician","Physician"];
+    return ["Dr. R. Cruz","Medical Director"];
+  }
+  var bucket=TENANTS.next2mcl.docs;
+  others.forEach(function(sf){
+    T.forEach(function(t){
+      var nameBase=t[0],typ=t[1],station=t[2],gate=t[3],medical=t[4];
+      if(gate>sf.stage)return;
+      var scan=(station==="Intake");
+      var n=nameBase+" "+EM+" "+sf.nm;
+      var when= gate<=2?"2026-07-10":(gate<=7?"2026-07-11":"2026-07-12");
+      var sn,sr;
+      if(scan){sn="";sr="";}
+      else if(station==="Self-service intake"){sn=sf.nm;sr="Seafarer";}
+      else {var sg=signer(station);sn=sg[0];sr=sg[1];}
+      var refBy=medical?["Next2Peme","Seafarer 360\u00b0","Next2MCL"]:["Next2Peme","Seafarer 360\u00b0"];
+      if(typ==="Crew Endorsement"||typ==="MER")refBy.push("Next2Care");
+      bucket.push({
+        n:n,t:typ,src:"peme",cl:sf.cl,v:1,st:"signed",own:sn||"Frontdesk",
+        medical:medical||undefined,refBy:refBy,
+        meta:{"Seafarer ID":sf.id,"Station":station,"Vessel":sf.vessel},
+        versions:[[1, scan?"Scanned & filed":"Final signed", sn||"Frontdesk", when]],
+        signers: sn?[[sn,sr,"ok"]]:[],
+        audit:[[ scan?"Scanned into Next2DMS":"Signed (e-sign \u00b7 RA 8792)", (sn||"Frontdesk")+" \u00b7 "+when ],["Produced by Next2Peme \u00b7 "+station,"system \u00b7 "+when]]
+      });
+    });
+  });
+})();
 /* ---- in-app guide (coding + metadata standard) ---- */
 function openGuide(){$("#guideNav").classList.add("on");$$("#nav a.lib,#nav a.src,#nav a.gov").forEach(a=>a.classList.remove("on"));
   $("#libView").style.display="none";$("#guideView").classList.add("show");renderGuide();}
