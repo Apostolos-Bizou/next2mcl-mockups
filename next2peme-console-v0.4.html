@@ -1014,7 +1014,7 @@ function registerSeafarer(){
   const pass=Array.from({length:8},()=>cset[Math.floor(Math.random()*cset.length)]).join("");
   const ctrl="HPDC-"+seq, code="MCL-MAR-PEME-C-2026-"+seq, pkg=gv("nsPkg")||"—";
   const email=gv("nsEmail")||uname+"@crewmail.ph";
-  const link="next2peme-intake-v0.1.html?u="+uname;
+  const link="next2peme-intake-v0.1.html?u="+uname+"&n="+encodeURIComponent(first+" "+last)+"&sid="+sid;
   const s={id:sid,first,middle:gv("nsMiddle"),last,initials,
     rank:{en:rank,el:rank},age:dob?ageFrom(dob):"—",dob,
     sex:gv("nsSex"),nationality:gv("nsNat")||"Filipino",civil:gv("nsCivil"),birthplace:gv("nsBirth"),

@@ -225,6 +225,7 @@ const FORMS=[
 let idx=0; const signs={};
 function login(){
   const u=$("#uInp").value.trim();
+  $("#whoName").textContent=P.name;
   $("#whoSub").textContent=`${P.sid} · ${P.principal} · code ${P.code}`+(u?` · ${u}`:"");
   $("#loginView").classList.add("hide");$("#wizardView").classList.remove("hide");
   idx=0;renderForm();
@@ -270,9 +271,11 @@ function init(){
   $$("[data-i18n]").forEach(el=>EN[el.dataset.i18n]=el.textContent);
   EN["sign.tap"]="Tap here to e-sign";EN["sign.by"]="Signed electronically";EN["continue"]="Sign & continue";EN["finish"]="Sign & finish";EN["yes"]="Yes";EN["no"]="No";
   $$("#langTog button").forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
-  // prefill username from ?u=
-  const u=new URLSearchParams(location.search).get("u");
-  if(u)$("#uInp").value=u;
+  // prefill from link params (?u= username, ?n= name, ?sid= Seafarer ID)
+  const q=new URLSearchParams(location.search);
+  const u=q.get("u");if(u)$("#uInp").value=u;
+  const nm=q.get("n");if(nm){P.name=nm;const parts=nm.trim().split(/\s+/);P.first=parts[0]||P.first;P.last=parts[parts.length-1]||P.last;}
+  const sid=q.get("sid");if(sid)P.sid=sid;
 }
 init();
 </script>
