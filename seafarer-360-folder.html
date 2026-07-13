@@ -64,6 +64,23 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .hdr .fit{margin-left:auto;text-align:right}
 .chip{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600}
 .chip.pending{background:rgba(231,163,62,.16);color:var(--gold-2);border:1px solid rgba(231,163,62,.35)}
+.chip.ok{background:rgba(14,140,147,.14);color:var(--teal);border:1px solid rgba(14,140,147,.35)}
+.dmsopen{display:flex;align-items:center;gap:10px;padding:11px 14px;background:linear-gradient(135deg,rgba(14,140,147,.10),rgba(14,140,147,.04));border:1px solid rgba(14,140,147,.28);border-radius:10px;text-decoration:none;color:var(--teal);font-weight:600;font-size:13px;margin-bottom:4px}
+.dmsopen svg{width:16px;height:16px}.dmsopen span{flex:1}
+.refnote{font-size:11.5px;color:var(--ink-3);margin:6px 2px 12px;line-height:1.5}
+.refgrp{margin-top:14px}
+.refgrp .gh{display:flex;align-items:center;gap:8px;font-family:var(--ff-display);font-weight:600;font-size:11.5px;color:var(--ink-2);text-transform:uppercase;letter-spacing:.04em;margin:0 0 7px}
+.refgrp .gh .ct{margin-left:auto;font-family:var(--ff-mono);font-size:11px;color:var(--ink-3);text-transform:none;letter-spacing:0}
+.refrow{display:flex;align-items:center;gap:12px;padding:10px 12px;background:var(--paper);border:1px solid var(--line);border-radius:10px;margin-bottom:6px;text-decoration:none;color:inherit}
+.refrow:hover{border-color:var(--teal)}
+.refrow .ri{width:30px;height:30px;border-radius:8px;background:var(--mist);display:grid;place-items:center;color:var(--teal);flex:0 0 30px}
+.refrow .ri svg{width:15px;height:15px}
+.refrow .rmain{flex:1;min-width:0}
+.refrow .rn{font-size:13px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.refrow .rc{font-family:var(--ff-mono);font-size:10.5px;color:var(--ink-3);margin-top:2px}
+.refrow .rt{font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;background:rgba(231,163,62,.14);color:var(--gold-2);white-space:nowrap;flex:0 0 auto}
+.refrow .med{font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;background:rgba(14,140,147,.10);color:var(--teal);border:1px solid rgba(14,140,147,.28);white-space:nowrap;flex:0 0 auto}
+.refrow .arr{color:var(--ink-3);flex:0 0 auto}
 .chip i{width:7px;height:7px;border-radius:50%;background:currentColor}
 .hdr .meta{display:flex;gap:30px;flex-wrap:wrap;margin:16px 0 0;padding-top:14px;border-top:1px solid rgba(255,255,255,.1)}
 .hdr .meta .k{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#7EA2BC}
@@ -204,7 +221,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
         </div>
         <div class="barcode" id="barcode" aria-hidden="true"></div>
       </div>
-      <div class="fit"><span class="chip pending"><i></i><span data-i18n="hdr.fit">PEME disposition pending</span></span></div>
+      <div class="fit"><span class="chip ok"><i></i><span data-i18n="hdr.fit">FIT FOR SEA DUTY · 2026</span></span></div>
     </div>
     <div class="meta">
       <div><div class="k" data-i18n="m.rank">Rank</div><div class="v" data-i18n="v.rank">Able Seaman</div></div>
@@ -223,7 +240,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       <div class="st" data-i18n="x.care"><b>Active member</b> · Gold+ tier · family covered</div></div>
     <div class="xcard peme"><span class="link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></span>
       <div class="pl"><span class="dot"></span>Next2Peme</div>
-      <div class="st" data-i18n="x.peme"><b>PEME in progress</b> · stage 4/11 · HPDC Manila</div></div>
+      <div class="st" data-i18n="x.peme"><b>PEME complete</b> · FIT FOR SEA DUTY · 2026 · HPDC Manila</div></div>
     <div class="xcard post"><span class="link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg></span>
       <div class="pl"><span class="dot"></span>Next2PostMed</div>
       <div class="st" data-i18n="x.post"><b>1 past case</b> · 2023 · closed (fit to return)</div></div>
@@ -304,9 +321,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     <div class="caselist">
       <div class="caserow">
         <div class="ct"><span class="badge b-peme">PEME</span><h4 data-i18n="case.peme">Pre-Employment Medical Exam — 2026</h4><span class="prod">Next2Peme</span></div>
-        <div class="cx" data-i18n="case.pemecx">Deck rank · Crossworld Standard package · HPDC Manila. Currently at Laboratory stage.</div>
-        <div class="mtrack"><span class="n done"></span><span class="n done"></span><span class="n done"></span><span class="n active"></span><span class="n"></span><span class="n"></span><span class="n"></span><span class="n"></span><span class="n"></span><span class="n"></span><span class="n"></span></div>
-        <div class="mcap">4 / 11 · LAB</div>
+        <div class="cx" data-i18n="case.pemecx">Deck rank · Crossworld Standard package · HPDC Manila. Completed — FIT FOR SEA DUTY.</div>
+        <div class="mtrack"><span class="n done"></span><span class="n done"></span><span class="n done"></span><span class="n done"></span><span class="n done"></span><span class="n done"></span><span class="n done"></span><span class="n done"></span><span class="n done"></span><span class="n done"></span><span class="n done"></span></div>
+        <div class="mcap">11 / 11 · FIT</div>
       </div>
       <div class="caserow">
         <div class="ct"><span class="badge b-claim">CLAIM</span><h4 data-i18n="case.claim">Outpatient claim — chest infection</h4><span class="prod">Next2Care</span></div>
@@ -333,20 +350,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
   <!-- ===== FILES & EXAMS ===== -->
   <div class="panel" data-panel="files">
-    <div class="seclead" data-i18n="files.lead">Medical exams &amp; files</div>
-    <div class="sub" data-i18n="files.sub">Stored in Azure Blob (Layer 1) with signed URLs — foldered by year, tagged by exam type and uploader.</div>
-    <div class="card"><div class="cb" style="padding:6px 8px">
-      <table class="tbl">
-        <thead><tr><th data-i18n="th.title">Title</th><th data-i18n="th.type">Exam type</th><th data-i18n="th.date">Date</th><th data-i18n="th.up">Uploader</th></tr></thead>
-        <tbody>
-          <tr><td>Chest X-ray</td><td data-i18n="ex.cxr">Chest X-ray</td><td>2026-07</td><td><span class="who-badge who-doc" data-i18n="up.doc">Doctor</span></td></tr>
-          <tr><td>ECG 12-lead</td><td>ECG</td><td>2026-07</td><td><span class="who-badge who-doc" data-i18n="up.doc">Doctor</span></td></tr>
-          <tr><td>Blood panel</td><td data-i18n="ex.blood">Blood test</td><td>2026-07</td><td><span class="who-badge who-doc" data-i18n="up.doc">Doctor</span></td></tr>
-          <tr><td>Abdominal US</td><td data-i18n="ex.us">Ultrasound</td><td>2026-07</td><td><span class="who-badge who-doc" data-i18n="up.doc">Doctor</span></td></tr>
-          <tr><td>Prior PEME cert</td><td data-i18n="ex.cert">Certificate</td><td>2025-06</td><td><span class="who-badge who-pat" data-i18n="up.pat">Patient</span></td></tr>
-        </tbody>
-      </table>
-    </div></div>
+    <div class="seclead" data-i18n="files.lead">Documents &amp; exams — references to Next2DMS</div>
+    <div class="sub" data-i18n="files.sub">Every document lives once in Next2DMS (single source of truth). The 360° folder shows read-only references; medical items are no-copy and open in DMS under RBAC.</div>
+    <div id="dmsRefs"></div>
   </div>
 
   <!-- ===== CLINICAL PROFILES ===== -->
@@ -428,9 +434,9 @@ document.getElementById('tabs').addEventListener('click',e=>{
 const I18N={
   el:{
     "core.used":"Shared Core · CBMS (Layer 2) — χρησιμοποιείται από <b>Next2Peme</b> · <b>ShipCare</b> · <b>PostMed</b> · <b>Care</b>",
-    "core.from":"Άνοιξε από","hdr.life":"Ένα Seafarer ID · εφ' όρου ζωής","hdr.fit":"Εκκρεμεί απόφαση PEME",
+    "core.from":"Άνοιξε από","hdr.life":"Ένα Seafarer ID · εφ' όρου ζωής","hdr.fit":"FIT FOR SEA DUTY · 2026",
     "m.rank":"Βαθμός","v.rank":"Ναύτης","m.nat":"Εθνικότητα","m.agency":"Πρακτορείο","m.company":"Ναυτιλιακή","m.dob":"Ημ. γέννησης","m.family":"Οικογένεια","v.family":"Σύζυγος + 2 (Next2Care)",
-    "x.care":"<b>Ενεργό μέλος</b> · Gold+ tier · οικογένεια καλυμμένη","x.peme":"<b>PEME σε εξέλιξη</b> · στάδιο 4/11 · HPDC Manila","x.post":"<b>1 παλιά υπόθεση</b> · 2023 · έκλεισε (fit to return)","x.ship":"<b>1 on-board incident</b> · 2024 · MV Aegean Trader",
+    "x.care":"<b>Ενεργό μέλος</b> · Gold+ tier · οικογένεια καλυμμένη","x.peme":"<b>PEME ολοκληρώθηκε</b> · FIT FOR SEA DUTY · 2026 · HPDC Manila","x.post":"<b>1 παλιά υπόθεση</b> · 2023 · έκλεισε (fit to return)","x.ship":"<b>1 on-board incident</b> · 2024 · MV Aegean Trader",
     "tab.overview":"Επισκόπηση","tab.cases":"Υποθέσεις & Φροντίδα","tab.files":"Αρχεία & Εξετάσεις","tab.profiles":"Κλινικά Προφίλ","tab.vax":"Εμβολιασμοί","tab.risk":"Ρίσκο",
     "c.genhist":"Γενικό Ιστορικό","k.height":"Ύψος","k.weight":"Βάρος","k.overweight":"υπέρβαρος","k.blood":"Ομάδα αίματος",
     "c.cvd":"Καρδιαγγειακό Προφίλ","c.cvdlead":"Κύριοι παράγοντες κινδύνου ΚΑ","rf.smoker":"Καπνιστής","rf.htn":"Υπέρταση","rf.dysl":"Δυσλιπιδαιμία",
@@ -438,12 +444,12 @@ const I18N={
     "c.meds":"Φαρμακευτική Αγωγή","k.daily":"ημερησίως","c.vax":"Εμβολιασμοί","cnt.vax":"18 ✓","c.files":"Αρχεία & Εξετάσεις","cnt.files":"48 αρχεία",
     "c.fileslead":"Ακτινογραφίες, ΗΚΓ, αιματολογικά, υπέρηχοι — από επισκέψεις & PEME.","c.family":"Οικογενειακό Προφίλ","k.spouse":"Σύζυγος","k.children":"Παιδιά",
     "cases.lead":"Κάθε υπόθεση, κάθε προϊόν — ένα συνεχές ιστορικό","cases.sub":"Το Case Lifecycle Engine συνδέει PEME, TPA claims, on-board incidents και post-medical cases κάτω από ένα Seafarer ID.",
-    "case.peme":"Pre-Employment Medical Exam — 2026","case.pemecx":"Βαθμός καταστρώματος · πακέτο Crossworld Standard · HPDC Manila. Τώρα στο στάδιο Εργαστηρίου.",
+    "case.peme":"Pre-Employment Medical Exam — 2026","case.pemecx":"Βαθμός καταστρώματος · πακέτο Crossworld Standard · HPDC Manila. Ολοκληρώθηκε — FIT FOR SEA DUTY.",
     "case.claim":"Εξωνοσοκομειακό claim — λοίμωξη θώρακα","case.claimcx":"Κάλυψη Gold+ · εξοφλήθηκε σε 3 μέρες · απευθείας στον πάροχο.","st.settled":"Εξοφλήθηκε",
     "case.med":"Οξεία αμυγδαλίτιδα + βρογχίτιδα","case.medcx":"Αγωγή αμοξικιλλίνη/clav., αζιθρομυκίνη· πλήρης ανάρρωση. Καταγράφηκε στο προφίλ.","st.closed":"Κλειστό",
     "case.ship":"Τραυματισμός χεριού εν πλω","case.shipcx":"PARON teleconsult · MV Aegean Trader · χωρίς αποβίβαση.",
     "case.pome":"Post-medical case — οσφυϊκή καταπόνηση","case.pomecx":"Tracks Medical · Legal · Financial. Έκλεισε fit-to-return μετά 41 μέρες.","st.fit":"Fit to return",
-    "files.lead":"Ιατρικές εξετάσεις & αρχεία","files.sub":"Αποθηκευμένα σε Azure Blob (Layer 1) με signed URLs — φάκελοι ανά έτος, tags ανά τύπο & uploader.",
+    "files.lead":"Έγγραφα & εξετάσεις — αναφορές στο Next2DMS","files.sub":"Κάθε έγγραφο ζει μία φορά στο Next2DMS (single source of truth). Ο φάκελος 360° δείχνει read-only αναφορές· τα ιατρικά είναι no-copy (ανοίγουν στο DMS με RBAC).",
     "th.title":"Τίτλος","th.type":"Τύπος","th.date":"Ημ/νία","th.up":"Uploader","ex.cxr":"Ακτινογρ. Θώρακος","ex.blood":"Αιματολογικές","ex.us":"Υπέρηχος","ex.cert":"Πιστοποιητικό","up.doc":"Ιατρός","up.pat":"Ασθενής",
     "prof.lead":"Καρδιαγγειακό Προφίλ","hs.title":"10ετές CVD risk","hs.body":"Αυξημένο για την ηλικία. Οφείλεται σε κάπνισμα + υπέρταση + δυσλιπιδαιμία.","prof.factors":"Παράγοντες κινδύνου",
     "rf.bmi":"BMI 28.4","rf.fam":"Οικογ. ιστορικό (πατέρας ΣΔ)","prof.diab":"Διαβητικό Προφίλ","k.fasting":"Γλυκόζη νηστείας",
@@ -462,8 +468,70 @@ function setLang(l){
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const k=el.dataset.i18n; el.innerHTML=(l==='el'&&I18N.el[k])?I18N.el[k]:EN[k];
   });
+  renderFiles();
 }
 document.querySelectorAll('#langTog button').forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
+
+
+/* ---- Files & exams = read-only references to Next2DMS (single source of truth * no-copy) ---- */
+const PEME_REFS=[
+  {st:"Intake",n:"Passport (scan)",code:"MCL-MAR-PEME-SCN-2026-068691",t:"Scanned Document",med:false},
+  {st:"Intake",n:"Seaman's Book SIRB (scan)",code:"MCL-MAR-PEME-SCN-2026-366065",t:"Scanned Document",med:false},
+  {st:"Intake",n:"POEA-SEC Contract (scan)",code:"MCL-MAR-PEME-SCN-2026-038560",t:"Scanned Document",med:false},
+  {st:"Self-service intake",n:"Medical History Questionnaire",code:"MCL-MAR-PEME-DEC-2026-298025",t:"Declaration",med:true},
+  {st:"Self-service intake",n:"Consent to Release Information",code:"MCL-MAR-PEME-CNS-2026-245443",t:"Consent Form",med:false},
+  {st:"Self-service intake",n:"HIV Testing Consent (Form A)",code:"MCL-MAR-PEME-CNS-2026-865900",t:"Consent Form",med:true},
+  {st:"Self-service intake",n:"Drug & Alcohol Testing Consent",code:"MCL-MAR-PEME-CNS-2026-171565",t:"Consent Form",med:false},
+  {st:"Self-service intake",n:"COVID-19 Health Declaration",code:"MCL-MAR-PEME-DEC-2026-939879",t:"Declaration",med:false},
+  {st:"Laboratory",n:"Laboratory Result Report",code:"MCL-MAR-PEME-LAB-2026-596281",t:"Lab Report",med:true},
+  {st:"Imaging & Cardiology",n:"Chest X-ray Report",code:"MCL-MAR-PEME-IMG-2026-076525",t:"Imaging Report",med:true},
+  {st:"Imaging & Cardiology",n:"Ultrasound (KUB) Report",code:"MCL-MAR-PEME-IMG-2026-507097",t:"Imaging Report",med:true},
+  {st:"Imaging & Cardiology",n:"ECG Report (12-lead)",code:"MCL-MAR-PEME-IMG-2026-119875",t:"Imaging Report",med:true},
+  {st:"Vitals & Spiro",n:"Vitals & Spirometry Report",code:"MCL-MAR-PEME-VIT-2026-260310",t:"Vitals Report",med:true},
+  {st:"Specialty Exams",n:"Colour Vision (Ishihara) Report",code:"MCL-MAR-PEME-SPEC-2026-777379",t:"Specialty Report",med:true},
+  {st:"Specialty Exams",n:"Audiometry Report",code:"MCL-MAR-PEME-SPEC-2026-896424",t:"Specialty Report",med:true},
+  {st:"Specialty Exams",n:"Dental Examination Report",code:"MCL-MAR-PEME-SPEC-2026-538066",t:"Specialty Report",med:true},
+  {st:"Specialty Exams",n:"Psychological Evaluation",code:"MCL-MAR-PEME-SPEC-2026-310838",t:"Specialty Report",med:true},
+  {st:"Physical Examination",n:"Medical History & Physical Exam",code:"MCL-MAR-PEME-PE-2026-829748",t:"Physical Exam",med:true},
+  {st:"Final Evaluation",n:"Crew Endorsement Report",code:"MCL-MAR-PEME-END-2026-782374",t:"Crew Endorsement",med:true},
+  {st:"Final Evaluation",n:"Medical Examination Report (MER)",code:"MCL-MAR-PEME-MER-2026-235064",t:"MER",med:true},
+  {st:"Certificates",n:"Medical Fitness Certificate",code:"MCL-MAR-PEME-FIT-2026-401393",t:"Fitness Certificate",med:true},
+  {st:"Certificates",n:"PEME Certificate",code:"MCL-MAR-PEME-PEC-2026-571667",t:"PEME Certificate",med:true},
+  {st:"Certificates",n:"Certificate for Service at Sea",code:"MCL-MAR-PEME-COS-2026-202140",t:"Certificate of Service",med:false},
+  {st:"Certificates",n:"Oath of Undertaking",code:"MCL-MAR-PEME-OATH-2026-065838",t:"Oath",med:false},
+  {st:"Records",n:"Flag-state Certificate (Panama)",code:"MCL-MAR-PEME-FLG-2026-329923",t:"Flag-state Certificate",med:false},
+];
+const DMS_LINK="next2dms-v0.6.html?tenant=next2mcl&source=peme&q=SF-PH-039281";
+const STLBL={
+  "Intake":["Intake & documents","Παραλαβή & έγγραφα"],
+  "Self-service intake":["Self-declarations","Δηλώσεις ναυτικού"],
+  "Laboratory":["Laboratory","Εργαστήριο"],
+  "Imaging & Cardiology":["Imaging & Cardiology","Απεικόνιση & Καρδιολογία"],
+  "Vitals & Spiro":["Vitals & Spirometry","Ζωτικά & Σπιρομέτρηση"],
+  "Specialty Exams":["Specialty exams","Ειδικές εξετάσεις"],
+  "Physical Examination":["Physical examination","Φυσική εξέταση"],
+  "Final Evaluation":["Final evaluation","Τελική αξιολόγηση"],
+  "Certificates":["Certificates","Πιστοποιητικά"],
+  "Records":["Records / flag-state","Αρχεία / flag-state"]
+};
+const F_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 2h8l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M14 2v4h4"/></svg>';
+const ARR='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px"><path d="M9 6l6 6-6 6"/></svg>';
+function renderFiles(){
+  const el=document.getElementById('dmsRefs'); if(!el)return; const L=(lang==='el')?1:0;
+  const note=(lang==='el')
+    ?'Read-only αναφορές — κάθε έγγραφο ζει μία φορά στο Next2DMS. Τα ιατρικά είναι 🔒 no-copy (ανοίγουν στο DMS με RBAC).'
+    :'Read-only references — each document lives once in Next2DMS. Medical items are 🔒 no-copy (open in DMS under RBAC).';
+  let html=`<a class="dmsopen" href="${DMS_LINK}">${F_ICON}<span>${lang==='el'?'Άνοιγμα φακέλου στο Next2DMS':'Open folder in Next2DMS'}</span>${ARR}</a>`;
+  html+=`<div class="refnote">${note}</div>`;
+  Object.keys(STLBL).forEach(st=>{
+    const items=PEME_REFS.filter(x=>x.st===st); if(!items.length)return;
+    html+=`<div class="refgrp"><div class="gh">${STLBL[st][L]}<span class="ct">${items.length}</span></div>`;
+    html+=items.map(d=>`<a class="refrow" href="${DMS_LINK}"><span class="ri">${F_ICON}</span><span class="rmain"><span class="rn">${d.n}</span><span class="rc">${d.code}</span></span>${d.med?`<span class="med">🔒 no-copy</span>`:`<span class="rt">${d.t}</span>`}<span class="arr">${ARR}</span></a>`).join("");
+    html+=`</div>`;
+  });
+  el.innerHTML=html;
+}
+renderFiles();
 </script>
 </body>
 </html>
