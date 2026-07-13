@@ -235,6 +235,8 @@ textarea.inp{min-height:78px;resize:vertical}
 .dosrow .dt{font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;background:rgba(231,163,62,.16);color:var(--gold-2);white-space:nowrap;flex:0 0 auto}
 .dosrow .dmed{font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;background:rgba(14,140,147,.10);color:var(--teal);border:1px solid rgba(14,140,147,.28);white-space:nowrap;flex:0 0 auto}
 .dosrow .darr{color:var(--ink-3);font-size:18px;flex:0 0 auto}
+.dmsfiled{display:inline-flex;align-items:center;gap:7px;margin-top:6px;padding:5px 10px;background:rgba(14,140,147,.10);border:1px solid rgba(14,140,147,.28);border-radius:8px;color:var(--teal);font-family:var(--ff-mono);font-size:11px;font-weight:600;text-decoration:none}
+.dmsfiled svg{width:13px;height:13px;flex:0 0 auto}
 .flagslot{display:inline-flex;align-items:center;gap:4px;margin-left:8px}
 .labtbl td.code{font-family:var(--ff-mono);font-size:10.5px;color:var(--teal);white-space:nowrap}
 .encchip{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-2);background:var(--mist);border:1px solid var(--line);border-radius:7px;padding:5px 11px;margin-top:8px}
@@ -534,6 +536,11 @@ const DOSSTLBL={
   "Records":["Records / flag-state","\u0391\u03c1\u03c7\u03b5\u03af\u03b1 / flag-state"]
 };
 const DOS_DL="next2dms-v0.6.html?tenant=next2mcl&source=peme&q=SF-PH-039281";
+/* ---- 3b: canonical DMS codes per station report (identical to DMS/360/Dossier) + "filed in DMS" chip ---- */
+const DMSIMG={xray:"MCL-MAR-PEME-IMG-2026-076525",kub:"MCL-MAR-PEME-IMG-2026-507097",ecg:"MCL-MAR-PEME-IMG-2026-119875"};
+const DMSSPEC={sight:"MCL-MAR-PEME-SPEC-2026-777379",hearing:"MCL-MAR-PEME-SPEC-2026-896424",dental:"MCL-MAR-PEME-SPEC-2026-538066",psych:"MCL-MAR-PEME-SPEC-2026-310838"};
+const DMSCERT={"Certificate for Service at Sea":"MCL-MAR-PEME-COS-2026-202140","Crew Endorsement Report":"MCL-MAR-PEME-END-2026-782374","Oath of Undertaking":"MCL-MAR-PEME-OATH-2026-065838","Flag-state certificate (Panama)":"MCL-MAR-PEME-FLG-2026-329923","Medical History & Physical Exam Questionnaire":"MCL-MAR-PEME-PE-2026-829748","Dental Health Examination":"MCL-MAR-PEME-SPEC-2026-538066","Psychological Evaluation":"MCL-MAR-PEME-SPEC-2026-310838","COVID-19 Health Declaration":"MCL-MAR-PEME-DEC-2026-939879","HIV Form":"MCL-MAR-PEME-CNS-2026-865900"};
+function dmsFiled(code){return '<a class="dmsfiled" href="'+DOS_DL+'" title="Next2DMS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="4" rx="1"/><path d="M5 8v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8M10 12h4"/></svg><span>'+(lang==='el'?'\u039a\u03b1\u03c4\u03b1\u03c7\u03c9\u03c1\u03ae\u03b8\u03b7\u03ba\u03b5 \u03c3\u03c4\u03bf Next2DMS':'Filed in Next2DMS')+' \u00b7 '+code+'</span></a>';}
 const DOS_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 2h8l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M14 2v4h4"/></svg>';
 function vDossier(){
   const L=lang==='el'?1:0;
@@ -890,7 +897,7 @@ const ENDTXT={
 };
 function openEndorsement(){activeView="endorsement";$("#crumbView").textContent="Crew Endorsement";render();}
 function vEndorsement(){
-  const sf=SEAFARER,d=CASE.disposition||"fit",seq=((''+sf.caseId).match(/(\d+)$/)||["","04127"])[1],code="MCL-MAR-PEME-END-2026-"+seq;
+  const sf=SEAFARER,d=CASE.disposition||"fit",seq=((''+sf.caseId).match(/(\d+)$/)||["","04127"])[1],code="MCL-MAR-PEME-END-2026-782374";
   const D={fit:["fit",t("cd.fit")],temp:["temp",t("cd.temp")],unfit:["unfit",t("cd.unfit")]}[d],E=ENDTXT[d];
   const kv=(k,v)=>`<div class="kv"><div class="k">${k}</div><div class="v">${v||"—"}</div></div>`;
   return `<div class="docwrap">
@@ -908,7 +915,7 @@ function vEndorsement(){
         ${codedTbl(ICDMAP[d]||ICDMAP.fit)}
         <div class="certdisp ${D[0]}" style="margin-top:16px"><div class="big">${D[1]}</div></div>
         <div class="certsign"><div></div><div class="signline"><b>Dr. R. Delgado, MD</b>${t("cd.director")}</div></div>
-        <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br><span style="font-family:var(--ff-mono)">${code}</span></div></div>
+        <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br>${dmsFiled(code)}</div></div>
       </div>
     </div>
   </div>`;
@@ -935,7 +942,7 @@ function vCertDoc(name){
   const s=SEAFARER, disp=CASE.disposition||"fit";
   const D={fit:["fit",t("cd.fit"),t("cd.fitsub")],temp:["temp",t("cd.temp"),t("cd.tempsub")],unfit:["unfit",t("cd.unfit"),t("cd.unfitsub")]}[disp];
   const seq=((''+s.caseId).match(/(\d+)$/)||["","04127"])[1];
-  const code=`MCL-MAR-PEME-CERT-2026-${seq}`;
+  const code=DMSCERT[name]||`MCL-MAR-PEME-CERT-2026-${seq}`;
   const LXx=v=>(v&&typeof v==="object")?(v[lang]||v.en):(v||"—");
   const kv=(k,v)=>`<div class="kv"><div class="k">${k}</div><div class="v">${v||"—"}</div></div>`;
   return `<div class="docwrap">
@@ -971,7 +978,7 @@ function vCertDoc(name){
           <div class="signline"><b>Dr. R. Delgado, MD</b>${t("cd.examiner")}</div>
           <div class="signline"><b>Dr. M. Santos, MD</b>${t("cd.director")}</div>
         </div>
-        <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br><span style="font-family:var(--ff-mono)">${code}</span></div></div>
+        <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br>${dmsFiled(code)}</div></div>
       </div>
     </div>
   </div>`;
@@ -1044,7 +1051,7 @@ function vLab(){
 function vLabReport(pid){
   const p=LABPANELS.find(x=>x.id===pid)||LABPANELS[0],s=SEAFARER;
   const seq=((''+s.caseId).match(/(\d+)$/)||["","04127"])[1];
-  const code="MCL-MAR-PEME-LAB-2026-"+seq;
+  const code="MCL-MAR-PEME-LAB-2026-596281";
   const kv=(k,v)=>`<div class="kv"><div class="k">${k}</div><div class="v">${v||"—"}</div></div>`;
   const rows=p.tests.map(x=>`<tr><td>${x.n}</td><td class="code">${x.c||'—'}</td><td class="r">${x.r}</td><td>${x.ref||'—'}</td><td>${x.u||'—'}</td><td class="f">${labFlagHtml(x)}</td></tr>`).join("");
   return `<div class="docwrap">
@@ -1066,7 +1073,7 @@ function vLabReport(pid){
           <div class="signline"><b>R. Cruz, RMT</b>${t("lab.medtech")}</div>
           <div class="signline"><b>Dr. A. Reyes, MD</b>${t("lab.patho")}</div>
         </div>
-        <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br><span style="font-family:var(--ff-mono)">${code}</span></div></div>
+        <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br>${dmsFiled(code)}</div></div>
       </div>
     </div>
   </div>`;
@@ -1108,7 +1115,7 @@ function vImaging(){
 function vImgReport(id){
   const s=IMGSTUDIES.find(x=>x.id===id)||IMGSTUDIES[0],sf=SEAFARER;
   const seq=((''+sf.caseId).match(/(\d+)$/)||["","04127"])[1];
-  const code="MCL-MAR-PEME-IMG-2026-"+seq;
+  const code=DMSIMG[id]||("MCL-MAR-PEME-IMG-2026-"+seq);
   const kv=(k,v)=>`<div class="kv"><div class="k">${k}</div><div class="v">${v||"—"}</div></div>`;
   const flds=s.fields.map(f=>kv(f[0],f[1])).join("");
   return `<div class="docwrap">
@@ -1127,7 +1134,7 @@ function vImgReport(id){
         <div class="sectitle">${t("img.findings")}</div><p class="findp">${s.findings}</p>
         <div class="sectitle" style="margin-top:12px">${t("img.impression")}</div><p class="findp" style="font-weight:600;color:var(--ink)">${s.impression}</p>
         <div class="certsign">${s.sig1?`<div class="signline"><b>${s.sig1}</b>${s.sig1r}</div>`:'<div></div>'}<div class="signline"><b>${s.sig2}</b>${s.sig2r}</div></div>
-        <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br><span style="font-family:var(--ff-mono)">${code}</span></div></div>
+        <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br>${dmsFiled(code)}</div></div>
       </div>
     </div>
   </div>`;
@@ -1174,7 +1181,7 @@ function vSpecialty(){
 function vSpecReport(id){
   const s=SPECEXAMS.find(x=>x.id===id)||SPECEXAMS[0],sf=SEAFARER;
   const seq=((''+sf.caseId).match(/(\d+)$/)||["","04127"])[1];
-  const code="MCL-MAR-PEME-SPEC-2026-"+seq;
+  const code=DMSSPEC[id]||("MCL-MAR-PEME-SPEC-2026-"+seq);
   const kv=(k,v)=>`<div class="kv"><div class="k">${k}</div><div class="v">${v||"—"}</div></div>`;
   const chk=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg>`;
   let body="";
@@ -1211,7 +1218,7 @@ function vSpecReport(id){
         <div class="encchip">Encounter · <b>Z02.1</b> · Pre-employment examination${s.c?' &nbsp;·&nbsp; '+(s.c[0]==='D'?'CDT ':'CPT ')+s.c:''}</div>
         <div class="certgrid">${kv(t("sf.fullname"),`${sf.first} ${sf.last}`)}${kv("Seafarer ID",sf.id)}</div>
         ${body}
-        <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br><span style="font-family:var(--ff-mono)">${code}</span></div></div>
+        <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br>${dmsFiled(code)}</div></div>
       </div>
     </div>
   </div>`;
@@ -1242,7 +1249,7 @@ function vVitals(){
     </div>`;
 }
 function vVitReport(){
-  const sf=SEAFARER,seq=((''+sf.caseId).match(/(\d+)$/)||["","04127"])[1],code="MCL-MAR-PEME-VIT-2026-"+seq;
+  const sf=SEAFARER,seq=((''+sf.caseId).match(/(\d+)$/)||["","04127"])[1],code="MCL-MAR-PEME-VIT-2026-260310";
   const kv=(k,v)=>`<div class="kv"><div class="k">${k}</div><div class="v">${v||"—"}</div></div>`;
   const rows=VITALMETRICS.flatMap(g=>g.rows).map(r=>`<tr><td>${r[0]}</td><td class="code">${r[2]||'—'}</td><td class="r" style="font-family:var(--ff-mono);font-weight:600;color:var(--ink)">${r[1]}</td></tr>`).join("");
   return `<div class="docwrap"><button class="backbtn" onclick="openStage(5)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>${t("vit.back")}</button>
@@ -1252,7 +1259,7 @@ function vVitReport(){
       <div class="certgrid">${kv(t("sf.fullname"),`${sf.first} ${sf.last}`)}${kv("Seafarer ID",sf.id)}</div>
       <table class="labtbl"><thead><tr><th>${t("lab.test")}</th><th>LOINC/CPT</th><th>${t("lab.result")}</th></tr></thead><tbody>${rows}</tbody></table>
       <div class="certsign"><div></div><div class="signline"><b>C. Nurse, RN</b>Cardio / Nurse</div></div>
-      <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br><span style="font-family:var(--ff-mono)">${code}</span></div></div>
+      <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br>${dmsFiled(code)}</div></div>
     </div></div></div>`;
 }
 function vPhysical(){
@@ -1275,7 +1282,7 @@ function vPhysical(){
     </div></div>`;
 }
 function vPhysReport(){
-  const sf=SEAFARER,d=PHYS_DISP||"fit",seq=((''+sf.caseId).match(/(\d+)$/)||["","04127"])[1],code="MCL-MAR-PEME-PE-2026-"+seq;
+  const sf=SEAFARER,d=PHYS_DISP||"fit",seq=((''+sf.caseId).match(/(\d+)$/)||["","04127"])[1],code="MCL-MAR-PEME-PE-2026-829748";
   const D={fit:["fit",t("cd.fit")],pending:["temp",t("phys.pending")],unfit:["unfit",t("cd.unfit")]}[d];
   const kv=(k,v)=>`<div class="kv"><div class="k">${k}</div><div class="v">${v||"—"}</div></div>`;
   const sysRows=PHYSSYSTEMS.map(s=>`<tr><td>${s}</td><td class="n">Normal</td></tr>`).join("");
@@ -1288,7 +1295,7 @@ function vPhysReport(){
       <table class="systbl"><tbody>${sysRows}</tbody></table>
       <div class="certdisp ${D[0]}" style="margin-top:16px"><div class="big">${D[1]}</div></div>
       <div class="certsign"><div class="signline"><b>Dr. C. Mendez, MD</b>${t("phys.examiner")}</div><div class="signline"><b>Dr. R. Delgado, MD</b>${t("phys.director")}</div></div>
-      <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br><span style="font-family:var(--ff-mono)">${code}</span></div></div>
+      <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br>${dmsFiled(code)}</div></div>
     </div></div></div>`;
 }
 
@@ -1353,7 +1360,7 @@ function vRefReport(id){
         ${body}
         ${REFICD[id]?codedTbl(REFICD[id]):''}
         <div class="certsign"><div></div><div class="signline"><b>${s.sig}</b>${s.sigr}</div></div>
-        <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br><span style="font-family:var(--ff-mono)">${code}</span></div></div>
+        <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br>${dmsFiled(code)}</div></div>
       </div>
     </div>
   </div>`;
