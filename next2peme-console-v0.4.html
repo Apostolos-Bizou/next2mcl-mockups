@@ -173,6 +173,32 @@ textarea.inp{min-height:78px;resize:vertical}
 .tbl th.sorted{color:var(--teal)}.tbl th.sorted .sar{opacity:1}
 .tbl td.code{font-family:var(--ff-mono);font-size:11px;color:var(--teal);font-weight:600;white-space:nowrap}
 .norez{text-align:center;color:var(--ink-3);padding:26px;font-size:13px}
+.docwrap{max-width:820px;margin:0 auto}
+.backbtn{display:inline-flex;align-items:center;gap:7px;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--ink-2);background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:9px 13px;cursor:pointer;margin-bottom:14px}
+.backbtn:hover{border-color:var(--teal);color:var(--teal)}
+.backbtn svg{width:15px;height:15px}
+.certdoc{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow-lg);overflow:hidden}
+.cdtop{background:linear-gradient(120deg,var(--navy),var(--navy-2));color:#fff;padding:20px 30px;display:flex;align-items:center;gap:16px}
+.cdtop .seal{width:46px;height:46px;border-radius:10px;background:rgba(255,255,255,.12);display:grid;place-items:center;flex:0 0 46px}
+.cdtop .seal svg{width:24px;height:24px;color:#8FE3E8}
+.cdtop h2{font-family:var(--ff-display);font-size:15.5px;margin:0;font-weight:700;letter-spacing:.2px}
+.cdtop .sub{font-size:11px;color:#B9D6DA;margin-top:3px}
+.cdtop .code{margin-left:auto;text-align:right;font-family:var(--ff-mono);font-size:10.5px;color:#8FE3E8;line-height:1.5}
+.certbody{padding:26px 30px}
+.certtitle{text-align:center;font-family:var(--ff-display);font-size:19px;font-weight:700;color:var(--navy);letter-spacing:.3px;margin:0}
+.certtitle-sub{text-align:center;font-size:10px;color:var(--ink-3);margin:6px 0 20px;text-transform:uppercase;letter-spacing:.14em}
+.certgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px 24px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.certdisp{margin:20px 0;padding:16px;border-radius:10px;text-align:center}
+.certdisp.fit{background:rgba(47,163,107,.1);border:1px solid rgba(47,163,107,.4)}
+.certdisp.unfit{background:rgba(229,84,75,.1);border:1px solid rgba(229,84,75,.4)}
+.certdisp.temp{background:rgba(217,144,42,.12);border:1px solid rgba(217,144,42,.4)}
+.certdisp .big{font-family:var(--ff-display);font-size:21px;font-weight:800;letter-spacing:.5px}
+.certdisp.fit .big{color:var(--green)}.certdisp.unfit .big{color:var(--coral)}.certdisp.temp .big{color:var(--amber)}
+.certsign{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:28px}
+.signline{border-top:1.5px solid var(--ink);padding-top:6px;font-size:11px;color:var(--ink-3)}
+.signline b{display:block;font-size:12.5px;color:var(--ink)}
+.certfoot{display:flex;align-items:center;gap:14px;margin-top:24px;padding-top:16px;border-top:1px dashed var(--line);font-size:10.5px;color:var(--ink-3);line-height:1.5}
+.qrbox{width:56px;height:56px;flex:0 0 56px;border:1px solid var(--line);border-radius:8px;background:repeating-conic-gradient(var(--ink) 0 25%, #fff 0 50%) 0 0/14px 14px}
 .nmlink{cursor:pointer;display:inline-block}
 .tbl .nmlink:hover{color:var(--teal);text-decoration:underline}
 .sfgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
@@ -424,6 +450,7 @@ const I18N={en:{
   "t.reg":"Seafarer registered · card opened",
   "sf.docsscan":"Documents to scan","doc.scan":"Scan / Upload","doc.scanned":"Scanned","doc.onfile":"On file","doc.missing":"Missing","doc.req":"required",
   "sf.docnote":"We scan the original of each document. Each file is kept ONCE in Next2DMS (single source of truth) — other products hold a read-only reference, never a copy. Certificates the PEME produces (MER · Certificate for Service at Sea · Crew Endorsement · Oath · flag-state) are issued later and stored in DMS too.",
+  "cd.preview":"Preview Fitness Certificate","cd.back":"Back to Certificates","cd.issued":"Issued","cd.subtitle":"Pre-Employment Medical Examination · Fitness for Sea Service","cd.findings":"Examination summary","cd.standard":"In accordance with STCW 2010 (Reg. I/9), MLC 2006, and DOH / DMW requirements.","cd.examdate":"Examination date","cd.validuntil":"Valid until","cd.examiner":"Examining Physician","cd.director":"Medical Director","cd.dmsnote":"Original stored once in Next2DMS (single source of truth). Verify authenticity via QR. Copies are read-only references — no-copy.","cd.fit":"FIT FOR SEA DUTY","cd.fitsub":"No restrictions","cd.temp":"FIT WITH RESTRICTIONS","cd.tempsub":"Temporary / conditional","cd.unfit":"UNFIT FOR SEA DUTY","cd.unfitsub":"Requires follow-up / re-evaluation",
   "appt.h":"New PEME Request","appt.p":"The agency submits a request; the clinic confirms and returns digital proof.",
   "appt.company":"Company / Principal","appt.rank":"Rank","appt.date":"Preferred date","appt.pkg":"PEME package","appt.hi":"Urgent (high priority)","appt.hihint":"The whole PEME flow is flagged red so every station knows it's urgent.","appt.submit":"Submit & confirm",
   "hdr.fit":"Disposition pending","open360":"Open 360° Folder","track.title":"PEME Journey","track.of":"of",
@@ -451,6 +478,7 @@ const I18N={en:{
   "t.reg":"Ο ναυτικός καταχωρίστηκε · άνοιξε η καρτέλα",
   "sf.docsscan":"Δικαιολογητικά προς σκανάρισμα","doc.scan":"Σκανάρισμα","doc.scanned":"Σκαναρίστηκε","doc.onfile":"Στον φάκελο","doc.missing":"Λείπει","doc.req":"υποχρεωτικό",
   "sf.docnote":"Σκανάρουμε το πρωτότυπο κάθε δικαιολογητικού. Κάθε έγγραφο κρατιέται ΜΙΑ φορά στο Next2DMS (single source of truth) — τα άλλα προϊόντα κρατούν read-only reference, ποτέ αντίγραφο. Τα πιστοποιητικά που παράγει το PEME (MER · Certificate for Service at Sea · Crew Endorsement · Oath · flag-state) εκδίδονται αργότερα και αποθηκεύονται κι αυτά στο DMS.",
+  "cd.preview":"Προβολή Πιστοποιητικού Ικανότητας","cd.back":"Πίσω στα Πιστοποιητικά","cd.issued":"Εκδόθηκε","cd.subtitle":"Προ-Εργασιακή Ιατρική Εξέταση · Ικανότητα προς Ναυτολόγηση","cd.findings":"Σύνοψη εξέτασης","cd.standard":"Σύμφωνα με STCW 2010 (Reg. I/9), MLC 2006, και τις απαιτήσεις DOH / DMW.","cd.examdate":"Ημ. εξέτασης","cd.validuntil":"Ισχύει έως","cd.examiner":"Εξετάζων Ιατρός","cd.director":"Ιατρικός Διευθυντής","cd.dmsnote":"Το πρωτότυπο κρατιέται μία φορά στο Next2DMS (single source of truth). Επαλήθευση μέσω QR. Τα αντίγραφα είναι read-only references — no-copy.","cd.fit":"ΙΚΑΝΟΣ ΠΡΟΣ ΝΑΥΤΟΛΟΓΗΣΗ","cd.fitsub":"Χωρίς περιορισμούς","cd.temp":"ΙΚΑΝΟΣ ΜΕ ΠΕΡΙΟΡΙΣΜΟΥΣ","cd.tempsub":"Προσωρινά / υπό όρους","cd.unfit":"ΑΚΑΤΑΛΛΗΛΟΣ ΠΡΟΣ ΝΑΥΤΟΛΟΓΗΣΗ","cd.unfitsub":"Απαιτεί επανεξέταση",
   "appt.h":"Νέο Αίτημα PEME","appt.p":"Το πρακτορείο υποβάλλει αίτημα· η κλινική επιβεβαιώνει και επιστρέφει digital proof.",
   "appt.company":"Εταιρεία / Principal","appt.rank":"Βαθμός","appt.date":"Επιθυμητή ημερομηνία","appt.pkg":"Πακέτο PEME","appt.hi":"Επείγον (high priority)","appt.hihint":"Όλη η ροή του PEME επισημαίνεται με κόκκινο ώστε κάθε σταθμός να ξέρει ότι είναι επείγον.","appt.submit":"Υποβολή & επιβεβαίωση",
   "hdr.fit":"Εκκρεμεί απόφαση","open360":"Άνοιγμα Φακέλου 360°","track.title":"Διαδρομή PEME","track.of":"από",
@@ -619,13 +647,62 @@ function vMD(){
 function vCerts(){
   const rows=PRINTABLES.map(([n,f])=>`<div class="certrow">
     <div><div class="cn">${n}</div><div class="cf">feeds from: ${f}</div></div>
-    <div class="act"><span class="flag">${f}</span>${CASE.certsIssued?'<span class="pill done">'+t("cert.issued")+'</span>':'<button class="mini ghost">'+t("cert.view")+'</button>'}</div></div>`).join("");
+    <div class="act"><span class="flag">${f}</span>${CASE.certsIssued?'<span class="pill done">'+t("cert.issued")+'</span>':''}<button class="mini ghost" onclick="openCert('${n}')">${t("cert.view")}</button></div></div>`).join("");
   return `<div class="pagehead"><div class="ey">CERT · ${t("track.title")}</div><h1>${t("cert.h")}</h1><p>${t("cert.p")}</p></div>
     ${sf360head(true)}
     <div class="card" style="margin-top:16px"><div class="cb">
       <button class="magic" style="margin-bottom:14px" onclick="issueCerts()" ${CASE.certsIssued?'disabled':''}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2 5 5 .5-4 3.5 1.5 5-4.5-3-4.5 3 1.5-5-4-3.5 5-.5z"/></svg>${CASE.certsIssued?t("cert.issued"):t("cert.gen")} (${PRINTABLES.length})</button>
+      <button class="backbtn" style="margin:0 0 14px" onclick="openCert('Certificate for Service at Sea')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2h8l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M14 2v4h4"/></svg>${t("cd.preview")}</button>
       <div class="certlist">${rows}</div>
     </div></div>`;
+}
+
+let CERT_NAME="Certificate for Service at Sea";
+function openCert(name){CERT_NAME=name;activeView="certdoc";$("#crumbView").textContent=name;render();}
+function vCertDoc(name){
+  const s=SEAFARER, disp=CASE.disposition||"fit";
+  const D={fit:["fit",t("cd.fit"),t("cd.fitsub")],temp:["temp",t("cd.temp"),t("cd.tempsub")],unfit:["unfit",t("cd.unfit"),t("cd.unfitsub")]}[disp];
+  const seq=((''+s.caseId).match(/(\d+)$/)||["","04127"])[1];
+  const code=`MCL-MAR-PEME-CERT-2026-${seq}`;
+  const LXx=v=>(v&&typeof v==="object")?(v[lang]||v.en):(v||"—");
+  const kv=(k,v)=>`<div class="kv"><div class="k">${k}</div><div class="v">${v||"—"}</div></div>`;
+  return `<div class="docwrap">
+    <button class="backbtn" onclick="openStage(10)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>${t("cd.back")}</button>
+    <div class="certdoc">
+      <div class="cdtop">
+        <div class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v6c0 4-3.5 7-8 8-4.5-1-8-4-8-8V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div><h2>DOCTOR NEXT TO ME ΙΚΕ</h2><div class="sub">HPDC Manila · ΑΦΜ 800869936 · Pre-Employment Medical Examination</div></div>
+        <div class="code">${code}<br>${t("cd.issued")}: 2026-07-12</div>
+      </div>
+      <div class="certbody">
+        <div class="certtitle">${name}</div>
+        <div class="certtitle-sub">${t("cd.subtitle")}</div>
+        <div class="certgrid">
+          ${kv(t("sf.fullname"),`${s.first} ${s.middle?s.middle+" ":""}${s.last}`)}
+          ${kv("Seafarer ID",s.id)}
+          ${kv(t("sf.rank"),LXx(s.rank))}
+          ${kv(t("sf.dob"),`${s.dob} · ${s.age}`)}
+          ${kv(t("sf.nat"),LXx(s.nationality))}
+          ${kv(t("sf.prin"),s.principal)}
+          ${kv(t("sf.agency"),s.agency)}
+          ${kv(t("sf.vessel"),s.vessel)}
+        </div>
+        <div class="certdisp ${D[0]}"><div class="big">${D[1]}</div><div style="font-size:11.5px;color:var(--ink-2);margin-top:4px">${D[2]}</div></div>
+        <div class="sectitle">${t("cd.findings")}</div>
+        <p style="font-size:12.5px;color:var(--ink-2);line-height:1.6;margin:4px 0 0">No abnormal findings on examination. Elevated BP noted (138/88) — monitoring advised. HbA1c 5.9% (pre-diabetic). Vision, hearing, dental and psychological evaluations within acceptable limits.</p>
+        <p style="font-size:11px;color:var(--ink-3);margin-top:14px">${t("cd.standard")}</p>
+        <div class="certgrid" style="border-bottom:none">
+          ${kv(t("cd.examdate"),"2026-07-12")}
+          ${kv(t("cd.validuntil"),"2028-07-11")}
+        </div>
+        <div class="certsign">
+          <div class="signline"><b>Dr. R. Delgado, MD</b>${t("cd.examiner")}</div>
+          <div class="signline"><b>Dr. M. Santos, MD</b>${t("cd.director")}</div>
+        </div>
+        <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br><span style="font-family:var(--ff-mono)">${code}</span></div></div>
+      </div>
+    </div>
+  </div>`;
 }
 
 function vFolder(){
@@ -759,6 +836,7 @@ function render(){
   else if(activeView==="folder")h.innerHTML=vFolder();
   else if(activeView==="newseafarer")h.innerHTML=vNewSeafarer();
   else if(activeView==="seafarercard")h.innerHTML=vSeafarerCard(CARD_SID);
+  else if(activeView==="certdoc")h.innerHTML=vCertDoc(CERT_NAME);
   else if(activeView==="stage"){
     const s=CASE._openStage;
     if(s===2)h.innerHTML=vFrontdesk();
