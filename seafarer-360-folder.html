@@ -193,6 +193,25 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 @media (max-width:820px){.xprod{grid-template-columns:repeat(2,1fr)}.hdr .fit{margin-left:0}}
 @media (max-width:520px){.xprod{grid-template-columns:1fr}}
+
+/* ---- in-app guide (scoped gd-) ---- */
+.gd-wrap{max-width:900px;margin:0 auto}
+.gd-hero{border-radius:14px;padding:22px 24px;color:#fff;background:linear-gradient(135deg,#E7A33E,#8A5410 170%);box-shadow:0 8px 24px rgba(7,30,51,.12);margin-bottom:16px}
+.gd-hero .k{font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.92;font-family:var(--ff-mono,monospace)}
+.gd-hero h2{font-size:23px;margin:6px 0 8px;display:flex;gap:11px;align-items:center}
+.gd-hero p{opacity:.96;font-size:14px;max-width:720px;margin:0}
+.gd-card{background:#fff;border:1px solid var(--line,#E4EAEF);border-left:4px solid #E7A33E;border-radius:13px;padding:18px 20px;margin-bottom:14px;box-shadow:0 1px 2px rgba(7,30,51,.05)}
+.gd-card h3{font-size:18px;color:#0E1E2B;display:flex;gap:10px;align-items:center;margin:0}
+.gd-card h3 .i{width:32px;height:32px;display:grid;place-items:center;border-radius:8px;background:#FCF2DE;font-size:16px;flex:0 0 auto}
+.gd-blocks{margin-top:12px;display:grid;gap:10px}
+.gd-b{background:#F6F8FA;border:1px solid var(--line,#E4EAEF);border-radius:10px;padding:12px 14px}
+.gd-b .l{font-weight:700;font-size:12px;letter-spacing:.02em;text-transform:uppercase;margin-bottom:6px;display:flex;gap:7px;align-items:center}
+.gd-b.see .l{color:#B9791A}.gd-b.does .l{color:#0A6E74}.gd-b.res .l{color:#2FA36B}
+.gd-b p{font-size:14px;color:#0E1E2B;margin:0}
+.gd-b.res{background:#F1FAF5;border-color:#CFEBDD}
+.gd-steps{list-style:none;counter-reset:s;display:grid;gap:8px;margin:0;padding:0}
+.gd-steps li{counter-increment:s;position:relative;padding-left:36px;font-size:14px;min-height:25px;display:flex;align-items:center}
+.gd-steps li::before{content:counter(s);position:absolute;left:0;top:0;width:25px;height:25px;border-radius:7px;background:#E7A33E;color:#fff;font-weight:700;font-size:12px;display:grid;place-items:center}
 </style>
 </head>
 <body>
@@ -257,6 +276,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     <button class="tab" data-tab="profiles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 8.5c0 5-8 9.5-8 9.5S4 13.5 4 8.5A4 4 0 0 1 12 6a4 4 0 0 1 8 2.5z"/></svg><span data-i18n="tab.profiles">Clinical Profiles</span></button>
     <button class="tab" data-tab="vax"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 4l6 6M17 7l-9 9-4 4 1-5 8-8"/></svg><span data-i18n="tab.vax">Vaccinations</span><span class="badge">18</span></button>
     <button class="tab" data-tab="risk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l9 5v6c0 5-4 8-9 9-5-1-9-4-9-9V7z"/><path d="M12 8v4M12 16v.01"/></svg><span data-i18n="tab.risk">Risk</span></button>
+    <button class="tab" data-tab="guide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 5.5V20.5"/></svg><span data-i18n="tab.guide">Guide</span></button>
   </div>
 
   <!-- ===== OVERVIEW (doctor's main page) ===== -->
@@ -414,6 +434,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     </div>
   </div>
 
+  <div class="panel" data-panel="guide" id="s360GuidePanel"></div>
+
   <div class="footnote" data-i18n="foot">Seafarer 360° is a Shared Core / CBMS module (Next2MCL Layer 2). Doctor's spec applied — no IDIKA / AMKA / patient-portal fields. Fake data only.</div>
 </div>
 
@@ -437,7 +459,7 @@ const I18N={
     "core.from":"Άνοιξε από","hdr.life":"Ένα Seafarer ID · εφ' όρου ζωής","hdr.fit":"FIT FOR SEA DUTY · 2026",
     "m.rank":"Βαθμός","v.rank":"Ναύτης","m.nat":"Εθνικότητα","m.agency":"Πρακτορείο","m.company":"Ναυτιλιακή","m.dob":"Ημ. γέννησης","m.family":"Οικογένεια","v.family":"Σύζυγος + 2 (Next2Care)",
     "x.care":"<b>Ενεργό μέλος</b> · Gold+ tier · οικογένεια καλυμμένη","x.peme":"<b>PEME ολοκληρώθηκε</b> · FIT FOR SEA DUTY · 2026 · HPDC Manila","x.post":"<b>1 παλιά υπόθεση</b> · 2023 · έκλεισε (fit to return)","x.ship":"<b>1 on-board incident</b> · 2024 · MV Aegean Trader",
-    "tab.overview":"Επισκόπηση","tab.cases":"Υποθέσεις & Φροντίδα","tab.files":"Αρχεία & Εξετάσεις","tab.profiles":"Κλινικά Προφίλ","tab.vax":"Εμβολιασμοί","tab.risk":"Ρίσκο",
+    "tab.overview":"Επισκόπηση","tab.cases":"Υποθέσεις & Φροντίδα","tab.files":"Αρχεία & Εξετάσεις","tab.profiles":"Κλινικά Προφίλ","tab.vax":"Εμβολιασμοί","tab.risk":"Ρίσκο","tab.guide":"Οδηγός",
     "c.genhist":"Γενικό Ιστορικό","k.height":"Ύψος","k.weight":"Βάρος","k.overweight":"υπέρβαρος","k.blood":"Ομάδα αίματος",
     "c.cvd":"Καρδιαγγειακό Προφίλ","c.cvdlead":"Κύριοι παράγοντες κινδύνου ΚΑ","rf.smoker":"Καπνιστής","rf.htn":"Υπέρταση","rf.dysl":"Δυσλιπιδαιμία",
     "c.diab":"Διαβητικό Προφίλ","k.status":"Κατάσταση","k.prediab":"Προ-διαβητικός","c.allerg":"Αλλεργίες","al.rhin":"Αλλεργική ρινίτιδα (άνοιξη)",
@@ -468,7 +490,7 @@ function setLang(l){
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const k=el.dataset.i18n; el.innerHTML=(l==='el'&&I18N.el[k])?I18N.el[k]:EN[k];
   });
-  renderFiles();
+  renderFiles();renderS360Guide();
 }
 document.querySelectorAll('#langTog button').forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
 
@@ -531,7 +553,23 @@ function renderFiles(){
   });
   el.innerHTML=html;
 }
-renderFiles();
+function s360GL(o){return (o&&typeof o==="object")?(o[lang]||o.en):o;}
+function s360Lbl(k){var M={see:{el:"Τι βλέπεις",en:"What you see"},does:{el:"Τι κάνει",en:"What it does"},steps:{el:"Βήμα-βήμα",en:"Step by step"},result:{el:"Αποτέλεσμα",en:"Result"}};return M[k][lang]||M[k].en;}
+var S360_GUIDE={"title": {"el": "Seafarer 360° — ο κοινός φάκελος", "en": "Seafarer 360° — the shared folder"}, "intro": {"el": "Ένας κοινός φάκελος ανά ναυτικό που δείχνει όλη την cross-product παρουσία του (Peme, ShipCare, PostMed, Care). Shared Core module — τροφοδοτεί το MHIE.", "en": "One shared folder per seafarer showing their whole cross-product presence (Peme, ShipCare, PostMed, Care). A Shared Core module — it feeds the MHIE."}, "sections": [{"icon": "👤", "t": {"el": "Τι είναι το 360°", "en": "What 360° is"}, "see": {"el": "Ο πλήρης φάκελος ενός ναυτικού: ταυτότητα, υποθέσεις & κάλυψη, έγγραφα/εξετάσεις, κλινικά προφίλ, εμβόλια, ρίσκο.", "en": "A seafarer's full folder: identity, cases & care, files/exams, clinical profiles, vaccinations, risk."}, "does": {"el": "Ενοποιεί ό,τι ξέρουμε γι' αυτόν από όλα τα προϊόντα — μία εικόνα.", "en": "Unifies everything we know about them across all products — one picture."}, "steps": [{"el": "Άνοιξε το 360° από το MCL ή από την κάρτα του (sample).", "en": "Open 360° from MCL or from their card (sample)."}, {"el": "Δες πάνω την ταυτότητα & το status.", "en": "See identity & status up top."}], "result": {"el": "Καταλαβαίνεις τον ναυτικό ολιστικά.", "en": "You understand the seafarer holistically."}}, {"icon": "🧾", "t": {"el": "Header — ταυτότητα & FIT", "en": "Header — identity & FIT"}, "see": {"el": "Πάνω: όνομα, Seafarer ID, principal, και το κλινικό status (π.χ. FIT FOR SEA DUTY · 2026).", "en": "Top: name, Seafarer ID, principal, and clinical status (e.g. FIT FOR SEA DUTY · 2026)."}, "does": {"el": "Δίνει άμεση απάντηση «είναι ικανός;» χωρίς να ανοίξεις ιατρικά.", "en": "Answers “is he fit?” instantly without opening medical records."}, "steps": [{"el": "Διάβασε το badge status.", "en": "Read the status badge."}, {"el": "Δες τα cross-product σήματα (Care/PEME/PostMed/ShipCare).", "en": "See the cross-product signals (Care/PEME/PostMed/ShipCare)."}], "result": {"el": "Fit / not-fit με μια ματιά.", "en": "Fit / not-fit at a glance."}}, {"icon": "🗂️", "t": {"el": "Tabs: Overview, Cases, Files & Exams, Clinical, Vaccinations, Risk", "en": "Tabs: Overview, Cases, Files & Exams, Clinical, Vaccinations, Risk"}, "see": {"el": "Καρτέλες που ομαδοποιούν τη ζωή του ναυτικού. Στο «Files & Exams» βλέπεις read-only references στο DMS, ανά σταθμό.", "en": "Tabs grouping the seafarer's record. In “Files & Exams” you see read-only DMS references, by station."}, "does": {"el": "Κάθε tab είναι ένας φακός πάνω στα ίδια κεντρικά δεδομένα.", "en": "Each tab is a lens over the same central data."}, "steps": [{"el": "Άνοιξε «Files & Exams» → κάθε γραμμή = reference στο DMS (όχι copy).", "en": "Open “Files & Exams” → each row = a DMS reference (not a copy)."}, {"el": "Τα ιατρικά έχουν 🔒 no-copy.", "en": "Medical items show 🔒 no-copy."}], "result": {"el": "Βλέπεις έγγραφα & ιστορικό χωρίς να αντιγράφεις τίποτα.", "en": "You see documents & history without copying anything."}}, {"icon": "🔒", "t": {"el": "No-copy & RBAC", "en": "No-copy & RBAC"}, "see": {"el": "Στα ιατρικά, ένδειξη no-copy· κάποια στοιχεία εμφανίζονται ή όχι ανάλογα με τον ρόλο σου.", "en": "On medical items, a no-copy marker; some items appear or not depending on your role."}, "does": {"el": "Επιβάλλει GDPR/MDR με αρχιτεκτονική: references, όχι αντίγραφα· RBAC ορίζει τι ανοίγεις.", "en": "Enforces GDPR/MDR by architecture: references, not copies; RBAC controls what you can open."}, "steps": [{"el": "Δες τα 🔒 στα ιατρικά — δεν κατεβαίνουν/αντιγράφονται αλλού.", "en": "Note the 🔒 on medical — they aren't downloaded/copied elsewhere."}, {"el": "Το άνοιγμα γίνεται στο DMS με RBAC.", "en": "Opening happens in DMS under RBAC."}], "result": {"el": "Ευαίσθητα δεδομένα προστατευμένα εξ ορισμού.", "en": "Sensitive data protected by default."}}, {"icon": "🔭", "t": {"el": "Product lenses & MHIE", "en": "Product lenses & MHIE"}, "see": {"el": "Το Peme εμφανίζεται ως CURRENT· ShipCare/PostMed/Care πιο σβηστά μέχρι να υπάρχουν δεδομένα.", "en": "Peme shows as CURRENT; ShipCare/PostMed/Care appear dimmer until they have data."}, "does": {"el": "Δείχνει ποιο προϊόν «ακουμπάει» τώρα τον ναυτικό — και τροφοδοτεί το MHIE (το moat).", "en": "Shows which product is currently touching the seafarer — and feeds the MHIE (the moat)."}, "steps": [{"el": "Δες τα σήματα ανά προϊόν στο Overview.", "en": "See the per-product signals in Overview."}, {"el": "Στο Risk → το MHIE signal (Phase 4).", "en": "In Risk → the MHIE signal (Phase 4)."}], "result": {"el": "Κατανοείς τη διαδρομή του ναυτικού στο οικοσύστημα.", "en": "You understand the seafarer's journey across the ecosystem."}}]};
+function renderS360Guide(){var el=document.getElementById('s360GuidePanel');if(!el)return;
+  var h=`<div class="gd-hero"><div class="k">Seafarer 360°</div><h2>🧭 ${s360GL(S360_GUIDE.title)}</h2><p>${s360GL(S360_GUIDE.intro)}</p></div>`;
+  var cards=S360_GUIDE.sections.map(function(sx){
+    var st=sx.steps.map(function(x){return `<li>${s360GL(x)}</li>`;}).join("");
+    return `<article class="gd-card"><h3><span class="i">${sx.icon}</span>${s360GL(sx.t)}</h3><div class="gd-blocks">`
+      +`<div class="gd-b see"><div class="l">👁 ${s360Lbl("see")}</div><p>${s360GL(sx.see)}</p></div>`
+      +`<div class="gd-b does"><div class="l">⚙ ${s360Lbl("does")}</div><p>${s360GL(sx.does)}</p></div>`
+      +`<div class="gd-b"><div class="l" style="color:#B9791A">🔢 ${s360Lbl("steps")}</div><ol class="gd-steps">${st}</ol></div>`
+      +`<div class="gd-b res"><div class="l">✓ ${s360Lbl("result")}</div><p>${s360GL(sx.result)}</p></div>`
+      +`</div></article>`;
+  }).join("");
+  el.innerHTML=`<div class="gd-wrap">${h}${cards}</div>`;
+}
+renderFiles();renderS360Guide();
 </script>
 </body>
 </html>

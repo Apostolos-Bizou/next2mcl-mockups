@@ -259,6 +259,25 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);opacity:0;background:var(--brand);color:#fff;padding:11px 20px;border-radius:11px;font-size:13px;font-weight:500;box-shadow:var(--shadow-lg);z-index:80;transition:.25s;pointer-events:none}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 @media (max-width:900px){.app{grid-template-columns:1fr}.side{display:none}.top .search{display:none}.srcstrip .sright{width:100%;margin-left:0;margin-top:8px}}
+
+/* ---- in-app app guide (scoped gd-) ---- */
+.gd-wrap{max-width:900px;margin:0 auto}
+.gd-hero{border-radius:14px;padding:22px 24px;color:#fff;background:linear-gradient(135deg,#5A7183,#20303F 165%);box-shadow:0 8px 24px rgba(7,30,51,.12);margin-bottom:16px}
+.gd-hero .k{font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.9;font-family:var(--ff-mono,monospace)}
+.gd-hero h2{font-size:23px;margin:6px 0 8px;display:flex;gap:11px;align-items:center}
+.gd-hero p{opacity:.95;font-size:14px;max-width:720px;margin:0}
+.gd-card{background:#fff;border:1px solid var(--line,#E4EAEF);border-left:4px solid #5A7183;border-radius:13px;padding:18px 20px;margin-bottom:14px;box-shadow:0 1px 2px rgba(7,30,51,.05)}
+.gd-card h3{font-size:18px;color:#0E1E2B;display:flex;gap:10px;align-items:center;margin:0}
+.gd-card h3 .i{width:32px;height:32px;display:grid;place-items:center;border-radius:8px;background:#EAEFF3;font-size:16px;flex:0 0 auto}
+.gd-blocks{margin-top:12px;display:grid;gap:10px}
+.gd-b{background:#F5F8FA;border:1px solid var(--line,#E4EAEF);border-radius:10px;padding:12px 14px}
+.gd-b .l{font-weight:700;font-size:12px;letter-spacing:.02em;text-transform:uppercase;margin-bottom:6px;display:flex;gap:7px;align-items:center}
+.gd-b.see .l{color:#3B6EA5}.gd-b.does .l{color:#0A6E74}.gd-b.res .l{color:#2FA36B}
+.gd-b p{font-size:14px;color:#0E1E2B;margin:0}
+.gd-b.res{background:#F1FAF5;border-color:#CFEBDD}
+.gd-steps{list-style:none;counter-reset:s;display:grid;gap:8px;margin:0;padding:0}
+.gd-steps li{counter-increment:s;position:relative;padding-left:36px;font-size:14px;min-height:25px;display:flex;align-items:center}
+.gd-steps li::before{content:counter(s);position:absolute;left:0;top:0;width:25px;height:25px;border-radius:7px;background:#5A7183;color:#fff;font-weight:700;font-size:12px;display:grid;place-items:center}
 </style>
 </head>
 <body>
@@ -272,6 +291,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     </div>
     <nav class="nav" id="nav">
       <a class="guide" id="guideNav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5a2 2 0 0 1 2-2h11v18H6a2 2 0 0 0-2 2z"/><path d="M9 7h5M9 11h5"/></svg><span data-i18n="nav.guide">Coding standard</span></a>
+      <a class="appguide" id="appGuideNav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 5.5V20.5"/></svg><span data-i18n="nav.appguide">User guide</span></a>
       <span class="lbl" data-i18n="nav.lib">Library</span>
       <a class="lib on" data-coll="all"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span data-i18n="coll.all">All documents</span><span class="ct" id="ctAll"></span></a>
       <a class="lib" data-coll="pending"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l2 5 5 .5-4 3.5 1.5 5-4.5-3-4.5 3 1.5-5-4-3.5 5-.5z"/></svg><span data-i18n="coll.pending">Pending signature</span><span class="ct" id="ctPend"></span></a>
@@ -300,6 +320,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       <div class="corebanner"><span class="tag">CORE</span><span data-i18n="core.banner"></span></div>
 
       <div id="guideView" class="guideview"></div>
+      <div id="appGuideView" class="guideview"></div>
       <div id="libView">
       <div class="crumb" id="crumb"></div>
       <div class="pagehead">
@@ -427,7 +448,7 @@ const TENANTS={
 let tenant="next2mcl", coll="all", source=null, client=null, lang="en", q="", typeFilter=null, sortKey="date", sortDir=-1;
 
 const I18N={en:{
-  "nav.guide":"Coding standard","d.ids":"Identifiers","id.code":"Document code","id.rev":"Revision","id.uuid":"Machine ID (UUID)","id.note":"The UUID is the immutable primary key other systems reference. The document code is assigned at approval and stays constant across revisions.",
+  "nav.guide":"Coding standard","nav.appguide":"User guide","d.ids":"Identifiers","id.code":"Document code","id.rev":"Revision","id.uuid":"Machine ID (UUID)","id.note":"The UUID is the immutable primary key other systems reference. The document code is assigned at approval and stays constant across revisions.",
   "src.all":"All sources","src.origin":"Origin app","src.store":"Stored in","src.count":"Documents","src.connected":"CONNECTED","src.sot":"Next2DMS · single source of truth",
   "d.storage":"Storage & references","d.meta":"Metadata (from the vertical pack)","d.versions":"Version history","d.sign":"Signatures (e-signature)","d.comp":"Compliance","d.audit":"Audit trail","d.nosign":"No signature required yet.",
   "sot.t":"Single source of truth","sot.d":"This document lives once in Next2DMS (immutable, customer-managed keys). Other systems hold a read-only reference + signed URL — never a copy.",
@@ -438,7 +459,7 @@ const I18N={en:{
   "reset":"Reset","f.allstatus":"Όλα status",
   "nav.guide":"Κωδικοποίηση","d.ids":"Ταυτότητες","id.code":"Κωδικός εγγράφου","id.rev":"Revision","id.uuid":"Machine ID (UUID)","id.note":"Το UUID είναι το αμετάβλητο primary key που αναφέρουν τα άλλα συστήματα. Ο κωδικός εγγράφου δίνεται στην έγκριση και μένει σταθερός σε όλες τις εκδόσεις.",
   "nav.lib":"Βιβλιοθήκη","nav.sources":"Πηγές · connected apps","nav.gov":"Διακυβέρνηση",
-  "coll.all":"Όλα τα έγγραφα","coll.pending":"Εκκρεμεί υπογραφή","coll.signed":"Υπογεγραμμένα","coll.arch":"Αρχειοθετημένα","coll.ret":"Retention & GDPR","coll.audit":"Audit trail",
+  "nav.appguide":"Οδηγός χρήσης","coll.all":"Όλα τα έγγραφα","coll.pending":"Εκκρεμεί υπογραφή","coll.signed":"Υπογεγραμμένα","coll.arch":"Αρχειοθετημένα","coll.ret":"Retention & GDPR","coll.audit":"Audit trail",
   "wl.docs":"· Έγγραφα",tenant:"Tenant","new":"Νέο έγγραφο",plan:"Regulated · μηνιαία",
   "th.name":"Έγγραφο","th.src":"Πηγή","th.client":"Principal","th.ver":"Έκδοση","th.status":"Κατάσταση",
   "src.all":"Όλες οι πηγές","src.origin":"App προέλευσης","src.store":"Αποθηκεύεται στο","src.count":"Έγγραφα","src.connected":"CONNECTED","src.sot":"Next2DMS · single source of truth",
@@ -605,9 +626,26 @@ Object.assign(TYCODE,{'Scanned Document':'SCN','Declaration':'DEC','Consent Form
   });
 })();
 /* ---- in-app guide (coding + metadata standard) ---- */
-function openGuide(){$("#guideNav").classList.add("on");$$("#nav a.lib,#nav a.src,#nav a.gov").forEach(a=>a.classList.remove("on"));
-  $("#libView").style.display="none";$("#guideView").classList.add("show");renderGuide();}
-function closeGuide(){$("#guideNav").classList.remove("on");$("#guideView").classList.remove("show");$("#libView").style.display="";}
+function dmsGL(o){return (o&&typeof o==="object")?(o[lang]||o.en):o;}
+function dmsLbl(k){var M={see:{el:"Τι βλέπεις",en:"What you see"},does:{el:"Τι κάνει",en:"What it does"},steps:{el:"Βήμα-βήμα",en:"Step by step"},result:{el:"Αποτέλεσμα",en:"Result"}};return M[k][lang]||M[k].en;}
+var DMS_GUIDE={"title": {"el": "Next2DMS — τα έγγραφα", "en": "Next2DMS — the documents"}, "intro": {"el": "Το single source of truth για τα έγγραφα: κάθε έγγραφο ζει ΜΙΑ φορά εδώ· κάθε άλλο προϊόν κρατά read-only reference, ποτέ copy. Ιατρικά = no-copy.", "en": "The single source of truth for documents: every document lives ONCE here; every other product holds a read-only reference, never a copy. Medical = no-copy."}, "sections": [{"icon": "📚", "t": {"el": "Η βιβλιοθήκη & πλοήγηση", "en": "The library & navigation"}, "see": {"el": "Columnar πίνακας (Code · Date · Description · Source · Principal · Version · Status) + πλοήγηση: All documents, Pending, Signed, Archived.", "en": "A columnar table (Code · Date · Description · Source · Principal · Version · Status) + navigation: All documents, Pending, Signed, Archived."}, "does": {"el": "Κρατά όλα τα έγγραφα του group οργανωμένα κατά κατάσταση.", "en": "Keeps all group documents organised by status."}, "steps": [{"el": "Διάλεξε view (All/Pending/Signed/Archived).", "en": "Pick a view (All/Pending/Signed/Archived)."}, {"el": "Κλικ σε κεφαλίδα για ταξινόμηση.", "en": "Click a header to sort."}], "result": {"el": "Κάθε έγγραφο έχει μία θέση και μία κατάσταση.", "en": "Every document has one place and one status."}}, {"icon": "🔌", "t": {"el": "Sources (συνδεδεμένα προϊόντα)", "en": "Sources (connected products)"}, "see": {"el": "Λίστα πηγών: Next2Peme, Next2Care, Next2PostMed, Next2ShipCare — με μετρητή εγγράφων.", "en": "A list of sources: Next2Peme, Next2Care, Next2PostMed, Next2ShipCare — each with a count."}, "does": {"el": "Δείχνει από ποιο προϊόν γεννήθηκε κάθε έγγραφο.", "en": "Shows which product each document was born from."}, "steps": [{"el": "Κλικ σε source → φιλτράρεις τα έγγραφά του.", "en": "Click a source → filter its documents."}], "result": {"el": "Ξεκάθαρη προέλευση για κάθε αρχείο.", "en": "Clear provenance for every file."}}, {"icon": "🔎", "t": {"el": "Search, φίλτρα & Reset", "en": "Search, filters & Reset"}, "see": {"el": "Global search (ψάχνει τα πάντα, ακόμη και metadata/Seafarer ID) + φίλτρα type/status + Reset.", "en": "Global search (searches everything, even metadata/Seafarer ID) + type/status filters + Reset."}, "does": {"el": "Σε πάει στο σωστό έγγραφο άμεσα.", "en": "Gets you to the right document instantly."}, "steps": [{"el": "Γράψε Seafarer ID (π.χ. SF-PH-039281) → ο φάκελός του.", "en": "Type a Seafarer ID (e.g. SF-PH-039281) → their folder."}, {"el": "Στένεψε με φίλτρα type/status.", "en": "Narrow with type/status filters."}, {"el": "Reset για όλα.", "en": "Reset for all."}], "result": {"el": "Βρίσκεις οποιοδήποτε έγγραφο, ανά ναυτικό ή τύπο.", "en": "Find any document, by seafarer or type."}}, {"icon": "🏷️", "t": {"el": "Κωδικός, UUID & revision", "en": "Code, UUID & revision"}, "see": {"el": "Κάθε έγγραφο: ανθρώπινος κωδικός TENANT-PACK-ORIGIN-TYPE-YYYY-SEQ + αμετάβλητο UUID + έκδοση. In-app «Coding standard» εξηγεί το σχήμα.", "en": "Each document: a human code TENANT-PACK-ORIGIN-TYPE-YYYY-SEQ + an immutable UUID + a revision. The in-app “Coding standard” explains the scheme."}, "does": {"el": "Δίνει σταθερή, μοναδική ταυτότητα που αναφέρουν οι άλλοι.", "en": "Gives a stable, unique identity that others reference."}, "steps": [{"el": "Άνοιξε έγγραφο → ενότητα «Identifiers».", "en": "Open a document → the “Identifiers” section."}, {"el": "Ο κωδικός δίνεται στην έγκριση· revision χωριστά.", "en": "The code is assigned at approval; revision is separate."}], "result": {"el": "Ένας κωδικός, μία αλήθεια — παντού.", "en": "One code, one truth — everywhere."}}, {"icon": "🖥️", "t": {"el": "Πλήρης προβολή εγγράφου", "en": "Full-screen document view"}, "see": {"el": "Το έγγραφο ανοίγει full-screen, 2 κολόνες, μεγάλα γράμματα — ΠΟΤΕ δεξί modal.", "en": "The document opens full-screen, 2 columns, large type — NEVER a right-side modal."}, "does": {"el": "Δείχνει όλες τις τεχνικές πληροφορίες ευανάγνωστα.", "en": "Shows all technical info, readable."}, "steps": [{"el": "Κλικ σε γραμμή εγγράφου.", "en": "Click a document row."}, {"el": "Δες Identifiers, versions, signers, audit.", "en": "See Identifiers, versions, signers, audit."}], "result": {"el": "Πλήρης εικόνα του εγγράφου, χωρίς στρίμωγμα.", "en": "The full document picture, uncramped."}}, {"icon": "🏢", "t": {"el": "Tenant switcher (white-label)", "en": "Tenant switcher (white-label)"}, "see": {"el": "Επιλογέας tenant (Maritime / Legal / Generic) — header «Tenant : …».", "en": "A tenant selector (Maritime / Legal / Generic) — header “Tenant : …”."}, "does": {"el": "Το ίδιο DMS «φοριέται» ως δικό της κάθε εταιρεία.", "en": "The same DMS is “worn” as their own by each company."}, "steps": [{"el": "Άλλαξε tenant → αλλάζει το vertical pack.", "en": "Switch tenant → the vertical pack changes."}], "result": {"el": "Ένα προϊόν, πολλές εταιρείες-ένοικοι.", "en": "One product, many tenant companies."}}, {"icon": "🛡️", "t": {"el": "No-copy & single source of truth", "en": "No-copy & single source of truth"}, "see": {"el": "Στα ιατρικά, ένδειξη no-copy· στα άλλα προϊόντα μόνο reference + status.", "en": "On medical, a no-copy marker; other products show only a reference + status."}, "does": {"el": "Το πρωτότυπο μένει εδώ· κανείς δεν κρατά αντίγραφο.", "en": "The original stays here; nobody keeps a copy."}, "steps": [{"el": "Δες ότι τα ιατρικά δεν αντιγράφονται.", "en": "Notice medical items aren't copied."}, {"el": "Οι άλλοι βλέπουν fit/not-fit + deep link.", "en": "Others see fit/not-fit + a deep link."}], "result": {"el": "GDPR/MDR λύνονται με τον σχεδιασμό.", "en": "GDPR/MDR solved by design."}}, {"icon": "⚖️", "t": {"el": "Governance (Retention & Audit)", "en": "Governance (Retention & Audit)"}, "see": {"el": "Πληροφορίες διακράτησης/GDPR και audit trail ανά έγγραφο.", "en": "Retention/GDPR info and an audit trail per document."}, "does": {"el": "Καταγράφει ποιος, τι, πότε — και πότε λήγει/διαγράφεται.", "en": "Records who, what, when — and when it expires/is deleted."}, "steps": [{"el": "Άνοιξε έγγραφο → «Audit trail».", "en": "Open a document → “Audit trail”."}, {"el": "Δες retention/legal-hold.", "en": "See retention/legal-hold."}], "result": {"el": "Πλήρης ιχνηλασιμότητα & συμμόρφωση.", "en": "Full traceability & compliance."}}, {"icon": "🌱", "t": {"el": "Κενός φάκελος (context-aware)", "en": "Empty folder (context-aware)"}, "see": {"el": "Ναυτικός χωρίς έγγραφα → «Αυτός ο ναυτικός δεν έχει ακόμη έγγραφα — θα εμφανιστούν καθώς προχωράει η διαδρομή».", "en": "A seafarer with no documents → “This seafarer has no documents yet — they appear as the journey progresses.”"}, "does": {"el": "Δεν σε τρομάζει με «κενό» — εξηγεί ότι ο φάκελος γεμίζει σταδιακά.", "en": "Doesn't scare you with “empty” — it explains the folder fills up as you go."}, "steps": [{"el": "Νέος ναυτικός → κενός φάκελος (φυσιολογικό).", "en": "New seafarer → empty folder (normal)."}, {"el": "Καθώς περνά σταθμούς, τα έγγραφα εμφανίζονται.", "en": "As they pass stations, documents appear."}], "result": {"el": "Καθαρή κατάσταση, χωρίς «χάθηκαν τα έγγραφα».", "en": "Clear state, no “documents lost” confusion."}}]};
+function openAppGuide(){$("#appGuideNav").classList.add("on");$$("#nav a.lib,#nav a.src,#nav a.gov,#nav a.guide").forEach(a=>a.classList.remove("on"));$("#libView").style.display="none";$("#guideView").classList.remove("show");$("#appGuideView").classList.add("show");renderAppGuide();}
+function renderAppGuide(){
+  var h=`<div class="gd-hero"><div class="k">Next2DMS</div><h2>🗄️ ${dmsGL(DMS_GUIDE.title)}</h2><p>${dmsGL(DMS_GUIDE.intro)}</p></div>`;
+  var cards=DMS_GUIDE.sections.map(function(sx){
+    var st=sx.steps.map(function(x){return `<li>${dmsGL(x)}</li>`;}).join("");
+    return `<article class="gd-card"><h3><span class="i">${sx.icon}</span>${dmsGL(sx.t)}</h3><div class="gd-blocks">`
+      +`<div class="gd-b see"><div class="l">👁 ${dmsLbl("see")}</div><p>${dmsGL(sx.see)}</p></div>`
+      +`<div class="gd-b does"><div class="l">⚙ ${dmsLbl("does")}</div><p>${dmsGL(sx.does)}</p></div>`
+      +`<div class="gd-b"><div class="l" style="color:#5A7183">🔢 ${dmsLbl("steps")}</div><ol class="gd-steps">${st}</ol></div>`
+      +`<div class="gd-b res"><div class="l">✓ ${dmsLbl("result")}</div><p>${dmsGL(sx.result)}</p></div>`
+      +`</div></article>`;
+  }).join("");
+  $("#appGuideView").innerHTML=`<div class="gd-wrap">${h}${cards}</div>`;
+}
+function openGuide(){$("#guideNav").classList.add("on");$("#appGuideNav")&&$("#appGuideNav").classList.remove("on");$$("#nav a.lib,#nav a.src,#nav a.gov").forEach(a=>a.classList.remove("on"));
+  $("#libView").style.display="none";$("#appGuideView")&&$("#appGuideView").classList.remove("show");$("#guideView").classList.add("show");renderGuide();}
+function closeGuide(){$("#guideNav").classList.remove("on");$("#appGuideNav")&&$("#appGuideNav").classList.remove("on");$("#guideView").classList.remove("show");$("#appGuideView")&&$("#appGuideView").classList.remove("show");$("#libView").style.display="";}
 function renderGuide(){const el=lang==='el';
   const dc=["Title","Creator","Subject","Description","Publisher","Contributor","Date","Type","Format","Identifier","Source","Language","Relation","Coverage","Rights"];
   const ctrl=["Document code","Revision","Status","Owner","Approver","Approval date","Retention class","Legal hold","Security class","Access (RBAC)"];
@@ -758,7 +796,7 @@ function loadTenant(){const t=T();applyTheme();
   $("#wlName").textContent="Next2DMS";$("#tenantLabel").textContent=t.label;
   coll="all";source=null;client=null;$$("#nav a.lib").forEach(a=>a.classList.toggle("on",a.dataset.coll==="all"));
   $("#collTitle").textContent=tt('coll.all');$("#collSub").textContent=COLLSUB[lang].all;
-  renderCounts();renderSourceNav();renderTypeOptions();updateBanner();refresh();if($("#guideView").classList.contains("show"))renderGuide();}
+  renderCounts();renderSourceNav();renderTypeOptions();updateBanner();refresh();if($("#guideView").classList.contains("show"))renderGuide();if($("#appGuideView")&&$("#appGuideView").classList.contains("show"))renderAppGuide();}
 function updateBanner(){const el=document.querySelector('[data-i18n="core.banner"]');el.innerHTML=(lang==='el'?COREBANNER.el:COREBANNER.en);const pk=el.querySelector('.pkn');if(pk)pk.textContent=T().pack;
   $("#sideFoot").innerHTML=(lang==='el'?SIDEFOOT.el:SIDEFOOT.en);$("#stackFoot").innerHTML=(lang==='el'?STACKFOOT.el:STACKFOOT.en);}
 
@@ -768,7 +806,7 @@ function applyLang(){$$("[data-i18n]").forEach(el=>{const k=el.dataset.i18n;if(k
   $$("[data-i18n-ph]").forEach(el=>{const k=el.dataset.i18nPh;el.setAttribute('placeholder',(lang==="el"&&PHEL[k])?PHEL[k]:ENPH[k]);});}
 function setLang(l){lang=l;document.documentElement.lang=l;$$("#langTog button").forEach(b=>b.classList.toggle("on",b.dataset.lang===l));applyLang();loadTenant();}
 
-document.getElementById("nav").addEventListener("click",e=>{const g=e.target.closest("a.guide");if(g){openGuide();return;}const lib=e.target.closest("a.lib");if(lib){closeGuide();setColl(lib.dataset.coll);return;}const s=e.target.closest("a.src");if(s){closeGuide();setSource(s.dataset.src);}});
+document.getElementById("nav").addEventListener("click",e=>{const ag=e.target.closest("a.appguide");if(ag){openAppGuide();return;}const g=e.target.closest("a.guide");if(g){openGuide();return;}const lib=e.target.closest("a.lib");if(lib){closeGuide();setColl(lib.dataset.coll);return;}const s=e.target.closest("a.src");if(s){closeGuide();setSource(s.dataset.src);}});
 document.getElementById("tenantBtn").onclick=switchTenant;
 $$("#langTog button").forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
 
