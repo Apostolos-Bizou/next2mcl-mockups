@@ -240,7 +240,9 @@ qrInto('qrEmail','CW-4127');qrInto('qrBig','CW-4127');
    ETA is computed per-clinic from its historical averages (here: fake stats). */
 const CLINIC={ sampleSize:240, typicalTotalMin:330 }; // stats basis, clinic name intentionally not shown
 
-const VALID="CW-4127", CUR=3;
+const VALID="CW-4127"; let CUR=3;
+{const _s=parseInt(new URLSearchParams(location.search).get("stage"));if(!isNaN(_s)&&_s>=0&&_s<=10)CUR=_s;}
+function syncSummary(){const r=document.querySelector('.ring b');if(r)r.textContent=(CUR+1)+"/"+STAGES.length;const c=document.querySelector('.summary .cur');if(c)c.textContent=(lang==="el"?STAGES[CUR].el:STAGES[CUR].en);}
 /* est = per-stage average minutes from this clinic's stats (drives per-stage + total ETA) */
 const STAGES=[
   {en:"Appointment confirmed",el:"Επιβεβαίωση ραντεβού",t:"Mon · 09:10",est:0},
@@ -311,10 +313,10 @@ function tryCode(){const v=(document.getElementById('codeInp').value||"").trim()
 function fillCode(){document.getElementById('codeInp').value="CW-4127";document.getElementById('err').classList.remove('show');}
 document.getElementById('codeInp').addEventListener('keydown',e=>{if(e.key==='Enter')tryCode();});
 
-function setLang(l){lang=l;document.documentElement.lang=l;document.querySelectorAll('#langTog button').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));applyI18n();renderSteps();renderExams();}
+function setLang(l){lang=l;document.documentElement.lang=l;document.querySelectorAll('#langTog button').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));applyI18n();renderSteps();renderExams();syncSummary();}
 document.querySelectorAll('#langTog button').forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
 document.querySelectorAll('[data-i18n]').forEach(el=>EN[el.dataset.i18n]=el.innerHTML);
-renderSteps();renderExams();
+renderSteps();renderExams();syncSummary();
 </script>
 </body>
 </html>

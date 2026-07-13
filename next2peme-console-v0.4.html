@@ -356,7 +356,7 @@ textarea.inp{min-height:78px;resize:vertical}
       <a href="#" data-stage="10"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span data-i18n="st.CERT">Certificates</span><span class="st" data-stst="10"></span></a>
       <span class="lbl" data-i18n="nav.core">Shared Core</span>
       <a href="#" data-view="folder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18M3 12h18"/></svg><span data-i18n="nav.folder">Seafarer 360°</span></a>
-      <a href="#" data-href="next2peme-tracker-v0.6.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-i18n="nav.track">Client Tracker</span></a>
+      <a href="#" data-track="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-i18n="nav.track">Client Tracker</span></a>
     </nav>
     <div class="foot">
       <div class="rolebox"><label data-i18n="role.acting">Acting as</label><select id="roleSel"></select></div>
@@ -507,7 +507,7 @@ const I18N={en:{
   "reg.done":"Registration complete · credentials issued","reg.donesub":"A unique login was generated and emailed to the seafarer to self-complete the declaration forms.","reg.control":"Control No.","reg.user":"Username","reg.pass":"Password","reg.emailto":"Login email sent to","reg.emailsubj":"Your PEME self-service login","reg.emailnote":"The seafarer taps the link, logs in, and completes the self-declaration forms + e-signature — then proceeds to the stations.","reg.opencard":"Open Seafarer Card","reg.another":"New Seafarer","reg.track":"Track your PEME (client view)",
   "sf.docsscan":"Documents to scan","doc.scan":"Scan / Upload","doc.scanned":"Scanned","doc.onfile":"On file","doc.missing":"Missing","doc.req":"required",
   "sf.docnote":"We scan the original of each document. Each file is kept ONCE in Next2DMS (single source of truth) — other products hold a read-only reference, never a copy. Certificates the PEME produces (MER · Certificate for Service at Sea · Crew Endorsement · Oath · flag-state) are issued later and stored in DMS too.",
-  "cd.preview":"Preview Fitness Certificate","cd.back":"Back to Certificates","cd.issued":"Issued","cd.subtitle":"Pre-Employment Medical Examination · Fitness for Sea Service","cd.findings":"Examination summary","cd.standard":"In accordance with STCW 2010 (Reg. I/9), MLC 2006, and DOH / DMW requirements.","cd.examdate":"Examination date","cd.validuntil":"Valid until","cd.examiner":"Examining Physician","cd.director":"Medical Director","cd.dmsnote":"Original stored once in Next2DMS (single source of truth). Verify authenticity via QR. Copies are read-only references — no-copy.","cd.fit":"FIT FOR SEA DUTY","cd.fitsub":"No restrictions","cd.temp":"FIT WITH RESTRICTIONS","cd.tempsub":"Temporary / conditional","cd.unfit":"UNFIT FOR SEA DUTY","cd.unfitsub":"Requires follow-up / re-evaluation",
+  "cd.preview":"Preview Fitness Certificate","cd.back":"Back to Certificates","cd.issued":"Issued","cd.subtitle":"Pre-Employment Medical Examination · Fitness for Sea Service","cd.findings":"Examination summary","cd.standard":"In accordance with STCW 2010 (Reg. I/9), MLC 2006, and DOH / DMW requirements.","cd.examdate":"Examination date","cd.validuntil":"Valid until","cd.examiner":"Examining Physician","cd.director":"Medical Director","cd.dmsnote":"Original stored once in Next2DMS (single source of truth). Verify authenticity via QR. Copies are read-only references — no-copy.","cd.fit":"FIT FOR SEA DUTY","cd.fitsub":"No restrictions","cd.temp":"TEMPORARILY UNFIT","cd.tempsub":"Pending re-evaluation","cd.unfit":"UNFIT FOR SEA DUTY","cd.unfitsub":"Requires follow-up / re-evaluation",
   "lab.dc":"Data Collection & Results","lab.view":"View report","lab.gen":"Generate results & complete","lab.back":"Back to Laboratory","lab.subtitle":"Pre-Employment Medical Examination · Laboratory","lab.medtech":"Medical Technologist","lab.patho":"Pathologist","lab.test":"Test","lab.result":"Result","lab.normal":"Normal Values","lab.unit":"Unit",
   "img.back":"Back to Imaging","img.subtitle":"Pre-Employment Medical Examination · Imaging & Cardiology","img.findings":"Findings","img.impression":"Impression",
   "spec.back":"Back to Specialty","spec.subtitle":"Pre-Employment Medical Examination · Specialty Examinations","spec.plates":"Plate answers (21)","spec.env":"Test environment","spec.resp":"Responses",
@@ -517,7 +517,7 @@ const I18N={en:{
   "appt.company":"Company / Principal","appt.rank":"Rank","appt.date":"Preferred date","appt.pkg":"PEME package","appt.hi":"Urgent (high priority)","appt.hihint":"The whole PEME flow is flagged red so every station knows it's urgent.","appt.submit":"Submit & confirm","appt.seafarer":"Seafarer","appt.newsf":"— New / first-time seafarer —","appt.first":"First name","appt.last":"Last name","appt.booked":"Appointment booked","appt.bookedsub":"Digital proof sent to the manning agency. The case is now on the Case Board at stage BOOK.","appt.when":"Appointment date","appt.case":"Case code","appt.proof":"scan at check-in","appt.viewboard":"View on Case Board","appt.another":"New appointment",
   "hdr.fit":"Disposition pending","open360":"Open 360° Folder","track.title":"PEME Journey","track.of":"of",
   "feeds":"Feeds:","complete":"Complete station","completed":"Completed","upload":"Upload","attached":"Attached",
-  "md.h":"Final Evaluation","md.p":"The Medical Director reviews the whole folder and decides. The signature feeds the certificates.","md.summary":"Findings summary","md.meds":"Required medication","md.disp":"Fitness disposition","md.fit":"Fit","md.temp":"Temp. Unfit","md.unfit":"Unfit","md.fitsub":"Fit to work","md.tempsub":"Temporarily unfit","md.unfitsub":"Unfit","md.sign":"Sign & issue decision",
+  "md.h":"Final Evaluation","md.p":"The Medical Director reviews the whole folder and decides. The signature feeds the certificates.","md.summary":"Findings summary","md.meds":"Required medication","md.disp":"Fitness disposition","md.fit":"Fit","md.temp":"Temp. Unfit","md.unfit":"Unfit","md.fitsub":"Fit to work","md.tempsub":"Temporarily unfit","md.unfitsub":"Unfit","md.sign":"Sign & issue decision","md.soap":"Follow-Up Consultation (SOAP)","md.subj":"Subjective","md.obj":"Objective","md.assess":"Assessment","md.plan":"Plan","md.endorse":"View Crew Endorsement","end.title":"Crew Endorsement Report","end.confidential":"Medical Confidential","end.assessment":"I. Assessment","end.plan":"II. Plan","end.back":"Back to MD Review","end.to":"To (Principal)","end.thru":"Thru (Manning Agency)","cert.endorse":"Crew Endorsement Report",
   "cert.h":"Issue Certificates","cert.p":"Auto-generated from the PEME data. Print \u2192 sign \u2192 scan \u2192 attach (hybrid for e-MER).","cert.gen":"Issue all","cert.view":"View","cert.issued":"Issued",
   "folder.note":"The 360\u00b0 folder is a shared CBMS module (Layer 2) \u2014 every product opens it. Here you see a summary; the full folder is a separate artifact.",
   "x.care":"<b>Active member</b> \u00b7 Gold+","x.peme":"<b>PEME in progress</b>","x.across":"This seafarer across the products (not Peme files)","x.post":"<b>1 past POME</b> \u00b7 2023","x.ship":"<b>1 incident</b> \u00b7 2024",
@@ -542,7 +542,7 @@ const I18N={en:{
   "reg.done":"Η καταχώριση ολοκληρώθηκε · εκδόθηκαν credentials","reg.donesub":"Δημιουργήθηκε μοναδικό login και στάλθηκε email στον ναυτικό για να συμπληρώσει μόνος του τις δηλώσεις.","reg.control":"Αρ. Ελέγχου","reg.user":"Username","reg.pass":"Password","reg.emailto":"Email login στάλθηκε στο","reg.emailsubj":"Το login σου για το PEME self-service","reg.emailnote":"Ο ναυτικός πατάει το link, κάνει login, συμπληρώνει τις δηλώσεις + e-signature — και μετά προχωράει στους σταθμούς.","reg.opencard":"Άνοιγμα Καρτέλας","reg.another":"Νέος Ναυτικός","reg.track":"Παρακολούθηση PEME (client view)",
   "sf.docsscan":"Δικαιολογητικά προς σκανάρισμα","doc.scan":"Σκανάρισμα","doc.scanned":"Σκαναρίστηκε","doc.onfile":"Στον φάκελο","doc.missing":"Λείπει","doc.req":"υποχρεωτικό",
   "sf.docnote":"Σκανάρουμε το πρωτότυπο κάθε δικαιολογητικού. Κάθε έγγραφο κρατιέται ΜΙΑ φορά στο Next2DMS (single source of truth) — τα άλλα προϊόντα κρατούν read-only reference, ποτέ αντίγραφο. Τα πιστοποιητικά που παράγει το PEME (MER · Certificate for Service at Sea · Crew Endorsement · Oath · flag-state) εκδίδονται αργότερα και αποθηκεύονται κι αυτά στο DMS.",
-  "cd.preview":"Προβολή Πιστοποιητικού Ικανότητας","cd.back":"Πίσω στα Πιστοποιητικά","cd.issued":"Εκδόθηκε","cd.subtitle":"Προ-Εργασιακή Ιατρική Εξέταση · Ικανότητα προς Ναυτολόγηση","cd.findings":"Σύνοψη εξέτασης","cd.standard":"Σύμφωνα με STCW 2010 (Reg. I/9), MLC 2006, και τις απαιτήσεις DOH / DMW.","cd.examdate":"Ημ. εξέτασης","cd.validuntil":"Ισχύει έως","cd.examiner":"Εξετάζων Ιατρός","cd.director":"Ιατρικός Διευθυντής","cd.dmsnote":"Το πρωτότυπο κρατιέται μία φορά στο Next2DMS (single source of truth). Επαλήθευση μέσω QR. Τα αντίγραφα είναι read-only references — no-copy.","cd.fit":"ΙΚΑΝΟΣ ΠΡΟΣ ΝΑΥΤΟΛΟΓΗΣΗ","cd.fitsub":"Χωρίς περιορισμούς","cd.temp":"ΙΚΑΝΟΣ ΜΕ ΠΕΡΙΟΡΙΣΜΟΥΣ","cd.tempsub":"Προσωρινά / υπό όρους","cd.unfit":"ΑΚΑΤΑΛΛΗΛΟΣ ΠΡΟΣ ΝΑΥΤΟΛΟΓΗΣΗ","cd.unfitsub":"Απαιτεί επανεξέταση",
+  "cd.preview":"Προβολή Πιστοποιητικού Ικανότητας","cd.back":"Πίσω στα Πιστοποιητικά","cd.issued":"Εκδόθηκε","cd.subtitle":"Προ-Εργασιακή Ιατρική Εξέταση · Ικανότητα προς Ναυτολόγηση","cd.findings":"Σύνοψη εξέτασης","cd.standard":"Σύμφωνα με STCW 2010 (Reg. I/9), MLC 2006, και τις απαιτήσεις DOH / DMW.","cd.examdate":"Ημ. εξέτασης","cd.validuntil":"Ισχύει έως","cd.examiner":"Εξετάζων Ιατρός","cd.director":"Ιατρικός Διευθυντής","cd.dmsnote":"Το πρωτότυπο κρατιέται μία φορά στο Next2DMS (single source of truth). Επαλήθευση μέσω QR. Τα αντίγραφα είναι read-only references — no-copy.","cd.fit":"ΙΚΑΝΟΣ ΠΡΟΣ ΝΑΥΤΟΛΟΓΗΣΗ","cd.fitsub":"Χωρίς περιορισμούς","cd.temp":"ΠΡΟΣΩΡΙΝΑ ΑΚΑΤΑΛΛΗΛΟΣ","cd.tempsub":"Έως επανεξέταση","cd.unfit":"ΑΚΑΤΑΛΛΗΛΟΣ ΠΡΟΣ ΝΑΥΤΟΛΟΓΗΣΗ","cd.unfitsub":"Απαιτεί επανεξέταση",
   "lab.dc":"Καταχώριση & Αποτελέσματα","lab.view":"Προβολή report","lab.gen":"Έκδοση αποτελεσμάτων & ολοκλήρωση","lab.back":"Πίσω στο Εργαστήριο","lab.subtitle":"Προ-Εργασιακή Ιατρική Εξέταση · Εργαστήριο","lab.medtech":"Ιατρικός Τεχνολόγος","lab.patho":"Παθολόγος","lab.test":"Εξέταση","lab.result":"Αποτέλεσμα","lab.normal":"Φυσιολογικές Τιμές","lab.unit":"Μονάδα",
   "img.back":"Πίσω στην Απεικόνιση","img.subtitle":"Προ-Εργασιακή Ιατρική Εξέταση · Απεικόνιση & Καρδιολογία","img.findings":"Ευρήματα","img.impression":"Εντύπωση",
   "spec.back":"Πίσω στις Ειδικές","spec.subtitle":"Προ-Εργασιακή Ιατρική Εξέταση · Ειδικές Εξετάσεις","spec.plates":"Απαντήσεις πλακών (21)","spec.env":"Περιβάλλον test","spec.resp":"Αποκρίσεις",
@@ -552,7 +552,7 @@ const I18N={en:{
   "appt.company":"Εταιρεία / Principal","appt.rank":"Βαθμός","appt.date":"Επιθυμητή ημερομηνία","appt.pkg":"Πακέτο PEME","appt.hi":"Επείγον (high priority)","appt.hihint":"Όλη η ροή του PEME επισημαίνεται με κόκκινο ώστε κάθε σταθμός να ξέρει ότι είναι επείγον.","appt.submit":"Υποβολή & επιβεβαίωση","appt.seafarer":"Ναυτικός","appt.newsf":"— Νέος / first-time ναυτικός —","appt.first":"Όνομα","appt.last":"Επώνυμο","appt.booked":"Το ραντεβού κλείστηκε","appt.bookedsub":"Digital proof στάλθηκε στο πρακτορείο. Η υπόθεση είναι πλέον στο Case Board στο στάδιο BOOK.","appt.when":"Ημ. ραντεβού","appt.case":"Κωδικός υπόθεσης","appt.proof":"scan στο check-in","appt.viewboard":"Προβολή στο Case Board","appt.another":"Νέο ραντεβού",
   "hdr.fit":"Εκκρεμεί απόφαση","open360":"Άνοιγμα Φακέλου 360°","track.title":"Διαδρομή PEME","track.of":"από",
   "feeds":"Τροφοδοτεί:","complete":"Ολοκλήρωση σταθμού","completed":"Ολοκληρώθηκε","upload":"Μεταφόρτωση","attached":"Επισυνάφθηκε",
-  "md.h":"Τελική Αξιολόγηση","md.p":"Ο Ιατρικός Διευθυντής ελέγχει όλο τον φάκελο και αποφασίζει. Η υπογραφή τροφοδοτεί τα certificates.","md.summary":"Σύνοψη ευρημάτων","md.meds":"Απαιτούμενη αγωγή","md.disp":"Απόφαση καταλληλότητας","md.fit":"Fit","md.temp":"Temp. Unfit","md.unfit":"Unfit","md.fitsub":"Κατάλληλος","md.tempsub":"Προσωρινά ακατάλληλος","md.unfitsub":"Ακατάλληλος","md.sign":"Υπογραφή & έκδοση απόφασης",
+  "md.h":"Τελική Αξιολόγηση","md.p":"Ο Ιατρικός Διευθυντής ελέγχει όλο τον φάκελο και αποφασίζει. Η υπογραφή τροφοδοτεί τα certificates.","md.summary":"Σύνοψη ευρημάτων","md.meds":"Απαιτούμενη αγωγή","md.disp":"Απόφαση καταλληλότητας","md.fit":"Fit","md.temp":"Temp. Unfit","md.unfit":"Unfit","md.fitsub":"Κατάλληλος","md.tempsub":"Προσωρινά ακατάλληλος","md.unfitsub":"Ακατάλληλος","md.sign":"Υπογραφή & έκδοση απόφασης","md.soap":"Follow-Up Consultation (SOAP)","md.subj":"Subjective (Υποκειμενικά)","md.obj":"Objective (Αντικειμενικά)","md.assess":"Assessment (Εκτίμηση)","md.plan":"Plan (Σχέδιο)","md.endorse":"Προβολή Crew Endorsement","end.title":"Crew Endorsement Report","end.confidential":"Ιατρικό Εμπιστευτικό","end.assessment":"I. Assessment","end.plan":"II. Plan","end.back":"Πίσω στο MD Review","end.to":"Προς (Principal)","end.thru":"Μέσω (Πρακτορείο)","cert.endorse":"Crew Endorsement Report",
   "cert.h":"Έκδοση Πιστοποιητικών","cert.p":"Auto-generated από τα δεδομένα του PEME. Print → sign → scan → attach (hybrid για e-MER).","cert.gen":"Έκδοση όλων","cert.view":"Προβολή","cert.issued":"Εκδόθηκε",
   "folder.note":"Ο Φάκελος 360° είναι shared module του CBMS (Layer 2) — τον ανοίγουν όλα τα προϊόντα. Εδώ βλέπεις σύνοψη· ο πλήρης φάκελος είναι ξεχωριστό artifact.",
   "x.care":"<b>Ενεργό μέλος</b> · Gold+","x.peme":"<b>PEME σε εξέλιξη</b>","x.across":"Ο ναυτικός στα προϊόντα (όχι αρχεία Peme)","x.post":"<b>1 παλιό POME</b> · 2023","x.ship":"<b>1 incident</b> · 2024",
@@ -759,18 +759,50 @@ function vMD(){
   const st=STAGES[8],d=CASE.disposition;
   return `<div class="pagehead"><div class="ey">MDRV · ${t("track.title")}</div><h1>${t("md.h")}</h1><p>${t("md.p")}</p></div>
     ${sf360head(true)}${trackBar()}
-    <div class="card" style="margin-top:16px"><div class="cb">
-      <div class="field"><label>${t("md.summary")}</label><textarea class="inp">No abnormal findings. Elevated BP noted (138/88) — advise monitoring. HbA1c 5.9% (pre-diabetic).</textarea></div>
-      <div class="field"><label>${t("md.meds")}</label><input class="inp" value="Amlodipine 5mg OD; lifestyle advice"></div>
+    <div class="card" style="margin-top:16px"><div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v6c0 4-3.5 7-8 8-4.5-1-8-4-8-8V7z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>${t("md.soap")}</h3></div><div class="cb">
+      <div class="field"><label>S · ${t("md.subj")}</label><textarea class="inp">Seafarer reports good general health, no current complaints. Occasional mild headaches, self-resolving.</textarea></div>
+      <div class="field"><label>O · ${t("md.obj")}</label><textarea class="inp">BP 120/78, PR 72, BMI 25.0. Laboratory within normal limits; HbA1c 5.4%. Chest X-ray, ECG and KUB ultrasound unremarkable. Vision, hearing, dental and psychological evaluations within acceptable limits. Systems examination normal.</textarea></div>
+      <div class="field"><label>A · ${t("md.assess")}</label><textarea class="inp">Essentially normal pre-employment medical examination. No condition precluding sea duty.</textarea></div>
+      <div class="field"><label>P · ${t("md.plan")}</label><textarea class="inp">Fit for sea duty. Maintain healthy lifestyle. Routine re-examination at next contract.</textarea></div>
       <div class="sectitle" style="margin-top:8px">${t("md.disp")}</div>
       <div class="disp">
         <button class="dispbtn ${d==='fit'?'sel-fit':''}" onclick="setDisp('fit')">${t("md.fit")}<small>${t("md.fitsub")}</small></button>
         <button class="dispbtn ${d==='temp'?'sel-temp':''}" onclick="setDisp('temp')">${t("md.temp")}<small>${t("md.tempsub")}</small></button>
         <button class="dispbtn ${d==='unfit'?'sel-unfit':''}" onclick="setDisp('unfit')">${t("md.unfit")}<small>${t("md.unfitsub")}</small></button>
       </div>
-      <div class="completebar"><button class="magic" onclick="signMD()" ${d?'':'disabled'}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/></svg>${t("md.sign")}</button></div>
+      <div class="completebar" style="gap:10px"><button class="backbtn" style="margin:0" onclick="openEndorsement()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2h9l3 3v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M8 12h8M8 16h5"/></svg>${t("md.endorse")}</button><button class="magic" onclick="signMD()" ${d?'':'disabled'}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/></svg>${t("md.sign")}</button></div>
     </div></div>`;
 }
+const ENDTXT={
+  fit:{a:"Essentially normal pre-employment medical examination. All laboratory, imaging, cardiac, vision, hearing, dental and psychological evaluations are within acceptable limits.",p:"FIT FOR SEA DUTY. Maintain a healthy lifestyle; routine re-examination at next contract."},
+  temp:{a:"Findings requiring short-term management noted (e.g., elevated HbA1c / blood pressure). No permanent disqualifying condition identified.",p:"TEMPORARILY UNFIT until acceptable control. Repeat relevant tests in 3 months; diet and lifestyle modification."},
+  unfit:{a:"A condition precluding safe sea duty at this time has been identified.",p:"UNFIT FOR SEA DUTY. Referral for specialist management and re-evaluation advised."}
+};
+function openEndorsement(){activeView="endorsement";$("#crumbView").textContent="Crew Endorsement";render();}
+function vEndorsement(){
+  const sf=SEAFARER,d=CASE.disposition||"fit",seq=((''+sf.caseId).match(/(\d+)$/)||["","04127"])[1],code="MCL-MAR-PEME-END-2026-"+seq;
+  const D={fit:["fit",t("cd.fit")],temp:["temp",t("cd.temp")],unfit:["unfit",t("cd.unfit")]}[d],E=ENDTXT[d];
+  const kv=(k,v)=>`<div class="kv"><div class="k">${k}</div><div class="v">${v||"—"}</div></div>`;
+  return `<div class="docwrap">
+    <button class="backbtn" onclick="openStage(8)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>${t("end.back")}</button>
+    <div class="certdoc">
+      <div class="cdtop"><div class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2h9l3 3v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M8 11h8M8 15h5"/></svg></div>
+        <div><h2>DOCTOR NEXT TO ME ΙΚΕ</h2><div class="sub">HPDC Manila · CREW ENDORSEMENT REPORT</div></div>
+        <div class="code">${code}<br>${t("cd.issued")}: 2026-07-01</div></div>
+      <div class="certbody">
+        <div class="certtitle">${t("end.title")}</div>
+        <div class="certtitle-sub">${t("end.confidential")}: ${sf.first} ${sf.last} · ${LX(sf.rank)} · ${sf.age}</div>
+        <div class="certgrid">${kv(t("end.to"),sf.principal)}${kv(t("end.thru"),sf.agency)}${kv(t("cd.examdate"),"01 July 2026")}${kv("Seafarer ID",sf.id)}</div>
+        <div class="sectitle">${t("end.assessment")}</div><p class="findp">${E.a}</p>
+        <div class="sectitle" style="margin-top:12px">${t("end.plan")}</div><p class="findp">${E.p}</p>
+        <div class="certdisp ${D[0]}" style="margin-top:16px"><div class="big">${D[1]}</div></div>
+        <div class="certsign"><div></div><div class="signline"><b>Dr. R. Delgado, MD</b>${t("cd.director")}</div></div>
+        <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br><span style="font-family:var(--ff-mono)">${code}</span></div></div>
+      </div>
+    </div>
+  </div>`;
+}
+
 
 function vCerts(){
   const rows=PRINTABLES.map(([n,f])=>`<div class="certrow">
@@ -781,6 +813,7 @@ function vCerts(){
     <div class="card" style="margin-top:16px"><div class="cb">
       <button class="magic" style="margin-bottom:14px" onclick="issueCerts()" ${CASE.certsIssued?'disabled':''}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2 5 5 .5-4 3.5 1.5 5-4.5-3-4.5 3 1.5-5-4-3.5 5-.5z"/></svg>${CASE.certsIssued?t("cert.issued"):t("cert.gen")} (${PRINTABLES.length})</button>
       <button class="backbtn" style="margin:0 0 14px" onclick="openCert('Certificate for Service at Sea')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2h8l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M14 2v4h4"/></svg>${t("cd.preview")}</button>
+      <button class="backbtn" style="margin:0 0 14px 8px" onclick="openEndorsement()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2h9l3 3v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M8 12h8M8 16h5"/></svg>${t("cert.endorse")}</button>
       <div class="certlist">${rows}</div>
     </div></div>`;
 }
@@ -1300,7 +1333,7 @@ function vRegDone(){
             <div><div class="cl">${t("reg.pass")}</div><div class="cv">${r.password}</div></div>
           </div>
           <a class="linkchip" href="${r.link}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;vertical-align:-1px"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg> ${r.link}</a>
-          <a class="trackbtn" href="next2peme-tracker-v0.6.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a9 9 0 0 1 0 18"/></svg>${t("reg.track")}</a>
+          <a class="trackbtn" href="next2peme-tracker-v0.6.html?stage=1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a9 9 0 0 1 0 18"/></svg>${t("reg.track")}</a>
           <p class="enote">${t("reg.emailnote")}</p>
         </div>
         <div class="sfacts" style="margin-top:16px">
@@ -1326,6 +1359,7 @@ function render(){
   else if(activeView==="specreport")h.innerHTML=vSpecReport(SPEC_ID);
   else if(activeView==="vitreport")h.innerHTML=vVitReport();
   else if(activeView==="physreport")h.innerHTML=vPhysReport();
+  else if(activeView==="endorsement")h.innerHTML=vEndorsement();
   else if(activeView==="stage"){
     const s=CASE._openStage;
     if(s===2)h.innerHTML=vFrontdesk();
@@ -1401,7 +1435,7 @@ function init(){
   $$("[data-i18n]").forEach(el=>EN[el.dataset.i18n]=el.textContent);
   const sel=$("#roleSel");sel.innerHTML=ROLES.map(r=>`<option value="${r.id}">${r[lang].name}</option>`).join("");sel.onchange=e=>setRole(e.target.value);
   $("#nav").addEventListener("click",e=>{const a=e.target.closest("a");if(!a)return;e.preventDefault();
-    if(a.dataset.view)go(a.dataset.view);else if(a.dataset.stage)openStage(+a.dataset.stage);else if(a.dataset.href)location.href=a.dataset.href;});
+    if(a.dataset.view)go(a.dataset.view);else if(a.dataset.stage)openStage(+a.dataset.stage);else if(a.dataset.href)location.href=a.dataset.href;else if(a.dataset.track)location.href="next2peme-tracker-v0.6.html?stage="+CASE.currentStage;});
   $$("#langTog button").forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
   applyStatic();go("board");
 }
