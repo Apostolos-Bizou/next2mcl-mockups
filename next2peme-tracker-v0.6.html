@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Track your PEME · Next2Peme (Mockup v0.6)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#071E33;--navy-2:#0B2A45;--teal:#0E8C93;--teal-2:#12A7AF;
+  --gold:#E7A33E;--gold-2:#F2B860;--coral:#E5544B;--green:#2FA36B;--amber:#D9902A;
+  --mist:#EEF3F6;--paper:#FFFFFF;--ink:#152532;--ink-2:#4C6072;--ink-3:#8AA0B0;
+  --line:#DCE6EC;--line-2:#EAF0F4;--radius:16px;--radius-sm:10px;
+  --shadow:0 1px 2px rgba(7,30,51,.05),0 10px 30px rgba(7,30,51,.08);
+  --ff-display:'Sora',system-ui,sans-serif;--ff-body:'Inter',system-ui,sans-serif;--ff-mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{font-family:var(--ff-body);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.45;background:linear-gradient(160deg,#0B2A45,#061829 60%);min-height:100vh}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus-visible{outline:2px solid var(--teal);outline-offset:2px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.phone{max-width:430px;margin:0 auto;min-height:100vh;background:var(--mist);position:relative;box-shadow:0 0 60px rgba(0,0,0,.35)}
+@media(min-width:480px){.phone{margin:24px auto;min-height:auto;border-radius:26px;overflow:hidden}}
+
+.hero{background:linear-gradient(150deg,var(--navy),var(--navy-2) 70%,#123a5c);color:#EAF3F8;padding:18px 20px 22px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-40px;top:-50px;width:200px;height:200px;background:radial-gradient(circle,rgba(23,167,175,.22),transparent 68%);pointer-events:none}
+.htop{display:flex;align-items:center;gap:10px;position:relative;z-index:1}
+.htop .mark{width:32px;height:32px}
+.htop .wm{font-family:var(--ff-display);font-weight:700;font-size:16px;color:#fff;line-height:1}
+.htop .wm b{color:var(--gold)}
+.htop .clinic{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7EA2BC;margin-top:2px}
+.langtog{margin-left:auto;display:inline-flex;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:2px}
+.langtog button{padding:4px 9px;border-radius:6px;font-size:11px;font-weight:600;color:#9FBBD0}
+.langtog button.on{background:var(--gold);color:var(--navy)}
+.herolead{position:relative;z-index:1;margin-top:14px;font-family:var(--ff-display);font-weight:600;font-size:19px}
+.herosub{position:relative;z-index:1;font-size:12.5px;color:#B9D3E4;margin-top:4px}
+
+.body{padding:18px}
+
+/* email */
+.email{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin-top:-30px;position:relative;z-index:2}
+.email .ehead{display:flex;align-items:center;gap:11px;padding:14px 16px;border-bottom:1px solid var(--line-2)}
+.email .ehead .av{width:36px;height:36px;flex:0 0 36px;border-radius:10px;background:linear-gradient(135deg,var(--teal),var(--navy-2));color:#fff;display:grid;place-items:center;font-family:var(--ff-display);font-weight:700;font-size:13px}
+.email .ehead .from{font-size:13px;font-weight:600}
+.email .ehead .to{font-size:11px;color:var(--ink-3)}
+.email .ehead .badge{margin-left:auto;font-size:9.5px;font-weight:700;letter-spacing:.06em;color:var(--teal);background:rgba(14,140,147,.1);border:1px solid rgba(14,140,147,.28);padding:3px 8px;border-radius:6px;font-family:var(--ff-mono)}
+.email .esubj{padding:12px 16px 4px;font-weight:600;font-size:14px}
+.email .ebody{padding:2px 16px 16px;font-size:13px;color:var(--ink-2)}
+.codechip{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--mist);border:1px dashed var(--line);border-radius:var(--radius-sm);padding:12px 14px;margin:12px 0}
+.codechip .cl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.codechip .cv{font-family:var(--ff-mono);font-size:22px;font-weight:600;color:var(--navy);letter-spacing:.08em}
+.codechip .qr{width:52px;height:52px;flex:0 0 52px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:4px}
+.codechip .qr svg{width:100%;height:100%;display:block}
+.ebtn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:13px;border-radius:11px;font-family:var(--ff-display);font-weight:600;font-size:14px;color:var(--navy);background:linear-gradient(100deg,var(--gold),var(--gold-2));box-shadow:0 6px 18px rgba(231,163,62,.3)}
+.ebtn svg{width:17px;height:17px}.ebtn:hover{transform:translateY(-1px)}
+.chan{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--ink-3);margin-top:12px}
+.chan svg{width:14px;height:14px}
+.orline{display:flex;align-items:center;gap:12px;margin:20px 2px 14px;color:var(--ink-3);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.orline::before,.orline::after{content:"";height:1px;background:var(--line);flex:1}
+.entry{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
+.entry label{display:block;font-size:11.5px;font-weight:600;color:var(--ink-2);margin-bottom:7px}
+.entry .row{display:flex;gap:9px}
+.entry input{flex:1;padding:12px 13px;border:1px solid var(--line);border-radius:var(--radius-sm);font-family:var(--ff-mono);font-size:16px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+.entry input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(14,140,147,.12)}
+.entry .go{padding:0 18px;border-radius:var(--radius-sm);background:var(--navy-2);color:#fff;font-weight:600;font-size:13px}
+.entry .go:hover{background:var(--teal)}
+.err{color:var(--coral);font-size:12px;margin-top:9px;display:none}.err.show{display:block}
+.hinttap{font-size:11px;color:var(--ink-3);margin-top:10px}.hinttap b{color:var(--teal);cursor:pointer;font-family:var(--ff-mono)}
+
+/* tracker header ref */
+.refcard{display:flex;gap:14px;align-items:center;margin-top:14px;position:relative;z-index:1}
+.refcard .qr{width:70px;height:70px;flex:0 0 70px;background:#fff;border-radius:11px;padding:6px}
+.refcard .qr svg{width:100%;height:100%;display:block}
+.refinfo .lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#7EA2BC}
+.refinfo .code{font-family:var(--ff-mono);font-size:20px;font-weight:600;color:var(--gold-2);letter-spacing:.06em;margin-top:2px}
+.refinfo .scan{font-size:11px;color:#B9D3E4;margin-top:4px}
+
+.summary{background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 18px;margin-top:-28px;position:relative;z-index:2;border:1px solid var(--line)}
+.summary .who{font-family:var(--ff-display);font-weight:600;font-size:16px}
+.summary .sub{font-size:12px;color:var(--ink-3);margin-top:2px}
+.summary .now{display:flex;align-items:center;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line-2)}
+.summary .now .ring{width:44px;height:44px;flex:0 0 44px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--teal) 0 36%,var(--line) 36% 100%);position:relative}
+.summary .now .ring::before{content:"";position:absolute;inset:5px;background:var(--paper);border-radius:50%}
+.summary .now .ring b{position:relative;font-family:var(--ff-display);font-size:13px;font-weight:700;color:var(--navy)}
+.summary .now .txt .st{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);font-weight:600}
+.summary .now .txt .cur{font-family:var(--ff-display);font-weight:600;font-size:15px;margin-top:1px}
+.summary .now .txt .upd{font-size:11px;color:var(--ink-3);margin-top:2px}
+
+/* ===== ETA block (v0.6) ===== */
+.eta{margin-top:14px;padding-top:14px;border-top:1px solid var(--line-2)}
+.eta .top{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.eta .lbl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:600;display:flex;align-items:center;gap:6px}
+.eta .lbl svg{width:13px;height:13px;color:var(--teal)}
+.eta .val{font-family:var(--ff-display);font-weight:600;font-size:16px;margin-top:3px}
+.eta .val b{color:var(--teal)}
+.eta .left{text-align:right;font-family:var(--ff-mono);font-size:12.5px;font-weight:600;color:var(--amber)}
+.eta .left small{display:block;font-family:var(--ff-body);font-size:10px;color:var(--ink-3);font-weight:500;margin-top:2px}
+.etabar{height:7px;border-radius:5px;background:var(--line-2);margin-top:11px;overflow:hidden;display:flex}
+.etabar .e{background:var(--teal)}.etabar .r{background:repeating-linear-gradient(90deg,var(--line),var(--line) 4px,#E7EEF3 4px,#E7EEF3 8px)}
+.etabar2{display:flex;justify-content:space-between;font-size:10.5px;color:var(--ink-3);margin-top:5px}
+.eta .note{display:flex;gap:7px;align-items:flex-start;font-size:11px;color:var(--ink-3);margin-top:11px;line-height:1.4}
+.eta .note svg{width:13px;height:13px;flex:0 0 13px;margin-top:1px;color:var(--ink-3)}
+
+.tl{margin-top:18px}
+.tl h3{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin:0 0 12px 2px}
+.step{display:flex;gap:13px;position:relative}
+.step .line{position:absolute;left:13px;top:26px;bottom:-6px;width:2px;background:var(--line)}
+.step:last-child .line{display:none}
+.step.done .line{background:var(--teal)}
+.step .dot{width:28px;height:28px;flex:0 0 28px;border-radius:50%;background:var(--paper);border:2px solid var(--line);display:grid;place-items:center;z-index:1;color:var(--ink-3);font-family:var(--ff-mono);font-size:11px;font-weight:600}
+.step .dot svg{width:14px;height:14px}
+.step.done .dot{background:var(--teal);border-color:var(--teal);color:#fff}
+.step.active .dot{background:var(--gold);border-color:var(--gold);color:var(--navy);box-shadow:0 0 0 5px rgba(231,163,62,.18);animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 5px rgba(231,163,62,.18)}50%{box-shadow:0 0 0 8px rgba(231,163,62,.06)}}
+.step .c{padding-bottom:16px}
+.step .nm{font-size:13.5px;font-weight:600;line-height:1.3;display:flex;justify-content:space-between;gap:8px}
+.step .est{font-family:var(--ff-mono);font-size:10.5px;font-weight:500;color:var(--ink-3);white-space:nowrap}
+.step.pending .nm{color:var(--ink-3);font-weight:500}
+.step .meta{font-size:11.5px;color:var(--ink-3);margin-top:2px}
+.step.active .meta{color:var(--amber);font-weight:600}
+.step.done .meta{color:var(--green)}
+
+.exams{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:15px 16px;margin-top:18px}
+.exams h3{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin:0 0 11px}
+.exrow{display:flex;align-items:center;gap:9px;font-size:13px;padding:6px 0;border-bottom:1px dashed var(--line-2)}
+.exrow:last-child{border-bottom:none}
+.exrow .ic{width:19px;height:19px;flex:0 0 19px;border-radius:50%;display:grid;place-items:center}
+.exrow .ic svg{width:12px;height:12px}
+.exrow.ok .ic{background:rgba(47,163,107,.15);color:var(--green)}
+.exrow.wait .ic{background:var(--mist);color:var(--ink-3);border:1px solid var(--line)}
+.exrow.now .ic{background:rgba(231,163,62,.18);color:var(--amber)}
+.exrow .en{flex:1}.exrow.wait .en{color:var(--ink-3)}
+.exrow .tag{font-size:10.5px;font-weight:600;color:var(--ink-3)}
+.exrow.ok .tag{color:var(--green)}.exrow.now .tag{color:var(--amber)}
+
+.pnote{display:flex;gap:9px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 14px;margin-top:16px;font-size:11.5px;color:var(--ink-2);line-height:1.4}
+.pnote svg{width:16px;height:16px;color:var(--teal);flex:0 0 16px;margin-top:1px}
+.backrow{margin-top:16px;text-align:center}.backrow button{font-size:12px;color:var(--teal);font-weight:600}
+.foot{text-align:center;font-size:10.5px;color:var(--ink-3);margin-top:14px;line-height:1.5}
+.foot .contact{color:var(--teal);font-weight:600}
+.mocktag{position:fixed;top:0;right:0;background:var(--coral);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;padding:3px 9px;border-bottom-left-radius:8px;z-index:90;font-family:var(--ff-mono)}
+.hide{display:none!important}
+</style>
+</head>
+<body>
+<div class="mocktag">v0.6 · MOCKUP</div>
+
+<div class="phone">
+  <div class="hero">
+    <div class="htop">
+      <svg class="mark" viewBox="0 0 40 40" fill="none"><rect x="1.5" y="1.5" width="37" height="37" rx="10" fill="#0B2A45" stroke="#E7A33E" stroke-width="1.5"/><path d="M9 24 H15 L17.5 15 L22.5 27 L25 21 H31" stroke="#12A7AF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="9.5" r="2.2" fill="#E7A33E"/></svg>
+      <div><div class="wm">Next2<b>Peme</b></div><div class="clinic" data-i18n="brand">Next2MCL · PEME status</div></div>
+      <div class="langtog" id="langTog"><button data-lang="en" class="on">EN</button><button data-lang="el">EL</button></div>
+    </div>
+    <div id="heroAccess">
+      <div class="herolead" data-i18n="acc.h">Track a PEME</div>
+      <div class="herosub" data-i18n="acc.sub">Use the code we emailed you — or scan the QR on the routing slip.</div>
+    </div>
+    <div id="heroTracker" class="hide">
+      <div class="refcard">
+        <div class="qr" id="qrBig"></div>
+        <div class="refinfo"><div class="lbl" data-i18n="ref">Tracking code</div><div class="code">CW-4127</div><div class="scan" data-i18n="scan">Scan or bookmark to check anytime</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="body">
+    <!-- ACCESS -->
+    <div id="accessView">
+      <div class="email">
+        <div class="ehead"><div class="av">N2</div><div><div class="from">Next2Peme</div><div class="to" data-i18n="em.to">to crewing@crossworld-marine.com</div></div><div class="badge">INBOX</div></div>
+        <div class="esubj" data-i18n="em.subj">PEME status link · Juan S. · code CW-4127</div>
+        <div class="ebody">
+          <div data-i18n="em.body">You can follow the full progress of this PEME anytime. Your private tracking code:</div>
+          <div class="codechip"><div><div class="cl" data-i18n="ref">Tracking code</div><div class="cv">CW-4127</div></div><div class="qr" id="qrEmail"></div></div>
+          <button class="ebtn" onclick="openTracker()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span data-i18n="em.btn">Track status</span></button>
+          <div class="chan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M4 7l8 6 8-6"/></svg><span data-i18n="em.chan">Sent by email · also works by QR or by entering the code below</span></div>
+        </div>
+      </div>
+      <div class="orline"><span data-i18n="or">or enter your code</span></div>
+      <div class="entry">
+        <label data-i18n="ent.label">Tracking code</label>
+        <div class="row"><input id="codeInp" placeholder="CW-XXXX" maxlength="10" autocomplete="off"><button class="go" onclick="tryCode()" data-i18n="ent.go">Track</button></div>
+        <div class="err" id="err" data-i18n="ent.err">Code not found. Check the code from your email.</div>
+        <div class="hinttap" data-i18n="ent.hint">Demo code: <b onclick="fillCode()">CW-4127</b></div>
+      </div>
+    </div>
+
+    <!-- TRACKER -->
+    <div id="trackerView" class="hide">
+      <div class="summary">
+        <div class="who">Juan S. · <span data-i18n="rank">Able Seaman</span></div>
+        <div class="sub" data-i18n="reqby">Requested by Crossworld Marine · via Manila Crewing Corp.</div>
+        <div class="now">
+          <div class="ring"><b>4/11</b></div>
+          <div class="txt"><div class="st" data-i18n="inprog">In progress</div><div class="cur" data-i18n="s.LAB">Laboratory</div><div class="upd" data-i18n="updated">Updated 18 min ago · today 10:24</div></div>
+        </div>
+        <!-- ETA -->
+        <div class="eta">
+          <div class="top">
+            <div>
+              <div class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-i18n="eta.lbl">Estimated completion</span></div>
+              <div class="val" data-i18n="eta.val">Today · <b>~15:40</b></div>
+            </div>
+            <div class="left">≈ 4h 10m<small data-i18n="eta.left">remaining</small></div>
+          </div>
+          <div class="etabar"><span class="e" style="width:23%"></span><span class="r" style="flex:1"></span></div>
+          <div class="etabar2"><span data-i18n="eta.elapsed">Elapsed 1h 15m</span><span data-i18n="eta.total">Typical total ~5h 30m</span></div>
+          <div class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v.01M11 12h1v4h1"/></svg><span data-i18n="eta.note">Estimate based on this clinic's recent PEME times (last 240). Actual times vary — not a guarantee.</span></div>
+        </div>
+      </div>
+
+      <div class="tl"><h3 data-i18n="journey">PEME journey</h3><div id="steps"></div></div>
+      <div class="exams"><h3 data-i18n="exams">Examinations</h3><div id="examlist"></div></div>
+      <div class="pnote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v6c0 4-3.5 7-8 8-4.5-1-8-4-8-8V7z"/><path d="M9 12l2 2 4-4"/></svg><span data-i18n="privacy">This page shows progress only — no medical results. The fitness certificate is delivered securely through your Principal Portal once the PEME is complete.</span></div>
+      <div class="backrow"><button onclick="backToAccess()" data-i18n="back">← Track a different code</button></div>
+    </div>
+
+    <div class="foot">
+      <span data-i18n="foot1">Questions about this PEME?</span> <span class="contact">peme@next2mcl.com</span><br>
+      <span data-i18n="foot2">Next2Peme · Next2MCL · interim mockup, fake data</span>
+    </div>
+  </div>
+</div>
+
+<script>
+function qrInto(id,seed){const N=21;let h=2166136261;for(let i=0;i<seed.length;i++){h=(h^seed.charCodeAt(i))>>>0;h=(h*16777619)>>>0;}
+  const rnd=i=>{let x=(h^(i*2654435761))>>>0;x^=x<<13;x>>>=0;x^=x>>17;x^=x<<5;x>>>=0;return x/4294967295;};
+  const cells=[];const finder=(gx,gy)=>{for(let y=0;y<7;y++)for(let x=0;x<7;x++){if((x===0||x===6||y===0||y===6)||(x>=2&&x<=4&&y>=2&&y<=4))cells.push([gx+x,gy+y]);}};
+  finder(0,0);finder(N-7,0);finder(0,N-7);const inF=(x,y)=>((x<8&&y<8)||(x>N-9&&y<8)||(x<8&&y>N-9));
+  let r="";for(let y=0;y<N;y++)for(let x=0;x<N;x++){if(inF(x,y))continue;if(rnd(y*N+x)>0.55)cells.push([x,y]);}
+  cells.forEach(([x,y])=>r+=`<rect x="${x}" y="${y}" width="1" height="1"/>`);
+  document.getElementById(id).innerHTML=`<svg viewBox="0 0 ${N} ${N}" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" fill="#0B2A45">${r}</svg>`;}
+qrInto('qrEmail','CW-4127');qrInto('qrBig','CW-4127');
+
+/* CLINIC is a parameter — no hardcoded clinic name in the client view.
+   ETA is computed per-clinic from its historical averages (here: fake stats). */
+const CLINIC={ sampleSize:240, typicalTotalMin:330 }; // stats basis, clinic name intentionally not shown
+
+const VALID="CW-4127", CUR=3;
+/* est = per-stage average minutes from this clinic's stats (drives per-stage + total ETA) */
+const STAGES=[
+  {en:"Appointment confirmed",el:"Επιβεβαίωση ραντεβού",t:"Mon · 09:10",est:0},
+  {en:"Documents & consent",el:"Έγγραφα & συγκατάθεση",t:"Mon · 09:22",est:0},
+  {en:"Check-in & routing",el:"Check-in & δρομολόγηση",t:"today · 09:48",est:0},
+  {en:"Laboratory",el:"Εργαστήριο",t:"",est:45},
+  {en:"Imaging & cardiology",el:"Απεικόνιση & καρδιολογία",t:"",est:40},
+  {en:"Vitals & spirometry",el:"Ζωτικά & σπιρομέτρηση",t:"",est:25},
+  {en:"Specialty exams",el:"Ειδικές εξετάσεις",t:"",est:55},
+  {en:"Physical examination",el:"Κλινική εξέταση",t:"",est:30},
+  {en:"Doctor's review",el:"Έλεγχος ιατρού",t:"",est:60},
+  {en:"Specialist referrals",el:"Παραπομπές ειδικών",t:"",est:0,optional:true},
+  {en:"Certificates ready",el:"Έτοιμα πιστοποιητικά",t:"",est:30}];
+const EXAMS=[
+  {en:"Check-in & routing",el:"Check-in & δρομολόγηση",s:"ok"},
+  {en:"Blood & urine",el:"Αίμα & ούρα",s:"now"},
+  {en:"Drug & alcohol test",el:"Ναρκωτικά & αλκοόλ",s:"now"},
+  {en:"Chest X-ray",el:"Ακτινογραφία θώρακος",s:"wait"},
+  {en:"ECG / stress echo",el:"ΗΚΓ / stress echo",s:"wait"},
+  {en:"Audiometry & vision",el:"Ακοομετρία & όραση",s:"wait"},
+  {en:"Dental",el:"Οδοντιατρική",s:"wait"},
+  {en:"Physical examination",el:"Κλινική εξέταση",s:"wait"}];
+
+const I18N={en:{},el:{
+  brand:"Next2MCL · Κατάσταση PEME",
+  "acc.h":"Παρακολούθηση PEME","acc.sub":"Χρησιμοποίησε τον κωδικό που σου στείλαμε με email — ή σκάναρε το QR στο routing slip.",
+  ref:"Κωδικός παρακολούθησης",scan:"Σκάναρε ή αποθήκευσε για έλεγχο ανά πάσα στιγμή",
+  "em.to":"προς crewing@crossworld-marine.com","em.subj":"Link παρακολούθησης PEME · Juan S. · κωδικός CW-4127",
+  "em.body":"Μπορείς να παρακολουθείς όλη την πρόοδο αυτού του PEME ανά πάσα στιγμή. Ο ιδιωτικός σου κωδικός:",
+  "em.btn":"Παρακολούθηση","em.chan":"Στάλθηκε με email · λειτουργεί και με QR ή με τον κωδικό παρακάτω",
+  or:"ή βάλε τον κωδικό σου","ent.label":"Κωδικός παρακολούθησης","ent.go":"Έλεγχος",
+  "ent.err":"Ο κωδικός δεν βρέθηκε. Δες τον κωδικό από το email σου.","ent.hint":"Demo κωδικός: ",
+  rank:"Ναύτης",reqby:"Αίτημα από Crossworld Marine · μέσω Manila Crewing Corp.",
+  inprog:"Σε εξέλιξη","s.LAB":"Εργαστήριο",updated:"Ενημερώθηκε πριν 18′ · σήμερα 10:24",
+  "eta.lbl":"Εκτιμώμενη ολοκλήρωση","eta.val":"Σήμερα · <b>~15:40</b>","eta.left":"απομένουν",
+  "eta.elapsed":"Πέρασε 1ω 15′","eta.total":"Τυπικός συνολικός ~5ω 30′",
+  "eta.note":"Εκτίμηση βάσει των πρόσφατων χρόνων PEME αυτής της κλινικής (τελευταία 240). Οι πραγματικοί χρόνοι διαφέρουν — δεν είναι εγγύηση.",
+  journey:"Διαδρομή PEME",exams:"Εξετάσεις",back:"← Άλλος κωδικός",
+  privacy:"Η σελίδα δείχνει μόνο την πρόοδο — κανένα ιατρικό αποτέλεσμα. Το πιστοποιητικό καταλληλότητας παραδίδεται με ασφάλεια μέσω του Principal Portal μόλις ολοκληρωθεί το PEME.",
+  foot1:"Ερωτήσεις για αυτό το PEME;",foot2:"Next2Peme · Next2MCL · ενδιάμεσο mockup, fake data"
+}};
+const EXTRA={en:{done:"Done",pending:"Pending",inprogress:"In progress",est:"est",optskip:"only if referred"},
+             el:{done:"Ολοκληρώθηκε",pending:"Σε αναμονή",inprogress:"Σε εξέλιξη",est:"εκτ.",optskip:"μόνο αν χρειαστεί"}};
+let lang="en";const EN={};
+const check=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>`;
+const tt=k=>(lang==="el"?EXTRA.el:EXTRA.en)[k]||k;
+
+function estLabel(m){ if(!m)return ""; if(m>=60){const h=Math.floor(m/60),mm=m%60;return `~${h}${lang==="el"?"ω":"h"}${mm?(" "+mm+"′"):""}`;} return `~${m}${lang==="el"?"′":"m"}`; }
+function renderSteps(){document.getElementById('steps').innerHTML=STAGES.map((s,i)=>{
+  const cls=i<CUR?"done":(i===CUR?"active":"pending");
+  let meta;
+  if(i<CUR)meta=s.t+" · "+tt("done");
+  else if(i===CUR)meta=tt("inprogress")+(s.est?` · ${tt("est")} ${estLabel(s.est)}`:"");
+  else meta=(s.optional?tt("optskip"):tt("pending"))+(s.est&&!s.optional?` · ${tt("est")} ${estLabel(s.est)}`:"");
+  return `<div class="step ${cls}"><div class="line"></div><div class="dot">${i<CUR?check:i+1}</div>
+    <div class="c"><div class="nm"><span>${lang==="el"?s.el:s.en}</span></div><div class="meta">${meta}</div></div></div>`;}).join("");}
+function renderExams(){const ic={ok:check,now:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"/></svg>',wait:''};
+  document.getElementById('examlist').innerHTML=EXAMS.map(e=>{const tag=e.s==="ok"?tt("done"):(e.s==="now"?tt("inprogress"):tt("pending"));
+    return `<div class="exrow ${e.s}"><div class="ic">${ic[e.s]||''}</div><div class="en">${lang==="el"?e.el:e.en}</div><div class="tag">${tag}</div></div>`;}).join("");}
+function applyI18n(){document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;el.innerHTML=(lang==="el"&&I18N.el[k])?I18N.el[k]:(EN[k]??el.innerHTML);});}
+
+function openTracker(){document.getElementById('accessView').classList.add('hide');document.getElementById('heroAccess').classList.add('hide');
+  document.getElementById('trackerView').classList.remove('hide');document.getElementById('heroTracker').classList.remove('hide');window.scrollTo(0,0);}
+function backToAccess(){document.getElementById('trackerView').classList.add('hide');document.getElementById('heroTracker').classList.add('hide');
+  document.getElementById('accessView').classList.remove('hide');document.getElementById('heroAccess').classList.remove('hide');
+  document.getElementById('err').classList.remove('show');document.getElementById('codeInp').value="";}
+function tryCode(){const v=(document.getElementById('codeInp').value||"").trim().toUpperCase();if(v===VALID)openTracker();else document.getElementById('err').classList.add('show');}
+function fillCode(){document.getElementById('codeInp').value="CW-4127";document.getElementById('err').classList.remove('show');}
+document.getElementById('codeInp').addEventListener('keydown',e=>{if(e.key==='Enter')tryCode();});
+
+function setLang(l){lang=l;document.documentElement.lang=l;document.querySelectorAll('#langTog button').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));applyI18n();renderSteps();renderExams();}
+document.querySelectorAll('#langTog button').forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
+document.querySelectorAll('[data-i18n]').forEach(el=>EN[el.dataset.i18n]=el.innerHTML);
+renderSteps();renderExams();
+</script>
+</body>
+</html>

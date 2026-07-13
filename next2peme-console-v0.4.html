@@ -199,6 +199,24 @@ textarea.inp{min-height:78px;resize:vertical}
 .signline b{display:block;font-size:12.5px;color:var(--ink)}
 .certfoot{display:flex;align-items:center;gap:14px;margin-top:24px;padding-top:16px;border-top:1px dashed var(--line);font-size:10.5px;color:var(--ink-3);line-height:1.5}
 .qrbox{width:56px;height:56px;flex:0 0 56px;border:1px solid var(--line);border-radius:8px;background:repeating-conic-gradient(var(--ink) 0 25%, #fff 0 50%) 0 0/14px 14px}
+.labgrp{border:1px solid var(--line);border-radius:11px;margin-bottom:12px;overflow:hidden}
+.labgrp .lgh{display:flex;align-items:center;justify-content:space-between;background:var(--mist);padding:9px 13px;border-bottom:1px solid var(--line)}
+.labgrp .lgh b{font-size:13px;color:var(--ink)}
+.labrows{padding:5px 13px}
+.labrow{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line-2)}
+.labrow:last-child{border-bottom:none}
+.labrow .tn{flex:1;font-size:12.5px;color:var(--ink-2)}
+.labrow .labin{width:150px;font-family:var(--ff-mono);font-size:12px;border:1px solid var(--line);border-radius:7px;padding:5px 8px;color:var(--ink);background:var(--paper)}
+.labrow .labin:focus{outline:none;border-color:var(--teal)}
+.labrow .tu{font-size:10px;color:var(--ink-3);width:66px;font-family:var(--ff-mono)}
+.hl{font-family:var(--ff-mono);font-size:10px;font-weight:700;padding:1px 6px;border-radius:5px}
+.hl.h{color:var(--coral);background:rgba(229,84,75,.12)}
+.hl.l{color:var(--amber);background:rgba(217,144,42,.14)}
+.labtbl{width:100%;border-collapse:collapse;margin:6px 0 4px;font-size:12px}
+.labtbl th{text-align:left;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);font-weight:700;padding:8px;border-bottom:1.5px solid var(--line)}
+.labtbl td{padding:8px;border-bottom:1px solid var(--line-2);color:var(--ink-2)}
+.labtbl td.r{font-family:var(--ff-mono);font-weight:600;color:var(--ink)}
+.labtbl td.f{text-align:center}
 .emailcard{margin-top:16px;background:var(--mist);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
 .emailcard .ehd{display:flex;align-items:center;gap:10px}
 .emailcard .eav{width:30px;height:30px;flex:0 0 30px;border-radius:8px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:11px;font-weight:700;font-family:var(--ff-display)}
@@ -212,6 +230,9 @@ textarea.inp{min-height:78px;resize:vertical}
 .emailcard .linkchip{display:inline-block;margin-top:11px;font-family:var(--ff-mono);font-size:11.5px;color:var(--teal);text-decoration:none;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 11px;word-break:break-all}
 .emailcard .linkchip:hover{border-color:var(--teal)}
 .emailcard .enote{font-size:11px;color:var(--ink-2);margin:11px 0 0;line-height:1.5}
+.trackbtn{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-family:inherit;font-size:12.5px;font-weight:700;color:#fff;text-decoration:none;background:linear-gradient(100deg,var(--teal),var(--teal-2));border-radius:9px;padding:10px 14px}
+.trackbtn svg{width:15px;height:15px}
+.trackbtn:hover{filter:brightness(1.06)}
 .nmlink{cursor:pointer;display:inline-block}
 .tbl .nmlink:hover{color:var(--teal);text-decoration:underline}
 .sfgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
@@ -315,6 +336,7 @@ textarea.inp{min-height:78px;resize:vertical}
       <a href="#" data-stage="10"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span data-i18n="st.CERT">Certificates</span><span class="st" data-stst="10"></span></a>
       <span class="lbl" data-i18n="nav.core">Shared Core</span>
       <a href="#" data-view="folder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18M3 12h18"/></svg><span data-i18n="nav.folder">Seafarer 360°</span></a>
+      <a href="#" data-href="next2peme-tracker-v0.6.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-i18n="nav.track">Client Tracker</span></a>
     </nav>
     <div class="foot">
       <div class="rolebox"><label data-i18n="role.acting">Acting as</label><select id="roleSel"></select></div>
@@ -462,10 +484,11 @@ const I18N={en:{
   "nsf.h":"Register New Seafarer","nsf.p":"This is where a seafarer enters the system — one Seafarer ID for life. Fill the profile, then register.","nsf.submit":"Register seafarer","nsf.prio":"Urgent (high priority)","nsf.opt":"optional",
   "t.reg":"Seafarer registered · card opened",
   "sf.religion":"Religion","sf.srn":"SRN (Seafarer Reg. No.)","sf.phil":"PhilHealth No.","sf.category":"Category","sf.package":"PEME Package","sf.photo":"Patient photo","sf.photocap":"Capture photo","sf.photodone":"Photo captured",
-  "reg.done":"Registration complete · credentials issued","reg.donesub":"A unique login was generated and emailed to the seafarer to self-complete the declaration forms.","reg.control":"Control No.","reg.user":"Username","reg.pass":"Password","reg.emailto":"Login email sent to","reg.emailsubj":"Your PEME self-service login","reg.emailnote":"The seafarer taps the link, logs in, and completes the self-declaration forms + e-signature — then proceeds to the stations.","reg.opencard":"Open Seafarer Card","reg.another":"New Seafarer",
+  "reg.done":"Registration complete · credentials issued","reg.donesub":"A unique login was generated and emailed to the seafarer to self-complete the declaration forms.","reg.control":"Control No.","reg.user":"Username","reg.pass":"Password","reg.emailto":"Login email sent to","reg.emailsubj":"Your PEME self-service login","reg.emailnote":"The seafarer taps the link, logs in, and completes the self-declaration forms + e-signature — then proceeds to the stations.","reg.opencard":"Open Seafarer Card","reg.another":"New Seafarer","reg.track":"Track your PEME (client view)",
   "sf.docsscan":"Documents to scan","doc.scan":"Scan / Upload","doc.scanned":"Scanned","doc.onfile":"On file","doc.missing":"Missing","doc.req":"required",
   "sf.docnote":"We scan the original of each document. Each file is kept ONCE in Next2DMS (single source of truth) — other products hold a read-only reference, never a copy. Certificates the PEME produces (MER · Certificate for Service at Sea · Crew Endorsement · Oath · flag-state) are issued later and stored in DMS too.",
   "cd.preview":"Preview Fitness Certificate","cd.back":"Back to Certificates","cd.issued":"Issued","cd.subtitle":"Pre-Employment Medical Examination · Fitness for Sea Service","cd.findings":"Examination summary","cd.standard":"In accordance with STCW 2010 (Reg. I/9), MLC 2006, and DOH / DMW requirements.","cd.examdate":"Examination date","cd.validuntil":"Valid until","cd.examiner":"Examining Physician","cd.director":"Medical Director","cd.dmsnote":"Original stored once in Next2DMS (single source of truth). Verify authenticity via QR. Copies are read-only references — no-copy.","cd.fit":"FIT FOR SEA DUTY","cd.fitsub":"No restrictions","cd.temp":"FIT WITH RESTRICTIONS","cd.tempsub":"Temporary / conditional","cd.unfit":"UNFIT FOR SEA DUTY","cd.unfitsub":"Requires follow-up / re-evaluation",
+  "lab.dc":"Data Collection & Results","lab.view":"View report","lab.gen":"Generate results & complete","lab.back":"Back to Laboratory","lab.subtitle":"Pre-Employment Medical Examination · Laboratory","lab.medtech":"Medical Technologist","lab.patho":"Pathologist","lab.test":"Test","lab.result":"Result","lab.normal":"Normal Values","lab.unit":"Unit",
   "appt.h":"New PEME Request","appt.p":"The agency submits a request; the clinic confirms and returns digital proof.",
   "appt.company":"Company / Principal","appt.rank":"Rank","appt.date":"Preferred date","appt.pkg":"PEME package","appt.hi":"Urgent (high priority)","appt.hihint":"The whole PEME flow is flagged red so every station knows it's urgent.","appt.submit":"Submit & confirm","appt.seafarer":"Seafarer","appt.newsf":"— New / first-time seafarer —","appt.first":"First name","appt.last":"Last name","appt.booked":"Appointment booked","appt.bookedsub":"Digital proof sent to the manning agency. The case is now on the Case Board at stage BOOK.","appt.when":"Appointment date","appt.case":"Case code","appt.proof":"scan at check-in","appt.viewboard":"View on Case Board","appt.another":"New appointment",
   "hdr.fit":"Disposition pending","open360":"Open 360° Folder","track.title":"PEME Journey","track.of":"of",
@@ -492,10 +515,11 @@ const I18N={en:{
   "nsf.h":"Καταχώριση Νέου Ναυτικού","nsf.p":"Εδώ μπαίνει ο ναυτικός στο σύστημα — ένα Seafarer ID για μια ζωή. Συμπλήρωσε το προφίλ και καταχώρισε.","nsf.submit":"Καταχώριση ναυτικού","nsf.prio":"Επείγον (high priority)","nsf.opt":"προαιρετικό",
   "t.reg":"Ο ναυτικός καταχωρίστηκε · άνοιξε η καρτέλα",
   "sf.religion":"Θρήσκευμα","sf.srn":"SRN (Αρ. Μητρώου Ναυτικού)","sf.phil":"Αρ. PhilHealth","sf.category":"Κατηγορία","sf.package":"Πακέτο PEME","sf.photo":"Φωτογραφία","sf.photocap":"Λήψη φωτό","sf.photodone":"Η φωτό λήφθηκε",
-  "reg.done":"Η καταχώριση ολοκληρώθηκε · εκδόθηκαν credentials","reg.donesub":"Δημιουργήθηκε μοναδικό login και στάλθηκε email στον ναυτικό για να συμπληρώσει μόνος του τις δηλώσεις.","reg.control":"Αρ. Ελέγχου","reg.user":"Username","reg.pass":"Password","reg.emailto":"Email login στάλθηκε στο","reg.emailsubj":"Το login σου για το PEME self-service","reg.emailnote":"Ο ναυτικός πατάει το link, κάνει login, συμπληρώνει τις δηλώσεις + e-signature — και μετά προχωράει στους σταθμούς.","reg.opencard":"Άνοιγμα Καρτέλας","reg.another":"Νέος Ναυτικός",
+  "reg.done":"Η καταχώριση ολοκληρώθηκε · εκδόθηκαν credentials","reg.donesub":"Δημιουργήθηκε μοναδικό login και στάλθηκε email στον ναυτικό για να συμπληρώσει μόνος του τις δηλώσεις.","reg.control":"Αρ. Ελέγχου","reg.user":"Username","reg.pass":"Password","reg.emailto":"Email login στάλθηκε στο","reg.emailsubj":"Το login σου για το PEME self-service","reg.emailnote":"Ο ναυτικός πατάει το link, κάνει login, συμπληρώνει τις δηλώσεις + e-signature — και μετά προχωράει στους σταθμούς.","reg.opencard":"Άνοιγμα Καρτέλας","reg.another":"Νέος Ναυτικός","reg.track":"Παρακολούθηση PEME (client view)",
   "sf.docsscan":"Δικαιολογητικά προς σκανάρισμα","doc.scan":"Σκανάρισμα","doc.scanned":"Σκαναρίστηκε","doc.onfile":"Στον φάκελο","doc.missing":"Λείπει","doc.req":"υποχρεωτικό",
   "sf.docnote":"Σκανάρουμε το πρωτότυπο κάθε δικαιολογητικού. Κάθε έγγραφο κρατιέται ΜΙΑ φορά στο Next2DMS (single source of truth) — τα άλλα προϊόντα κρατούν read-only reference, ποτέ αντίγραφο. Τα πιστοποιητικά που παράγει το PEME (MER · Certificate for Service at Sea · Crew Endorsement · Oath · flag-state) εκδίδονται αργότερα και αποθηκεύονται κι αυτά στο DMS.",
   "cd.preview":"Προβολή Πιστοποιητικού Ικανότητας","cd.back":"Πίσω στα Πιστοποιητικά","cd.issued":"Εκδόθηκε","cd.subtitle":"Προ-Εργασιακή Ιατρική Εξέταση · Ικανότητα προς Ναυτολόγηση","cd.findings":"Σύνοψη εξέτασης","cd.standard":"Σύμφωνα με STCW 2010 (Reg. I/9), MLC 2006, και τις απαιτήσεις DOH / DMW.","cd.examdate":"Ημ. εξέτασης","cd.validuntil":"Ισχύει έως","cd.examiner":"Εξετάζων Ιατρός","cd.director":"Ιατρικός Διευθυντής","cd.dmsnote":"Το πρωτότυπο κρατιέται μία φορά στο Next2DMS (single source of truth). Επαλήθευση μέσω QR. Τα αντίγραφα είναι read-only references — no-copy.","cd.fit":"ΙΚΑΝΟΣ ΠΡΟΣ ΝΑΥΤΟΛΟΓΗΣΗ","cd.fitsub":"Χωρίς περιορισμούς","cd.temp":"ΙΚΑΝΟΣ ΜΕ ΠΕΡΙΟΡΙΣΜΟΥΣ","cd.tempsub":"Προσωρινά / υπό όρους","cd.unfit":"ΑΚΑΤΑΛΛΗΛΟΣ ΠΡΟΣ ΝΑΥΤΟΛΟΓΗΣΗ","cd.unfitsub":"Απαιτεί επανεξέταση",
+  "lab.dc":"Καταχώριση & Αποτελέσματα","lab.view":"Προβολή report","lab.gen":"Έκδοση αποτελεσμάτων & ολοκλήρωση","lab.back":"Πίσω στο Εργαστήριο","lab.subtitle":"Προ-Εργασιακή Ιατρική Εξέταση · Εργαστήριο","lab.medtech":"Ιατρικός Τεχνολόγος","lab.patho":"Παθολόγος","lab.test":"Εξέταση","lab.result":"Αποτέλεσμα","lab.normal":"Φυσιολογικές Τιμές","lab.unit":"Μονάδα",
   "appt.h":"Νέο Αίτημα PEME","appt.p":"Το πρακτορείο υποβάλλει αίτημα· η κλινική επιβεβαιώνει και επιστρέφει digital proof.",
   "appt.company":"Εταιρεία / Principal","appt.rank":"Βαθμός","appt.date":"Επιθυμητή ημερομηνία","appt.pkg":"Πακέτο PEME","appt.hi":"Επείγον (high priority)","appt.hihint":"Όλη η ροή του PEME επισημαίνεται με κόκκινο ώστε κάθε σταθμός να ξέρει ότι είναι επείγον.","appt.submit":"Υποβολή & επιβεβαίωση","appt.seafarer":"Ναυτικός","appt.newsf":"— Νέος / first-time ναυτικός —","appt.first":"Όνομα","appt.last":"Επώνυμο","appt.booked":"Το ραντεβού κλείστηκε","appt.bookedsub":"Digital proof στάλθηκε στο πρακτορείο. Η υπόθεση είναι πλέον στο Case Board στο στάδιο BOOK.","appt.when":"Ημ. ραντεβού","appt.case":"Κωδικός υπόθεσης","appt.proof":"scan στο check-in","appt.viewboard":"Προβολή στο Case Board","appt.another":"Νέο ραντεβού",
   "hdr.fit":"Εκκρεμεί απόφαση","open360":"Άνοιγμα Φακέλου 360°","track.title":"Διαδρομή PEME","track.of":"από",
@@ -781,6 +805,96 @@ function vCertDoc(name){
   </div>`;
 }
 
+let LAB_PID="hema";
+const LABPANELS=[
+ {id:"hema",en:"Hematology",el:"Αιματολογικό",tests:[
+   {n:"Blood Type",r:"O POSITIVE",u:"",ref:"—"},
+   {n:"Hemoglobin",r:"150",u:"g/L",ref:"M: 120–180"},
+   {n:"Hematocrit",r:"46",u:"%",ref:"M: 40–54"},
+   {n:"Red Blood Cell",r:"5.10",u:"x10^12/L",ref:"M: 4.0–5.5"},
+   {n:"White Blood Cell",r:"7.20",u:"x10^9/L",ref:"5.0–11.0"},
+   {n:"Neutrophil",r:"60",u:"%",ref:"40–70"},
+   {n:"Lymphocyte",r:"33",u:"%",ref:"20–40"},
+   {n:"Monocyte",r:"5",u:"%",ref:"0–10"},
+   {n:"Eosinophil",r:"2",u:"%",ref:"0–3"},
+   {n:"Platelet",r:"260",u:"x10^9/L",ref:"150–450"}]},
+ {id:"chem",en:"Chemistry",el:"Βιοχημικό",tests:[
+   {n:"FBS",r:"5.2",u:"mmol/L",ref:"3.33–6.10"},
+   {n:"Creatinine",r:"88",u:"µmol/L",ref:"M: 61.8–123.7"},
+   {n:"Total Cholesterol",r:"4.6",u:"mmol/L",ref:"<5.20"},
+   {n:"Triglycerides",r:"1.2",u:"mmol/L",ref:"M: 0.45–1.81"},
+   {n:"HDL",r:"1.3",u:"mmol/L",ref:"M: >0.50"},
+   {n:"LDL",r:"2.4",u:"mmol/L",ref:"<2.59"},
+   {n:"VLDL",r:"0.35",u:"mmol/L",ref:"0.05–0.78"},
+   {n:"HbA1c",r:"5.4",u:"%",ref:"4.50–6.50"}]},
+ {id:"sero",en:"Serology / Immunology",el:"Ορολογία / Ανοσολογία",tests:[
+   {n:"HBsAg",r:"Nonreactive",u:"",ref:"Nonreactive"},
+   {n:"VDRL",r:"Nonreactive",u:"",ref:"Nonreactive"},
+   {n:"HIV Screening",r:"Nonreactive",u:"0.08 / cutoff 0.150",ref:"Nonreactive"}]},
+ {id:"urine",en:"Urinalysis",el:"Γενική Ούρων",tests:[
+   {n:"Color",r:"Yellow",u:"",ref:"—"},
+   {n:"Transparency",r:"Clear",u:"",ref:"—"},
+   {n:"pH",r:"6.0",u:"",ref:"5.0–8.0"},
+   {n:"Sp. Gravity",r:"1.015",u:"",ref:"1.003–1.030"},
+   {n:"Glucose",r:"Negative",u:"",ref:"Negative"},
+   {n:"Protein",r:"Negative",u:"",ref:"Negative"},
+   {n:"WBC",r:"0–2",u:"/HPF",ref:"0–5"},
+   {n:"RBC",r:"0–2",u:"/HPF",ref:"0–3"}]},
+ {id:"fecal",en:"Fecalysis",el:"Γενική Κοπράνων",tests:[
+   {n:"Color",r:"Brown",u:"",ref:"—"},
+   {n:"Consistency",r:"Formed",u:"",ref:"—"},
+   {n:"RBC",r:"0–1",u:"/hpf",ref:"0–1"},
+   {n:"WBC",r:"0–1",u:"/hpf",ref:"0–1"},
+   {n:"Parasites",r:"No intestinal parasite seen",u:"",ref:"None"}]},
+ {id:"drug",en:"Drug & Alcohol",el:"Ναρκωτικά & Αλκοόλ",tests:[
+   {n:"Methamphetamine",r:"Negative",u:"",ref:"Negative"},
+   {n:"Tetrahydrocannabinol (THC)",r:"Negative",u:"",ref:"Negative"},
+   {n:"Alcohol (saliva)",r:"Negative",u:"",ref:"Negative"}]}
+];
+function openLabReport(pid){LAB_PID=pid;activeView="labreport";$("#crumbView").textContent="Lab report";render();}
+function vLab(){
+  const st=STAGES[3],done=CASE.done[3];
+  const ok=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>`;
+  const panels=LABPANELS.map(p=>`<div class="labgrp"><div class="lgh"><b>${L(p)}</b><button class="mini ghost" onclick="openLabReport('${p.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:13px;height:13px;vertical-align:-2px"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg> ${t("lab.view")}</button></div><div class="labrows">${p.tests.map(x=>`<div class="labrow"><span class="tn">${x.n}</span><input class="labin" value="${x.r}"><span class="tu">${x.u||''}</span></div>`).join("")}</div></div>`).join("");
+  return `<div class="pagehead"><div class="ey">${st.code} · ${t("track.title")}</div><h1>${L(st)}</h1></div>
+    ${sf360head(true)}${trackBar()}
+    <div class="card" style="margin-top:16px">
+      <div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">${iconSvg('lab')}</svg></div><h3>${L(st)} — ${t("lab.dc")}</h3><span class="stepstat ${done?'ok':''}">${done?ok+t("completed"):''}</span></div>
+      <div class="feeds"><span>${t("feeds")}</span>${STATIONS[3].feeds.map(f=>`<span class="fp">${f}</span>`).join("")}</div>
+      <div class="cb">${panels}
+        <div class="completebar"><button class="magic" onclick="completeStage(3)" ${done?'disabled':''}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>${done?t("completed"):t("lab.gen")}</button></div>
+      </div>
+    </div>`;
+}
+function vLabReport(pid){
+  const p=LABPANELS.find(x=>x.id===pid)||LABPANELS[0],s=SEAFARER;
+  const seq=((''+s.caseId).match(/(\d+)$/)||["","04127"])[1];
+  const code="MCL-MAR-PEME-LAB-2026-"+seq;
+  const kv=(k,v)=>`<div class="kv"><div class="k">${k}</div><div class="v">${v||"—"}</div></div>`;
+  const rows=p.tests.map(x=>`<tr><td>${x.n}</td><td class="r">${x.r}</td><td>${x.ref||'—'}</td><td>${x.u||'—'}</td><td class="f">${x.hl?`<span class="hl ${x.hl==='H'?'h':'l'}">${x.hl}</span>`:''}</td></tr>`).join("");
+  return `<div class="docwrap">
+    <button class="backbtn" onclick="openStage(3)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>${t("lab.back")}</button>
+    <div class="certdoc">
+      <div class="cdtop">
+        <div class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 3v6l-5 9a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3l-5-9V3M8 3h8"/></svg></div>
+        <div><h2>DOCTOR NEXT TO ME ΙΚΕ</h2><div class="sub">HPDC Manila · ${L(p).toUpperCase()} RESULT</div></div>
+        <div class="code">${code}<br>${t("cd.issued")}: 2026-07-12</div>
+      </div>
+      <div class="certbody">
+        <div class="certtitle">${L(p)}</div>
+        <div class="certtitle-sub">${t("lab.subtitle")}</div>
+        <div class="certgrid">${kv(t("sf.fullname"),`${s.first} ${s.last}`)}${kv("Seafarer ID",s.id)}${kv(t("sf.rank"),LX(s.rank))}${kv(t("reg.control"),"HPDC-"+seq)}</div>
+        <table class="labtbl"><thead><tr><th>${t("lab.test")}</th><th>${t("lab.result")}</th><th>${t("lab.normal")}</th><th>${t("lab.unit")}</th><th>H/L</th></tr></thead><tbody>${rows}</tbody></table>
+        <div class="certsign">
+          <div class="signline"><b>R. Cruz, RMT</b>${t("lab.medtech")}</div>
+          <div class="signline"><b>Dr. A. Reyes, MD</b>${t("lab.patho")}</div>
+        </div>
+        <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br><span style="font-family:var(--ff-mono)">${code}</span></div></div>
+      </div>
+    </div>
+  </div>`;
+}
+
 function vFolder(){
   return `<div class="pagehead"><div class="ey">CBMS · Layer 2 · Shared Core</div><h1>Seafarer 360°</h1></div>
     <div class="ctxbanner"><span class="ic">📁</span><div><b>${t("ctx.t")}</b> ${t("ctx.d")}</div></div>
@@ -941,6 +1055,7 @@ function vRegDone(){
             <div><div class="cl">${t("reg.pass")}</div><div class="cv">${r.password}</div></div>
           </div>
           <a class="linkchip" href="${r.link}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;vertical-align:-1px"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg> ${r.link}</a>
+          <a class="trackbtn" href="next2peme-tracker-v0.6.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a9 9 0 0 1 0 18"/></svg>${t("reg.track")}</a>
           <p class="enote">${t("reg.emailnote")}</p>
         </div>
         <div class="sfacts" style="margin-top:16px">
@@ -961,9 +1076,11 @@ function render(){
   else if(activeView==="newseafarer")h.innerHTML=regDone?vRegDone():vNewSeafarer();
   else if(activeView==="seafarercard")h.innerHTML=vSeafarerCard(CARD_SID);
   else if(activeView==="certdoc")h.innerHTML=vCertDoc(CERT_NAME);
+  else if(activeView==="labreport")h.innerHTML=vLabReport(LAB_PID);
   else if(activeView==="stage"){
     const s=CASE._openStage;
     if(s===2)h.innerHTML=vFrontdesk();
+    else if(s===3)h.innerHTML=vLab();
     else if(STATIONS[s])h.innerHTML=vStation(s);
     else if(s===8)h.innerHTML=vMD();
     else if(s===10)h.innerHTML=vCerts();
@@ -1031,7 +1148,7 @@ function init(){
   $$("[data-i18n]").forEach(el=>EN[el.dataset.i18n]=el.textContent);
   const sel=$("#roleSel");sel.innerHTML=ROLES.map(r=>`<option value="${r.id}">${r[lang].name}</option>`).join("");sel.onchange=e=>setRole(e.target.value);
   $("#nav").addEventListener("click",e=>{const a=e.target.closest("a");if(!a)return;e.preventDefault();
-    if(a.dataset.view)go(a.dataset.view);else if(a.dataset.stage)openStage(+a.dataset.stage);});
+    if(a.dataset.view)go(a.dataset.view);else if(a.dataset.stage)openStage(+a.dataset.stage);else if(a.dataset.href)location.href=a.dataset.href;});
   $$("#langTog button").forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
   applyStatic();go("board");
 }
