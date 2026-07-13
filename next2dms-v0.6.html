@@ -486,6 +486,53 @@ function docUuid(d){let h=2166136261>>>0;const s=d.n+tenant;for(let i=0;i<s.leng
   const a=hx(),b=hx(),c=hx(),e=hx();
   return `${a}-${b.slice(0,4)}-7${b.slice(4,7)}-${((parseInt(c[0],16)&3)|8).toString(16)}${c.slice(1,4)}-${c.slice(4)}${e.slice(0,4)}`;}
 
+/* ---- Juan D. Santos — full PEME document folder: each document is BORN in the DMS the moment its station produces it (single source of truth * no-copy). Others hold read-only references. ---- */
+Object.assign(TYCODE,{'Scanned Document':'SCN','Declaration':'DEC','Consent Form':'CNS','Lab Report':'LAB','Imaging Report':'IMG','Vitals Report':'VIT','Specialty Report':'SPEC','Physical Exam':'PE','MER':'MER','Certificate of Service':'COS','Oath':'OATH','Flag-state Certificate':'FLG'});
+(function seedPemeFolder(){
+  var SID="SF-PH-039281", VESSEL="MV Aegean Trader", CL="Crossworld";
+  var rows=[
+    ["Passport (scan) \u2014 J. Santos","Scanned Document","Intake",false,"2026-07-10","",""],
+    ["Seaman's Book SIRB (scan) \u2014 J. Santos","Scanned Document","Intake",false,"2026-07-10","",""],
+    ["POEA-SEC Contract (scan) \u2014 J. Santos","Scanned Document","Intake",false,"2026-07-10","",""],
+    ["Medical History Questionnaire \u2014 J. Santos","Declaration","Self-service intake",true,"2026-07-10","J. Santos","Seafarer"],
+    ["Consent to Release Information \u2014 J. Santos","Consent Form","Self-service intake",false,"2026-07-10","J. Santos","Seafarer"],
+    ["HIV Testing Consent (Form A) \u2014 J. Santos","Consent Form","Self-service intake",true,"2026-07-10","J. Santos","Seafarer"],
+    ["Drug & Alcohol Testing Consent \u2014 J. Santos","Consent Form","Self-service intake",false,"2026-07-10","J. Santos","Seafarer"],
+    ["COVID-19 Health Declaration \u2014 J. Santos","Declaration","Self-service intake",false,"2026-07-10","J. Santos","Seafarer"],
+    ["Laboratory Result Report \u2014 J. Santos","Lab Report","Laboratory",true,"2026-07-11","R. Cruz, RMT","Medical Technologist"],
+    ["Chest X-ray Report \u2014 J. Santos","Imaging Report","Imaging & Cardiology",true,"2026-07-11","Dr. J. Valdez","Radiologist"],
+    ["Ultrasound (KUB) Report \u2014 J. Santos","Imaging Report","Imaging & Cardiology",true,"2026-07-11","Dr. J. Valdez","Sonologist"],
+    ["ECG Report (12-lead) \u2014 J. Santos","Imaging Report","Imaging & Cardiology",true,"2026-07-11","Cardiology","Cardiologist"],
+    ["Vitals & Spirometry Report \u2014 J. Santos","Vitals Report","Vitals & Spiro",true,"2026-07-11","C. Nurse","Nurse"],
+    ["Colour Vision (Ishihara) Report \u2014 J. Santos","Specialty Report","Specialty Exams",true,"2026-07-11","Specialist","Ophthalmology"],
+    ["Audiometry Report \u2014 J. Santos","Specialty Report","Specialty Exams",true,"2026-07-11","Specialist","Audiology"],
+    ["Dental Examination Report \u2014 J. Santos","Specialty Report","Specialty Exams",true,"2026-07-11","Dental","Dentist"],
+    ["Psychological Evaluation \u2014 J. Santos","Specialty Report","Specialty Exams",true,"2026-07-11","Psychologist","Psychology"],
+    ["Medical History & Physical Exam \u2014 J. Santos","Physical Exam","Physical Examination",true,"2026-07-12","Examining Physician","Physician"],
+    ["Crew Endorsement Report \u2014 J. Santos","Crew Endorsement","Final Evaluation",true,"2026-07-12","Dr. R. Cruz","Medical Director"],
+    ["Medical Examination Report (MER) \u2014 J. Santos","MER","Final Evaluation",true,"2026-07-12","Dr. R. Cruz","Medical Director"],
+    ["Certificate for Service at Sea \u2014 J. Santos","Certificate of Service","Certificates",false,"2026-07-12","Dr. R. Cruz","Medical Director"],
+    ["Oath of Undertaking \u2014 J. Santos","Oath","Certificates",false,"2026-07-12","J. Santos","Seafarer"],
+    ["Flag-state Certificate (Panama) \u2014 J. Santos","Flag-state Certificate","Records",false,"2026-07-12","Records","Medical Records"]
+  ];
+  var bucket=TENANTS.next2mcl.docs;
+  rows.forEach(function(r){
+    var n=r[0],t=r[1],station=r[2],medical=r[3],when=r[4],sn=r[5],sr=r[6];
+    var scan=(station==="Intake");
+    var refBy=medical?["Next2Peme","Seafarer 360\u00b0","Next2MCL"]:["Next2Peme","Seafarer 360\u00b0"];
+    if(t==="Crew Endorsement"||t==="MER")refBy.push("Next2Care");
+    bucket.push({
+      n:n,t:t,src:"peme",cl:CL,v:1,st:"signed",own:sn||"Frontdesk",
+      medical:medical||undefined,
+      refBy:refBy,
+      meta:{"Seafarer ID":SID,"Station":station,"Vessel":VESSEL},
+      versions:[[1, scan?"Scanned & filed":"Final signed", sn||"Frontdesk", when]],
+      signers: sn?[[sn,sr,"ok"]]:[],
+      audit:[[ scan?"Scanned into Next2DMS":"Signed (e-sign \u00b7 RA 8792)", (sn||"Frontdesk")+" \u00b7 "+when ],["Produced by Next2Peme \u00b7 "+station, "system \u00b7 "+when]]
+    });
+  });
+})();
+
 /* ---- in-app guide (coding + metadata standard) ---- */
 function openGuide(){$("#guideNav").classList.add("on");$$("#nav a.lib,#nav a.src,#nav a.gov").forEach(a=>a.classList.remove("on"));
   $("#libView").style.display="none";$("#guideView").classList.add("show");renderGuide();}
