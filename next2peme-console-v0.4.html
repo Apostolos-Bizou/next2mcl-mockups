@@ -218,6 +218,14 @@ textarea.inp{min-height:78px;resize:vertical}
 .labtbl td.r{font-family:var(--ff-mono);font-weight:600;color:var(--ink)}
 .labtbl td.f{text-align:center}
 .findp{font-size:12.5px;color:var(--ink-2);line-height:1.6;margin:4px 0 0}
+.plates{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin:8px 0 4px}
+.plate{border:1px solid var(--line);border-radius:8px;padding:6px 4px;text-align:center;background:var(--paper)}
+.plate .pn{font-size:8px;color:var(--ink-3);font-weight:700}
+.plate .pv{font-family:var(--ff-mono);font-size:13px;font-weight:700;color:var(--navy);margin-top:2px}
+.audio{border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--paper)}
+.audiolegend{display:flex;gap:18px;font-size:11px;color:var(--ink-2);margin-top:8px}
+.spectag{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;color:var(--green);background:rgba(47,163,107,.1);border:1px solid rgba(47,163,107,.4);border-radius:8px;padding:7px 13px}
+.spectag svg{width:15px;height:15px}
 .emailcard{margin-top:16px;background:var(--mist);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
 .emailcard .ehd{display:flex;align-items:center;gap:10px}
 .emailcard .eav{width:30px;height:30px;flex:0 0 30px;border-radius:8px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:11px;font-weight:700;font-family:var(--ff-display)}
@@ -491,6 +499,7 @@ const I18N={en:{
   "cd.preview":"Preview Fitness Certificate","cd.back":"Back to Certificates","cd.issued":"Issued","cd.subtitle":"Pre-Employment Medical Examination · Fitness for Sea Service","cd.findings":"Examination summary","cd.standard":"In accordance with STCW 2010 (Reg. I/9), MLC 2006, and DOH / DMW requirements.","cd.examdate":"Examination date","cd.validuntil":"Valid until","cd.examiner":"Examining Physician","cd.director":"Medical Director","cd.dmsnote":"Original stored once in Next2DMS (single source of truth). Verify authenticity via QR. Copies are read-only references — no-copy.","cd.fit":"FIT FOR SEA DUTY","cd.fitsub":"No restrictions","cd.temp":"FIT WITH RESTRICTIONS","cd.tempsub":"Temporary / conditional","cd.unfit":"UNFIT FOR SEA DUTY","cd.unfitsub":"Requires follow-up / re-evaluation",
   "lab.dc":"Data Collection & Results","lab.view":"View report","lab.gen":"Generate results & complete","lab.back":"Back to Laboratory","lab.subtitle":"Pre-Employment Medical Examination · Laboratory","lab.medtech":"Medical Technologist","lab.patho":"Pathologist","lab.test":"Test","lab.result":"Result","lab.normal":"Normal Values","lab.unit":"Unit",
   "img.back":"Back to Imaging","img.subtitle":"Pre-Employment Medical Examination · Imaging & Cardiology","img.findings":"Findings","img.impression":"Impression",
+  "spec.back":"Back to Specialty","spec.subtitle":"Pre-Employment Medical Examination · Specialty Examinations","spec.plates":"Plate answers (21)","spec.env":"Test environment","spec.resp":"Responses",
   "appt.h":"New PEME Request","appt.p":"The agency submits a request; the clinic confirms and returns digital proof.",
   "appt.company":"Company / Principal","appt.rank":"Rank","appt.date":"Preferred date","appt.pkg":"PEME package","appt.hi":"Urgent (high priority)","appt.hihint":"The whole PEME flow is flagged red so every station knows it's urgent.","appt.submit":"Submit & confirm","appt.seafarer":"Seafarer","appt.newsf":"— New / first-time seafarer —","appt.first":"First name","appt.last":"Last name","appt.booked":"Appointment booked","appt.bookedsub":"Digital proof sent to the manning agency. The case is now on the Case Board at stage BOOK.","appt.when":"Appointment date","appt.case":"Case code","appt.proof":"scan at check-in","appt.viewboard":"View on Case Board","appt.another":"New appointment",
   "hdr.fit":"Disposition pending","open360":"Open 360° Folder","track.title":"PEME Journey","track.of":"of",
@@ -523,6 +532,7 @@ const I18N={en:{
   "cd.preview":"Προβολή Πιστοποιητικού Ικανότητας","cd.back":"Πίσω στα Πιστοποιητικά","cd.issued":"Εκδόθηκε","cd.subtitle":"Προ-Εργασιακή Ιατρική Εξέταση · Ικανότητα προς Ναυτολόγηση","cd.findings":"Σύνοψη εξέτασης","cd.standard":"Σύμφωνα με STCW 2010 (Reg. I/9), MLC 2006, και τις απαιτήσεις DOH / DMW.","cd.examdate":"Ημ. εξέτασης","cd.validuntil":"Ισχύει έως","cd.examiner":"Εξετάζων Ιατρός","cd.director":"Ιατρικός Διευθυντής","cd.dmsnote":"Το πρωτότυπο κρατιέται μία φορά στο Next2DMS (single source of truth). Επαλήθευση μέσω QR. Τα αντίγραφα είναι read-only references — no-copy.","cd.fit":"ΙΚΑΝΟΣ ΠΡΟΣ ΝΑΥΤΟΛΟΓΗΣΗ","cd.fitsub":"Χωρίς περιορισμούς","cd.temp":"ΙΚΑΝΟΣ ΜΕ ΠΕΡΙΟΡΙΣΜΟΥΣ","cd.tempsub":"Προσωρινά / υπό όρους","cd.unfit":"ΑΚΑΤΑΛΛΗΛΟΣ ΠΡΟΣ ΝΑΥΤΟΛΟΓΗΣΗ","cd.unfitsub":"Απαιτεί επανεξέταση",
   "lab.dc":"Καταχώριση & Αποτελέσματα","lab.view":"Προβολή report","lab.gen":"Έκδοση αποτελεσμάτων & ολοκλήρωση","lab.back":"Πίσω στο Εργαστήριο","lab.subtitle":"Προ-Εργασιακή Ιατρική Εξέταση · Εργαστήριο","lab.medtech":"Ιατρικός Τεχνολόγος","lab.patho":"Παθολόγος","lab.test":"Εξέταση","lab.result":"Αποτέλεσμα","lab.normal":"Φυσιολογικές Τιμές","lab.unit":"Μονάδα",
   "img.back":"Πίσω στην Απεικόνιση","img.subtitle":"Προ-Εργασιακή Ιατρική Εξέταση · Απεικόνιση & Καρδιολογία","img.findings":"Ευρήματα","img.impression":"Εντύπωση",
+  "spec.back":"Πίσω στις Ειδικές","spec.subtitle":"Προ-Εργασιακή Ιατρική Εξέταση · Ειδικές Εξετάσεις","spec.plates":"Απαντήσεις πλακών (21)","spec.env":"Περιβάλλον test","spec.resp":"Αποκρίσεις",
   "appt.h":"Νέο Αίτημα PEME","appt.p":"Το πρακτορείο υποβάλλει αίτημα· η κλινική επιβεβαιώνει και επιστρέφει digital proof.",
   "appt.company":"Εταιρεία / Principal","appt.rank":"Βαθμός","appt.date":"Επιθυμητή ημερομηνία","appt.pkg":"Πακέτο PEME","appt.hi":"Επείγον (high priority)","appt.hihint":"Όλη η ροή του PEME επισημαίνεται με κόκκινο ώστε κάθε σταθμός να ξέρει ότι είναι επείγον.","appt.submit":"Υποβολή & επιβεβαίωση","appt.seafarer":"Ναυτικός","appt.newsf":"— Νέος / first-time ναυτικός —","appt.first":"Όνομα","appt.last":"Επώνυμο","appt.booked":"Το ραντεβού κλείστηκε","appt.bookedsub":"Digital proof στάλθηκε στο πρακτορείο. Η υπόθεση είναι πλέον στο Case Board στο στάδιο BOOK.","appt.when":"Ημ. ραντεβού","appt.case":"Κωδικός υπόθεσης","appt.proof":"scan στο check-in","appt.viewboard":"Προβολή στο Case Board","appt.another":"Νέο ραντεβού",
   "hdr.fit":"Εκκρεμεί απόφαση","open360":"Άνοιγμα Φακέλου 360°","track.title":"Διαδρομή PEME","track.of":"από",
@@ -958,6 +968,89 @@ function vImgReport(id){
   </div>`;
 }
 
+let SPEC_ID="sight";
+const ISHIHARA=[12,8,6,29,57,5,3,15,74,2,6,97,45,5,7,16,73,26,42,35,96];
+const SPECEXAMS=[
+ {id:"sight",en:"Sight & Colour Vision",el:"Όραση & Χρωματική",rep:"ISHIHARA ANSWER SHEET",
+  fields:[["Visual acuity (R)","20/20"],["Visual acuity (L)","20/20"],["Ishihara","Adequate"],["Color vision","Normal"]]},
+ {id:"hearing",en:"Hearing (Audiometry)",el:"Ακοή (Ακουομετρία)",rep:"AUDIOMETER SCREENING",
+  fields:[["Right ear (dB)","15–25"],["Left ear (dB)","20–30"],["Result","Passed"]]},
+ {id:"dental",en:"Dental Health",el:"Οδοντιατρική",rep:"DENTAL HEALTH EXAMINATION",
+  fields:[["Findings","Normal findings"],["Status","Fit for employment"]]},
+ {id:"psych",en:"Psychological Evaluation",el:"Ψυχολογική Αξιολόγηση",rep:"PSYCHOLOGICAL EVALUATION",
+  fields:[["Intellectual level","Average"],["Recommendation","Recommended"]]}
+];
+function audiogram(){
+  const freqs=[500,1000,2000,3000,4000,6000,8000],R=[15,15,20,20,20,25,25],Lf=[20,20,20,25,25,30,30];
+  const X=i=>36+i*44,Y=db=>18+(db/110)*150;let g="";
+  for(let db=0;db<=110;db+=10){const y=Y(db);g+=`<line x1="36" y1="${y}" x2="344" y2="${y}" stroke="#EAF0F4"/><text x="30" y="${y+3}" font-size="7" fill="#8AA0B0" text-anchor="end">${db}</text>`;}
+  freqs.forEach((f,i)=>{const x=X(i);g+=`<line x1="${x}" y1="18" x2="${x}" y2="168" stroke="#EAF0F4"/><text x="${x}" y="182" font-size="7.5" fill="#8AA0B0" text-anchor="middle">${f>=1000?f/1000+'k':f}</text>`;});
+  g+=`<polyline points="${R.map((db,i)=>X(i)+','+Y(db)).join(' ')}" fill="none" stroke="#E5544B" stroke-width="1.4"/>`;
+  R.forEach((db,i)=>g+=`<circle cx="${X(i)}" cy="${Y(db)}" r="4" fill="none" stroke="#E5544B" stroke-width="1.6"/>`);
+  g+=`<polyline points="${Lf.map((db,i)=>X(i)+','+Y(db)).join(' ')}" fill="none" stroke="#0E6FBF" stroke-width="1.4" stroke-dasharray="3 2"/>`;
+  Lf.forEach((db,i)=>{const x=X(i),y=Y(db);g+=`<path d="M${x-3.5},${y-3.5} L${x+3.5},${y+3.5} M${x+3.5},${y-3.5} L${x-3.5},${y+3.5}" stroke="#0E6FBF" stroke-width="1.6"/>`;});
+  return `<svg viewBox="0 0 360 192" style="width:100%;max-width:430px"><text x="190" y="11" font-size="8" fill="#8AA0B0" text-anchor="middle">Frequency (Hz) · Threshold (dB)</text>${g}</svg>`;
+}
+function openSpecReport(id){SPEC_ID=id;activeView="specreport";$("#crumbView").textContent="Specialty report";render();}
+function vSpecialty(){
+  const st=STAGES[6],done=CASE.done[6];
+  const ok=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>`;
+  const cards=SPECEXAMS.map(s=>`<div class="labgrp"><div class="lgh"><b>${L(s)}</b><button class="mini ghost" onclick="openSpecReport('${s.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:13px;height:13px;vertical-align:-2px"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg> ${t("lab.view")}</button></div><div class="labrows">${s.fields.map(f=>`<div class="labrow"><span class="tn" style="flex:0 0 150px">${f[0]}</span><input class="labin" style="flex:1;width:auto" value="${f[1]}"></div>`).join("")}</div></div>`).join("");
+  return `<div class="pagehead"><div class="ey">${st.code} · ${t("track.title")}</div><h1>${L(st)}</h1></div>
+    ${sf360head(true)}${trackBar()}
+    <div class="card" style="margin-top:16px">
+      <div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">${iconSvg('spec')}</svg></div><h3>${L(st)} — ${t("lab.dc")}</h3><span class="stepstat ${done?'ok':''}">${done?ok+t("completed"):''}</span></div>
+      <div class="feeds"><span>${t("feeds")}</span>${STATIONS[6].feeds.map(f=>`<span class="fp">${f}</span>`).join("")}</div>
+      <div class="cb">${cards}
+        <div class="completebar"><button class="magic" onclick="completeStage(6)" ${done?'disabled':''}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>${done?t("completed"):t("lab.gen")}</button></div>
+      </div>
+    </div>`;
+}
+function vSpecReport(id){
+  const s=SPECEXAMS.find(x=>x.id===id)||SPECEXAMS[0],sf=SEAFARER;
+  const seq=((''+sf.caseId).match(/(\d+)$/)||["","04127"])[1];
+  const code="MCL-MAR-PEME-SPEC-2026-"+seq;
+  const kv=(k,v)=>`<div class="kv"><div class="k">${k}</div><div class="v">${v||"—"}</div></div>`;
+  const chk=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg>`;
+  let body="";
+  if(id==="sight"){
+    body=`<div class="spectag">${chk} Adequate — no colour deficiency</div>
+      <div class="sectitle" style="margin-top:14px">${t("spec.plates")}</div>
+      <div class="plates">${ISHIHARA.map((v,i)=>`<div class="plate"><div class="pn">${i+1}</div><div class="pv">${v}</div></div>`).join("")}</div>
+      <div class="certsign"><div class="signline"><b>&nbsp;</b>Patient signature</div><div class="signline"><b>C. Nurse, RN</b>Nurse</div></div>`;
+  }else if(id==="hearing"){
+    body=`<div class="audio">${audiogram()}<div class="audiolegend"><span><b style="color:#E5544B">◯</b> Right ear</span><span><b style="color:#0E6FBF">✕</b> Left ear</span></div></div>
+      <div class="certgrid" style="border-bottom:none">${kv(t("spec.env"),"Satisfactory")}${kv(t("spec.resp"),"Reliable")}</div>
+      <div class="certsign"><div></div><div class="signline"><b>C. Nurse, RN</b>Nurse</div></div>`;
+  }else if(id==="dental"){
+    body=`<div class="spectag">${chk} FIT FOR EMPLOYMENT</div>
+      <div class="sectitle" style="margin-top:14px">${t("img.findings")}</div>
+      <p class="findp">Presence of material alba, calculus deposits and stains. No non-restorable carious teeth indicated for extraction. Dental fitness satisfactory for employment.</p>
+      <div class="certsign"><div></div><div class="signline"><b>Dr. M. Mabingnay</b>Dentist</div></div>`;
+  }else{
+    body=`<div class="spectag">${chk} RECOMMENDED</div>
+      <div class="certgrid" style="border-bottom:none">${kv("Intellectual level","Average")}${kv("Emotional stability","Adequate")}${kv("Interpersonal adjustment","Adequate")}${kv("Remarks","No significant findings")}</div>
+      <div class="certsign"><div class="signline"><b>G. Ruben</b>Psychometrician</div><div class="signline"><b>R. Fuentes, RPsy</b>Psychologist</div></div>`;
+  }
+  return `<div class="docwrap">
+    <button class="backbtn" onclick="openStage(6)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>${t("spec.back")}</button>
+    <div class="certdoc">
+      <div class="cdtop">
+        <div class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-6 10-6 10 6 10 6-3 6-10 6-10-6-10-6z"/></svg></div>
+        <div><h2>DOCTOR NEXT TO ME ΙΚΕ</h2><div class="sub">HPDC Manila · ${s.rep}</div></div>
+        <div class="code">${code}<br>${t("cd.issued")}: 2026-07-12</div>
+      </div>
+      <div class="certbody">
+        <div class="certtitle">${L(s)}</div>
+        <div class="certtitle-sub">${t("spec.subtitle")}</div>
+        <div class="certgrid">${kv(t("sf.fullname"),`${sf.first} ${sf.last}`)}${kv("Seafarer ID",sf.id)}</div>
+        ${body}
+        <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br><span style="font-family:var(--ff-mono)">${code}</span></div></div>
+      </div>
+    </div>
+  </div>`;
+}
+
 function vFolder(){
   return `<div class="pagehead"><div class="ey">CBMS · Layer 2 · Shared Core</div><h1>Seafarer 360°</h1></div>
     <div class="ctxbanner"><span class="ic">📁</span><div><b>${t("ctx.t")}</b> ${t("ctx.d")}</div></div>
@@ -1141,11 +1234,13 @@ function render(){
   else if(activeView==="certdoc")h.innerHTML=vCertDoc(CERT_NAME);
   else if(activeView==="labreport")h.innerHTML=vLabReport(LAB_PID);
   else if(activeView==="imgreport")h.innerHTML=vImgReport(IMG_ID);
+  else if(activeView==="specreport")h.innerHTML=vSpecReport(SPEC_ID);
   else if(activeView==="stage"){
     const s=CASE._openStage;
     if(s===2)h.innerHTML=vFrontdesk();
     else if(s===3)h.innerHTML=vLab();
     else if(s===4)h.innerHTML=vImaging();
+    else if(s===6)h.innerHTML=vSpecialty();
     else if(STATIONS[s])h.innerHTML=vStation(s);
     else if(s===8)h.innerHTML=vMD();
     else if(s===10)h.innerHTML=vCerts();
