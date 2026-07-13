@@ -199,6 +199,19 @@ textarea.inp{min-height:78px;resize:vertical}
 .signline b{display:block;font-size:12.5px;color:var(--ink)}
 .certfoot{display:flex;align-items:center;gap:14px;margin-top:24px;padding-top:16px;border-top:1px dashed var(--line);font-size:10.5px;color:var(--ink-3);line-height:1.5}
 .qrbox{width:56px;height:56px;flex:0 0 56px;border:1px solid var(--line);border-radius:8px;background:repeating-conic-gradient(var(--ink) 0 25%, #fff 0 50%) 0 0/14px 14px}
+.emailcard{margin-top:16px;background:var(--mist);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.emailcard .ehd{display:flex;align-items:center;gap:10px}
+.emailcard .eav{width:30px;height:30px;flex:0 0 30px;border-radius:8px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:11px;font-weight:700;font-family:var(--ff-display)}
+.emailcard .efrom{font-size:12.5px;font-weight:700}
+.emailcard .eto{font-size:10.5px;color:var(--ink-3)}
+.emailcard .ebadge{margin-left:auto;font-size:9px;font-weight:700;letter-spacing:.08em;color:var(--green);background:rgba(47,163,107,.12);border:1px solid rgba(47,163,107,.4);padding:2px 7px;border-radius:6px}
+.emailcard .esub{font-size:12.5px;font-weight:600;margin:12px 0 10px;color:var(--ink)}
+.emailcard .cred{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.emailcard .cred .cl{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.emailcard .cred .cv{font-family:var(--ff-mono);font-size:14px;font-weight:700;color:var(--navy);margin-top:3px;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:7px 10px}
+.emailcard .linkchip{display:inline-block;margin-top:11px;font-family:var(--ff-mono);font-size:11.5px;color:var(--teal);text-decoration:none;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 11px;word-break:break-all}
+.emailcard .linkchip:hover{border-color:var(--teal)}
+.emailcard .enote{font-size:11px;color:var(--ink-2);margin:11px 0 0;line-height:1.5}
 .nmlink{cursor:pointer;display:inline-block}
 .tbl .nmlink:hover{color:var(--teal);text-decoration:underline}
 .sfgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
@@ -448,6 +461,8 @@ const I18N={en:{
   "sf.journey":"Open PEME case",
   "nsf.h":"Register New Seafarer","nsf.p":"This is where a seafarer enters the system — one Seafarer ID for life. Fill the profile, then register.","nsf.submit":"Register seafarer","nsf.prio":"Urgent (high priority)","nsf.opt":"optional",
   "t.reg":"Seafarer registered · card opened",
+  "sf.religion":"Religion","sf.srn":"SRN (Seafarer Reg. No.)","sf.phil":"PhilHealth No.","sf.category":"Category","sf.package":"PEME Package","sf.photo":"Patient photo","sf.photocap":"Capture photo","sf.photodone":"Photo captured",
+  "reg.done":"Registration complete · credentials issued","reg.donesub":"A unique login was generated and emailed to the seafarer to self-complete the declaration forms.","reg.control":"Control No.","reg.user":"Username","reg.pass":"Password","reg.emailto":"Login email sent to","reg.emailsubj":"Your PEME self-service login","reg.emailnote":"The seafarer taps the link, logs in, and completes the self-declaration forms + e-signature — then proceeds to the stations.","reg.opencard":"Open Seafarer Card","reg.another":"New Seafarer",
   "sf.docsscan":"Documents to scan","doc.scan":"Scan / Upload","doc.scanned":"Scanned","doc.onfile":"On file","doc.missing":"Missing","doc.req":"required",
   "sf.docnote":"We scan the original of each document. Each file is kept ONCE in Next2DMS (single source of truth) — other products hold a read-only reference, never a copy. Certificates the PEME produces (MER · Certificate for Service at Sea · Crew Endorsement · Oath · flag-state) are issued later and stored in DMS too.",
   "cd.preview":"Preview Fitness Certificate","cd.back":"Back to Certificates","cd.issued":"Issued","cd.subtitle":"Pre-Employment Medical Examination · Fitness for Sea Service","cd.findings":"Examination summary","cd.standard":"In accordance with STCW 2010 (Reg. I/9), MLC 2006, and DOH / DMW requirements.","cd.examdate":"Examination date","cd.validuntil":"Valid until","cd.examiner":"Examining Physician","cd.director":"Medical Director","cd.dmsnote":"Original stored once in Next2DMS (single source of truth). Verify authenticity via QR. Copies are read-only references — no-copy.","cd.fit":"FIT FOR SEA DUTY","cd.fitsub":"No restrictions","cd.temp":"FIT WITH RESTRICTIONS","cd.tempsub":"Temporary / conditional","cd.unfit":"UNFIT FOR SEA DUTY","cd.unfitsub":"Requires follow-up / re-evaluation",
@@ -476,6 +491,8 @@ const I18N={en:{
   "sf.journey":"Άνοιγμα υπόθεσης PEME",
   "nsf.h":"Καταχώριση Νέου Ναυτικού","nsf.p":"Εδώ μπαίνει ο ναυτικός στο σύστημα — ένα Seafarer ID για μια ζωή. Συμπλήρωσε το προφίλ και καταχώρισε.","nsf.submit":"Καταχώριση ναυτικού","nsf.prio":"Επείγον (high priority)","nsf.opt":"προαιρετικό",
   "t.reg":"Ο ναυτικός καταχωρίστηκε · άνοιξε η καρτέλα",
+  "sf.religion":"Θρήσκευμα","sf.srn":"SRN (Αρ. Μητρώου Ναυτικού)","sf.phil":"Αρ. PhilHealth","sf.category":"Κατηγορία","sf.package":"Πακέτο PEME","sf.photo":"Φωτογραφία","sf.photocap":"Λήψη φωτό","sf.photodone":"Η φωτό λήφθηκε",
+  "reg.done":"Η καταχώριση ολοκληρώθηκε · εκδόθηκαν credentials","reg.donesub":"Δημιουργήθηκε μοναδικό login και στάλθηκε email στον ναυτικό για να συμπληρώσει μόνος του τις δηλώσεις.","reg.control":"Αρ. Ελέγχου","reg.user":"Username","reg.pass":"Password","reg.emailto":"Email login στάλθηκε στο","reg.emailsubj":"Το login σου για το PEME self-service","reg.emailnote":"Ο ναυτικός πατάει το link, κάνει login, συμπληρώνει τις δηλώσεις + e-signature — και μετά προχωράει στους σταθμούς.","reg.opencard":"Άνοιγμα Καρτέλας","reg.another":"Νέος Ναυτικός",
   "sf.docsscan":"Δικαιολογητικά προς σκανάρισμα","doc.scan":"Σκανάρισμα","doc.scanned":"Σκαναρίστηκε","doc.onfile":"Στον φάκελο","doc.missing":"Λείπει","doc.req":"υποχρεωτικό",
   "sf.docnote":"Σκανάρουμε το πρωτότυπο κάθε δικαιολογητικού. Κάθε έγγραφο κρατιέται ΜΙΑ φορά στο Next2DMS (single source of truth) — τα άλλα προϊόντα κρατούν read-only reference, ποτέ αντίγραφο. Τα πιστοποιητικά που παράγει το PEME (MER · Certificate for Service at Sea · Crew Endorsement · Oath · flag-state) εκδίδονται αργότερα και αποθηκεύονται κι αυτά στο DMS.",
   "cd.preview":"Προβολή Πιστοποιητικού Ικανότητας","cd.back":"Πίσω στα Πιστοποιητικά","cd.issued":"Εκδόθηκε","cd.subtitle":"Προ-Εργασιακή Ιατρική Εξέταση · Ικανότητα προς Ναυτολόγηση","cd.findings":"Σύνοψη εξέτασης","cd.standard":"Σύμφωνα με STCW 2010 (Reg. I/9), MLC 2006, και τις απαιτήσεις DOH / DMW.","cd.examdate":"Ημ. εξέτασης","cd.validuntil":"Ισχύει έως","cd.examiner":"Εξετάζων Ιατρός","cd.director":"Ιατρικός Διευθυντής","cd.dmsnote":"Το πρωτότυπο κρατιέται μία φορά στο Next2DMS (single source of truth). Επαλήθευση μέσω QR. Τα αντίγραφα είναι read-only references — no-copy.","cd.fit":"ΙΚΑΝΟΣ ΠΡΟΣ ΝΑΥΤΟΛΟΓΗΣΗ","cd.fitsub":"Χωρίς περιορισμούς","cd.temp":"ΙΚΑΝΟΣ ΜΕ ΠΕΡΙΟΡΙΣΜΟΥΣ","cd.tempsub":"Προσωρινά / υπό όρους","cd.unfit":"ΑΚΑΤΑΛΛΗΛΟΣ ΠΡΟΣ ΝΑΥΤΟΛΟΓΗΣΗ","cd.unfitsub":"Απαιτεί επανεξέταση",
@@ -493,6 +510,7 @@ const I18N={en:{
 let lang="en",activeRole="frontdesk",activeView="board";
 let bdQ="",bdStageF=null,bdPrioF=null,bdSortK="code",bdSortD=1;
 let apptSel="",apptDone=null;
+let regDone=null,nsPhotoTaken=false;
 const t=k=>(lang==="el"&&I18N.el[k])?I18N.el[k]:(EN[k]??I18N.en[k]??k);
 const EN={};
 const L=o=>o?(o[lang]||o.en):"";
@@ -824,8 +842,8 @@ function vSeafarerCard(sid){
     ${seafarerHero(s)}
     <div class="sfgrid">
       ${sec(iId,t("sf.identity"),`<div class="kvs">${kv(t("sf.fullname"),`${s.first} ${s.middle?s.middle+" ":""}${s.last}`)}${kv(t("sf.dob"),s.dob,true)}${kv(t("sf.age"),s.age)}${kv(t("sf.sex"),LX(s.sex))}${kv(t("sf.nat"),LX(s.nationality))}${kv(t("sf.civil"),LX(s.civil))}${kv(t("sf.birth"),s.birthplace)}</div>`)}
-      ${sec(iWork,t("sf.work"),`<div class="kvs">${kv(t("sf.rank"),LX(s.rank))}${kv(t("sf.prin"),s.principal)}${kv(t("sf.agency"),s.agency)}${kv(t("sf.vessel"),s.vessel)}</div>`)}
-      ${sec(iDoc,t("sf.docs"),`<div class="kvs">${kv(t("sf.sirb"),s.sirb,true)}${kv(t("sf.pass"),s.passport,true)}</div>${sfDocsList(s)}`)}
+      ${sec(iWork,t("sf.work"),`<div class="kvs">${kv(t("sf.rank"),LX(s.rank))}${kv(t("sf.prin"),s.principal)}${kv(t("sf.agency"),s.agency)}${kv(t("sf.vessel"),s.vessel)}${kv(t("sf.category"),s.category)}${kv(t("sf.package"),s.package)}</div>`)}
+      ${sec(iDoc,t("sf.docs"),`<div class="kvs">${kv(t("sf.sirb"),s.sirb,true)}${kv(t("sf.pass"),s.passport,true)}${kv(t("sf.srn"),s.srn,true)}${kv(t("sf.phil"),s.philhealth,true)}</div>${sfDocsList(s)}`)}
       ${sec(iCon,t("sf.contact"),`<div class="kvs">${kv(t("sf.phone"),s.phone,true)}${kv(t("sf.email"),s.email)}${kv(t("sf.addr"),s.address)}${kv(t("sf.kin"),s.kin&&s.kin.name)}${kv(t("sf.kinrel"),LX(s.kin&&s.kin.rel))}${kv(t("sf.kinphone"),s.kin&&s.kin.phone,true)}</div>`)}
       ${sec(iMed,t("sf.med"),`<div class="kvs">${kv(t("sf.blood"),s.bloodType)}${kv(t("sf.allerg"),LX(s.allergies))}</div><div class="medflag"><span class="lk">🔒</span><span>${t("sf.mednote")}</span></div>`)}
       <div class="full">${sec(iPeme,t("sf.peme"),`<div class="kvs">${pemeKV}</div>
@@ -841,7 +859,7 @@ function openSeafarerCard(sid){CARD_SID=sid;activeView="seafarercard";const s=sf
 /* --- New Seafarer registration --- */
 const gv=id=>{const e=document.getElementById(id);return e?e.value.trim():"";};
 function vNewSeafarer(){
-  nsDocs={};
+  nsDocs={};nsPhotoTaken=false;
   const F=(id,label,ph,req)=>`<div class="field"><label>${label}${req?' <span class="req">*</span>':` <span style="color:var(--ink-3);font-weight:400">· ${t("nsf.opt")}</span>`}</label><input class="inp" id="${id}" placeholder="${ph||''}"></div>`;
   const opt=(id,label,opts)=>`<div class="field"><label>${label}</label><select class="inp" id="${id}">${opts.map(o=>`<option>${o}</option>`).join("")}</select></div>`;
   return `<div class="pagehead"><div class="ey">Operations · ${t("nav.newsf")}</div><h1>${t("nsf.h")}</h1><p>${t("nsf.p")}</p></div>
@@ -849,11 +867,13 @@ function vNewSeafarer(){
       <div class="grid3">${F("nsFirst","First name","Juan",true)}${F("nsMiddle","Middle","D.")}${F("nsLast","Last name","Santos",true)}</div>
       <div class="grid3">${F("nsDob",t("sf.dob"),"1991-06-14")}${opt("nsSex",t("sf.sex"),[lang==='el'?'Άνδρας':'Male',lang==='el'?'Γυναίκα':'Female'])}${F("nsNat",t("sf.nat"),"Filipino")}</div>
       <div class="grid3">${opt("nsCivil",t("sf.civil"),[lang==='el'?'Άγαμος':'Single',lang==='el'?'Έγγαμος':'Married',lang==='el'?'Άλλο':'Other'])}${F("nsBirth",t("sf.birth"),"Cebu City")}${F("nsBlood",t("sf.blood"),"O+")}</div>
+      <div class="grid3">${F("nsReligion",t("sf.religion"),"Catholic")}${F("nsSrn",t("sf.srn"),"SRN-0000000")}${F("nsPhil",t("sf.phil"),"00-000000000-0")}</div>
     </div></div>
     <div class="card" style="margin-top:14px"><div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2h8l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M14 2v4h4"/></svg></div><h3>${t("sf.docs")} & ${t("sf.work")}</h3></div><div class="cb">
       <div class="grid2">${F("nsSirb",t("sf.sirb"),"SB-2026-000000")}${F("nsPass",t("sf.pass"),"P0000000A")}</div>
       <div class="grid2">${F("nsRank",t("sf.rank"),"Able Seaman",true)}${F("nsPrin",t("sf.prin"),"Crossworld Marine",true)}</div>
       <div class="grid2">${F("nsAgency",t("sf.agency"),"Manila Crewing Corp.")}${F("nsVessel",t("sf.vessel"),"MV Aegean Trader")}</div>
+      <div class="grid3">${opt("nsCat",t("sf.category"),["SEABASE","OFFICER","RATING"])}${opt("nsPkg",t("sf.package"),["KAPAL Italian Package A (Non-Food Handler)","Diligent Basic PEME (Non-Food Handler)","Standard PEME — Deck","Standard PEME — Engine","Officer Package","First-time seafarer"])}<div class="field"><label>${t("sf.photo")}</label><button type="button" class="scanbtn" id="nsPhotoBtn" onclick="nsPhotoCap(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.2"/><path d="M8 6l1.5-2h5L16 6"/></svg>${t("sf.photocap")}</button></div></div>
     </div></div>
     <div class="card" style="margin-top:14px"><div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M12 3v12M7 10l5 5 5-5"/></svg></div><h3>${t("sf.docsscan")}</h3></div><div class="cb">
       <div class="docnote"><span class="lk">🔒</span><span>${t("sf.docnote")}</span></div>
@@ -866,6 +886,7 @@ function vNewSeafarer(){
       <div class="completebar"><button class="magic" onclick="registerSeafarer()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="8" r="3.4"/><path d="M4 21c0-4 3-6.5 7-6.5c1 0 1.9.15 2.7.43"/><path d="M18 14v6M15 17h6"/></svg>${t("nsf.submit")}</button></div>
     </div></div>`;
 }
+function nsPhotoCap(btn){nsPhotoTaken=!nsPhotoTaken;btn.classList.toggle('on',nsPhotoTaken);btn.innerHTML=(nsPhotoTaken?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>'+t("sf.photodone"):'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.2"/><path d="M8 6l1.5-2h5L16 6"/></svg>'+t("sf.photocap"));}
 function registerSeafarer(){
   const first=gv("nsFirst")||"New",last=gv("nsLast")||"Seafarer";
   const initials=((first[0]||"")+(last[0]||"")).toUpperCase();
@@ -874,16 +895,61 @@ function registerSeafarer(){
   const rank=gv("nsRank")||"Able Seaman",prin=gv("nsPrin")||"—";
   const prio=(document.getElementById("nsPrio")||{}).checked||false;
   const dob=gv("nsDob");
+  const uname=((first[0]||"s")+last).toLowerCase().replace(/[^a-z0-9]/g,"")+seq.slice(-4);
+  const cset="ABCDEFGHJKLMNPQRSTUVWXYZ23456789abcdefghijkmnpqrstuvwxyz";
+  const pass=Array.from({length:8},()=>cset[Math.floor(Math.random()*cset.length)]).join("");
+  const ctrl="HPDC-"+seq, code="MCL-MAR-PEME-C-2026-"+seq, pkg=gv("nsPkg")||"—";
+  const email=gv("nsEmail")||uname+"@crewmail.ph";
+  const link="next2peme-intake-v0.1.html?u="+uname;
   const s={id:sid,first,middle:gv("nsMiddle"),last,initials,
     rank:{en:rank,el:rank},age:dob?ageFrom(dob):"—",dob,
     sex:gv("nsSex"),nationality:gv("nsNat")||"Filipino",civil:gv("nsCivil"),birthplace:gv("nsBirth"),
-    sirb:gv("nsSirb"),passport:gv("nsPass"),phone:gv("nsPhone"),email:gv("nsEmail"),address:gv("nsAddr"),
+    religion:gv("nsReligion"),srn:gv("nsSrn"),philhealth:gv("nsPhil"),category:gv("nsCat"),package:pkg,photo:nsPhotoTaken,
+    sirb:gv("nsSirb"),passport:gv("nsPass"),phone:gv("nsPhone"),email,address:gv("nsAddr"),
     kin:{name:gv("nsKinName"),rel:gv("nsKinRel"),phone:gv("nsKinPhone")},
     principal:prin,agency:gv("nsAgency"),vessel:gv("nsVessel"),
-    bloodType:gv("nsBlood"),allergies:gv("nsAllerg"),docs:Object.keys(nsDocs).filter(k=>nsDocs[k]),caseId:"PEME-2026-"+seq,priority:prio};
+    bloodType:gv("nsBlood"),allergies:gv("nsAllerg"),docs:Object.keys(nsDocs).filter(k=>nsDocs[k]),
+    caseId:"PEME-2026-"+seq,priority:prio,username:uname,password:pass,controlNo:ctrl,link};
   SEAFARERS.push(s);
   CASES.push({id:s.caseId,nm:`${first} ${last}`,sid,rank,prin,stage:0,prio});
-  toast("t.reg");openSeafarerCard(sid);
+  regDone={name:`${first} ${last}`,sid,code,controlNo:ctrl,package:pkg,email,username:uname,password:pass,link,prio};
+  toast("t.reg");render();
+}
+function resetReg(){regDone=null;render();}
+function vRegDone(){
+  const r=regDone;
+  return `<div class="pagehead"><div class="ey">Operations · ${t("nav.newsf")}</div><h1>${t("reg.done")}</h1><p>${t("reg.donesub")}</p></div>
+  <div class="docwrap" style="max-width:660px">
+    <div class="certdoc">
+      <div class="cdtop">
+        <div class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <div><h2>${r.name}</h2><div class="sub">${r.sid}</div></div>
+        <div class="code">${r.controlNo}</div>
+      </div>
+      <div class="certbody">
+        <div class="kvs">
+          <div class="kv"><div class="k">Seafarer ID</div><div class="v mono">${r.sid}</div></div>
+          <div class="kv"><div class="k">${t("appt.case")}</div><div class="v mono">${r.code}</div></div>
+          <div class="kv"><div class="k">${t("reg.control")}</div><div class="v mono">${r.controlNo}</div></div>
+          <div class="kv"><div class="k">${t("sf.package")}</div><div class="v">${r.package}</div></div>
+        </div>
+        <div class="emailcard">
+          <div class="ehd"><span class="eav">N2</span><div><div class="efrom">Next2Peme</div><div class="eto">${t("reg.emailto")}: ${r.email}</div></div><span class="ebadge">SENT</span></div>
+          <div class="esub">${t("reg.emailsubj")}</div>
+          <div class="cred">
+            <div><div class="cl">${t("reg.user")}</div><div class="cv">${r.username}</div></div>
+            <div><div class="cl">${t("reg.pass")}</div><div class="cv">${r.password}</div></div>
+          </div>
+          <a class="linkchip" href="${r.link}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;vertical-align:-1px"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg> ${r.link}</a>
+          <p class="enote">${t("reg.emailnote")}</p>
+        </div>
+        <div class="sfacts" style="margin-top:16px">
+          <button class="prim" onclick="openSeafarerCard('${r.sid}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.4"/><path d="M5 21c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg>${t("reg.opencard")}</button>
+          <button onclick="resetReg()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>${t("reg.another")}</button>
+        </div>
+      </div>
+    </div>
+  </div>`;
 }
 
 /* ===================== router ===================== */
@@ -892,7 +958,7 @@ function render(){
   if(activeView==="board"){h.innerHTML=vBoard();bdRender();}
   else if(activeView==="appointment")h.innerHTML=vAppointment();
   else if(activeView==="folder")h.innerHTML=vFolder();
-  else if(activeView==="newseafarer")h.innerHTML=vNewSeafarer();
+  else if(activeView==="newseafarer")h.innerHTML=regDone?vRegDone():vNewSeafarer();
   else if(activeView==="seafarercard")h.innerHTML=vSeafarerCard(CARD_SID);
   else if(activeView==="certdoc")h.innerHTML=vCertDoc(CERT_NAME);
   else if(activeView==="stage"){
@@ -938,7 +1004,7 @@ function vFrontdesk(){
 }
 
 /* ===================== actions ===================== */
-function go(v){activeView=v;if(v==="appointment"){apptDone=null;apptSel="";}$("#crumbView").textContent=({board:"Case Board",appointment:"New Appointment",folder:"Seafarer 360°",newseafarer:"New Seafarer"})[v]||"";render();}
+function go(v){activeView=v;if(v==="appointment"){apptDone=null;apptSel="";}if(v==="newseafarer")regDone=null;$("#crumbView").textContent=({board:"Case Board",appointment:"New Appointment",folder:"Seafarer 360°",newseafarer:"New Seafarer"})[v]||"";render();}
 function openStage(i){CASE._openStage=i;activeView="stage";$("#crumbView").textContent=STAGES[i].en;render();}
 function openMyCase(){openStage(CASE.currentStage);}
 function completeStage(s){CASE.done[s]=true;if(s===CASE.currentStage&&CASE.currentStage<STAGES.length-1)CASE.currentStage=Math.min(CASE.currentStage+1,STAGES.length-1);toast("t.saved");render();}
