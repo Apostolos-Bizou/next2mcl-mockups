@@ -217,6 +217,7 @@ textarea.inp{min-height:78px;resize:vertical}
 .labtbl td{padding:8px;border-bottom:1px solid var(--line-2);color:var(--ink-2)}
 .labtbl td.r{font-family:var(--ff-mono);font-weight:600;color:var(--ink)}
 .labtbl td.f{text-align:center}
+.findp{font-size:12.5px;color:var(--ink-2);line-height:1.6;margin:4px 0 0}
 .emailcard{margin-top:16px;background:var(--mist);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
 .emailcard .ehd{display:flex;align-items:center;gap:10px}
 .emailcard .eav{width:30px;height:30px;flex:0 0 30px;border-radius:8px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:11px;font-weight:700;font-family:var(--ff-display)}
@@ -489,6 +490,7 @@ const I18N={en:{
   "sf.docnote":"We scan the original of each document. Each file is kept ONCE in Next2DMS (single source of truth) — other products hold a read-only reference, never a copy. Certificates the PEME produces (MER · Certificate for Service at Sea · Crew Endorsement · Oath · flag-state) are issued later and stored in DMS too.",
   "cd.preview":"Preview Fitness Certificate","cd.back":"Back to Certificates","cd.issued":"Issued","cd.subtitle":"Pre-Employment Medical Examination · Fitness for Sea Service","cd.findings":"Examination summary","cd.standard":"In accordance with STCW 2010 (Reg. I/9), MLC 2006, and DOH / DMW requirements.","cd.examdate":"Examination date","cd.validuntil":"Valid until","cd.examiner":"Examining Physician","cd.director":"Medical Director","cd.dmsnote":"Original stored once in Next2DMS (single source of truth). Verify authenticity via QR. Copies are read-only references — no-copy.","cd.fit":"FIT FOR SEA DUTY","cd.fitsub":"No restrictions","cd.temp":"FIT WITH RESTRICTIONS","cd.tempsub":"Temporary / conditional","cd.unfit":"UNFIT FOR SEA DUTY","cd.unfitsub":"Requires follow-up / re-evaluation",
   "lab.dc":"Data Collection & Results","lab.view":"View report","lab.gen":"Generate results & complete","lab.back":"Back to Laboratory","lab.subtitle":"Pre-Employment Medical Examination · Laboratory","lab.medtech":"Medical Technologist","lab.patho":"Pathologist","lab.test":"Test","lab.result":"Result","lab.normal":"Normal Values","lab.unit":"Unit",
+  "img.back":"Back to Imaging","img.subtitle":"Pre-Employment Medical Examination · Imaging & Cardiology","img.findings":"Findings","img.impression":"Impression",
   "appt.h":"New PEME Request","appt.p":"The agency submits a request; the clinic confirms and returns digital proof.",
   "appt.company":"Company / Principal","appt.rank":"Rank","appt.date":"Preferred date","appt.pkg":"PEME package","appt.hi":"Urgent (high priority)","appt.hihint":"The whole PEME flow is flagged red so every station knows it's urgent.","appt.submit":"Submit & confirm","appt.seafarer":"Seafarer","appt.newsf":"— New / first-time seafarer —","appt.first":"First name","appt.last":"Last name","appt.booked":"Appointment booked","appt.bookedsub":"Digital proof sent to the manning agency. The case is now on the Case Board at stage BOOK.","appt.when":"Appointment date","appt.case":"Case code","appt.proof":"scan at check-in","appt.viewboard":"View on Case Board","appt.another":"New appointment",
   "hdr.fit":"Disposition pending","open360":"Open 360° Folder","track.title":"PEME Journey","track.of":"of",
@@ -520,6 +522,7 @@ const I18N={en:{
   "sf.docnote":"Σκανάρουμε το πρωτότυπο κάθε δικαιολογητικού. Κάθε έγγραφο κρατιέται ΜΙΑ φορά στο Next2DMS (single source of truth) — τα άλλα προϊόντα κρατούν read-only reference, ποτέ αντίγραφο. Τα πιστοποιητικά που παράγει το PEME (MER · Certificate for Service at Sea · Crew Endorsement · Oath · flag-state) εκδίδονται αργότερα και αποθηκεύονται κι αυτά στο DMS.",
   "cd.preview":"Προβολή Πιστοποιητικού Ικανότητας","cd.back":"Πίσω στα Πιστοποιητικά","cd.issued":"Εκδόθηκε","cd.subtitle":"Προ-Εργασιακή Ιατρική Εξέταση · Ικανότητα προς Ναυτολόγηση","cd.findings":"Σύνοψη εξέτασης","cd.standard":"Σύμφωνα με STCW 2010 (Reg. I/9), MLC 2006, και τις απαιτήσεις DOH / DMW.","cd.examdate":"Ημ. εξέτασης","cd.validuntil":"Ισχύει έως","cd.examiner":"Εξετάζων Ιατρός","cd.director":"Ιατρικός Διευθυντής","cd.dmsnote":"Το πρωτότυπο κρατιέται μία φορά στο Next2DMS (single source of truth). Επαλήθευση μέσω QR. Τα αντίγραφα είναι read-only references — no-copy.","cd.fit":"ΙΚΑΝΟΣ ΠΡΟΣ ΝΑΥΤΟΛΟΓΗΣΗ","cd.fitsub":"Χωρίς περιορισμούς","cd.temp":"ΙΚΑΝΟΣ ΜΕ ΠΕΡΙΟΡΙΣΜΟΥΣ","cd.tempsub":"Προσωρινά / υπό όρους","cd.unfit":"ΑΚΑΤΑΛΛΗΛΟΣ ΠΡΟΣ ΝΑΥΤΟΛΟΓΗΣΗ","cd.unfitsub":"Απαιτεί επανεξέταση",
   "lab.dc":"Καταχώριση & Αποτελέσματα","lab.view":"Προβολή report","lab.gen":"Έκδοση αποτελεσμάτων & ολοκλήρωση","lab.back":"Πίσω στο Εργαστήριο","lab.subtitle":"Προ-Εργασιακή Ιατρική Εξέταση · Εργαστήριο","lab.medtech":"Ιατρικός Τεχνολόγος","lab.patho":"Παθολόγος","lab.test":"Εξέταση","lab.result":"Αποτέλεσμα","lab.normal":"Φυσιολογικές Τιμές","lab.unit":"Μονάδα",
+  "img.back":"Πίσω στην Απεικόνιση","img.subtitle":"Προ-Εργασιακή Ιατρική Εξέταση · Απεικόνιση & Καρδιολογία","img.findings":"Ευρήματα","img.impression":"Εντύπωση",
   "appt.h":"Νέο Αίτημα PEME","appt.p":"Το πρακτορείο υποβάλλει αίτημα· η κλινική επιβεβαιώνει και επιστρέφει digital proof.",
   "appt.company":"Εταιρεία / Principal","appt.rank":"Βαθμός","appt.date":"Επιθυμητή ημερομηνία","appt.pkg":"Πακέτο PEME","appt.hi":"Επείγον (high priority)","appt.hihint":"Όλη η ροή του PEME επισημαίνεται με κόκκινο ώστε κάθε σταθμός να ξέρει ότι είναι επείγον.","appt.submit":"Υποβολή & επιβεβαίωση","appt.seafarer":"Ναυτικός","appt.newsf":"— Νέος / first-time ναυτικός —","appt.first":"Όνομα","appt.last":"Επώνυμο","appt.booked":"Το ραντεβού κλείστηκε","appt.bookedsub":"Digital proof στάλθηκε στο πρακτορείο. Η υπόθεση είναι πλέον στο Case Board στο στάδιο BOOK.","appt.when":"Ημ. ραντεβού","appt.case":"Κωδικός υπόθεσης","appt.proof":"scan στο check-in","appt.viewboard":"Προβολή στο Case Board","appt.another":"Νέο ραντεβού",
   "hdr.fit":"Εκκρεμεί απόφαση","open360":"Άνοιγμα Φακέλου 360°","track.title":"Διαδρομή PEME","track.of":"από",
@@ -895,6 +898,66 @@ function vLabReport(pid){
   </div>`;
 }
 
+let IMG_ID="xray";
+const IMGSTUDIES=[
+ {id:"xray",en:"Chest X-ray (PA)",el:"Ακτινογραφία Θώρακος (PA)",rep:"X-RAY RESULT",
+  sig1:"N. Petines, RRT",sig1r:"Radiologic Technologist",sig2:"Dr. J. Valdez, MD",sig2r:"Radiologist",
+  fields:[["Examination","Chest PA"]],
+  findings:"No active lung parenchymal infiltrates. The heart is not enlarged. The trachea is midline. The costophrenic angles and hemidiaphragms are intact. The soft tissues and osseous structures are unremarkable.",
+  impression:"No significant chest findings."},
+ {id:"kub",en:"Ultrasound (KUB)",el:"Υπέρηχος (KUB)",rep:"ULTRASOUND RESULT",
+  sig1:"N. Petines, RRT",sig1r:"Radiologic Technologist",sig2:"Dr. J. Valdez, MD",sig2r:"Sonologist",
+  fields:[["Examination","Kidneys & Urinary Bladder"]],
+  findings:"No disparity in renal sizes; normal parenchymal echogenicity and corticomedullary differentiation. No focal mass lesions or calcifications. Urinary bladder well-distended with unthickened walls, no intraluminal echoes.",
+  impression:"Unremarkable ultrasound of the kidneys and urinary bladder."},
+ {id:"ecg",en:"ECG (12-lead)",el:"ΗΚΓ (12 απαγωγών)",rep:"ECG REPORT",
+  sig1:"",sig1r:"",sig2:"Dr. A. Reyes, MD",sig2r:"Cardiology",
+  fields:[["Rate","72 bpm"],["PR","160 ms"],["QRS","98 ms"],["QT/QTc","380/416 ms"],["Axis","Normal"]],
+  findings:"Sinus rhythm, normal axis. Low-voltage QRS complexes. No acute ST-T changes.",
+  impression:"Normal ECG."}
+];
+function openImgReport(id){IMG_ID=id;activeView="imgreport";$("#crumbView").textContent="Imaging report";render();}
+function vImaging(){
+  const st=STAGES[4],done=CASE.done[4];
+  const ok=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>`;
+  const cards=IMGSTUDIES.map(s=>`<div class="labgrp"><div class="lgh"><b>${L(s)}</b><button class="mini ghost" onclick="openImgReport('${s.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:13px;height:13px;vertical-align:-2px"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg> ${t("lab.view")}</button></div><div class="labrows">${s.fields.map(f=>`<div class="labrow"><span class="tn" style="flex:0 0 120px">${f[0]}</span><input class="labin" style="flex:1;width:auto" value="${f[1]}"></div>`).join("")}<div style="padding:8px 0"><label style="display:block;font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:5px">${t("img.findings")}</label><textarea class="inp" style="min-height:52px">${s.findings}</textarea></div><div class="labrow"><span class="tn" style="flex:0 0 120px">${t("img.impression")}</span><input class="labin" style="flex:1;width:auto" value="${s.impression}"></div></div></div>`).join("");
+  return `<div class="pagehead"><div class="ey">${st.code} · ${t("track.title")}</div><h1>${L(st)}</h1></div>
+    ${sf360head(true)}${trackBar()}
+    <div class="card" style="margin-top:16px">
+      <div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">${iconSvg('img')}</svg></div><h3>${L(st)} — ${t("lab.dc")}</h3><span class="stepstat ${done?'ok':''}">${done?ok+t("completed"):''}</span></div>
+      <div class="feeds"><span>${t("feeds")}</span>${STATIONS[4].feeds.map(f=>`<span class="fp">${f}</span>`).join("")}</div>
+      <div class="cb">${cards}
+        <div class="completebar"><button class="magic" onclick="completeStage(4)" ${done?'disabled':''}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>${done?t("completed"):t("lab.gen")}</button></div>
+      </div>
+    </div>`;
+}
+function vImgReport(id){
+  const s=IMGSTUDIES.find(x=>x.id===id)||IMGSTUDIES[0],sf=SEAFARER;
+  const seq=((''+sf.caseId).match(/(\d+)$/)||["","04127"])[1];
+  const code="MCL-MAR-PEME-IMG-2026-"+seq;
+  const kv=(k,v)=>`<div class="kv"><div class="k">${k}</div><div class="v">${v||"—"}</div></div>`;
+  const flds=s.fields.map(f=>kv(f[0],f[1])).join("");
+  return `<div class="docwrap">
+    <button class="backbtn" onclick="openStage(4)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>${t("img.back")}</button>
+    <div class="certdoc">
+      <div class="cdtop">
+        <div class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 14l5-4 4 3 3-3 6 5"/></svg></div>
+        <div><h2>DOCTOR NEXT TO ME ΙΚΕ</h2><div class="sub">HPDC Manila · ${s.rep}</div></div>
+        <div class="code">${code}<br>${t("cd.issued")}: 2026-07-12</div>
+      </div>
+      <div class="certbody">
+        <div class="certtitle">${L(s)}</div>
+        <div class="certtitle-sub">${t("img.subtitle")}</div>
+        <div class="certgrid">${kv(t("sf.fullname"),`${sf.first} ${sf.last}`)}${kv("Seafarer ID",sf.id)}${flds}</div>
+        <div class="sectitle">${t("img.findings")}</div><p class="findp">${s.findings}</p>
+        <div class="sectitle" style="margin-top:12px">${t("img.impression")}</div><p class="findp" style="font-weight:600;color:var(--ink)">${s.impression}</p>
+        <div class="certsign">${s.sig1?`<div class="signline"><b>${s.sig1}</b>${s.sig1r}</div>`:'<div></div>'}<div class="signline"><b>${s.sig2}</b>${s.sig2r}</div></div>
+        <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br><span style="font-family:var(--ff-mono)">${code}</span></div></div>
+      </div>
+    </div>
+  </div>`;
+}
+
 function vFolder(){
   return `<div class="pagehead"><div class="ey">CBMS · Layer 2 · Shared Core</div><h1>Seafarer 360°</h1></div>
     <div class="ctxbanner"><span class="ic">📁</span><div><b>${t("ctx.t")}</b> ${t("ctx.d")}</div></div>
@@ -1077,10 +1140,12 @@ function render(){
   else if(activeView==="seafarercard")h.innerHTML=vSeafarerCard(CARD_SID);
   else if(activeView==="certdoc")h.innerHTML=vCertDoc(CERT_NAME);
   else if(activeView==="labreport")h.innerHTML=vLabReport(LAB_PID);
+  else if(activeView==="imgreport")h.innerHTML=vImgReport(IMG_ID);
   else if(activeView==="stage"){
     const s=CASE._openStage;
     if(s===2)h.innerHTML=vFrontdesk();
     else if(s===3)h.innerHTML=vLab();
+    else if(s===4)h.innerHTML=vImaging();
     else if(STATIONS[s])h.innerHTML=vStation(s);
     else if(s===8)h.innerHTML=vMD();
     else if(s===10)h.innerHTML=vCerts();
