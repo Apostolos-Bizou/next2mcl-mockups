@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PEME Self-Service · Next2Peme (Mockup v0.1)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#071E33;--navy-2:#0B2A45;--teal:#0E8C93;--teal-2:#12A7AF;--gold:#E7A33E;--gold-2:#F2B860;
+  --coral:#E5544B;--green:#2FA36B;--amber:#D9902A;
+  --mist:#F4F7F9;--paper:#FFFFFF;--ink:#152532;--ink-2:#4C6072;--ink-3:#8AA0B0;
+  --line:#DCE6EC;--line-2:#EAF0F4;--radius:14px;--radius-sm:10px;
+  --shadow:0 1px 2px rgba(7,30,51,.04),0 8px 24px rgba(7,30,51,.06);--shadow-lg:0 12px 40px rgba(7,30,51,.14);
+  --ff-display:'Sora',system-ui,sans-serif;--ff-body:'Inter',system-ui,sans-serif;--ff-mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--ff-body);background:linear-gradient(180deg,#0B2A45,#071E33);min-height:100vh;color:var(--ink);-webkit-font-smoothing:antialiased}
+.wrap{max-width:600px;margin:0 auto;padding:0 14px 40px}
+.top{display:flex;align-items:center;gap:11px;padding:18px 4px 16px}
+.mark{width:38px;height:38px;flex:0 0 38px}
+.wm{font-family:var(--ff-display);font-weight:700;font-size:17px;color:#fff;line-height:1}
+.wm b{color:var(--gold)}
+.clinic{font-size:10.5px;color:#9FC2C8;margin-top:3px;letter-spacing:.02em}
+.langtog{margin-left:auto;display:flex;background:rgba(255,255,255,.1);border-radius:8px;padding:2px}
+.langtog button{border:none;background:none;color:#B9D6DA;font-family:inherit;font-size:11px;font-weight:600;padding:5px 9px;border-radius:6px;cursor:pointer}
+.langtog button.on{background:#fff;color:var(--navy)}
+.mocktag{position:fixed;top:0;right:0;background:var(--coral);color:#fff;font-family:var(--ff-mono);font-size:9.5px;font-weight:600;letter-spacing:.06em;padding:3px 9px;border-bottom-left-radius:8px;z-index:50}
+.card{background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow-lg);overflow:hidden}
+.hide{display:none!important}
+
+/* login */
+.login{padding:26px 24px 24px}
+.login h1{font-family:var(--ff-display);font-size:21px;font-weight:700;margin:0 0 4px;color:var(--navy)}
+.login p{font-size:13px;color:var(--ink-2);margin:0 0 20px;line-height:1.5}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;font-family:inherit;font-size:14px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 13px}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--teal)}
+.btn{width:100%;font-family:inherit;font-size:14px;font-weight:700;padding:14px;border-radius:11px;border:none;cursor:pointer;background:linear-gradient(100deg,var(--gold),var(--gold-2));color:var(--navy);display:flex;align-items:center;justify-content:center;gap:8px}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn svg{width:17px;height:17px}
+.hint{font-size:11.5px;color:var(--ink-3);margin-top:14px;text-align:center}
+.hint b{color:var(--teal);cursor:pointer}
+
+/* wizard */
+.whead{background:linear-gradient(120deg,var(--navy),var(--navy-2));color:#fff;padding:18px 22px}
+.whead .who{font-family:var(--ff-display);font-weight:600;font-size:16px}
+.whead .sub{font-size:11px;color:#9FC2C8;margin-top:2px}
+.prog{padding:14px 22px 0}
+.prog .lbl{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-3);font-weight:600;margin-bottom:7px}
+.prog .lbl b{color:var(--teal)}
+.pbar{height:7px;border-radius:5px;background:var(--line-2);overflow:hidden}
+.pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--teal-2));border-radius:5px;transition:width .3s}
+.fbody{padding:16px 22px 22px}
+.ftitle{font-family:var(--ff-display);font-size:17px;font-weight:700;color:var(--navy);margin:8px 0 3px}
+.fsub{font-size:11.5px;color:var(--ink-3);margin:0 0 16px;line-height:1.5}
+.sec{font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:700;margin:16px 0 9px}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:9px 16px;background:var(--mist);border:1px solid var(--line);border-radius:10px;padding:13px}
+.kv .k{font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.kv .v{font-size:13px;font-weight:600;color:var(--ink);margin-top:2px}
+.kv .v.mono{font-family:var(--ff-mono);font-size:11.5px}
+.hx{display:flex;flex-direction:column;gap:0}
+.hxrow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 2px;border-bottom:1px solid var(--line-2);font-size:12.5px}
+.hxrow:last-child{border-bottom:none}
+.yn{display:flex;gap:6px;flex:0 0 auto}
+.yn button{font-family:inherit;font-size:11px;font-weight:600;padding:5px 12px;border-radius:7px;border:1px solid var(--line);background:var(--paper);color:var(--ink-3);cursor:pointer}
+.yn button.no.on{background:rgba(47,163,107,.12);border-color:rgba(47,163,107,.5);color:var(--green)}
+.yn button.yes.on{background:rgba(229,84,75,.12);border-color:rgba(229,84,75,.5);color:var(--coral)}
+.qrow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid var(--line-2);font-size:13px}
+.opts{display:flex;gap:7px;flex-wrap:wrap}
+.opt{font-family:inherit;font-size:11.5px;font-weight:600;padding:7px 12px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink-2);cursor:pointer}
+.opt.on{background:var(--teal);border-color:var(--teal);color:#fff}
+.consent{font-size:12px;color:var(--ink-2);line-height:1.6;background:var(--mist);border:1px solid var(--line);border-radius:10px;padding:14px}
+.consent b{color:var(--ink)}
+.chkline{display:flex;align-items:flex-start;gap:9px;font-size:12.5px;color:var(--ink);margin-top:13px;cursor:pointer;line-height:1.4}
+.chkline input{margin-top:2px;flex:0 0 auto}
+
+/* signature */
+.sigwrap{margin-top:18px}
+.sigpad{border:1.5px dashed var(--line);border-radius:11px;padding:18px;text-align:center;cursor:pointer;background:var(--mist);transition:.15s}
+.sigpad:hover{border-color:var(--teal)}
+.sigpad .tap{font-size:12.5px;color:var(--ink-3);font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px}
+.sigpad .tap svg{width:16px;height:16px;color:var(--teal)}
+.sigpad.signed{border-style:solid;border-color:rgba(47,163,107,.5);background:rgba(47,163,107,.06)}
+.sigpad .name{font-family:var(--ff-display);font-size:20px;font-weight:700;color:var(--navy);font-style:italic}
+.sigpad .meta{font-size:10px;color:var(--green);font-family:var(--ff-mono);margin-top:5px}
+.rasig{font-size:10px;color:var(--ink-3);text-align:center;margin-top:8px}
+
+/* done */
+.done{padding:30px 24px;text-align:center}
+.done .big{width:64px;height:64px;margin:0 auto 16px;border-radius:50%;background:rgba(47,163,107,.12);display:grid;place-items:center}
+.done .big svg{width:34px;height:34px;color:var(--green)}
+.done h1{font-family:var(--ff-display);font-size:22px;font-weight:700;color:var(--navy);margin:0 0 6px}
+.done p{font-size:13px;color:var(--ink-2);line-height:1.55;margin:0 0 18px}
+.codebox{background:var(--navy);color:#fff;border-radius:12px;padding:16px;margin:0 auto 16px;max-width:280px}
+.codebox .cl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#9FC2C8;font-weight:600}
+.codebox .cv{font-family:var(--ff-mono);font-size:22px;font-weight:600;color:var(--gold);margin-top:4px}
+.summ{text-align:left;background:var(--mist);border:1px solid var(--line);border-radius:11px;padding:14px 16px;margin-bottom:16px}
+.summ .sr{display:flex;align-items:center;gap:9px;font-size:12.5px;padding:6px 0;color:var(--ink-2)}
+.summ .sr svg{width:16px;height:16px;color:var(--green);flex:0 0 16px}
+.foot{text-align:center;color:#7FA0B5;font-size:10.5px;padding:18px 0 0}
+</style>
+</head>
+<body>
+<div class="mocktag">v0.1 · MOCKUP · FAKE DATA</div>
+<div class="wrap">
+  <div class="top">
+    <svg class="mark" viewBox="0 0 40 40" fill="none"><rect x="1.5" y="1.5" width="37" height="37" rx="10" fill="#0B2A45" stroke="#E7A33E" stroke-width="1.5"/><path d="M9 24 H15 L17.5 15 L22.5 27 L25 21 H31" stroke="#12A7AF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="9.5" r="2.2" fill="#E7A33E"/></svg>
+    <div><div class="wm">Next2<b>Peme</b></div><div class="clinic" data-i18n="brand">PEME Self-Service · HPDC Manila</div></div>
+    <div class="langtog" id="langTog"><button data-lang="en" class="on">EN</button><button data-lang="el">EL</button></div>
+  </div>
+
+  <!-- LOGIN -->
+  <div class="card" id="loginView">
+    <div class="login">
+      <h1 data-i18n="lg.h">Complete your PEME forms</h1>
+      <p data-i18n="lg.p">Log in with the username &amp; password we emailed you. You'll fill and e-sign a few declaration forms before your clinic visit.</p>
+      <div class="field"><label data-i18n="lg.user">Username</label><input id="uInp" autocomplete="off"></div>
+      <div class="field"><label data-i18n="lg.pass">Password</label><input id="pInp" type="password" placeholder="••••••••" autocomplete="off"></div>
+      <button class="btn" onclick="login()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg><span data-i18n="lg.btn">Log in</span></button>
+      <div class="hint"><span data-i18n="lg.demo">Demo — any password works.</span> <b onclick="fillDemo()" data-i18n="lg.fill">Fill demo login</b></div>
+    </div>
+  </div>
+
+  <!-- WIZARD -->
+  <div class="card hide" id="wizardView">
+    <div class="whead"><div class="who" id="whoName">Juan D. Santos</div><div class="sub" id="whoSub">SF-PH-039281 · Crossworld Marine · code CW-4127</div></div>
+    <div class="prog"><div class="lbl"><span id="progLbl">Form 1 of 6</span><span><b id="signedN">0</b> <span data-i18n="pg.signed">signed</span></span></div><div class="pbar"><i id="pbar" style="width:0%"></i></div></div>
+    <div class="fbody" id="fbody"></div>
+  </div>
+
+  <!-- DONE -->
+  <div class="card hide" id="doneView">
+    <div class="done">
+      <div class="big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg></div>
+      <h1 data-i18n="dn.h">All forms signed</h1>
+      <p data-i18n="dn.p">Thank you. Your declaration forms are completed and e-signed. Show this code at the front desk — then proceed through the clinic stations.</p>
+      <div class="codebox"><div class="cl" data-i18n="dn.code">Front-desk code</div><div class="cv" id="doneCode">CW-4127</div></div>
+      <div class="summ" id="doneSumm"></div>
+      <p style="font-size:11px;color:var(--ink-3);margin:0" data-i18n="dn.note">You can track your PEME progress anytime with the same code.</p>
+    </div>
+  </div>
+
+  <div class="foot" data-i18n="foot">Next2MCL · Next2Peme — interim mockup, no live data. E-signature is a demo (production uses RA 8792-compliant signing).</div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+let lang="en";
+const EN={};
+const I18N={el:{
+  "brand":"PEME Self-Service · HPDC Manila","lg.h":"Συμπλήρωσε τις φόρμες του PEME σου",
+  "lg.p":"Κάνε login με το username & password που σου στείλαμε email. Θα συμπληρώσεις και θα e-υπογράψεις μερικές φόρμες δήλωσης πριν την επίσκεψη στην κλινική.",
+  "lg.user":"Username","lg.pass":"Password","lg.btn":"Σύνδεση","lg.demo":"Demo — οποιοδήποτε password δουλεύει.","lg.fill":"Συμπλήρωσε demo login",
+  "pg.signed":"υπογεγραμμένες","dn.h":"Όλες οι φόρμες υπογράφηκαν",
+  "dn.p":"Ευχαριστούμε. Οι δηλώσεις σου ολοκληρώθηκαν και e-υπογράφηκαν. Δείξε αυτόν τον κωδικό στη γραμματεία — και προχώρα στους σταθμούς της κλινικής.",
+  "dn.code":"Κωδικός γραμματείας","dn.note":"Μπορείς να παρακολουθείς την πρόοδο του PEME σου οποτεδήποτε με τον ίδιο κωδικό.",
+  "foot":"Next2MCL · Next2Peme — προσωρινό mockup, fake data. Η e-signature είναι demo (production: RA 8792-compliant).",
+  "sign.tap":"Πάτησε εδώ για e-υπογραφή","sign.by":"Υπογράφηκε ηλεκτρονικά","continue":"Υπογραφή & συνέχεια","finish":"Υπογραφή & ολοκλήρωση",
+  "yes":"Ναι","no":"Όχι"
+}};
+function t(k){return (lang==="el"&&I18N.el[k])?I18N.el[k]:(EN[k]||k);}
+function applyStatic(){$$("[data-i18n]").forEach(el=>{const k=el.dataset.i18n;el.textContent=(lang==="el"&&I18N.el[k])?I18N.el[k]:(EN[k]||el.textContent);});}
+
+/* demo profile (pre-filled from registration — mockup) */
+const P={name:"Juan D. Santos",first:"Juan",last:"Santos",sid:"SF-PH-039281",dob:"1991-06-14",sex:"Male",
+  civil:"Married",nationality:"Filipino",address:"Lapu-Lapu City, Cebu, PH",phone:"+63 917 555 0142",
+  email:"juan.santos@crewmail.ph",sirb:"SB-2019-448120",passport:"P1234567A",srn:"SRN-0680307",
+  rank:"Able Seaman",principal:"Crossworld Marine",agency:"Manila Crewing Corp.",
+  package:"KAPAL Italian Package A",code:"CW-4127"};
+
+const MEDHX=["Nose or throat trouble","Ear trouble or deafness","Asthma","Tuberculosis","Other lung disease",
+"High blood pressure","Heart trouble","Rheumatic fever","Diabetes mellitus","Endocrine disorders",
+"Cancer or tumor","Mental disorder","Head or neck injury","Hernia (raptured)","Rheumatism, joints or back",
+"Typhoid or paratyphoid fever","Trachoma or other eye trouble","Stomach pain or ulcer","Other abdominal trouble",
+"Kidney or bladder trouble","Sexually transmitted diseases","Genetic or familial disorder","Malaria",
+"Liver disease","Cough","Fainting spells, fits or seizure","Frequent headaches","Dizziness"];
+
+function kv(k,v){return `<div><div class="k">${k}</div><div class="v${/[-\/]/.test(v)&&v.length>10?' mono':''}">${v||"—"}</div></div>`;}
+
+const FORMS=[
+ {id:"profile",en:"Personal & Contact",el:"Προσωπικά & Επικοινωνία",
+  sub:{en:"Confirm your details — pre-filled from registration.",el:"Επιβεβαίωσε τα στοιχεία σου — προ-συμπληρωμένα από την εγγραφή."},
+  body:()=>`<div class="kv">${kv("Full name",P.name)}${kv("Seafarer ID",P.sid)}${kv("Date of birth",P.dob)}${kv("Sex",P.sex)}${kv("Civil status",P.civil)}${kv("Nationality",P.nationality)}${kv("SIRB",P.sirb)}${kv("Passport",P.passport)}${kv("SRN",P.srn)}${kv("Rank",P.rank)}${kv("Principal",P.principal)}${kv("Address",P.address)}</div>
+    <label class="chkline"><input type="checkbox" id="pconf"> <span>I confirm the above details are correct.</span></label>`},
+
+ {id:"medhx",en:"Medical History",el:"Ιατρικό Ιστορικό",
+  sub:{en:"Have you ever suffered from, or been told you had, any of the following? (default: No)",el:"Είχες ποτέ, ή σου είπαν ότι είχες, κάτι από τα παρακάτω; (default: Όχι)"},
+  body:()=>`<div class="hx">`+MEDHX.map((c,i)=>`<div class="hxrow"><span>${i+1}. ${c}</span><div class="yn"><button class="no on" onclick="ynSet(${i},0,this)" data-i18n="no">No</button><button class="yes" onclick="ynSet(${i},1,this)" data-i18n="yes">Yes</button></div></div>`).join("")+`</div>
+    <label class="chkline"><input type="checkbox" id="hxconf"> <span>I certify the above medical history is true and complete.</span></label>`},
+
+ {id:"consent",en:"Consent to Release Medical Information",el:"Συγκατάθεση Κοινοποίησης Ιατρικών",
+  sub:{en:"Data Privacy Act of 2012.",el:"Data Privacy Act of 2012."},
+  body:()=>`<div class="consent">I authorize <b>HealthPlus Diagnostic Clinic</b> to release my medical information — <b>personal photo, examination results, laboratory results, radiological findings (X-ray/ECG), and medical history summary</b> — to my manning agency <b>${P.agency}</b> / principal <b>${P.principal}</b>, for the pre-employment assessment of fitness for duty. I understand this is protected under the Data Privacy Act of 2012 and may be revoked in writing at any time.</div>
+    <label class="chkline"><input type="checkbox" id="cconf"> <span>I have read and I consent to this release voluntarily.</span></label>`},
+
+ {id:"drug",en:"Drug & Alcohol Testing Consent",el:"Συγκατάθεση Drug & Alcohol Test",
+  sub:{en:"Form DT-001 · purpose: Overseas Employment.",el:"Form DT-001 · σκοπός: Overseas Employment."},
+  body:()=>`<div class="qrow"><span>Have you taken medication / drugs in the past 30 days?</span><div class="yn"><button class="no on" onclick="q1Set(0,this)" data-i18n="no">No</button><button class="yes" onclick="q1Set(1,this)" data-i18n="yes">Yes</button></div></div>
+    <div class="qrow"><span>Have you ingested alcohol in the past 24 hours?</span><div class="yn"><button class="no on" onclick="q2Set(0,this)" data-i18n="no">No</button><button class="yes" onclick="q2Set(1,this)" data-i18n="yes">Yes</button></div></div>
+    <div class="sec">Specimen I consent to give</div>
+    <div class="opts" id="specOpts">${["Urine","Saliva","Blood","Hair"].map((o,i)=>`<button class="opt${i===0?' on':''}" onclick="specSet(this)">${o}</button>`).join("")}</div>
+    <label class="chkline" style="margin-top:16px"><input type="checkbox" id="dconf"> <span>I consent to drug &amp; alcohol testing and confirm my answers are truthful.</span></label>`},
+
+ {id:"hiv",en:"HIV Testing — Information & Consent",el:"HIV Testing — Πληροφορία & Συγκατάθεση",
+  sub:{en:"DOH-NEC Form A · voluntary & confidential (RA 8504).",el:"DOH-NEC Form A · εθελοντικό & εμπιστευτικό (RA 8504)."},
+  body:()=>`<div class="consent">HIV testing is <b>voluntary and confidential</b> under RA 8504. Your result is given only to you, personally. Please answer the reason for testing.</div>
+    <div class="sec">Reason for HIV testing</div>
+    <div class="opts">${["Employment — Overseas","Recommended by physician","Re-testing"].map((o,i)=>`<button class="opt${i===0?' on':''}" onclick="specSet(this)">${o}</button>`).join("")}</div>
+    <div class="sec">Have you been tested for HIV before?</div>
+    <div class="yn"><button class="no on" onclick="q1Set(0,this)" data-i18n="no">No</button><button class="yes" onclick="q1Set(1,this)" data-i18n="yes">Yes</button></div>
+    <label class="chkline"><input type="checkbox" id="vconf"> <span>I voluntarily consent to HIV screening and have read the information above.</span></label>`},
+
+ {id:"covid",en:"Health Declaration (COVID-19)",el:"Δήλωση Υγείας (COVID-19)",
+  sub:{en:"Case Investigation Form (CIF) — Part 1.",el:"Case Investigation Form (CIF) — Μέρος 1."},
+  body:()=>`<div class="qrow"><span>Any symptoms in the last 14 days (fever, cough, loss of taste/smell)?</span><div class="yn"><button class="no on" onclick="q1Set(0,this)" data-i18n="no">No</button><button class="yes" onclick="q1Set(1,this)" data-i18n="yes">Yes</button></div></div>
+    <div class="qrow"><span>Close contact with a confirmed case recently?</span><div class="yn"><button class="no on" onclick="q2Set(0,this)" data-i18n="no">No</button><button class="yes" onclick="q2Set(1,this)" data-i18n="yes">Yes</button></div></div>
+    <div class="sec">COVID-19 vaccination</div>
+    <div class="opts">${["Fully vaccinated","Partially","Not vaccinated"].map((o,i)=>`<button class="opt${i===0?' on':''}" onclick="specSet(this)">${o}</button>`).join("")}</div>
+    <label class="chkline" style="margin-top:16px"><input type="checkbox" id="covconf"> <span>I declare the above health information is true.</span></label>`}
+];
+
+let idx=0; const signs={};
+function login(){
+  const u=$("#uInp").value.trim();
+  $("#whoSub").textContent=`${P.sid} · ${P.principal} · code ${P.code}`+(u?` · ${u}`:"");
+  $("#loginView").classList.add("hide");$("#wizardView").classList.remove("hide");
+  idx=0;renderForm();
+}
+function fillDemo(){$("#uInp").value="jsantos4127";$("#pInp").value="demo1234";}
+function renderForm(){
+  const f=FORMS[idx];
+  const signed=!!signs[f.id];
+  const last=idx===FORMS.length-1;
+  $("#progLbl").textContent=`${lang==='el'?'Φόρμα':'Form'} ${idx+1} ${lang==='el'?'από':'of'} ${FORMS.length}`;
+  $("#signedN").textContent=Object.keys(signs).length;
+  $("#pbar").style.width=(Object.keys(signs).length/FORMS.length*100)+"%";
+  $("#fbody").innerHTML=`
+    <div class="ftitle">${lang==='el'?f.el:f.en}</div>
+    <div class="fsub">${f.sub[lang]||f.sub.en}</div>
+    ${f.body()}
+    <div class="sigwrap">
+      <div class="sigpad ${signed?'signed':''}" onclick="sign()">
+        ${signed?`<div class="name">${P.name}</div><div class="meta">✓ ${t("sign.by")} · ${signs[f.id]}</div>`:`<div class="tap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 17c3-1 3-9 6-9s3 6 6 6 3-3 6-3"/><path d="M3 21h18"/></svg>${t("sign.tap")}</div>`}
+      </div>
+      <div class="rasig">RA 8792 · e-signature (demo)</div>
+      <button class="btn" style="margin-top:14px" id="contBtn" ${signed?'':'disabled'} onclick="next()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>${last?t("finish"):t("continue")}</button>
+    </div>`;
+}
+function sign(){const f=FORMS[idx];if(signs[f.id])return;signs[f.id]=new Date().toLocaleString();renderForm();}
+function next(){if(!signs[FORMS[idx].id])return;if(idx<FORMS.length-1){idx++;renderForm();}else finish();}
+function finish(){
+  $("#wizardView").classList.add("hide");$("#doneView").classList.remove("hide");
+  $("#doneCode").textContent=P.code;
+  $("#doneSumm").innerHTML=FORMS.map(f=>`<div class="sr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>${lang==='el'?f.el:f.en}</div>`).join("");
+}
+/* toggles (mockup — value not validated) */
+function ynSet(i,v,btn){const row=btn.closest('.yn');row.querySelectorAll('button').forEach(b=>b.classList.remove('on'));btn.classList.add('on');}
+function q1Set(v,btn){ynSet(0,v,btn);} function q2Set(v,btn){ynSet(0,v,btn);}
+function specSet(btn){const box=btn.closest('.opts');box.querySelectorAll('.opt').forEach(b=>b.classList.remove('on'));btn.classList.add('on');}
+
+function setLang(l){lang=l;document.documentElement.lang=l;$$("#langTog button").forEach(b=>b.classList.toggle("on",b.dataset.lang===l));applyStatic();
+  if(!$("#wizardView").classList.contains("hide"))renderForm();
+  if(!$("#doneView").classList.contains("hide"))finish();}
+
+function init(){
+  $$("[data-i18n]").forEach(el=>EN[el.dataset.i18n]=el.textContent);
+  EN["sign.tap"]="Tap here to e-sign";EN["sign.by"]="Signed electronically";EN["continue"]="Sign & continue";EN["finish"]="Sign & finish";EN["yes"]="Yes";EN["no"]="No";
+  $$("#langTog button").forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
+  // prefill username from ?u=
+  const u=new URLSearchParams(location.search).get("u");
+  if(u)$("#uInp").value=u;
+}
+init();
+</script>
+</body>
+</html>
