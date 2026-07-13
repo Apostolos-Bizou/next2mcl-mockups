@@ -226,6 +226,17 @@ textarea.inp{min-height:78px;resize:vertical}
 .audiolegend{display:flex;gap:18px;font-size:11px;color:var(--ink-2);margin-top:8px}
 .spectag{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;color:var(--green);background:rgba(47,163,107,.1);border:1px solid rgba(47,163,107,.4);border-radius:8px;padding:7px 13px}
 .spectag svg{width:15px;height:15px}
+.hxgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 22px;margin:4px 0}
+.hxg{display:flex;justify-content:space-between;gap:8px;font-size:12px;padding:6px 0;border-bottom:1px solid var(--line-2)}
+.hxg .no{font-family:var(--ff-mono);font-size:11px;color:var(--green);font-weight:700;flex:0 0 auto}
+.sysrow{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line-2);font-size:12.5px}
+.sysrow:last-child{border-bottom:none}
+.sysrow .sn{flex:0 0 185px;color:var(--ink-2)}
+.sysrow .norm{font-size:11px;font-weight:600;padding:4px 11px;border-radius:7px;border:1px solid rgba(47,163,107,.5);background:rgba(47,163,107,.1);color:var(--green);flex:0 0 auto}
+.sysrow input.fnd{flex:1;font-family:inherit;font-size:12px;border:1px solid var(--line);border-radius:7px;padding:5px 9px;color:var(--ink);background:var(--paper)}
+.systbl{width:100%;border-collapse:collapse;font-size:12px}
+.systbl td{padding:6px 8px;border-bottom:1px solid var(--line-2);color:var(--ink-2)}
+.systbl td.n{text-align:right;color:var(--green);font-weight:600;font-family:var(--ff-mono);font-size:11px}
 .emailcard{margin-top:16px;background:var(--mist);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
 .emailcard .ehd{display:flex;align-items:center;gap:10px}
 .emailcard .eav{width:30px;height:30px;flex:0 0 30px;border-radius:8px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:11px;font-weight:700;font-family:var(--ff-display)}
@@ -500,6 +511,8 @@ const I18N={en:{
   "lab.dc":"Data Collection & Results","lab.view":"View report","lab.gen":"Generate results & complete","lab.back":"Back to Laboratory","lab.subtitle":"Pre-Employment Medical Examination · Laboratory","lab.medtech":"Medical Technologist","lab.patho":"Pathologist","lab.test":"Test","lab.result":"Result","lab.normal":"Normal Values","lab.unit":"Unit",
   "img.back":"Back to Imaging","img.subtitle":"Pre-Employment Medical Examination · Imaging & Cardiology","img.findings":"Findings","img.impression":"Impression",
   "spec.back":"Back to Specialty","spec.subtitle":"Pre-Employment Medical Examination · Specialty Examinations","spec.plates":"Plate answers (21)","spec.env":"Test environment","spec.resp":"Responses",
+  "vit.back":"Back to Vitals","vit.subtitle":"Pre-Employment Medical Examination · Vitals & Spirometry","vit.rep":"VITALS & SPIROMETRY",
+  "phys.back":"Back to Physical Exam","phys.subtitle":"Pre-Employment Medical Examination · Physical Examination","phys.medhx":"Medical History (self-declared, reviewed)","phys.systems":"Physical Examination — systems","phys.rec":"Recommendation","phys.reviewed":"Reviewed — no significant history declared (28-item questionnaire, all negative).","phys.rep":"MEDICAL HISTORY & PHYSICAL EXAM","phys.examiner":"Examining Physician","phys.director":"Medical Director","phys.pending":"Pending","phys.viewrep":"View examination report",
   "appt.h":"New PEME Request","appt.p":"The agency submits a request; the clinic confirms and returns digital proof.",
   "appt.company":"Company / Principal","appt.rank":"Rank","appt.date":"Preferred date","appt.pkg":"PEME package","appt.hi":"Urgent (high priority)","appt.hihint":"The whole PEME flow is flagged red so every station knows it's urgent.","appt.submit":"Submit & confirm","appt.seafarer":"Seafarer","appt.newsf":"— New / first-time seafarer —","appt.first":"First name","appt.last":"Last name","appt.booked":"Appointment booked","appt.bookedsub":"Digital proof sent to the manning agency. The case is now on the Case Board at stage BOOK.","appt.when":"Appointment date","appt.case":"Case code","appt.proof":"scan at check-in","appt.viewboard":"View on Case Board","appt.another":"New appointment",
   "hdr.fit":"Disposition pending","open360":"Open 360° Folder","track.title":"PEME Journey","track.of":"of",
@@ -533,6 +546,8 @@ const I18N={en:{
   "lab.dc":"Καταχώριση & Αποτελέσματα","lab.view":"Προβολή report","lab.gen":"Έκδοση αποτελεσμάτων & ολοκλήρωση","lab.back":"Πίσω στο Εργαστήριο","lab.subtitle":"Προ-Εργασιακή Ιατρική Εξέταση · Εργαστήριο","lab.medtech":"Ιατρικός Τεχνολόγος","lab.patho":"Παθολόγος","lab.test":"Εξέταση","lab.result":"Αποτέλεσμα","lab.normal":"Φυσιολογικές Τιμές","lab.unit":"Μονάδα",
   "img.back":"Πίσω στην Απεικόνιση","img.subtitle":"Προ-Εργασιακή Ιατρική Εξέταση · Απεικόνιση & Καρδιολογία","img.findings":"Ευρήματα","img.impression":"Εντύπωση",
   "spec.back":"Πίσω στις Ειδικές","spec.subtitle":"Προ-Εργασιακή Ιατρική Εξέταση · Ειδικές Εξετάσεις","spec.plates":"Απαντήσεις πλακών (21)","spec.env":"Περιβάλλον test","spec.resp":"Αποκρίσεις",
+  "vit.back":"Πίσω στα Ζωτικά","vit.subtitle":"Προ-Εργασιακή Ιατρική Εξέταση · Ζωτικά & Σπιρομέτρηση","vit.rep":"ΖΩΤΙΚΑ & ΣΠΙΡΟΜΕΤΡΗΣΗ",
+  "phys.back":"Πίσω στην Κλινική","phys.subtitle":"Προ-Εργασιακή Ιατρική Εξέταση · Κλινική Εξέταση","phys.medhx":"Ιατρικό Ιστορικό (δήλωση ναυτικού, έλεγχος)","phys.systems":"Κλινική Εξέταση — συστήματα","phys.rec":"Σύσταση","phys.reviewed":"Ελέγχθηκε — κανένα σημαντικό ιστορικό (ερωτηματολόγιο 28 σημείων, όλα αρνητικά).","phys.rep":"ΙΑΤΡΙΚΟ ΙΣΤΟΡΙΚΟ & ΚΛΙΝΙΚΗ ΕΞΕΤΑΣΗ","phys.examiner":"Εξετάζων Ιατρός","phys.director":"Ιατρικός Διευθυντής","phys.pending":"Εκκρεμεί","phys.viewrep":"Προβολή report εξέτασης",
   "appt.h":"Νέο Αίτημα PEME","appt.p":"Το πρακτορείο υποβάλλει αίτημα· η κλινική επιβεβαιώνει και επιστρέφει digital proof.",
   "appt.company":"Εταιρεία / Principal","appt.rank":"Βαθμός","appt.date":"Επιθυμητή ημερομηνία","appt.pkg":"Πακέτο PEME","appt.hi":"Επείγον (high priority)","appt.hihint":"Όλη η ροή του PEME επισημαίνεται με κόκκινο ώστε κάθε σταθμός να ξέρει ότι είναι επείγον.","appt.submit":"Υποβολή & επιβεβαίωση","appt.seafarer":"Ναυτικός","appt.newsf":"— Νέος / first-time ναυτικός —","appt.first":"Όνομα","appt.last":"Επώνυμο","appt.booked":"Το ραντεβού κλείστηκε","appt.bookedsub":"Digital proof στάλθηκε στο πρακτορείο. Η υπόθεση είναι πλέον στο Case Board στο στάδιο BOOK.","appt.when":"Ημ. ραντεβού","appt.case":"Κωδικός υπόθεσης","appt.proof":"scan στο check-in","appt.viewboard":"Προβολή στο Case Board","appt.another":"Νέο ραντεβού",
   "hdr.fit":"Εκκρεμεί απόφαση","open360":"Άνοιγμα Φακέλου 360°","track.title":"Διαδρομή PEME","track.of":"από",
@@ -1051,6 +1066,80 @@ function vSpecReport(id){
   </div>`;
 }
 
+let PHYS_DISP="fit";
+const VITALMETRICS=[
+ {en:"General metrics",el:"Γενικές μετρήσεις",rows:[["Blood pressure","120/78 mmHg"],["Pulse rate","72 bpm"],["Respiratory rate","16 /min"],["Temperature","36.6 °C"],["Height","172 cm"],["Weight","74 kg"],["BMI","25.0"]]},
+ {en:"Spirometry",el:"Σπιρομέτρηση",rows:[["FVC","4.20 L"],["FEV1","3.50 L"],["FEV1/FVC","83 %"],["Interpretation","Normal spirometry"]]}
+];
+const MEDHX28=["Nose or throat trouble","Ear trouble or deafness","Asthma","Tuberculosis","Other lung disease","High blood pressure","Heart trouble","Rheumatic fever","Diabetes mellitus","Endocrine disorders","Cancer or tumor","Mental disorder","Head or neck injury","Hernia","Rheumatism, joints or back","Typhoid fever","Trachoma or eye trouble","Stomach pain or ulcer","Other abdominal trouble","Kidney or bladder trouble","Sexually transmitted disease","Genetic or familial disorder","Malaria","Liver disease","Cough","Fainting, fits or seizure","Frequent headaches","Dizziness"];
+const PHYSSYSTEMS=["Skin","Head, Neck & Scalp","Eyes (external)","Pupils / Ophthalmoscopic","Ears","Nose & Sinuses","Mouth & Throat","Neck / LN / Thyroid","Chest, Breast & Axilla","Lungs","Cardiovascular","Abdomen","Back","Anus / Rectum","Genitourinary","Reflexes","Extremities","Dental / Teeth"];
+function openVitReport(){activeView="vitreport";$("#crumbView").textContent="Vitals report";render();}
+function openPhysReport(){activeView="physreport";$("#crumbView").textContent="Physical exam report";render();}
+function setPhysDisp(d){PHYS_DISP=d;render();}
+const okChk=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>`;
+function vVitals(){
+  const st=STAGES[5],done=CASE.done[5];
+  const grps=VITALMETRICS.map(g=>`<div class="labgrp"><div class="lgh"><b>${L(g)}</b></div><div class="labrows">${g.rows.map(r=>`<div class="labrow"><span class="tn" style="flex:0 0 170px">${r[0]}</span><input class="labin" style="flex:1;width:auto" value="${r[1]}"></div>`).join("")}</div></div>`).join("");
+  return `<div class="pagehead"><div class="ey">${st.code} · ${t("track.title")}</div><h1>${L(st)}</h1></div>
+    ${sf360head(true)}${trackBar()}
+    <div class="card" style="margin-top:16px">
+      <div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">${iconSvg('vit')}</svg></div><h3>${L(st)} — ${t("lab.dc")}</h3><span class="stepstat ${done?'ok':''}">${done?okChk+t("completed"):''}</span></div>
+      <div class="feeds"><span>${t("feeds")}</span>${STATIONS[5].feeds.map(f=>`<span class="fp">${f}</span>`).join("")}</div>
+      <div class="cb">${grps}
+        <div class="completebar" style="gap:10px"><button class="backbtn" style="margin:0" onclick="openVitReport()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>${t("lab.view")}</button><button class="magic" onclick="completeStage(5)" ${done?'disabled':''}>${okChk}${done?t("completed"):t("lab.gen")}</button></div>
+      </div>
+    </div>`;
+}
+function vVitReport(){
+  const sf=SEAFARER,seq=((''+sf.caseId).match(/(\d+)$/)||["","04127"])[1],code="MCL-MAR-PEME-VIT-2026-"+seq;
+  const kv=(k,v)=>`<div class="kv"><div class="k">${k}</div><div class="v">${v||"—"}</div></div>`;
+  const rows=VITALMETRICS.flatMap(g=>g.rows).map(r=>`<tr><td>${r[0]}</td><td class="r" style="font-family:var(--ff-mono);font-weight:600;color:var(--ink)">${r[1]}</td></tr>`).join("");
+  return `<div class="docwrap"><button class="backbtn" onclick="openStage(5)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>${t("vit.back")}</button>
+    <div class="certdoc"><div class="cdtop"><div class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h4l2 6 4-12 2 6h6"/></svg></div><div><h2>DOCTOR NEXT TO ME ΙΚΕ</h2><div class="sub">HPDC Manila · ${t("vit.rep")}</div></div><div class="code">${code}<br>${t("cd.issued")}: 2026-07-12</div></div>
+    <div class="certbody"><div class="certtitle">${L(STAGES[5])}</div><div class="certtitle-sub">${t("vit.subtitle")}</div>
+      <div class="certgrid">${kv(t("sf.fullname"),`${sf.first} ${sf.last}`)}${kv("Seafarer ID",sf.id)}</div>
+      <table class="labtbl"><tbody>${rows}</tbody></table>
+      <div class="certsign"><div></div><div class="signline"><b>C. Nurse, RN</b>Cardio / Nurse</div></div>
+      <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br><span style="font-family:var(--ff-mono)">${code}</span></div></div>
+    </div></div></div>`;
+}
+function vPhysical(){
+  const st=STAGES[7],done=CASE.done[7],d=PHYS_DISP||"fit";
+  const hx=MEDHX28.map((c,i)=>`<div class="hxg"><span>${i+1}. ${c}</span><span class="no">No</span></div>`).join("");
+  const sys=PHYSSYSTEMS.map(s=>`<div class="sysrow"><span class="sn">${s}</span><span class="norm">Normal</span><input class="fnd" placeholder="findings (if any)"></div>`).join("");
+  return `<div class="pagehead"><div class="ey">${st.code} · ${t("track.title")}</div><h1>${L(st)}</h1></div>
+    ${sf360head(true)}${trackBar()}
+    <div class="card" style="margin-top:16px"><div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">${iconSvg('phys')}</svg></div><h3>${t("phys.medhx")}</h3></div><div class="cb">
+      <div class="corenote" style="margin-bottom:10px"><span class="tag">REVIEWED</span><span>${t("phys.reviewed")}</span></div>
+      <div class="hxgrid">${hx}</div></div></div>
+    <div class="card" style="margin-top:14px"><div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v6c0 4-3.5 7-8 8-4.5-1-8-4-8-8V7z"/></svg></div><h3>${t("phys.systems")}</h3></div><div class="cb">${sys}</div></div>
+    <div class="card" style="margin-top:14px"><div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><h3>${t("phys.rec")}</h3></div><div class="cb">
+      <div class="disp">
+        <button class="dispbtn ${d==='fit'?'sel-fit':''}" onclick="setPhysDisp('fit')">${t("md.fit")}<small>FIT for employment</small></button>
+        <button class="dispbtn ${d==='pending'?'sel-temp':''}" onclick="setPhysDisp('pending')">${t("phys.pending")}<small>Further evaluation</small></button>
+        <button class="dispbtn ${d==='unfit'?'sel-unfit':''}" onclick="setPhysDisp('unfit')">${t("md.unfit")}<small>Not fit</small></button>
+      </div>
+      <div class="completebar" style="gap:10px"><button class="backbtn" style="margin:0" onclick="openPhysReport()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>${t("phys.viewrep")}</button><button class="magic" onclick="completeStage(7)" ${done?'disabled':''}>${okChk}${done?t("completed"):t("lab.gen")}</button></div>
+    </div></div>`;
+}
+function vPhysReport(){
+  const sf=SEAFARER,d=PHYS_DISP||"fit",seq=((''+sf.caseId).match(/(\d+)$/)||["","04127"])[1],code="MCL-MAR-PEME-PE-2026-"+seq;
+  const D={fit:["fit",t("cd.fit")],pending:["temp",t("phys.pending")],unfit:["unfit",t("cd.unfit")]}[d];
+  const kv=(k,v)=>`<div class="kv"><div class="k">${k}</div><div class="v">${v||"—"}</div></div>`;
+  const sysRows=PHYSSYSTEMS.map(s=>`<tr><td>${s}</td><td class="n">Normal</td></tr>`).join("");
+  return `<div class="docwrap"><button class="backbtn" onclick="openStage(7)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>${t("phys.back")}</button>
+    <div class="certdoc"><div class="cdtop"><div class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="7" r="3.2"/><path d="M5 21c0-4 3-6 7-6s7 2 7 6"/></svg></div><div><h2>DOCTOR NEXT TO ME ΙΚΕ</h2><div class="sub">HPDC Manila · ${t("phys.rep")}</div></div><div class="code">${code}<br>${t("cd.issued")}: 2026-07-12</div></div>
+    <div class="certbody"><div class="certtitle">${L(STAGES[7])}</div><div class="certtitle-sub">${t("phys.subtitle")}</div>
+      <div class="certgrid">${kv(t("sf.fullname"),`${sf.first} ${sf.last}`)}${kv("Seafarer ID",sf.id)}${kv(t("sf.rank"),LX(sf.rank))}${kv(t("reg.control"),"HPDC-"+seq)}</div>
+      <div class="sectitle">${t("phys.medhx")}</div><p class="findp">${t("phys.reviewed")}</p>
+      <div class="sectitle" style="margin-top:12px">${t("phys.systems")}</div>
+      <table class="systbl"><tbody>${sysRows}</tbody></table>
+      <div class="certdisp ${D[0]}" style="margin-top:16px"><div class="big">${D[1]}</div></div>
+      <div class="certsign"><div class="signline"><b>Dr. C. Mendez, MD</b>${t("phys.examiner")}</div><div class="signline"><b>Dr. R. Delgado, MD</b>${t("phys.director")}</div></div>
+      <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br><span style="font-family:var(--ff-mono)">${code}</span></div></div>
+    </div></div></div>`;
+}
+
 function vFolder(){
   return `<div class="pagehead"><div class="ey">CBMS · Layer 2 · Shared Core</div><h1>Seafarer 360°</h1></div>
     <div class="ctxbanner"><span class="ic">📁</span><div><b>${t("ctx.t")}</b> ${t("ctx.d")}</div></div>
@@ -1235,12 +1324,16 @@ function render(){
   else if(activeView==="labreport")h.innerHTML=vLabReport(LAB_PID);
   else if(activeView==="imgreport")h.innerHTML=vImgReport(IMG_ID);
   else if(activeView==="specreport")h.innerHTML=vSpecReport(SPEC_ID);
+  else if(activeView==="vitreport")h.innerHTML=vVitReport();
+  else if(activeView==="physreport")h.innerHTML=vPhysReport();
   else if(activeView==="stage"){
     const s=CASE._openStage;
     if(s===2)h.innerHTML=vFrontdesk();
     else if(s===3)h.innerHTML=vLab();
     else if(s===4)h.innerHTML=vImaging();
+    else if(s===5)h.innerHTML=vVitals();
     else if(s===6)h.innerHTML=vSpecialty();
+    else if(s===7)h.innerHTML=vPhysical();
     else if(STATIONS[s])h.innerHTML=vStation(s);
     else if(s===8)h.innerHTML=vMD();
     else if(s===10)h.innerHTML=vCerts();
