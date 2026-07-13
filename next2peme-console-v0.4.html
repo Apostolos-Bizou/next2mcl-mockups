@@ -970,17 +970,17 @@ function vLabReport(pid){
 
 let IMG_ID="xray";
 const IMGSTUDIES=[
- {id:"xray",en:"Chest X-ray (PA)",el:"Ακτινογραφία Θώρακος (PA)",rep:"X-RAY RESULT",
+ {id:"xray",en:"Chest X-ray (PA)",el:"Ακτινογραφία Θώρακος (PA)",rep:"X-RAY RESULT",c:"71046",
   sig1:"N. Petines, RRT",sig1r:"Radiologic Technologist",sig2:"Dr. J. Valdez, MD",sig2r:"Radiologist",
   fields:[["Examination","Chest PA"]],
   findings:"No active lung parenchymal infiltrates. The heart is not enlarged. The trachea is midline. The costophrenic angles and hemidiaphragms are intact. The soft tissues and osseous structures are unremarkable.",
   impression:"No significant chest findings."},
- {id:"kub",en:"Ultrasound (KUB)",el:"Υπέρηχος (KUB)",rep:"ULTRASOUND RESULT",
+ {id:"kub",en:"Ultrasound (KUB)",el:"Υπέρηχος (KUB)",rep:"ULTRASOUND RESULT",c:"76770",
   sig1:"N. Petines, RRT",sig1r:"Radiologic Technologist",sig2:"Dr. J. Valdez, MD",sig2r:"Sonologist",
   fields:[["Examination","Kidneys & Urinary Bladder"]],
   findings:"No disparity in renal sizes; normal parenchymal echogenicity and corticomedullary differentiation. No focal mass lesions or calcifications. Urinary bladder well-distended with unthickened walls, no intraluminal echoes.",
   impression:"Unremarkable ultrasound of the kidneys and urinary bladder."},
- {id:"ecg",en:"ECG (12-lead)",el:"ΗΚΓ (12 απαγωγών)",rep:"ECG REPORT",
+ {id:"ecg",en:"ECG (12-lead)",el:"ΗΚΓ (12 απαγωγών)",rep:"ECG REPORT",c:"93000",
   sig1:"",sig1r:"",sig2:"Dr. A. Reyes, MD",sig2r:"Cardiology",
   fields:[["Rate","72 bpm"],["PR","160 ms"],["QRS","98 ms"],["QT/QTc","380/416 ms"],["Axis","Normal"]],
   findings:"Sinus rhythm, normal axis. Low-voltage QRS complexes. No acute ST-T changes.",
@@ -990,7 +990,7 @@ function openImgReport(id){IMG_ID=id;activeView="imgreport";$("#crumbView").text
 function vImaging(){
   const st=STAGES[4],done=CASE.done[4];
   const ok=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>`;
-  const cards=IMGSTUDIES.map(s=>`<div class="labgrp"><div class="lgh"><b>${L(s)}</b><button class="mini ghost" onclick="openImgReport('${s.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:13px;height:13px;vertical-align:-2px"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg> ${t("lab.view")}</button></div><div class="labrows">${s.fields.map(f=>`<div class="labrow"><span class="tn" style="flex:0 0 120px">${f[0]}</span><input class="labin" style="flex:1;width:auto" value="${f[1]}"></div>`).join("")}<div style="padding:8px 0"><label style="display:block;font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:5px">${t("img.findings")}</label><textarea class="inp" style="min-height:52px">${s.findings}</textarea></div><div class="labrow"><span class="tn" style="flex:0 0 120px">${t("img.impression")}</span><input class="labin" style="flex:1;width:auto" value="${s.impression}"></div></div></div>`).join("");
+  const cards=IMGSTUDIES.map(s=>`<div class="labgrp"><div class="lgh"><b>${L(s)}</b>${s.c?'<span class="codechip">CPT '+s.c+'</span>':''}<button class="mini ghost" onclick="openImgReport('${s.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:13px;height:13px;vertical-align:-2px"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg> ${t("lab.view")}</button></div><div class="labrows">${s.fields.map(f=>`<div class="labrow"><span class="tn" style="flex:0 0 120px">${f[0]}</span><input class="labin" style="flex:1;width:auto" value="${f[1]}"></div>`).join("")}<div style="padding:8px 0"><label style="display:block;font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:5px">${t("img.findings")}</label><textarea class="inp" style="min-height:52px">${s.findings}</textarea></div><div class="labrow"><span class="tn" style="flex:0 0 120px">${t("img.impression")}</span><input class="labin" style="flex:1;width:auto" value="${s.impression}"></div></div></div>`).join("");
   return `<div class="pagehead"><div class="ey">${st.code} · ${t("track.title")}</div><h1>${L(st)}</h1></div>
     ${sf360head(true)}${trackBar()}
     <div class="card" style="margin-top:16px">
@@ -1018,6 +1018,7 @@ function vImgReport(id){
       <div class="certbody">
         <div class="certtitle">${L(s)}</div>
         <div class="certtitle-sub">${t("img.subtitle")}</div>
+        <div class="encchip">Encounter · <b>Z02.1</b> · Pre-employment examination${s.c?' &nbsp;·&nbsp; CPT '+s.c:''}</div>
         <div class="certgrid">${kv(t("sf.fullname"),`${sf.first} ${sf.last}`)}${kv("Seafarer ID",sf.id)}${flds}</div>
         <div class="sectitle">${t("img.findings")}</div><p class="findp">${s.findings}</p>
         <div class="sectitle" style="margin-top:12px">${t("img.impression")}</div><p class="findp" style="font-weight:600;color:var(--ink)">${s.impression}</p>
@@ -1031,13 +1032,13 @@ function vImgReport(id){
 let SPEC_ID="sight";
 const ISHIHARA=[12,8,6,29,57,5,3,15,74,2,6,97,45,5,7,16,73,26,42,35,96];
 const SPECEXAMS=[
- {id:"sight",en:"Sight & Colour Vision",el:"Όραση & Χρωματική",rep:"ISHIHARA ANSWER SHEET",
+ {id:"sight",en:"Sight & Colour Vision",el:"Όραση & Χρωματική",rep:"ISHIHARA ANSWER SHEET",c:"92283",
   fields:[["Visual acuity (R)","20/20"],["Visual acuity (L)","20/20"],["Ishihara","Adequate"],["Color vision","Normal"]]},
- {id:"hearing",en:"Hearing (Audiometry)",el:"Ακοή (Ακουομετρία)",rep:"AUDIOMETER SCREENING",
+ {id:"hearing",en:"Hearing (Audiometry)",el:"Ακοή (Ακουομετρία)",rep:"AUDIOMETER SCREENING",c:"92552",
   fields:[["Right ear (dB)","15–25"],["Left ear (dB)","20–30"],["Result","Passed"]]},
- {id:"dental",en:"Dental Health",el:"Οδοντιατρική",rep:"DENTAL HEALTH EXAMINATION",
+ {id:"dental",en:"Dental Health",el:"Οδοντιατρική",rep:"DENTAL HEALTH EXAMINATION",c:"D0150",
   fields:[["Findings","Normal findings"],["Status","Fit for employment"]]},
- {id:"psych",en:"Psychological Evaluation",el:"Ψυχολογική Αξιολόγηση",rep:"PSYCHOLOGICAL EVALUATION",
+ {id:"psych",en:"Psychological Evaluation",el:"Ψυχολογική Αξιολόγηση",rep:"PSYCHOLOGICAL EVALUATION",c:"96130",
   fields:[["Intellectual level","Average"],["Recommendation","Recommended"]]}
 ];
 function audiogram(){
@@ -1055,7 +1056,7 @@ function openSpecReport(id){SPEC_ID=id;activeView="specreport";$("#crumbView").t
 function vSpecialty(){
   const st=STAGES[6],done=CASE.done[6];
   const ok=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>`;
-  const cards=SPECEXAMS.map(s=>`<div class="labgrp"><div class="lgh"><b>${L(s)}</b><button class="mini ghost" onclick="openSpecReport('${s.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:13px;height:13px;vertical-align:-2px"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg> ${t("lab.view")}</button></div><div class="labrows">${s.fields.map(f=>`<div class="labrow"><span class="tn" style="flex:0 0 150px">${f[0]}</span><input class="labin" style="flex:1;width:auto" value="${f[1]}"></div>`).join("")}</div></div>`).join("");
+  const cards=SPECEXAMS.map(s=>`<div class="labgrp"><div class="lgh"><b>${L(s)}</b>${s.c?'<span class="codechip">'+(s.c[0]==='D'?'CDT ':'CPT ')+s.c+'</span>':''}<button class="mini ghost" onclick="openSpecReport('${s.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:13px;height:13px;vertical-align:-2px"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg> ${t("lab.view")}</button></div><div class="labrows">${s.fields.map(f=>`<div class="labrow"><span class="tn" style="flex:0 0 150px">${f[0]}</span><input class="labin" style="flex:1;width:auto" value="${f[1]}"></div>`).join("")}</div></div>`).join("");
   return `<div class="pagehead"><div class="ey">${st.code} · ${t("track.title")}</div><h1>${L(st)}</h1></div>
     ${sf360head(true)}${trackBar()}
     <div class="card" style="margin-top:16px">
@@ -1103,6 +1104,7 @@ function vSpecReport(id){
       <div class="certbody">
         <div class="certtitle">${L(s)}</div>
         <div class="certtitle-sub">${t("spec.subtitle")}</div>
+        <div class="encchip">Encounter · <b>Z02.1</b> · Pre-employment examination${s.c?' &nbsp;·&nbsp; '+(s.c[0]==='D'?'CDT ':'CPT ')+s.c:''}</div>
         <div class="certgrid">${kv(t("sf.fullname"),`${sf.first} ${sf.last}`)}${kv("Seafarer ID",sf.id)}</div>
         ${body}
         <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br><span style="font-family:var(--ff-mono)">${code}</span></div></div>
@@ -1113,8 +1115,8 @@ function vSpecReport(id){
 
 let PHYS_DISP="fit";
 const VITALMETRICS=[
- {en:"General metrics",el:"Γενικές μετρήσεις",rows:[["Blood pressure","120/78 mmHg"],["Pulse rate","72 bpm"],["Respiratory rate","16 /min"],["Temperature","36.6 °C"],["Height","172 cm"],["Weight","74 kg"],["BMI","25.0"]]},
- {en:"Spirometry",el:"Σπιρομέτρηση",rows:[["FVC","4.20 L"],["FEV1","3.50 L"],["FEV1/FVC","83 %"],["Interpretation","Normal spirometry"]]}
+ {en:"General metrics",el:"Γενικές μετρήσεις",rows:[["Blood pressure","120/78 mmHg","85354-9"],["Pulse rate","72 bpm","8867-4"],["Respiratory rate","16 /min","9279-1"],["Temperature","36.6 °C","8310-5"],["Height","172 cm","8302-2"],["Weight","74 kg","29463-7"],["BMI","25.0","39156-5"]]},
+ {en:"Spirometry",el:"Σπιρομέτρηση",rows:[["FVC","4.20 L","19870-5"],["FEV1","3.50 L","20150-9"],["FEV1/FVC","83 %","19926-5"],["Interpretation","Normal spirometry","94010"]]}
 ];
 const MEDHX28=["Nose or throat trouble","Ear trouble or deafness","Asthma","Tuberculosis","Other lung disease","High blood pressure","Heart trouble","Rheumatic fever","Diabetes mellitus","Endocrine disorders","Cancer or tumor","Mental disorder","Head or neck injury","Hernia","Rheumatism, joints or back","Typhoid fever","Trachoma or eye trouble","Stomach pain or ulcer","Other abdominal trouble","Kidney or bladder trouble","Sexually transmitted disease","Genetic or familial disorder","Malaria","Liver disease","Cough","Fainting, fits or seizure","Frequent headaches","Dizziness"];
 const PHYSSYSTEMS=["Skin","Head, Neck & Scalp","Eyes (external)","Pupils / Ophthalmoscopic","Ears","Nose & Sinuses","Mouth & Throat","Neck / LN / Thyroid","Chest, Breast & Axilla","Lungs","Cardiovascular","Abdomen","Back","Anus / Rectum","Genitourinary","Reflexes","Extremities","Dental / Teeth"];
@@ -1124,7 +1126,7 @@ function setPhysDisp(d){PHYS_DISP=d;render();}
 const okChk=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>`;
 function vVitals(){
   const st=STAGES[5],done=CASE.done[5];
-  const grps=VITALMETRICS.map(g=>`<div class="labgrp"><div class="lgh"><b>${L(g)}</b></div><div class="labrows">${g.rows.map(r=>`<div class="labrow"><span class="tn" style="flex:0 0 170px">${r[0]}</span><input class="labin" style="flex:1;width:auto" value="${r[1]}"></div>`).join("")}</div></div>`).join("");
+  const grps=VITALMETRICS.map(g=>`<div class="labgrp"><div class="lgh"><b>${L(g)}</b></div><div class="labrows">${g.rows.map(r=>`<div class="labrow"><span class="tn" style="flex:0 0 170px">${r[0]}</span><input class="labin" style="flex:1;width:auto" value="${r[1]}">${r[2]?'<span class="codechip">'+r[2]+'</span>':''}</div>`).join("")}</div></div>`).join("");
   return `<div class="pagehead"><div class="ey">${st.code} · ${t("track.title")}</div><h1>${L(st)}</h1></div>
     ${sf360head(true)}${trackBar()}
     <div class="card" style="margin-top:16px">
@@ -1138,12 +1140,13 @@ function vVitals(){
 function vVitReport(){
   const sf=SEAFARER,seq=((''+sf.caseId).match(/(\d+)$/)||["","04127"])[1],code="MCL-MAR-PEME-VIT-2026-"+seq;
   const kv=(k,v)=>`<div class="kv"><div class="k">${k}</div><div class="v">${v||"—"}</div></div>`;
-  const rows=VITALMETRICS.flatMap(g=>g.rows).map(r=>`<tr><td>${r[0]}</td><td class="r" style="font-family:var(--ff-mono);font-weight:600;color:var(--ink)">${r[1]}</td></tr>`).join("");
+  const rows=VITALMETRICS.flatMap(g=>g.rows).map(r=>`<tr><td>${r[0]}</td><td class="code">${r[2]||'—'}</td><td class="r" style="font-family:var(--ff-mono);font-weight:600;color:var(--ink)">${r[1]}</td></tr>`).join("");
   return `<div class="docwrap"><button class="backbtn" onclick="openStage(5)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>${t("vit.back")}</button>
     <div class="certdoc"><div class="cdtop"><div class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h4l2 6 4-12 2 6h6"/></svg></div><div><h2>DOCTOR NEXT TO ME ΙΚΕ</h2><div class="sub">HPDC Manila · ${t("vit.rep")}</div></div><div class="code">${code}<br>${t("cd.issued")}: 2026-07-12</div></div>
     <div class="certbody"><div class="certtitle">${L(STAGES[5])}</div><div class="certtitle-sub">${t("vit.subtitle")}</div>
+      <div class="encchip">Encounter · <b>Z02.1</b> · Pre-employment examination</div>
       <div class="certgrid">${kv(t("sf.fullname"),`${sf.first} ${sf.last}`)}${kv("Seafarer ID",sf.id)}</div>
-      <table class="labtbl"><tbody>${rows}</tbody></table>
+      <table class="labtbl"><thead><tr><th>${t("lab.test")}</th><th>LOINC/CPT</th><th>${t("lab.result")}</th></tr></thead><tbody>${rows}</tbody></table>
       <div class="certsign"><div></div><div class="signline"><b>C. Nurse, RN</b>Cardio / Nurse</div></div>
       <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br><span style="font-family:var(--ff-mono)">${code}</span></div></div>
     </div></div></div>`;
