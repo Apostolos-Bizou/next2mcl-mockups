@@ -692,7 +692,7 @@ function renderRows(){const rows=baseDocs();renderThead();
       <td><span class="cl-mini">${d.cl}</span></td>
       <td><span class="ver">v${d.v}</span></td>
       <td><span class="st st-${d.st}"><i></i>${stName(d.st)}</span></td></tr>`;}).join("")
-    || `<tr><td colspan="7" class="norez">${q?(lang==='el'?'Κανένα έγγραφο για «'+q+'»':'No documents for "'+q+'"'):'—'}</td></tr>`;}
+    || `<tr><td colspan="7" class="norez">${q?(/SF-\w{2}-\d+/i.test(q)?(lang==='el'?'Αυτός ο ναυτικός δεν έχει ακόμη έγγραφα στο Next2DMS — θα εμφανιστούν καθώς προχωράει η διαδρομή.':'This seafarer has no documents in Next2DMS yet — they appear as the journey progresses.'):(lang==='el'?'Κανένα έγγραφο για «'+q+'»':'No documents for "'+q+'"')):'—'}</td></tr>`;}
 function renderCrumb(){const c=$("#crumb");const sep=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>`;
   let parts=[`<span onclick="resetAll()" style="cursor:pointer">${lang==='el'?'Όλα τα έγγραφα':'All documents'}</span>`];
   if(source)parts.push(`<b>${srcObj(source).name}</b>`);if(client)parts.push(`<b>${client}</b>`);
