@@ -219,6 +219,22 @@ textarea.inp{min-height:78px;resize:vertical}
 .labtbl td.f{text-align:center}
 .codechip{font-family:var(--ff-mono);font-size:9px;font-weight:600;color:var(--teal);background:rgba(14,140,147,.09);border:1px solid rgba(14,140,147,.28);border-radius:5px;padding:1px 5px;margin-left:8px;white-space:nowrap}
 .icdchip{font-family:var(--ff-mono);font-size:9px;font-weight:700;color:var(--coral);background:rgba(229,84,75,.1);border:1px solid rgba(229,84,75,.35);border-radius:5px;padding:1px 5px;margin-left:6px;cursor:help;white-space:nowrap}
+.dosnote{font-size:12px;color:var(--ink-3);line-height:1.55;margin:6px 0 14px}
+.dosopen{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;background:rgba(14,140,147,.10);border:1px solid rgba(14,140,147,.28);border-radius:9px;color:var(--teal);font-weight:600;font-size:13px;text-decoration:none;margin-bottom:8px}
+.dosopen svg{width:16px;height:16px}
+.dosgrp{margin-top:16px}
+.dosgrp .dgh{display:flex;align-items:center;gap:8px;font-family:var(--ff-display);font-weight:700;font-size:11.5px;color:var(--ink-2);text-transform:uppercase;letter-spacing:.04em;margin:0 0 8px}
+.dosgrp .dgh .ct{margin-left:auto;font-family:var(--ff-mono);font-size:11px;color:var(--ink-3);text-transform:none;letter-spacing:0}
+.dosrow{display:flex;align-items:center;gap:12px;padding:11px 13px;background:var(--paper);border:1px solid var(--line);border-radius:10px;margin-bottom:7px;text-decoration:none;color:inherit}
+.dosrow:hover{border-color:var(--teal)}
+.dosrow .di{width:32px;height:32px;border-radius:8px;background:var(--mist);display:grid;place-items:center;color:var(--teal);flex:0 0 32px}
+.dosrow .di svg{width:16px;height:16px}
+.dosrow .dm{flex:1;min-width:0}
+.dosrow .dn{font-size:13.5px;font-weight:600;color:var(--ink);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dosrow .dc{font-family:var(--ff-mono);font-size:11px;color:var(--ink-3);margin-top:2px}
+.dosrow .dt{font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;background:rgba(231,163,62,.16);color:var(--gold-2);white-space:nowrap;flex:0 0 auto}
+.dosrow .dmed{font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;background:rgba(14,140,147,.10);color:var(--teal);border:1px solid rgba(14,140,147,.28);white-space:nowrap;flex:0 0 auto}
+.dosrow .darr{color:var(--ink-3);font-size:18px;flex:0 0 auto}
 .flagslot{display:inline-flex;align-items:center;gap:4px;margin-left:8px}
 .labtbl td.code{font-family:var(--ff-mono);font-size:10.5px;color:var(--teal);white-space:nowrap}
 .encchip{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-2);background:var(--mist);border:1px solid var(--line);border-radius:7px;padding:5px 11px;margin-top:8px}
@@ -476,6 +492,75 @@ const PRINTABLES=[
   ["Psychological Evaluation","Psych"],["Medical History & Physical Exam Questionnaire","Final Eval"],
   ["Certificate for Service at Sea","Final Eval"],["Crew Endorsement Report","Final Eval"],["Oath of Undertaking","Final Eval"],
   ["Customer Satisfaction Survey","Seafarer"],["Flag-state certificate (Panama)","Records"]];
+
+/* ---- PEME Dossier: journey document manifest = identical docs/codes registered in Next2DMS, born per station ---- */
+const PEME_DOSSIER=[
+  {st:"Intake",n:"Passport (scan)",code:"MCL-MAR-PEME-SCN-2026-068691",t:"Scanned Document",med:false},
+  {st:"Intake",n:"Seaman's Book SIRB (scan)",code:"MCL-MAR-PEME-SCN-2026-366065",t:"Scanned Document",med:false},
+  {st:"Intake",n:"POEA-SEC Contract (scan)",code:"MCL-MAR-PEME-SCN-2026-038560",t:"Scanned Document",med:false},
+  {st:"Self-service intake",n:"Medical History Questionnaire",code:"MCL-MAR-PEME-DEC-2026-298025",t:"Declaration",med:true},
+  {st:"Self-service intake",n:"Consent to Release Information",code:"MCL-MAR-PEME-CNS-2026-245443",t:"Consent Form",med:false},
+  {st:"Self-service intake",n:"HIV Testing Consent (Form A)",code:"MCL-MAR-PEME-CNS-2026-865900",t:"Consent Form",med:true},
+  {st:"Self-service intake",n:"Drug & Alcohol Testing Consent",code:"MCL-MAR-PEME-CNS-2026-171565",t:"Consent Form",med:false},
+  {st:"Self-service intake",n:"COVID-19 Health Declaration",code:"MCL-MAR-PEME-DEC-2026-939879",t:"Declaration",med:false},
+  {st:"Laboratory",n:"Laboratory Result Report",code:"MCL-MAR-PEME-LAB-2026-596281",t:"Lab Report",med:true},
+  {st:"Imaging & Cardiology",n:"Chest X-ray Report",code:"MCL-MAR-PEME-IMG-2026-076525",t:"Imaging Report",med:true},
+  {st:"Imaging & Cardiology",n:"Ultrasound (KUB) Report",code:"MCL-MAR-PEME-IMG-2026-507097",t:"Imaging Report",med:true},
+  {st:"Imaging & Cardiology",n:"ECG Report (12-lead)",code:"MCL-MAR-PEME-IMG-2026-119875",t:"Imaging Report",med:true},
+  {st:"Vitals & Spiro",n:"Vitals & Spirometry Report",code:"MCL-MAR-PEME-VIT-2026-260310",t:"Vitals Report",med:true},
+  {st:"Specialty Exams",n:"Colour Vision (Ishihara) Report",code:"MCL-MAR-PEME-SPEC-2026-777379",t:"Specialty Report",med:true},
+  {st:"Specialty Exams",n:"Audiometry Report",code:"MCL-MAR-PEME-SPEC-2026-896424",t:"Specialty Report",med:true},
+  {st:"Specialty Exams",n:"Dental Examination Report",code:"MCL-MAR-PEME-SPEC-2026-538066",t:"Specialty Report",med:true},
+  {st:"Specialty Exams",n:"Psychological Evaluation",code:"MCL-MAR-PEME-SPEC-2026-310838",t:"Specialty Report",med:true},
+  {st:"Physical Examination",n:"Medical History & Physical Exam",code:"MCL-MAR-PEME-PE-2026-829748",t:"Physical Exam",med:true},
+  {st:"Final Evaluation",n:"Crew Endorsement Report",code:"MCL-MAR-PEME-END-2026-782374",t:"Crew Endorsement",med:true},
+  {st:"Final Evaluation",n:"Medical Examination Report (MER)",code:"MCL-MAR-PEME-MER-2026-235064",t:"MER",med:true},
+  {st:"Certificates",n:"Medical Fitness Certificate",code:"MCL-MAR-PEME-FIT-2026-401393",t:"Fitness Certificate",med:true},
+  {st:"Certificates",n:"PEME Certificate",code:"MCL-MAR-PEME-PEC-2026-571667",t:"PEME Certificate",med:true},
+  {st:"Certificates",n:"Certificate for Service at Sea",code:"MCL-MAR-PEME-COS-2026-202140",t:"Certificate of Service",med:false},
+  {st:"Certificates",n:"Oath of Undertaking",code:"MCL-MAR-PEME-OATH-2026-065838",t:"Oath",med:false},
+  {st:"Records",n:"Flag-state Certificate (Panama)",code:"MCL-MAR-PEME-FLG-2026-329923",t:"Flag-state Certificate",med:false},
+];
+const DOSSTLBL={
+  "Intake":["Intake & documents","\u03a0\u03b1\u03c1\u03b1\u03bb\u03b1\u03b2\u03ae & \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03b1"],
+  "Self-service intake":["Self-declarations","\u0394\u03b7\u03bb\u03ce\u03c3\u03b5\u03b9\u03c2 \u03bd\u03b1\u03c5\u03c4\u03b9\u03ba\u03bf\u03cd"],
+  "Laboratory":["Laboratory","\u0395\u03c1\u03b3\u03b1\u03c3\u03c4\u03ae\u03c1\u03b9\u03bf"],
+  "Imaging & Cardiology":["Imaging & Cardiology","\u0391\u03c0\u03b5\u03b9\u03ba\u03cc\u03bd\u03b9\u03c3\u03b7 & \u039a\u03b1\u03c1\u03b4\u03b9\u03bf\u03bb\u03bf\u03b3\u03af\u03b1"],
+  "Vitals & Spiro":["Vitals & Spirometry","\u0396\u03c9\u03c4\u03b9\u03ba\u03ac & \u03a3\u03c0\u03b9\u03c1\u03bf\u03bc\u03ad\u03c4\u03c1\u03b7\u03c3\u03b7"],
+  "Specialty Exams":["Specialty exams","\u0395\u03b9\u03b4\u03b9\u03ba\u03ad\u03c2 \u03b5\u03be\u03b5\u03c4\u03ac\u03c3\u03b5\u03b9\u03c2"],
+  "Physical Examination":["Physical examination","\u03a6\u03c5\u03c3\u03b9\u03ba\u03ae \u03b5\u03be\u03ad\u03c4\u03b1\u03c3\u03b7"],
+  "Final Evaluation":["Final evaluation","\u03a4\u03b5\u03bb\u03b9\u03ba\u03ae \u03b1\u03be\u03b9\u03bf\u03bb\u03cc\u03b3\u03b7\u03c3\u03b7"],
+  "Certificates":["Certificates","\u03a0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03b9\u03b7\u03c4\u03b9\u03ba\u03ac"],
+  "Records":["Records / flag-state","\u0391\u03c1\u03c7\u03b5\u03af\u03b1 / flag-state"]
+};
+const DOS_DL="next2dms-v0.6.html?tenant=next2mcl&source=peme&q=SF-PH-039281";
+const DOS_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 2h8l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M14 2v4h4"/></svg>';
+function vDossier(){
+  const L=lang==='el'?1:0;
+  const note=lang==='el'
+    ?'\u039a\u03ac\u03b8\u03b5 \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03bf \u03ba\u03b1\u03c4\u03b1\u03c7\u03c9\u03c1\u03b5\u03af\u03c4\u03b1\u03b9 \u03c3\u03c4\u03bf Next2DMS \u03c4\u03b7 \u03c3\u03c4\u03b9\u03b3\u03bc\u03ae \u03c0\u03bf\u03c5 \u03c4\u03bf \u03c0\u03b1\u03c1\u03ac\u03b3\u03b5\u03b9 \u03bf \u03c3\u03c4\u03b1\u03b8\u03bc\u03cc\u03c2 \u2014 single source of truth, no-copy. \u039f\u03b9 \u03af\u03b4\u03b9\u03bf\u03b9 \u03ba\u03c9\u03b4\u03b9\u03ba\u03bf\u03af \u03b5\u03bc\u03c6\u03b1\u03bd\u03af\u03b6\u03bf\u03bd\u03c4\u03b1\u03b9 \u03c3\u03c4\u03bf DMS \u03ba\u03b1\u03b9 \u03c3\u03c4\u03bf 360\u00b0.'
+    :'Every document is registered in Next2DMS the moment its station produces it \u2014 single source of truth, no-copy. The same codes appear in the DMS and the 360\u00b0 folder.';
+  let groups='';
+  Object.keys(DOSSTLBL).forEach(function(st){
+    const items=PEME_DOSSIER.filter(function(x){return x.st===st;}); if(!items.length)return;
+    groups+='<div class="dosgrp"><div class="dgh">'+DOSSTLBL[st][L]+'<span class="ct">'+items.length+'</span></div>';
+    groups+=items.map(function(d){return '<a class="dosrow" href="'+DOS_DL+'"><span class="di">'+DOS_ICON+'</span><span class="dm"><span class="dn">'+d.n+'</span><span class="dc">'+d.code+'</span></span>'+(d.med?'<span class="dmed">\ud83d\udd12 no-copy</span>':'<span class="dt">'+d.t+'</span>')+'<span class="darr">\u203a</span></a>';}).join('');
+    groups+='</div>';
+  });
+  return '<div class="docwrap">'
+    +'<button class="backbtn" onclick="openSeafarerCard(\'SF-PH-039281\')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>'+(lang==='el'?'\u03a0\u03af\u03c3\u03c9 \u03c3\u03c4\u03b7\u03bd \u03ba\u03ac\u03c1\u03c4\u03b1':'Back to seafarer card')+'</button>'
+    +'<div class="certdoc"><div class="cdtop">'
+    +'<div class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2h8l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M14 2v4h4"/></svg></div>'
+    +'<div><h2>DOCTOR NEXT TO ME \u0399\u039a\u0395</h2><div class="sub">HPDC Manila \u00b7 PEME DOSSIER</div></div>'
+    +'<div class="code">'+PEME_DOSSIER.length+' '+(lang==='el'?'\u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03b1':'documents')+'<br>Next2DMS</div></div>'
+    +'<div class="certbody"><div class="certtitle">PEME Dossier \u2014 Juan D. Santos</div>'
+    +'<div class="certtitle-sub">SF-PH-039281 \u00b7 Crossworld \u00b7 '+(lang==='el'?'\u039f\u03bb\u03bf\u03ba\u03bb\u03b7\u03c1\u03ce\u03b8\u03b7\u03ba\u03b5 \u00b7 FIT':'Completed \u00b7 FIT')+'</div>'
+    +'<div class="dosnote">'+note+'</div>'
+    +'<a class="dosopen" href="'+DOS_DL+'">'+DOS_ICON+(lang==='el'?'\u0386\u03bd\u03bf\u03b9\u03b3\u03bc\u03b1 \u03c6\u03b1\u03ba\u03ad\u03bb\u03bf\u03c5 \u03c3\u03c4\u03bf Next2DMS':'Open folder in Next2DMS')+' \u203a</a>'
+    +groups
+    +'</div></div></div>';
+}
+
 
 const ROLES=[
   {id:"frontdesk",stage:2,initials:"FD",en:{name:"Frontdesk",sub:"Reception"},el:{name:"Frontdesk",sub:"Ρεσεψιόν"}},
@@ -1342,6 +1427,7 @@ function vSeafarerCard(sid){
       <div class="full">${sec(iPeme,t("sf.peme"),`<div class="kvs">${pemeKV}</div>
         <div class="sfacts">
           <a class="prim" href="${dmsLink}">${iDoc}Documents (DMS)</a>
+          ${s.me?`<button onclick="go('dossier')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M6 2h8l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M9 12h6M9 16h4"/></svg>${lang==='el'?'\u0394\u03b5\u03bb\u03c4\u03af\u03bf PEME':'PEME Dossier'}</button>`:``}
           ${s.me?`<button onclick="go('folder')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/></svg>${t("open360")}</button>`:``}
           ${s.me&&c?`<button onclick="openMyCase()">${iPeme}${t("sf.journey")}</button>`:``}
         </div>`)}</div>
@@ -1454,6 +1540,7 @@ function render(){
   else if(activeView==="folder")h.innerHTML=vFolder();
   else if(activeView==="newseafarer")h.innerHTML=regDone?vRegDone():vNewSeafarer();
   else if(activeView==="seafarercard")h.innerHTML=vSeafarerCard(CARD_SID);
+  else if(activeView==="dossier")h.innerHTML=vDossier();
   else if(activeView==="certdoc")h.innerHTML=vCertDoc(CERT_NAME);
   else if(activeView==="labreport")h.innerHTML=vLabReport(LAB_PID);
   else if(activeView==="imgreport")h.innerHTML=vImgReport(IMG_ID);
@@ -1511,7 +1598,7 @@ function vFrontdesk(){
 }
 
 /* ===================== actions ===================== */
-function go(v){activeView=v;if(v==="appointment"){apptDone=null;apptSel="";}if(v==="newseafarer")regDone=null;$("#crumbView").textContent=({board:"Case Board",appointment:"New Appointment",folder:"Seafarer 360°",newseafarer:"New Seafarer"})[v]||"";render();}
+function go(v){activeView=v;if(v==="appointment"){apptDone=null;apptSel="";}if(v==="newseafarer")regDone=null;$("#crumbView").textContent=({board:"Case Board",appointment:"New Appointment",folder:"Seafarer 360°",newseafarer:"New Seafarer",dossier:"PEME Dossier"})[v]||"";render();}
 function openStage(i){CASE._openStage=i;activeView="stage";$("#crumbView").textContent=STAGES[i].en;render();}
 function openMyCase(){openStage(CASE.currentStage);}
 function completeStage(s){CASE.done[s]=true;if(s===CASE.currentStage&&CASE.currentStage<STAGES.length-1)CASE.currentStage=Math.min(CASE.currentStage+1,STAGES.length-1);toast("t.saved");render();}
