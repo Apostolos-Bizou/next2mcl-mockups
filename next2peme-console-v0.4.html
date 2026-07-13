@@ -781,9 +781,21 @@ function vMD(){
         <button class="dispbtn ${d==='temp'?'sel-temp':''}" onclick="setDisp('temp')">${t("md.temp")}<small>${t("md.tempsub")}</small></button>
         <button class="dispbtn ${d==='unfit'?'sel-unfit':''}" onclick="setDisp('unfit')">${t("md.unfit")}<small>${t("md.unfitsub")}</small></button>
       </div>
+      ${d?codedTbl(ICDMAP[d]||ICDMAP.fit):''}
       <div class="completebar" style="gap:10px"><button class="backbtn" style="margin:0" onclick="openEndorsement()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2h9l3 3v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M8 12h8M8 16h5"/></svg>${t("md.endorse")}</button><button class="magic" onclick="signMD()" ${d?'':'disabled'}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/></svg>${t("md.sign")}</button></div>
     </div></div>`;
 }
+const ICDMAP={
+  fit:[["Z02.1","Encounter for pre-employment examination"],["Z00.00","General adult medical exam without abnormal findings"]],
+  temp:[["E11.65","Type 2 diabetes mellitus with hyperglycemia"],["R73.09","Other abnormal glucose"],["I10","Essential (primary) hypertension"],["E78.5","Hyperlipidemia, unspecified"],["N18.2","Chronic kidney disease, stage 2 (mild)"],["E66.3","Overweight"]],
+  unfit:[["Z02.1","Encounter for pre-employment examination"],["R79.89","Other specified abnormal findings of blood chemistry"]]
+};
+const REFICD={
+  cardio:[["I10","Essential (primary) hypertension"],["E78.5","Hyperlipidemia, unspecified"]],
+  endo:[["E11.65","Type 2 diabetes mellitus with hyperglycemia"],["R73.09","Other abnormal glucose"]],
+  nephro:[["N18.2","Chronic kidney disease, stage 2 (mild)"],["R79.89","Other specified abnormal findings of blood chemistry"]]
+};
+function codedTbl(rows){return `<div class="sectitle" style="margin-top:14px">Coded findings · ICD-10-CM</div><table class="codetbl"><thead><tr><th>ICD-10</th><th>Description</th></tr></thead><tbody>${rows.map(r=>`<tr><td class="cd">${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</tbody></table>`;}
 const ENDTXT={
   fit:{a:"Essentially normal pre-employment medical examination. All laboratory, imaging, cardiac, vision, hearing, dental and psychological evaluations are within acceptable limits.",p:"FIT FOR SEA DUTY. Maintain a healthy lifestyle; routine re-examination at next contract."},
   temp:{a:"Findings requiring short-term management noted (e.g., elevated HbA1c / blood pressure). No permanent disqualifying condition identified.",p:"TEMPORARILY UNFIT until acceptable control. Repeat relevant tests in 3 months; diet and lifestyle modification."},
@@ -806,6 +818,7 @@ function vEndorsement(){
         <div class="certgrid">${kv(t("end.to"),sf.principal)}${kv(t("end.thru"),sf.agency)}${kv(t("cd.examdate"),"01 July 2026")}${kv("Seafarer ID",sf.id)}</div>
         <div class="sectitle">${t("end.assessment")}</div><p class="findp">${E.a}</p>
         <div class="sectitle" style="margin-top:12px">${t("end.plan")}</div><p class="findp">${E.p}</p>
+        ${codedTbl(ICDMAP[d]||ICDMAP.fit)}
         <div class="certdisp ${D[0]}" style="margin-top:16px"><div class="big">${D[1]}</div></div>
         <div class="certsign"><div></div><div class="signline"><b>Dr. R. Delgado, MD</b>${t("cd.director")}</div></div>
         <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br><span style="font-family:var(--ff-mono)">${code}</span></div></div>
@@ -1247,6 +1260,7 @@ function vRefReport(id){
         <div class="certtitle">${L(s)}</div><div class="certtitle-sub">${t("ref.subtitle")}</div>
         <div class="certgrid">${kv(t("sf.fullname"),`${sf.first} ${sf.last}`)}${kv("Seafarer ID",sf.id)}${kv(t("sf.rank"),LX(sf.rank))}${kv(t("reg.control"),"HPDC-"+seq)}</div>
         ${body}
+        ${REFICD[id]?codedTbl(REFICD[id]):''}
         <div class="certsign"><div></div><div class="signline"><b>${s.sig}</b>${s.sigr}</div></div>
         <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br><span style="font-family:var(--ff-mono)">${code}</span></div></div>
       </div>
