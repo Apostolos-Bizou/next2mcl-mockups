@@ -217,6 +217,14 @@ textarea.inp{min-height:78px;resize:vertical}
 .labtbl td{padding:8px;border-bottom:1px solid var(--line-2);color:var(--ink-2)}
 .labtbl td.r{font-family:var(--ff-mono);font-weight:600;color:var(--ink)}
 .labtbl td.f{text-align:center}
+.codechip{font-family:var(--ff-mono);font-size:9px;font-weight:600;color:var(--teal);background:rgba(14,140,147,.09);border:1px solid rgba(14,140,147,.28);border-radius:5px;padding:1px 5px;margin-left:8px;white-space:nowrap}
+.labtbl td.code{font-family:var(--ff-mono);font-size:10.5px;color:var(--teal);white-space:nowrap}
+.encchip{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-2);background:var(--mist);border:1px solid var(--line);border-radius:7px;padding:5px 11px;margin-top:8px}
+.encchip b{font-family:var(--ff-mono);color:var(--navy)}
+.codetbl{width:100%;border-collapse:collapse;font-size:12px;margin-top:6px}
+.codetbl th{text-align:left;font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);font-weight:700;padding:7px 8px;border-bottom:1.5px solid var(--line)}
+.codetbl td{padding:7px 8px;border-bottom:1px solid var(--line-2);color:var(--ink-2)}
+.codetbl td.cd{font-family:var(--ff-mono);font-size:11px;font-weight:600;color:var(--navy);white-space:nowrap}
 .findp{font-size:12.5px;color:var(--ink-2);line-height:1.6;margin:4px 0 0}
 .plates{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin:8px 0 4px}
 .plate{border:1px solid var(--line);border-radius:8px;padding:6px 4px;text-align:center;background:var(--paper)}
@@ -872,54 +880,54 @@ function vCertDoc(name){
 let LAB_PID="hema";
 const LABPANELS=[
  {id:"hema",en:"Hematology",el:"Αιματολογικό",tests:[
-   {n:"Blood Type",r:"O POSITIVE",u:"",ref:"—"},
-   {n:"Hemoglobin",r:"150",u:"g/L",ref:"M: 120–180"},
-   {n:"Hematocrit",r:"46",u:"%",ref:"M: 40–54"},
-   {n:"Red Blood Cell",r:"5.10",u:"x10^12/L",ref:"M: 4.0–5.5"},
-   {n:"White Blood Cell",r:"7.20",u:"x10^9/L",ref:"5.0–11.0"},
-   {n:"Neutrophil",r:"60",u:"%",ref:"40–70"},
-   {n:"Lymphocyte",r:"33",u:"%",ref:"20–40"},
-   {n:"Monocyte",r:"5",u:"%",ref:"0–10"},
-   {n:"Eosinophil",r:"2",u:"%",ref:"0–3"},
-   {n:"Platelet",r:"260",u:"x10^9/L",ref:"150–450"}]},
+   {n:"Blood Type",r:"O POSITIVE",u:"",ref:"—",c:"882-1"},
+   {n:"Hemoglobin",r:"150",u:"g/L",ref:"M: 120–180",c:"718-7"},
+   {n:"Hematocrit",r:"46",u:"%",ref:"M: 40–54",c:"4544-3"},
+   {n:"Red Blood Cell",r:"5.10",u:"x10^12/L",ref:"M: 4.0–5.5",c:"789-8"},
+   {n:"White Blood Cell",r:"7.20",u:"x10^9/L",ref:"5.0–11.0",c:"6690-2"},
+   {n:"Neutrophil",r:"60",u:"%",ref:"40–70",c:"770-8"},
+   {n:"Lymphocyte",r:"33",u:"%",ref:"20–40",c:"736-9"},
+   {n:"Monocyte",r:"5",u:"%",ref:"0–10",c:"742-7"},
+   {n:"Eosinophil",r:"2",u:"%",ref:"0–3",c:"713-8"},
+   {n:"Platelet",r:"260",u:"x10^9/L",ref:"150–450",c:"777-3"}]},
  {id:"chem",en:"Chemistry",el:"Βιοχημικό",tests:[
-   {n:"FBS",r:"5.2",u:"mmol/L",ref:"3.33–6.10"},
-   {n:"Creatinine",r:"88",u:"µmol/L",ref:"M: 61.8–123.7"},
-   {n:"Total Cholesterol",r:"4.6",u:"mmol/L",ref:"<5.20"},
-   {n:"Triglycerides",r:"1.2",u:"mmol/L",ref:"M: 0.45–1.81"},
-   {n:"HDL",r:"1.3",u:"mmol/L",ref:"M: >0.50"},
-   {n:"LDL",r:"2.4",u:"mmol/L",ref:"<2.59"},
-   {n:"VLDL",r:"0.35",u:"mmol/L",ref:"0.05–0.78"},
-   {n:"HbA1c",r:"5.4",u:"%",ref:"4.50–6.50"}]},
+   {n:"FBS",r:"5.2",u:"mmol/L",ref:"3.33–6.10",c:"1558-6"},
+   {n:"Creatinine",r:"88",u:"µmol/L",ref:"M: 61.8–123.7",c:"2160-0"},
+   {n:"Total Cholesterol",r:"4.6",u:"mmol/L",ref:"<5.20",c:"2093-3"},
+   {n:"Triglycerides",r:"1.2",u:"mmol/L",ref:"M: 0.45–1.81",c:"2571-8"},
+   {n:"HDL",r:"1.3",u:"mmol/L",ref:"M: >0.50",c:"2085-9"},
+   {n:"LDL",r:"2.4",u:"mmol/L",ref:"<2.59",c:"13457-7"},
+   {n:"VLDL",r:"0.35",u:"mmol/L",ref:"0.05–0.78",c:"13458-5"},
+   {n:"HbA1c",r:"5.4",u:"%",ref:"4.50–6.50",c:"4548-4"}]},
  {id:"sero",en:"Serology / Immunology",el:"Ορολογία / Ανοσολογία",tests:[
-   {n:"HBsAg",r:"Nonreactive",u:"",ref:"Nonreactive"},
-   {n:"VDRL",r:"Nonreactive",u:"",ref:"Nonreactive"},
-   {n:"HIV Screening",r:"Nonreactive",u:"0.08 / cutoff 0.150",ref:"Nonreactive"}]},
+   {n:"HBsAg",r:"Nonreactive",u:"",ref:"Nonreactive",c:"5195-3"},
+   {n:"VDRL",r:"Nonreactive",u:"",ref:"Nonreactive",c:"5292-8"},
+   {n:"HIV Screening",r:"Nonreactive",u:"0.08 / cutoff 0.150",ref:"Nonreactive",c:"75622-1"}]},
  {id:"urine",en:"Urinalysis",el:"Γενική Ούρων",tests:[
-   {n:"Color",r:"Yellow",u:"",ref:"—"},
-   {n:"Transparency",r:"Clear",u:"",ref:"—"},
-   {n:"pH",r:"6.0",u:"",ref:"5.0–8.0"},
-   {n:"Sp. Gravity",r:"1.015",u:"",ref:"1.003–1.030"},
-   {n:"Glucose",r:"Negative",u:"",ref:"Negative"},
-   {n:"Protein",r:"Negative",u:"",ref:"Negative"},
-   {n:"WBC",r:"0–2",u:"/HPF",ref:"0–5"},
-   {n:"RBC",r:"0–2",u:"/HPF",ref:"0–3"}]},
+   {n:"Color",r:"Yellow",u:"",ref:"—",c:"5778-6"},
+   {n:"Transparency",r:"Clear",u:"",ref:"—",c:"5767-9"},
+   {n:"pH",r:"6.0",u:"",ref:"5.0–8.0",c:"5803-2"},
+   {n:"Sp. Gravity",r:"1.015",u:"",ref:"1.003–1.030",c:"5811-5"},
+   {n:"Glucose",r:"Negative",u:"",ref:"Negative",c:"5792-7"},
+   {n:"Protein",r:"Negative",u:"",ref:"Negative",c:"5804-0"},
+   {n:"WBC",r:"0–2",u:"/HPF",ref:"0–5",c:"5821-4"},
+   {n:"RBC",r:"0–2",u:"/HPF",ref:"0–3",c:"5808-1"}]},
  {id:"fecal",en:"Fecalysis",el:"Γενική Κοπράνων",tests:[
-   {n:"Color",r:"Brown",u:"",ref:"—"},
-   {n:"Consistency",r:"Formed",u:"",ref:"—"},
-   {n:"RBC",r:"0–1",u:"/hpf",ref:"0–1"},
-   {n:"WBC",r:"0–1",u:"/hpf",ref:"0–1"},
-   {n:"Parasites",r:"No intestinal parasite seen",u:"",ref:"None"}]},
+   {n:"Color",r:"Brown",u:"",ref:"—",c:"9330-4"},
+   {n:"Consistency",r:"Formed",u:"",ref:"—",c:"9299-1"},
+   {n:"RBC",r:"0–1",u:"/hpf",ref:"0–1",c:"664-3"},
+   {n:"WBC",r:"0–1",u:"/hpf",ref:"0–1",c:"622-1"},
+   {n:"Parasites",r:"No intestinal parasite seen",u:"",ref:"None",c:"10701-7"}]},
  {id:"drug",en:"Drug & Alcohol",el:"Ναρκωτικά & Αλκοόλ",tests:[
-   {n:"Methamphetamine",r:"Negative",u:"",ref:"Negative"},
-   {n:"Tetrahydrocannabinol (THC)",r:"Negative",u:"",ref:"Negative"},
-   {n:"Alcohol (saliva)",r:"Negative",u:"",ref:"Negative"}]}
+   {n:"Methamphetamine",r:"Negative",u:"",ref:"Negative",c:"19343-5"},
+   {n:"Tetrahydrocannabinol (THC)",r:"Negative",u:"",ref:"Negative",c:"18282-6"},
+   {n:"Alcohol (saliva)",r:"Negative",u:"",ref:"Negative",c:"5643-2"}]}
 ];
 function openLabReport(pid){LAB_PID=pid;activeView="labreport";$("#crumbView").textContent="Lab report";render();}
 function vLab(){
   const st=STAGES[3],done=CASE.done[3];
   const ok=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>`;
-  const panels=LABPANELS.map(p=>`<div class="labgrp"><div class="lgh"><b>${L(p)}</b><button class="mini ghost" onclick="openLabReport('${p.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:13px;height:13px;vertical-align:-2px"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg> ${t("lab.view")}</button></div><div class="labrows">${p.tests.map(x=>`<div class="labrow"><span class="tn">${x.n}</span><input class="labin" value="${x.r}"><span class="tu">${x.u||''}</span></div>`).join("")}</div></div>`).join("");
+  const panels=LABPANELS.map(p=>`<div class="labgrp"><div class="lgh"><b>${L(p)}</b><button class="mini ghost" onclick="openLabReport('${p.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:13px;height:13px;vertical-align:-2px"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg> ${t("lab.view")}</button></div><div class="labrows">${p.tests.map(x=>`<div class="labrow"><span class="tn">${x.n}${x.c?'<span class="codechip" title="LOINC">'+x.c+'</span>':''}</span><input class="labin" value="${x.r}"><span class="tu">${x.u||''}</span></div>`).join("")}</div></div>`).join("");
   return `<div class="pagehead"><div class="ey">${st.code} · ${t("track.title")}</div><h1>${L(st)}</h1></div>
     ${sf360head(true)}${trackBar()}
     <div class="card" style="margin-top:16px">
@@ -935,7 +943,7 @@ function vLabReport(pid){
   const seq=((''+s.caseId).match(/(\d+)$/)||["","04127"])[1];
   const code="MCL-MAR-PEME-LAB-2026-"+seq;
   const kv=(k,v)=>`<div class="kv"><div class="k">${k}</div><div class="v">${v||"—"}</div></div>`;
-  const rows=p.tests.map(x=>`<tr><td>${x.n}</td><td class="r">${x.r}</td><td>${x.ref||'—'}</td><td>${x.u||'—'}</td><td class="f">${x.hl?`<span class="hl ${x.hl==='H'?'h':'l'}">${x.hl}</span>`:''}</td></tr>`).join("");
+  const rows=p.tests.map(x=>`<tr><td>${x.n}</td><td class="code">${x.c||'—'}</td><td class="r">${x.r}</td><td>${x.ref||'—'}</td><td>${x.u||'—'}</td><td class="f">${x.hl?`<span class="hl ${x.hl==='H'?'h':'l'}">${x.hl}</span>`:''}</td></tr>`).join("");
   return `<div class="docwrap">
     <button class="backbtn" onclick="openStage(3)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>${t("lab.back")}</button>
     <div class="certdoc">
@@ -947,8 +955,9 @@ function vLabReport(pid){
       <div class="certbody">
         <div class="certtitle">${L(p)}</div>
         <div class="certtitle-sub">${t("lab.subtitle")}</div>
-        <div class="certgrid">${kv(t("sf.fullname"),`${s.first} ${s.last}`)}${kv("Seafarer ID",s.id)}${kv(t("sf.rank"),LX(s.rank))}${kv(t("reg.control"),"HPDC-"+seq)}</div>
-        <table class="labtbl"><thead><tr><th>${t("lab.test")}</th><th>${t("lab.result")}</th><th>${t("lab.normal")}</th><th>${t("lab.unit")}</th><th>H/L</th></tr></thead><tbody>${rows}</tbody></table>
+        <div class="encchip">Encounter · <b>Z02.1</b> · Pre-employment examination</div>
+        <div class="certgrid" style="margin-top:12px">${kv(t("sf.fullname"),`${s.first} ${s.last}`)}${kv("Seafarer ID",s.id)}${kv(t("sf.rank"),LX(s.rank))}${kv(t("reg.control"),"HPDC-"+seq)}</div>
+        <table class="labtbl"><thead><tr><th>${t("lab.test")}</th><th>LOINC</th><th>${t("lab.result")}</th><th>${t("lab.normal")}</th><th>${t("lab.unit")}</th><th>H/L</th></tr></thead><tbody>${rows}</tbody></table>
         <div class="certsign">
           <div class="signline"><b>R. Cruz, RMT</b>${t("lab.medtech")}</div>
           <div class="signline"><b>Dr. A. Reyes, MD</b>${t("lab.patho")}</div>
