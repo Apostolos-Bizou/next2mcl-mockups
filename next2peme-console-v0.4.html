@@ -353,6 +353,7 @@ textarea.inp{min-height:78px;resize:vertical}
       <a href="#" data-stage="6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-6 10-6 10 6 10 6-3 6-10 6-10-6-10-6z"/></svg><span data-i18n="st.SPEC">Specialty Exams</span><span class="st" data-stst="6"></span></a>
       <a href="#" data-stage="7"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="7" r="3.2"/><path d="M5 21c0-4 3-6 7-6s7 2 7 6"/></svg><span data-i18n="st.PHYS">Physical Exam</span><span class="st" data-stst="7"></span></a>
       <a href="#" data-stage="8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v6c0 4-3.5 7-8 8-4.5-1-8-4-8-8V7z"/><path d="M9 12l2 2 4-4"/></svg><span data-i18n="st.MDRV">MD Review</span><span class="st" data-stst="8"></span></a>
+      <a href="#" data-stage="9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 7h10M7 12h10M7 17h6"/><path d="M3 4h18v16H3z"/></svg><span data-i18n="nav.refr">Specialist Referrals</span><span class="st" data-stst="9"></span></a>
       <a href="#" data-stage="10"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span data-i18n="st.CERT">Certificates</span><span class="st" data-stst="10"></span></a>
       <span class="lbl" data-i18n="nav.core">Shared Core</span>
       <a href="#" data-view="folder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18M3 12h18"/></svg><span data-i18n="nav.folder">Seafarer 360°</span></a>
@@ -518,6 +519,7 @@ const I18N={en:{
   "hdr.fit":"Disposition pending","open360":"Open 360° Folder","track.title":"PEME Journey","track.of":"of",
   "feeds":"Feeds:","complete":"Complete station","completed":"Completed","upload":"Upload","attached":"Attached",
   "md.h":"Final Evaluation","md.p":"The Medical Director reviews the whole folder and decides. The signature feeds the certificates.","md.summary":"Findings summary","md.meds":"Required medication","md.disp":"Fitness disposition","md.fit":"Fit","md.temp":"Temp. Unfit","md.unfit":"Unfit","md.fitsub":"Fit to work","md.tempsub":"Temporarily unfit","md.unfitsub":"Unfit","md.sign":"Sign & issue decision","md.soap":"Follow-Up Consultation (SOAP)","md.subj":"Subjective","md.obj":"Objective","md.assess":"Assessment","md.plan":"Plan","md.endorse":"View Crew Endorsement","end.title":"Crew Endorsement Report","end.confidential":"Medical Confidential","end.assessment":"I. Assessment","end.plan":"II. Plan","end.back":"Back to MD Review","end.to":"To (Principal)","end.thru":"Thru (Manning Agency)","cert.endorse":"Crew Endorsement Report",
+  "ref.dc":"Specialist referrals & clearances","ref.back":"Back to Referrals","ref.subtitle":"Pre-Employment Medical Examination · Specialist Referral","ref.note":"Conditional — triggered when the Medical Director flags findings (e.g., elevated HbA1c, blood pressure, azotemia). This is the Temporarily-Unfit pathway.","ref.cleared":"Cleared","ref.reason":"Reason for referral","ref.history":"Pertinent history","ref.diag":"Diagnostic examinations","ref.plan":"Plan / Assessment","nav.refr":"Specialist Referrals",
   "cert.h":"Issue Certificates","cert.p":"Auto-generated from the PEME data. Print \u2192 sign \u2192 scan \u2192 attach (hybrid for e-MER).","cert.gen":"Issue all","cert.view":"View","cert.issued":"Issued",
   "folder.note":"The 360\u00b0 folder is a shared CBMS module (Layer 2) \u2014 every product opens it. Here you see a summary; the full folder is a separate artifact.",
   "x.care":"<b>Active member</b> \u00b7 Gold+","x.peme":"<b>PEME in progress</b>","x.across":"This seafarer across the products (not Peme files)","x.post":"<b>1 past POME</b> \u00b7 2023","x.ship":"<b>1 incident</b> \u00b7 2024",
@@ -553,6 +555,7 @@ const I18N={en:{
   "hdr.fit":"Εκκρεμεί απόφαση","open360":"Άνοιγμα Φακέλου 360°","track.title":"Διαδρομή PEME","track.of":"από",
   "feeds":"Τροφοδοτεί:","complete":"Ολοκλήρωση σταθμού","completed":"Ολοκληρώθηκε","upload":"Μεταφόρτωση","attached":"Επισυνάφθηκε",
   "md.h":"Τελική Αξιολόγηση","md.p":"Ο Ιατρικός Διευθυντής ελέγχει όλο τον φάκελο και αποφασίζει. Η υπογραφή τροφοδοτεί τα certificates.","md.summary":"Σύνοψη ευρημάτων","md.meds":"Απαιτούμενη αγωγή","md.disp":"Απόφαση καταλληλότητας","md.fit":"Fit","md.temp":"Temp. Unfit","md.unfit":"Unfit","md.fitsub":"Κατάλληλος","md.tempsub":"Προσωρινά ακατάλληλος","md.unfitsub":"Ακατάλληλος","md.sign":"Υπογραφή & έκδοση απόφασης","md.soap":"Follow-Up Consultation (SOAP)","md.subj":"Subjective (Υποκειμενικά)","md.obj":"Objective (Αντικειμενικά)","md.assess":"Assessment (Εκτίμηση)","md.plan":"Plan (Σχέδιο)","md.endorse":"Προβολή Crew Endorsement","end.title":"Crew Endorsement Report","end.confidential":"Ιατρικό Εμπιστευτικό","end.assessment":"I. Assessment","end.plan":"II. Plan","end.back":"Πίσω στο MD Review","end.to":"Προς (Principal)","end.thru":"Μέσω (Πρακτορείο)","cert.endorse":"Crew Endorsement Report",
+  "ref.dc":"Παραπομπές ειδικών & εγκρίσεις","ref.back":"Πίσω στις Παραπομπές","ref.subtitle":"Προ-Εργασιακή Ιατρική Εξέταση · Παραπομπή Ειδικού","ref.note":"Υπό όρους — ενεργοποιείται όταν ο Ιατρικός Διευθυντής εντοπίσει ευρήματα (π.χ. αυξημένο HbA1c, πίεση, azotemia). Είναι ο κλάδος Temporarily-Unfit.","ref.cleared":"Εγκρίθηκε","ref.reason":"Λόγος παραπομπής","ref.history":"Σχετικό ιστορικό","ref.diag":"Διαγνωστικές εξετάσεις","ref.plan":"Σχέδιο / Εκτίμηση","nav.refr":"Παραπομπές Ειδικών",
   "cert.h":"Έκδοση Πιστοποιητικών","cert.p":"Auto-generated από τα δεδομένα του PEME. Print → sign → scan → attach (hybrid για e-MER).","cert.gen":"Έκδοση όλων","cert.view":"Προβολή","cert.issued":"Εκδόθηκε",
   "folder.note":"Ο Φάκελος 360° είναι shared module του CBMS (Layer 2) — τον ανοίγουν όλα τα προϊόντα. Εδώ βλέπεις σύνοψη· ο πλήρης φάκελος είναι ξεχωριστό artifact.",
   "x.care":"<b>Ενεργό μέλος</b> · Gold+","x.peme":"<b>PEME σε εξέλιξη</b>","x.across":"Ο ναυτικός στα προϊόντα (όχι αρχεία Peme)","x.post":"<b>1 παλιό POME</b> · 2023","x.ship":"<b>1 incident</b> · 2024",
@@ -1173,6 +1176,72 @@ function vPhysReport(){
     </div></div></div>`;
 }
 
+let REF_ID="cardio";
+const REFERRALS=[
+ {id:"cardio",en:"Cardiology Consultation",el:"Καρδιολογική Εκτίμηση",rep:"CARDIOLOGY CONSULTATION",badge:"CLEARED — fit cardiac-wise",sig:"Dr. V. Cruz, MD",sigr:"Cardiologist"},
+ {id:"endo",en:"Endocrinology Clearance",el:"Ενδοκρινολογική Έγκριση",rep:"ENDOCRINOLOGY — MEDICAL CERTIFICATE",badge:"FIT FOR SEA DUTY, endocrine-wise",sig:"Dr. P. Reyes, MD",sigr:"Endocrinology"},
+ {id:"nephro",en:"Nephrology Clearance",el:"Νεφρολογική Έγκριση",rep:"NEPHROLOGY — MEDICAL CERTIFICATE",badge:"CLEARED — nephrology",sig:"Dr. A. Mendoza, MD",sigr:"Nephrology"}
+];
+function openRefReport(id){REF_ID=id;activeView="refreport";$("#crumbView").textContent="Referral report";render();}
+function vReferrals(){
+  const st=STAGES[9],done=CASE.done[9];
+  const cards=REFERRALS.map(r=>`<div class="labgrp"><div class="lgh"><b>${L(r)}</b><span style="display:flex;align-items:center;gap:9px"><span class="pill done">${t("ref.cleared")}</span><button class="mini ghost" onclick="openRefReport('${r.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:13px;height:13px;vertical-align:-2px"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg> ${t("lab.view")}</button></span></div></div>`).join("");
+  return `<div class="pagehead"><div class="ey">REFR · ${t("track.title")}</div><h1>${L(st)}</h1></div>
+    ${sf360head(true)}${trackBar()}
+    <div class="card" style="margin-top:16px"><div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v6c0 4-3.5 7-8 8-4.5-1-8-4-8-8V7z"/></svg></div><h3>${t("ref.dc")}</h3><span class="stepstat ${done?'ok':''}">${done?okChk+t("completed"):''}</span></div><div class="cb">
+      <div class="corenote" style="margin-bottom:12px"><span class="tag">CONDITIONAL</span><span>${t("ref.note")}</span></div>
+      ${cards}
+      <div class="completebar"><button class="magic" onclick="completeStage(9)" ${done?'disabled':''}>${okChk}${done?t("completed"):t("lab.gen")}</button></div>
+    </div></div>`;
+}
+function vRefReport(id){
+  const s=REFERRALS.find(x=>x.id===id)||REFERRALS[0],sf=SEAFARER;
+  const seq=((''+sf.caseId).match(/(\d+)$/)||["","04127"])[1],code="MCL-MAR-PEME-REF-2026-"+seq;
+  const kv=(k,v)=>`<div class="kv"><div class="k">${k}</div><div class="v">${v||"—"}</div></div>`;
+  const chk=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg>`;
+  let body="";
+  if(id==="cardio"){
+    body=`<div class="spectag">${chk} ${s.badge}</div>
+      <div class="sectitle" style="margin-top:14px">${t("ref.reason")}</div><p class="findp">Cardiac risk assessment — elevated blood pressure noted on screening.</p>
+      <div class="sectitle" style="margin-top:12px">${t("ref.history")}</div><div class="opts" style="margin-top:6px"><span class="opt on">HPN</span><span class="opt on">DM</span><span class="opt on">Dyslipidemia</span></div>
+      <div class="sectitle" style="margin-top:12px">${t("ref.diag")}</div>
+      <table class="systbl"><tbody>
+        <tr><td>ECG</td><td class="n">Sinus rhythm · normal axis</td></tr>
+        <tr><td>Treadmill (Bruce protocol)</td><td class="n">9 min · Stage 3 · 146 bpm (90% MPHR)</td></tr>
+        <tr><td>Exercise stress ECG</td><td class="n">NEGATIVE for ischemia</td></tr>
+        <tr><td>2D Echo</td><td class="n">Concentric LVH · EF 73% · good function</td></tr>
+        <tr><td>ASCVD 10-yr risk</td><td class="n">2.6%</td></tr>
+      </tbody></table>
+      <p class="findp" style="margin-top:10px;font-size:11px;color:var(--ink-3)">Treadmill Exercise Test — Informed Consent on file (RA 8792).</p>
+      <div class="sectitle" style="margin-top:12px">${t("ref.plan")}</div><p class="findp">FIT FOR SEA DUTY, cardiac-wise. For BP monitoring; lifestyle &amp; diet modification.</p>`;
+  }else if(id==="endo"){
+    body=`<div class="spectag">${chk} ${s.badge}</div>
+      <div class="sectitle" style="margin-top:14px">Diagnosis</div><p class="findp">Diabetes mellitus type 2 (HbA1c 8.2%, FBS 6.01 mmol/L, glucosuria 3+).</p>
+      <div class="sectitle" style="margin-top:12px">Recommendations</div><p class="findp">Diet and lifestyle modification. Maintenance medications REQUIRED to be brought on board. Annual monitoring advised.</p>
+      <div class="sectitle" style="margin-top:12px">${t("ref.plan")}</div><p class="findp"><b>FIT FOR SEA DUTY, endocrine-wise.</b></p>`;
+  }else{
+    body=`<div class="spectag">${chk} ${s.badge}</div>
+      <div class="sectitle" style="margin-top:14px">Diagnosis</div><p class="findp">Azotemia, pre-renal component on top of hypertension — low risk. eGFR 61 ml/min/1.73m² (CKD stage 2, A2).</p>
+      <div class="sectitle" style="margin-top:12px">Recommendations</div><p class="findp">Increased oral fluid intake 2–3 L/day. Repeat renal function. Blood-pressure control.</p>
+      <div class="sectitle" style="margin-top:12px">${t("ref.plan")}</div><p class="findp"><b>Nephrology cleared.</b></p>`;
+  }
+  return `<div class="docwrap">
+    <button class="backbtn" onclick="openStage(9)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>${t("ref.back")}</button>
+    <div class="certdoc">
+      <div class="cdtop"><div class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v6c0 4-3.5 7-8 8-4.5-1-8-4-8-8V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div><h2>DOCTOR NEXT TO ME ΙΚΕ</h2><div class="sub">HPDC Manila · ${s.rep}</div></div>
+        <div class="code">${code}<br>${t("cd.issued")}: 2026-06-30</div></div>
+      <div class="certbody">
+        <div class="certtitle">${L(s)}</div><div class="certtitle-sub">${t("ref.subtitle")}</div>
+        <div class="certgrid">${kv(t("sf.fullname"),`${sf.first} ${sf.last}`)}${kv("Seafarer ID",sf.id)}${kv(t("sf.rank"),LX(sf.rank))}${kv(t("reg.control"),"HPDC-"+seq)}</div>
+        ${body}
+        <div class="certsign"><div></div><div class="signline"><b>${s.sig}</b>${s.sigr}</div></div>
+        <div class="certfoot"><div class="qrbox"></div><div>🔒 ${t("cd.dmsnote")}<br><span style="font-family:var(--ff-mono)">${code}</span></div></div>
+      </div>
+    </div>
+  </div>`;
+}
+
 function vFolder(){
   return `<div class="pagehead"><div class="ey">CBMS · Layer 2 · Shared Core</div><h1>Seafarer 360°</h1></div>
     <div class="ctxbanner"><span class="ic">📁</span><div><b>${t("ctx.t")}</b> ${t("ctx.d")}</div></div>
@@ -1360,6 +1429,7 @@ function render(){
   else if(activeView==="vitreport")h.innerHTML=vVitReport();
   else if(activeView==="physreport")h.innerHTML=vPhysReport();
   else if(activeView==="endorsement")h.innerHTML=vEndorsement();
+  else if(activeView==="refreport")h.innerHTML=vRefReport(REF_ID);
   else if(activeView==="stage"){
     const s=CASE._openStage;
     if(s===2)h.innerHTML=vFrontdesk();
@@ -1368,6 +1438,7 @@ function render(){
     else if(s===5)h.innerHTML=vVitals();
     else if(s===6)h.innerHTML=vSpecialty();
     else if(s===7)h.innerHTML=vPhysical();
+    else if(s===9)h.innerHTML=vReferrals();
     else if(STATIONS[s])h.innerHTML=vStation(s);
     else if(s===8)h.innerHTML=vMD();
     else if(s===10)h.innerHTML=vCerts();
@@ -1414,7 +1485,7 @@ function openMyCase(){openStage(CASE.currentStage);}
 function completeStage(s){CASE.done[s]=true;if(s===CASE.currentStage&&CASE.currentStage<STAGES.length-1)CASE.currentStage=Math.min(CASE.currentStage+1,STAGES.length-1);toast("t.saved");render();}
 function issueSlip(){fd.slip=true;CASE.done[2]=true;if(CASE.currentStage<3)CASE.currentStage=3;toast("t.saved");render();}
 function setDisp(d){CASE.disposition=d;render();}
-function signMD(){CASE.done[8]=true;if(CASE.currentStage<10)CASE.currentStage=10;toast("t.md");render();}
+function signMD(){CASE.done[8]=true;const nxt=(CASE.disposition==='fit')?10:9;if(CASE.currentStage<nxt)CASE.currentStage=nxt;toast("t.md");render();}
 function issueCerts(){CASE.certsIssued=true;CASE.done[10]=true;toast("t.cert");render();}
 function togglePrio(v){SEAFARER.priority=v;document.body.classList.toggle("prio-on",v);if(v)toast("t.prio");}
 
