@@ -539,13 +539,84 @@ const CASES=[
 const SYS={MSK:"Musculoskeletal",GI:"Gastrointestinal",INTG:"Integumentary",GU:"Genitourinary",CV:"Cardiovascular",OPH:"Ophthalmology",NEUR:"Neurological",ENT:"ENT"};
 
 /* aggregate 2025 book (real distribution shape, anonymized principals) */
-const PORTFOLIO={
- year:2025,total:161,illness:117,injury:44,death:4,open:29,closed:132,deployments:7260,pct:2.22,injuryRate:25.9,firstTime:153,
- legal:{disability:44,p2l:5,pure:15},
- systems:[["MSK",54],["GI",21],["GU",16],["INTG",16],["CV",16],["OPH",7],["NEUR",5],["ENT",5],["Oth",21]],
- trend:[["2020",117],["2021",185],["2022",200],["2023",175],["2024",174],["2025",161]],
- principals:[["Cyan",34],["Meridian",26],["Poseidon",16],["Kestrel",8],["Orion",7],["Halcyon",6],["Delphi",6]]
+/* ==== reverse architecture: 161 demo records → every report is COMPUTED, not hardcoded ==== */
+let _seed=20250314;function rnd(){_seed=_seed+0x6D2B79F5|0;let t=Math.imul(_seed^_seed>>>15,1|_seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(rnd()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function bag(spec){let a=[];spec.forEach(x=>{for(let i=0;i<x[1];i++)a.push(x[0]);});return shuffle(a);}
+function buildBook(){
+ const N=161;
+ const gs=bag([["A|closed",86],["A|open",15],["C|closed",28],["C|open",6],["B|closed",3],["B|open",1],["D|closed",15],["D|open",7]]);
+ const type=bag([["ill",117],["inj",44]]);
+ const died=bag([[1,4],[0,157]]);
+ const sys=bag([["MSK",54],["GI",21],["GU",16],["INTG",16],["CV",16],["OPH",7],["NEUR",5],["ENT",5],["INF",4],["MULTI",3],["ENDO",3],["ONC",2],["PSY",2],["RESP",2],["TRAU",2],["DERM",1],["ENV",1],["META",1]]);
+ const prin=bag([["Cyan",34],["Meridian",26],["Poseidon",16],["Kestrel",8],["Orion",7],["Halcyon",6],["Delphi",6],["Goldport",6],["Omega",5],["Union",5],["Globus",4],["Aims",4],["Sea Justice",3],["Bay",3],["Diligent",3],["Kapal",3],["Niovis",3],["Other",15]]);
+ const rank=bag([["AB",25],["OS",20],["Fitter",15],["Oiler",14],["Chief Cook",13],["Bosun",11],["Messman",5],["Chief Off.",4],["Chief Eng.",4],["Electrician",4],["4th Eng.",4],["3rd Off.",4],["Master",4],["3rd Eng.",3],["Deck Cadet",3],["Other",24]]);
+ const crew=bag([["ex",134],["new",27]]);
+ const wr=bag([["WR",98],["NWR",59],["WR-AGG",4]]);
+ const clinic=bag([["ShipHealth",129],["Ygeia",15],["Nautica",9],["CrewMed",4],["Marine Med",2],["Makati Med",2]]);
+ const pi=bag([["No P&I",71],["Handler 1",28],["Handler 2",24],["Handler 3",18],["Handler 4",18],["Other",2]]);
+ const first=bag([["first",153],["repeat",8]]);
+ const ages=[];[[20,29,28],[30,39,52],[40,49,33],[50,59,41],[60,66,7]].forEach(b=>{for(let i=0;i<b[2];i++)ages.push(b[0]+Math.floor(rnd()*(b[1]-b[0]+1)));});shuffle(ages);
+ const bk=[];
+ for(let i=0;i<N;i++){const p=gs[i].split("|");bk.push({group:p[0],status:p[1],type:type[i],died:!!died[i],sys:sys[i],principal:prin[i],rank:rank[i],crew:crew[i],wr:wr[i],clinic:clinic[i],pi:pi[i],first:first[i],age:ages[i],legal:false});}
+ const need={C:4,D:1};for(const r of bk){if(r.status==="open"&&need[r.group]>0){r.legal=true;need[r.group]--;}}
+ return bk;
+}
+const BOOK=buildBook();
+const bCnt=(f,v)=>BOOK.filter(r=>r[f]===v).length;
+const bBy=f=>{const m={};BOOK.forEach(r=>{m[r[f]]=(m[r[f]]||0)+1;});return m;};
+const SYSLBL={MSK:"Musculoskeletal",GI:"Gastrointestinal",GU:"Genitourinary",INTG:"Integumentary",CV:"Cardiovascular",OPH:"Ophthalmology",NEUR:"Neurological",ENT:"ENT",INF:"Infectious",MULTI:"Multisystem",ENDO:"Endocrine",ONC:"Oncology",PSY:"Psychological",RESP:"Respiratory",TRAU:"Traumatic",DERM:"Dermatologic",ENV:"Environmental",META:"Metabolic"};
+const SYSORDER=["MSK","GI","GU","INTG","CV","OPH","NEUR","ENT","INF","MULTI","ENDO","ONC","PSY","RESP","TRAU","DERM","ENV","META"];
+/* prior-year rollups + legal multi-year: stored (only 2025 lives as records) */
+const HISTORY={
+ deployment:7260,pct:2.22,avgMonth:13,decCases:7.47,decDep:6.29,avoided:10,
+ multiYear:[["2020",117,15,75,22,4,4156,2.81,10],["2021",185,12,138,33,2,5265,3.51,15],["2022",200,19,141,38,2,6577,3.04,17],["2023",175,23,136,39,3,7845,2.23,14],["2024",174,11,130,44,1,8193,2.12,14]],
+ comp2024:{mo:38,mc:136,lo:13,lc:7},
+ legal:{medToLegal:5,pureLegal:16,pendingDisability:44,openMedical:54,openPomeLegal:48,
+  pureList:[["Kestrel","Severance pay","Closed"],["Vega","Re-employment after POME","Closed"],["Meridian","Unserved contract","Closed"],["Diligent","Illegal dismissal","On going"],["Omega (2)","Pre-termination of SGA","Closed"],["Yara","Illegal dismissal","Closed"],["Equinox","Illegal dismissal","Closed"],["Goldport (2)","Illegal dismissal","On going"]]},
+ safety:[["Cyan","MSK · finger/hand","10 of 24 fleet-wide (42%)","HIGH"],["Poseidon","Trauma · severe","air-ambulance + fractures","HIGH"],["Halcyon","GI concentration","4 of 6 (67%)","MED"],["Meridian","Integumentary","8 of 26 (31%)","MED"],["Kestrel","Slip & fall on deck","38% injury rate","MED"]],
+ challenged:[["Meridian",7],["Fornax",1],["Halcyon",1],["Kestrel",1]],challengedTotal:10,
+ plans:[["Live claims tracking","Digital platform (Oceanis) for real-time reports & statistics","Ζωντανή παρακολούθηση claims σε ψηφιακή πλατφόρμα για reports & στατιστικά"],["HMO utilization","Shift to HMO utilization instead of post-medical clinic","Στροφή σε HMO αντί για post-medical clinic"],["Family welfare","Welfare activities for seafarers' families in Cebu & Iloilo","Δράσεις welfare για οικογένειες ναυτικών σε Cebu & Iloilo"]]
 };
+function computeAnalysis(){
+ const total=BOOK.length,illness=bCnt("type","ill"),injury=bCnt("type","inj"),death=BOOK.filter(r=>r.died).length;
+ const G=["A","B","C","D"];
+ const perGroup={
+  legal:G.map(g=>BOOK.filter(r=>r.group===g&&r.legal).length),
+  ill:G.map(g=>BOOK.filter(r=>r.group===g&&r.type==="ill"&&!r.died).length),
+  inj:G.map(g=>BOOK.filter(r=>r.group===g&&r.type==="inj"&&!r.died).length),
+  death:G.map(g=>BOOK.filter(r=>r.group===g&&r.died).length)};
+ const sm=bBy("sys"),classification=SYSORDER.map(s=>[SYSLBL[s],sm[s]||0]);
+ const rk=bBy("rank"),rt=["AB","OS","Fitter","Oiler","Chief Cook","Bosun","Messman"];
+ const ranks=rt.map(r=>[r,rk[r]||0]);ranks.push(["Others",total-rt.reduce((a,r)=>a+(rk[r]||0),0)]);
+ const ab={"20–29":0,"30–39":0,"40–49":0,"50–59":0,"60+":0};BOOK.forEach(r=>{const a=r.age;ab[a<30?"20–29":a<40?"30–39":a<50?"40–49":a<60?"50–59":"60+"]++;});
+ const cl=bBy("clinic"),pim=bBy("pi"),pr=bBy("principal");
+ const openTotal=bCnt("status","open"),closedTotal=bCnt("status","closed"),legalOpen=BOOK.filter(r=>r.legal).length;
+ const gOC=g=>["Fleet "+g,BOOK.filter(r=>r.group===g&&r.status==="open").length,BOOK.filter(r=>r.group===g&&r.status==="closed").length];
+ return {
+  total,illness,injury,death,avoided:HISTORY.avoided,deployment:HISTORY.deployment,pct:HISTORY.pct,avgMonth:HISTORY.avgMonth,decCases:HISTORY.decCases,decDep:HISTORY.decDep,
+  groups:["Fleet A","Fleet B","Fleet C","Fleet D"],perGroup,
+  multiYear:[...HISTORY.multiYear,["2025",total,legalOpen,illness,injury,death,HISTORY.deployment,HISTORY.pct,HISTORY.avgMonth]],
+  openClosed:[gOC("A"),gOC("C"),gOC("B"),gOC("D")],openTotal,closedTotal,
+  comparative:{y2024:HISTORY.comp2024,y2025:{mo:openTotal,mc:closedTotal,lo:legalOpen,lc:12}},
+  classification,firstTime:bCnt("first","first"),repeat:bCnt("first","repeat"),crewEx:bCnt("crew","ex"),crewNew:bCnt("crew","new"),
+  wr:bCnt("wr","WR"),nwr:bCnt("wr","NWR"),wrAgg:bCnt("wr","WR-AGG"),avgAge:Math.round(BOOK.reduce((a,r)=>a+r.age,0)/total),
+  ageBands:Object.entries(ab),
+  ranks,
+  clinics:[["ShipHealth",cl["ShipHealth"]||0],["Ygeia",cl["Ygeia"]||0],["Nautica",cl["Nautica"]||0],["CrewMed",cl["CrewMed"]||0],["Marine Med",cl["Marine Med"]||0],["Makati Med",cl["Makati Med"]||0]],
+  piHandlers:[["No P&I",pim["No P&I"]||0],["Handler 1",pim["Handler 1"]||0],["Handler 2",pim["Handler 2"]||0],["Handler 3",pim["Handler 3"]||0],["Handler 4",pim["Handler 4"]||0],["Other",pim["Other"]||0]],
+  principals:Object.entries(pr).filter(e=>e[0]!=="Other").sort((a,b)=>b[1]-a[1]).slice(0,7),
+  legal:HISTORY.legal,safety:HISTORY.safety,challenged:HISTORY.challenged,challengedTotal:HISTORY.challengedTotal,plans:HISTORY.plans
+ };
+}
+const ANALYSIS=computeAnalysis();
+const PORTFOLIO=(function(){const A=ANALYSIS,sm=bBy("sys");
+ const codes=["MSK","GI","GU","INTG","CV","OPH","NEUR","ENT"],systems=codes.map(c=>[c,sm[c]||0]);
+ systems.push(["Oth",SYSORDER.filter(c=>!codes.includes(c)).reduce((a,c)=>a+(sm[c]||0),0)]);
+ return {year:2025,total:A.total,illness:A.illness,injury:A.injury,death:A.death,open:A.openTotal,closed:A.closedTotal,deployments:A.deployment,pct:A.pct,injuryRate:25.9,firstTime:A.firstTime,
+  legal:{disability:A.legal.pendingDisability,p2l:A.legal.medToLegal,pure:15},systems,
+  trend:A.multiYear.map(r=>[r[0],r[1]]),principals:A.principals};
+})();
 function donutSVG(segs,size,thick){
  const r=(size-thick)/2,c=2*Math.PI*r,cx=size/2,total=segs.reduce((a,s)=>a+s[0],0);let off=0;
  const arcs=segs.map(s=>{const len=c*(s[0]/total);const el=`<circle cx="${cx}" cy="${cx}" r="${r}" fill="none" stroke="${s[1]}" stroke-width="${thick}" stroke-dasharray="${len.toFixed(2)} ${(c-len).toFixed(2)}" stroke-dashoffset="${(-off).toFixed(2)}" transform="rotate(-90 ${cx} ${cx})" stroke-linecap="butt"/>`;off+=len;return el;}).join("");
@@ -998,25 +1069,6 @@ function renderHospitals(){
 /* ---------------- render: intel (preview) ---------------- */
 /* ---------------- render: Analysis (year-end deck environment) ---------------- */
 function L(en,el){return lang==="el"?el:en;}
-const ANALYSIS={
- total:161,illness:117,injury:44,death:4,avoided:10,deployment:7260,pct:2.22,avgMonth:13,decCases:7.47,decDep:6.29,
- groups:["Fleet A","Fleet B","Fleet C","Fleet D"],
- perGroup:{legal:[0,0,4,1,5],ill:[75,3,25,14,117],inj:[22,1,9,6,38],death:[4,0,0,0,4]},
- multiYear:[["2020",117,15,75,22,4,4156,2.81,10],["2021",185,12,138,33,2,5265,3.51,15],["2022",200,19,141,38,2,6577,3.04,17],["2023",175,23,136,39,3,7845,2.23,14],["2024",174,11,130,44,1,8193,2.12,14],["2025",161,5,117,44,4,7260,2.21,13]],
- openClosed:[["Fleet A",15,86],["Fleet C",6,28],["Fleet B",1,3],["Fleet D",7,15]],openTotal:29,closedTotal:132,
- comparative:{y2024:{mo:38,mc:136,lo:13,lc:7},y2025:{mo:29,mc:132,lo:3,lc:12}},
- classification:[["Musculoskeletal",54],["Gastrointestinal",21],["Genitourinary",16],["Integumentary",16],["Cardiovascular",16],["Ophthalmology",7],["Neurological",5],["ENT",5],["Infectious",4],["Multisystem",3],["Endocrine",3],["Oncology",2],["Psychological",2],["Respiratory",2],["Traumatic",2],["Dermatologic",1],["Environmental",1],["Metabolic",1]],
- firstTime:153,repeat:8,crewEx:134,crewNew:27,wr:98,nwr:59,wrAgg:4,avgAge:41,
- ageBands:[["20–29",28],["30–39",52],["40–49",33],["50–59",41],["60+",7]],
- ranks:[["AB",25],["OS",20],["Fitter",15],["Oiler",14],["Chief Cook",13],["Bosun",11],["Messman",5],["Others",58]],
- clinics:[["ShipHealth",129],["Ygeia",15],["Nautica",9],["CrewMed",4],["Marine Med",2],["Makati Med",2]],
- piHandlers:[["No P&I",71],["Handler 1",28],["Handler 2",24],["Handler 3",18],["Handler 4",18],["Other",2]],
- legal:{medToLegal:5,pureLegal:16,pendingDisability:44,openMedical:54,openPomeLegal:48,
-  pureList:[["Kestrel","Severance pay","Closed"],["Vega","Re-employment after POME","Closed"],["Meridian","Unserved contract","Closed"],["Diligent","Illegal dismissal","On going"],["Omega (2)","Pre-termination of SGA","Closed"],["Yara","Illegal dismissal","Closed"],["Equinox","Illegal dismissal","Closed"],["Goldport (2)","Illegal dismissal","On going"]]},
- safety:[["Cyan","MSK · finger/hand","10 of 24 fleet-wide (42%)","HIGH"],["Poseidon","Trauma · severe","air-ambulance + fractures","HIGH"],["Halcyon","GI concentration","4 of 6 (67%)","MED"],["Meridian","Integumentary","8 of 26 (31%)","MED"],["Kestrel","Slip & fall on deck","38% injury rate","MED"]],
- challenged:[["Meridian",7],["Fornax",1],["Halcyon",1],["Kestrel",1]],challengedTotal:10,
- plans:[["Live claims tracking","Digital platform (Oceanis) for real-time reports & statistics","Ζωντανή παρακολούθηση claims σε ψηφιακή πλατφόρμα για reports & στατιστικά"],["HMO utilization","Shift to HMO utilization instead of post-medical clinic","Στροφή σε HMO αντί για post-medical clinic"],["Family welfare","Welfare activities for seafarers' families in Cebu & Iloilo","Δράσεις welfare για οικογένειες ναυτικών σε Cebu & Iloilo"]]
-};
 let anaTab="overview";
 function setAnaTab(x){anaTab=x;renderAnalysis();}
 function statCard(k,v,s,acc){return `<div class="stat" style="border-left-color:${acc||'var(--signal)'}"><div class="sk">${k}</div><div class="sv">${v}</div>${s?`<div class="ss">${s}</div>`:''}</div>`;}
@@ -1041,7 +1093,7 @@ function anaOverview(){const A=ANALYSIS;const segs=[[A.illness,'#5B84A8'],[A.inj
    <div class="pcard"><div class="ph"><span class="zn legal">GROUP</span><h3>${L("Details per group","Ανά group")}</h3></div><div class="pb">
     ${deckTable(["", "Legal","Illness","Injury","Death","Total"],[
       ...A.groups.map((g,i)=>({c:[g,A.perGroup.legal[i],A.perGroup.ill[i],A.perGroup.inj[i],A.perGroup.death[i],A.perGroup.legal[i]+A.perGroup.ill[i]+A.perGroup.inj[i]+A.perGroup.death[i]]})),
-      {tot:1,c:[L("Total","Σύνολο"),5,117,38,4,161]}
+      {tot:1,c:[L("Total","Σύνολο"),A.perGroup.legal.reduce((a,b)=>a+b,0),A.perGroup.ill.reduce((a,b)=>a+b,0),A.perGroup.inj.reduce((a,b)=>a+b,0),A.perGroup.death.reduce((a,b)=>a+b,0),A.total]}
     ])}
    </div></div>
   </div>`;
