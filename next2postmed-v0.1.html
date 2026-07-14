@@ -173,6 +173,16 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}a{text-dec
 .dtable td:first-child{font-weight:600;color:var(--ink)}
 .dtable th.num,.dtable td.num{text-align:right;font-family:var(--ff-mono)}
 .dtable tr.tot td{font-weight:800;color:var(--ink);border-top:2px solid var(--line);border-bottom:none;background:var(--mist)}
+.freq{display:flex;flex-direction:column;gap:9px}
+.frow{display:grid;grid-template-columns:132px 1fr 64px;align-items:center;gap:14px}
+.frow .flabel{font-size:12.5px;font-weight:600;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.frow.lead .flabel{color:var(--signal);font-weight:700}
+.frow .ftrack{background:var(--mist);border-radius:8px;height:26px;overflow:hidden}
+.frow .ffill{height:100%;border-radius:8px;min-width:8px;box-shadow:inset 0 1px 0 rgba(255,255,255,.25);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.frow .fval{text-align:right;font-family:var(--ff-display);font-weight:800;font-size:20px;color:var(--ink);line-height:1}
+.frow .fval span{display:block;font-family:var(--ff-mono);font-weight:400;font-size:10px;color:var(--ink-3);margin-top:2px}
+.frow.lead .fval{color:var(--signal)}
+@media (max-width:560px){.frow{grid-template-columns:96px 1fr 52px;gap:9px}.frow .fval{font-size:17px}}
 .ananote{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--med);border-radius:11px;padding:12px 15px;font-size:12.5px;color:var(--ink-2);line-height:1.5;margin-top:6px}
 .planlist{display:flex;flex-direction:column;gap:10px;margin-top:6px}
 .plan{display:flex;gap:13px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}
@@ -1073,7 +1083,14 @@ let anaTab="overview";
 function setAnaTab(x){anaTab=x;renderAnalysis();}
 function statCard(k,v,s,acc){return `<div class="stat" style="border-left-color:${acc||'var(--signal)'}"><div class="sk">${k}</div><div class="sv">${v}</div>${s?`<div class="ss">${s}</div>`:''}</div>`;}
 function deckTable(head,rows){return `<div class="dtable"><table><thead><tr>${head.map((h,i)=>`<th${i>0?' class="num"':''}>${h}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr${r.tot?' class="tot"':''}>${r.c.map((c,i)=>`<td${i>0?' class="num"':''}>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;}
-function hbarList(items,color){const mx=Math.max(...items.map(i=>i[1]));return `<div class="hbars">${items.map(i=>`<div class="hbar"><span class="lb" style="flex:0 0 118px">${i[0]}</span><span class="tr"><span class="fill" style="width:${(i[1]/mx*100).toFixed(0)}%;background:${color||'var(--med)'}"></span></span><span class="n">${i[1]}</span></div>`).join("")}</div>`;}
+function hbarList(items,accent){
+ const mx=Math.max(...items.map(i=>i[1])),tot=items.reduce((a,i)=>a+i[1],0);
+ const maxIdx=items.reduce((mi,it,i,ar)=>it[1]>ar[mi][1]?i:mi,0);
+ return `<div class="freq">${items.map((it,idx)=>{
+  const pct=Math.max(it[1]/mx*100,2.5),share=tot?Math.round(it[1]/tot*100):0,lead=idx===maxIdx;
+  return `<div class="frow${lead?' lead':''}"><div class="flabel">${it[0]}</div><div class="ftrack"><div class="ffill" style="width:${pct.toFixed(1)}%;background:${lead?'linear-gradient(90deg,var(--signal),var(--coral-2))':accent||'var(--med)'}"></div></div><div class="fval">${it[1]}<span>${share}%</span></div></div>`;
+ }).join("")}</div>`;
+}
 function chTitle(en,el,sub){return `<div class="chapterhead"><h2>${L(en,el)}</h2>${sub?`<span>${sub}</span>`:''}</div>`;}
 
 function anaOverview(){const A=ANALYSIS;const segs=[[A.illness,'#5B84A8'],[A.injury,'#E5433A'],[A.death,'#3A342E']];
@@ -1148,7 +1165,7 @@ function anaDemo(){const A=ANALYSIS;
   </div>
   <div class="anacols">
    <div class="pcard"><div class="ph"><span class="zn intel">AGE</span><h3>${L("Age distribution","Κατανομή ηλικίας")}</h3></div><div class="pb">${hbarList(A.ageBands,"var(--leg)")}</div></div>
-   <div class="pcard"><div class="ph"><span class="zn intel">RANK</span><h3>${L("Most affected ranks","Βαθμοί με τα περισσότερα")}</h3></div><div class="pb">${hbarList(A.ranks,"var(--signal)")}</div></div>
+   <div class="pcard"><div class="ph"><span class="zn intel">RANK</span><h3>${L("Most affected ranks","Βαθμοί με τα περισσότερα")}</h3></div><div class="pb">${hbarList(A.ranks,"var(--blue)")}</div></div>
   </div>
   <div class="statgrid" style="margin-top:14px">
    ${statCard(L("Work-related","Work-related"),`${A.wr+A.wrAgg}`,`${Math.round((A.wr+A.wrAgg)/A.total*100)}% ${L("of cases","των υποθέσεων")}`,"var(--signal)")}
