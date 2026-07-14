@@ -86,6 +86,67 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}a{text-dec
 .sechead h2{font-family:var(--ff-display);font-size:15px;font-weight:600;margin:0}
 .sechead .hint{font-size:12px;color:var(--ink-3);margin-left:auto}
 
+/* ---- Batch 2: tabs + medical track + report reader ---- */
+.dtabs{display:flex;gap:8px;margin-bottom:16px}
+.dtab{display:inline-flex;align-items:center;gap:8px;padding:9px 15px;border-radius:11px;font-family:var(--ff-display);font-weight:600;font-size:13px;color:var(--ink-2);background:var(--paper);border:1px solid var(--line)}
+.dtab svg{width:16px;height:16px;color:var(--ink-3)}
+.dtab .c{font-family:var(--ff-mono);font-size:10.5px;background:var(--mist);color:var(--ink-3);padding:1px 7px;border-radius:6px;margin-left:2px}
+.dtab.on{background:linear-gradient(100deg,var(--coral),var(--coral-d));color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(229,84,75,.24)}
+.dtab.on svg{color:#fff}.dtab.on .c{background:rgba(255,255,255,.2);color:#fff}
+.mgrid{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;align-items:start}
+.rcard{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px;cursor:pointer;transition:.14s;border-left:3px solid var(--ink-3)}
+.rcard:hover{box-shadow:0 6px 16px rgba(7,30,51,.09);transform:translateY(-1px)}
+.rcard.r-imr{border-left-color:var(--blue)}.rcard.r-fur{border-left-color:var(--teal)}.rcard.r-fin{border-left-color:var(--coral)}
+.rcard .rtop{display:flex;align-items:center;gap:8px}
+.rcard .rbadge{font-family:var(--ff-display);font-weight:600;font-size:12.5px}
+.rcard .rdate{margin-left:auto;font-family:var(--ff-mono);font-size:11px;color:var(--ink-3)}
+.rcard .rline{font-size:12.5px;color:var(--ink-2);margin-top:7px}.rcard .rline b{color:var(--ink)}
+.rcard .rmeta{display:flex;gap:16px;font-size:11.5px;color:var(--ink-3);margin-top:5px}.rcard .rmeta b{color:var(--ink-2);font-family:var(--ff-mono)}
+.rcard .rfoot{display:flex;align-items:center;gap:9px;margin-top:9px;padding-top:9px;border-top:1px dashed var(--line-2)}
+.rcard .rfoot .cd{font-family:var(--ff-mono);font-size:10px;color:var(--ink-3)}
+.rcard .rfoot .open2{margin-left:auto;font-size:11.5px;font-weight:600;color:var(--coral-d)}
+.wr{font-size:9.5px;font-weight:700;font-family:var(--ff-mono);padding:1px 6px;border-radius:5px}
+.wr-y{background:rgba(229,84,75,.12);color:var(--coral-d)}.wr-n{background:var(--mist);color:var(--ink-3)}
+.racts{display:flex;gap:9px;margin-top:6px;flex-wrap:wrap}
+.racts .btn{padding:9px 14px;font-size:12.5px}
+.empty{font-size:12px;color:var(--ink-3);text-align:center;padding:14px 0}
+.refrow{display:flex;align-items:center;gap:11px;padding:9px 0;border-bottom:1px dashed var(--line-2)}
+.refrow:last-child{border-bottom:none}
+.refrow .rfic{width:26px;height:26px;flex:0 0 26px;border-radius:8px;display:grid;place-items:center;background:var(--mist);color:var(--ink-3)}
+.refrow .rfic svg{width:14px;height:14px}
+.refrow.ok .rfic{background:rgba(47,163,107,.14);color:var(--green)}
+.refrow .rfn{font-size:12.5px;font-weight:600}
+.refrow .rft{margin-left:auto;font-size:11px;color:var(--ink-3);font-family:var(--ff-mono)}
+.fitset{border-radius:12px;padding:14px;text-align:center}
+.fitset.ftw,.fitset.fly,.fitset.rep{background:rgba(47,163,107,.09);border:1px solid rgba(47,163,107,.28)}
+.fitset.unfit,.fitset.contested{background:rgba(123,97,168,.09);border:1px solid rgba(123,97,168,.3)}
+.fitset .fitv{font-family:var(--ff-display);font-weight:700;font-size:17px;color:var(--ink)}
+.fitset.ftw .fitv,.fitset.fly .fitv,.fitset.rep .fitv{color:var(--green)}
+.fitset.unfit .fitv,.fitset.contested .fitv{color:var(--violet)}
+.fitset .fitsub{font-size:11.5px;color:var(--ink-3);margin-top:4px}
+.fitpick{display:flex;flex-direction:column;gap:8px}
+.fitpick .fithint{font-size:11.5px;color:var(--ink-3);margin-bottom:2px}
+.fitb{padding:10px;border-radius:10px;border:1px solid var(--line);font-weight:600;font-size:12.5px;color:var(--ink-2);background:var(--paper);text-align:left}
+.fitb:hover{border-color:var(--green);color:var(--green)}
+.fitb.ub:hover{border-color:var(--violet);color:var(--violet)}
+.report{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);max-width:820px;padding:26px 30px;margin:0 auto}
+.report .rhead{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding-bottom:16px;border-bottom:2px solid var(--navy)}
+.report .rbrand{font-family:var(--ff-display);font-weight:700;font-size:17px;color:var(--navy)}
+.report .rbrand b{color:var(--coral)}
+.report .rsub{font-size:12px;color:var(--ink-3);margin-top:4px;font-family:var(--ff-mono)}
+.report .rstamp{text-align:right}.report .rstamp .cd{font-family:var(--ff-mono);font-size:11px;color:var(--ink-2);font-weight:600}.report .rstamp .rev{font-size:10.5px;color:var(--ink-3);margin-top:3px}
+.report .rgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px 22px;margin:16px 0 6px}
+.report .rf{font-size:12.5px;color:var(--ink);border-bottom:1px solid var(--line-2);padding-bottom:6px}
+.report .rf .rl{display:block;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:2px}
+.report .rsec{margin-top:16px}
+.report .rsec h4{font-family:var(--ff-display);font-size:12px;letter-spacing:.03em;text-transform:uppercase;color:var(--coral-d);margin:0 0 5px}
+.report .rsec p{font-size:13px;color:var(--ink-2);margin:0;line-height:1.5}
+.report .rsec.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.report .rsec .big{font-family:var(--ff-display);font-weight:700;font-size:22px;color:var(--ink)}.report .rsec .big small{font-size:12px;color:var(--ink-3);font-weight:500}
+.report .rsec.fit{background:var(--mist);border-radius:12px;padding:14px 16px}
+.report .rfootr{margin-top:22px;padding-top:14px;border-top:1px solid var(--line-2);font-size:11px;color:var(--ink-3);display:flex;align-items:center;gap:8px}
+.report .rfootr .nocopy{font-size:9px;font-weight:700;font-family:var(--ff-mono);color:var(--coral-d);background:rgba(229,84,75,.1);border:1px solid rgba(229,84,75,.3);padding:2px 6px;border-radius:5px}
+@media (max-width:940px){.mgrid{grid-template-columns:1fr}.report{padding:20px 18px}.report .rgrid,.report .rsec.cols{grid-template-columns:1fr}}
 /* dashboard analytics */
 .dashgrid{display:grid;grid-template-columns:1.55fr 1fr;gap:14px;margin-bottom:14px}
 .pcard{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 18px}
@@ -354,7 +415,7 @@ tbody tr:last-child td{border-bottom:none}
 
 <script>
 const $=(s,r=document)=>r.querySelector(s);const $$=(s,r=document)=>[...r.querySelectorAll(s)];
-let lang="en", view="board", curCase=null, intakeChannel=null;
+let lang="en", view="board", curCase=null, intakeChannel=null, detailTab="overview", curReport=null;
 
 /* ---------------- i18n ---------------- */
 const T={
@@ -364,6 +425,10 @@ const T={
   "book.book":"Case book · 2025","book.total":"total POME cases","seg.ill":"Illness","seg.inj":"Injury","seg.death":"Death","pf.open":"Open","pf.closed":"Closed","pf.dep":"of deployments","pf.first":"first-time",
   "leg.title":"Legal exposure","leg.big":"open legal cases","leg.disability":"Pending disability","leg.p2l":"POME → Legal","leg.pure":"Purely legal",
   "ch.sys":"By medical system","ch.trend":"6-year case trend","ch.principal":"Cases by principal","live.h":"Live cases · this desk","live.sub":"9 active on the Manila desk",
+  "tab.ov":"Overview","tab.med":"Medical","med.reports":"Medical reports","med.filed":"filed","med.day":"Day","med.dx":"Diagnosis","med.fitness":"Fitness","med.len":"Est. length","med.days":"days","med.cost":"Est. cost","med.open":"Open report","med.norep":"No reports yet — the Initial Medical Report appears once the seafarer is evaluated.","med.addfur":"Add follow-up report","med.issuefinal":"Issue Final Assessment","med.referrals":"Specialist referrals","med.pending":"pending","med.noref":"No referrals yet.","med.clinical":"Clinical summary","med.clinic":"Treating clinic","med.phys":"Treating physician","med.est":"Trajectory est.",
+  "fit.ftw":"Fit to Work","fit.fly":"Fit to Fly","fit.rep":"Fit to be Repatriated","fit.unfit":"Permanently Unfit","fit.contested":"Assessment contested","fit.pending":"Pending","fit.contested.d":"Seafarer's physician disagrees — third-doctor referral (see Legal).","fit.grade":"Disability grade","fit.closed":"Case can proceed to closure.","fit.pick":"Final report filed — record the fitness determination:","fit.await":"Awaiting Final Medical Assessment.",
+  "rep.back":"Back to case","rep.forcase":"For case","rep.signed":"e-signed","rep.clinic":"Clinic","rep.phys":"Physician","rep.date":"Date","rep.history":"History","rep.history.b":"Seafarer under evaluation for","rep.arr":"Arrival Manila:","rep.tests":"Diagnostic tests","rep.dx":"Working diagnosis","rep.wrline":"Work relation","rep.reco":"Recommendation","rep.reco.b":"Continue treatment and monitoring; next structured follow-up as scheduled.","rep.finaldx":"Final diagnosis","rep.cfma":"Certificate of Final Medical Assessment issued within the statutory window.","rep.stored":"Stored once in","rep.progress":"Progress note","rep.note.ph":"Diagnosis evolution, treatment given, next step…","rep.forced":"A follow-up report must carry a diagnosis with work relation, an estimated length and an estimated cost of treatment. These fields are required.","rep.forced.final":"The Final Assessment sets fitness and, if applicable, a disability grade — and opens the legal window.","rep.issue":"Issue Final Assessment","rep.file":"File follow-up report","rep.reqmiss":"Fill diagnosis, estimated length and estimated cost.",
+  "toast.final":"Final Assessment issued","toast.fur":"Follow-up report filed","toast.fit":"Fitness recorded",
   "f.all":"All open","f.inj":"Injury","f.ill":"Illness","f.legal":"POME→Legal","f.count":"cases",
   "c.id":"Case","c.sf":"Seafarer","c.principal":"Principal","c.vessel":"Vessel","c.type":"Type","c.class":"System","c.stage":"Stage","c.day":"120-day","c.status":"Status",
   "intake.ey":"Intake · the incoming case","intake.h1":"New post-medical case","intake.lead":"How does this case reach us? Pick the channel — it sets the timeline and required documents.",
@@ -388,6 +453,10 @@ const T={
   "book.book":"Βιβλίο υποθέσεων · 2025","book.total":"συνολικές POME","seg.ill":"Ασθένεια","seg.inj":"Τραυματισμός","seg.death":"Θάνατος","pf.open":"Ανοιχτές","pf.closed":"Κλειστές","pf.dep":"των deployments","pf.first":"πρώτη-φορά",
   "leg.title":"Νομική έκθεση","leg.big":"ανοιχτές νομικές","leg.disability":"Εκκρεμείς disability","leg.p2l":"POME → Νομικά","leg.pure":"Καθαρά νομικά",
   "ch.sys":"Ανά ιατρικό σύστημα","ch.trend":"6ετές trend υποθέσεων","ch.principal":"Υποθέσεις ανά principal","live.h":"Ζωντανές υποθέσεις · αυτό το desk","live.sub":"9 ενεργές στο desk Μανίλα",
+  "tab.ov":"Επισκόπηση","tab.med":"Ιατρικό","med.reports":"Ιατρικά reports","med.filed":"κατατέθηκαν","med.day":"Ημέρα","med.dx":"Διάγνωση","med.fitness":"Ικανότητα","med.len":"Εκτ. διάρκεια","med.days":"ημέρες","med.cost":"Εκτ. κόστος","med.open":"Άνοιγμα report","med.norep":"Δεν υπάρχουν ακόμη reports — το Initial Medical Report εμφανίζεται μόλις εκτιμηθεί ο ναυτικός.","med.addfur":"Προσθήκη follow-up report","med.issuefinal":"Έκδοση Τελικής Εκτίμησης","med.referrals":"Παραπομπές σε ειδικούς","med.pending":"εκκρεμεί","med.noref":"Καμία παραπομπή ακόμη.","med.clinical":"Κλινική σύνοψη","med.clinic":"Κλινική θεραπείας","med.phys":"Θεράπων ιατρός","med.est":"Trajectory εκτ.",
+  "fit.ftw":"Fit to Work","fit.fly":"Fit to Fly","fit.rep":"Fit to be Repatriated","fit.unfit":"Μόνιμα Ανίκανος","fit.contested":"Αμφισβήτηση πορίσματος","fit.pending":"Εκκρεμεί","fit.contested.d":"Ο ιδιώτης γιατρός διαφωνεί — παραπομπή σε τρίτο γιατρό (βλ. Νομικό).","fit.grade":"Βαθμός αναπηρίας","fit.closed":"Η υπόθεση μπορεί να προχωρήσει σε κλείσιμο.","fit.pick":"Το Final report κατατέθηκε — κατέγραψε το πόρισμα ικανότητας:","fit.await":"Αναμονή Τελικής Ιατρικής Εκτίμησης.",
+  "rep.back":"Πίσω στην υπόθεση","rep.forcase":"Για υπόθεση","rep.signed":"e-signed","rep.clinic":"Κλινική","rep.phys":"Ιατρός","rep.date":"Ημ/νία","rep.history":"Ιστορικό","rep.history.b":"Ναυτικός υπό εκτίμηση για","rep.arr":"Άφιξη Μανίλα:","rep.tests":"Διαγνωστικές εξετάσεις","rep.dx":"Εργαζόμενη διάγνωση","rep.wrline":"Σχέση εργασίας","rep.reco":"Σύσταση","rep.reco.b":"Συνέχιση θεραπείας και παρακολούθησης· επόμενο δομημένο follow-up κατά πρόγραμμα.","rep.finaldx":"Τελική διάγνωση","rep.cfma":"Το Certificate of Final Medical Assessment εκδόθηκε εντός της νόμιμης προθεσμίας.","rep.stored":"Αποθηκεύεται μία φορά στο","rep.progress":"Σημείωση προόδου","rep.note.ph":"Εξέλιξη διάγνωσης, θεραπεία, επόμενο βήμα…","rep.forced":"Ένα follow-up report πρέπει να φέρει διάγνωση με σχέση εργασίας, εκτιμώμενη διάρκεια και εκτιμώμενο κόστος θεραπείας. Τα πεδία είναι υποχρεωτικά.","rep.forced.final":"Η Τελική Εκτίμηση ορίζει την ικανότητα και, αν χρειάζεται, βαθμό αναπηρίας — και ανοίγει το νομικό παράθυρο.","rep.issue":"Έκδοση Τελικής Εκτίμησης","rep.file":"Κατάθεση follow-up report","rep.reqmiss":"Συμπλήρωσε διάγνωση, εκτ. διάρκεια και εκτ. κόστος.",
+  "toast.final":"Εκδόθηκε η Τελική Εκτίμηση","toast.fur":"Κατατέθηκε follow-up report","toast.fit":"Καταγράφηκε η ικανότητα",
   "f.all":"Όλες ανοιχτές","f.inj":"Τραυματισμός","f.ill":"Ασθένεια","f.legal":"POME→Νομικά","f.count":"υποθέσεις",
   "c.id":"Υπόθεση","c.sf":"Ναυτικός","c.principal":"Principal","c.vessel":"Πλοίο","c.type":"Τύπος","c.class":"Σύστημα","c.stage":"Στάδιο","c.day":"120-day","c.status":"Κατάσταση",
   "intake.ey":"Intake · η εισερχόμενη υπόθεση","intake.h1":"Νέα post-medical υπόθεση","intake.lead":"Πώς μας φτάνει η υπόθεση; Διάλεξε κανάλι — καθορίζει το χρονοδιάγραμμα και τα απαιτούμενα έγγραφα.",
@@ -590,8 +659,9 @@ function trackRow(cls,key,sub,stagesEN,stagesEL,curIdx,pct){
  return `<div class="trk ${cls}"><div class="th"><span class="dot"></span><span class="nm">${t("trk."+key)}</span><span class="sub">${t("trk."+key+".s")}</span><span class="pct">${pct}%</span></div><div class="steps">${steps}</div></div>`;
 }
 function openCase(id){
- curCase=CASES.find(c=>c.id===id);view="detail";syncNav();renderDetail();
+ curCase=CASES.find(c=>c.id===id);seedReports(curCase);detailTab="overview";view="detail";syncNav();renderDetail();
 }
+function setTab(tb){detailTab=tb;renderDetail();}
 function renderDetail(){
  const c=curCase,d=daysSince(c.arr);
  const left120=120-d,left240=240-d;
@@ -635,7 +705,11 @@ function renderDetail(){
     ${trackRow("fin","fin","",STAGES.fin,STAGES_EL.fin,c.stg.fin,pct("fin"))}
   </div>
 
-  <div class="dgrid">
+  <div class="dtabs">
+    <button class="dtab ${detailTab==='overview'?'on':''}" onclick="setTab('overview')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16M4 12h16M4 19h10"/></svg>${t("tab.ov")}</button>
+    <button class="dtab ${detailTab==='medical'?'on':''}" onclick="setTab('medical')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v6M9 6h6"/><path d="M6 21a6 6 0 0 1 12 0"/><circle cx="12" cy="13.5" r="1.6"/></svg>${t("tab.med")}<span class="c">${(c.reports||[]).length}</span></button>
+  </div>
+  ${detailTab==='medical'?medicalTab(c):`<div class="dgrid">
     <div>
       <div class="panel">
         <div class="ph"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 21h18M6 21V7l6-4 6 4v14"/></svg></span><h3>${t("p.hos")}</h3><span class="rt">${hos?'✓':'—'}</span></div>
@@ -694,9 +768,142 @@ function renderDetail(){
         </div>
       </div>
     </div>
+  </div>`}`;
+}
+function pickHospital(cid,hid){const c=CASES.find(x=>x.id===cid);const first=!c.hospital;c.hospital=hid;if(c.stg.med<3)c.stg.med=3;if(c.stg.fin<1)c.stg.fin=1;seedReports(c);if(!c.reports.some(r=>r.type==="IMR"))c.reports.push(makeReport(c,"IMR",1,7));if(c.referrals&&c.referrals[0])c.referrals[0].done=true;renderDetail();if(first)toast(t("toast.hospital"));}
+
+/* ---------------- Batch 2: Medical track ---------------- */
+const SPECIALTY={MSK:{en:"Orthopedics",el:"Ορθοπεδική"},GI:{en:"Gastroenterology",el:"Γαστρεντερολογία"},CV:{en:"Cardiology",el:"Καρδιολογία"},GU:{en:"Urology",el:"Ουρολογία"},INTG:{en:"Dermatology",el:"Δερματολογία"},NEUR:{en:"Neurology",el:"Νευρολογία"},ENT:{en:"ENT",el:"ΩΡΛ"},OPH:{en:"Ophthalmology",el:"Οφθαλμολογία"}};
+const ESTIMATE={MSK:{len:"45–90",cost:"$12K–$28K"},GI:{len:"20–45",cost:"$6K–$18K"},CV:{len:"60–120",cost:"$18K–$40K"},GU:{len:"20–40",cost:"$5K–$14K"},INTG:{len:"14–30",cost:"$3K–$9K"},NEUR:{len:"90–180",cost:"$25K–$60K"},_:{len:"30–60",cost:"$8K–$20K"}};
+const TESTS_C={MSK:"MRI, X-ray, CBC",GI:"Endoscopy, ultrasound, CBC",CV:"ECG, echo, troponin",GU:"CT-KUB, urinalysis, CBC",INTG:"Skin biopsy, CBC",_:"Imaging, labs, CBC"};
+function physFor(c){return c.hospital?"Dr. A. Reyes, M.D.":"Dr. M. Santos, M.D.";}
+function estFor(c){return ESTIMATE[c.sys]||ESTIMATE._;}
+function makeReport(c,type,no,day){const e=estFor(c),code={IMR:"IMR",FUR:"FUR"+no,FINAL:"CFMA"}[type];return {rid:type+no,type,no,day,dx:c.dx,wr:c.wr,estLen:e.len,estCost:e.cost,tests:TESTS_C[c.sys]||TESTS_C._,note:"",dms:"MCL-POST-MNL-"+code+"-2026-"+c.seq};}
+function seedReports(c){
+ if(c.reports)return;
+ c.reports=[];
+ if(c.stg.med>=3)c.reports.push(makeReport(c,"IMR",1,7));
+ if(c.stg.med>=5)c.reports.push(makeReport(c,"FUR",1,21));
+ if(c.stg.med>=6)c.reports.push(makeReport(c,"FUR",2,45));
+ if(c.stg.med>=6)c.reports.push(makeReport(c,"FINAL",1,92));
+ const sp=SPECIALTY[c.sys];
+ c.referrals=sp?[{spec:sp,day:5,done:c.stg.med>=3}]:[];
+ if(c.sys==="CV")c.referrals.push({spec:SPECIALTY.NEUR,day:9,done:c.stg.med>=4});
+ if(c.sys==="GI"&&c.type==="ill")c.referrals.push({spec:{en:"General Surgery",el:"Γενική Χειρουργική"},day:8,done:c.stg.med>=4});
+ c.fitness=c.stg.med>=7?(c.status==="legal"?"contested":"ftw"):null;
+}
+function repMeta(type){return {IMR:{en:"Initial Medical Report",el:"Initial Medical Report",cls:"r-imr"},FUR:{en:"Follow-up Report",el:"Follow-up Report",cls:"r-fur"},FINAL:{en:"Final Assessment (CFMA)",el:"Τελική Εκτίμηση (CFMA)",cls:"r-fin"}}[type];}
+function fitLabel(f){return {ftw:t("fit.ftw"),fly:t("fit.fly"),rep:t("fit.rep"),unfit:t("fit.unfit"),contested:t("fit.contested")}[f]||t("fit.pending");}
+function medicalTab(c){
+ const treating=c.hospital?HOSPITALS.find(h=>h.id===c.hospital):null;
+ const canFinal=c.stg.med>=5&&!c.reports.some(r=>r.type==="FINAL");
+ return `<div class="mgrid">
+  <div>
+   <div class="panel">
+    <div class="ph"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M6 2h8l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M8 12h8M8 16h6"/></svg></span><h3>${t("med.reports")}</h3><span class="rt">${c.reports.length} ${t("med.filed")}</span></div>
+    <div class="pb">
+     ${c.reports.length?c.reports.map(r=>{const m=repMeta(r.type);return `
+      <div class="rcard ${m.cls}" onclick="openReport('${r.rid}')">
+       <div class="rtop"><span class="rbadge">${lang==='el'?m.el:m.en}${r.type==='FUR'?' #'+r.no:''}</span><span class="rdate">${t("med.day")} ${r.day}</span></div>
+       ${r.type==='FINAL'?`<div class="rline"><b>${t("med.fitness")}:</b> ${fitLabel(c.fitness)}</div>`:`<div class="rline"><b>${t("med.dx")}:</b> ${r.dx} <span class="wr ${r.wr==='WR'?'wr-y':'wr-n'}">${r.wr}</span></div><div class="rmeta"><span>${t("med.len")}: <b>${r.estLen} ${t("med.days")}</b></span><span>${t("med.cost")}: <b>${r.estCost}</b></span></div>`}
+       <div class="rfoot"><span class="cd">${r.dms}</span><span class="nocopy">NO-COPY</span><span class="open2">${t("med.open")} ▸</span></div>
+      </div>`;}).join(""):`<div class="empty">${t("med.norep")}</div>`}
+     <div class="racts">
+      ${c.stg.med>=3&&!c.reports.some(r=>r.type==="FINAL")?`<button class="btn primary" onclick="openReportForm()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>${t("med.addfur")}</button>`:``}
+      ${canFinal?`<button class="btn ghost" onclick="openReportForm('FINAL')">${t("med.issuefinal")}</button>`:``}
+     </div>
+    </div>
+   </div>
+   <div class="panel">
+    <div class="ph"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M6 3v5a4 4 0 0 0 8 0V3"/><path d="M10 15a6 6 0 0 0 6-6"/><circle cx="18" cy="8" r="2"/></svg></span><h3>${t("med.referrals")}</h3></div>
+    <div class="pb">
+     ${(c.referrals||[]).length?c.referrals.map(rf=>`<div class="refrow ${rf.done?'ok':''}"><div class="rfic">${rf.done?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12l5 5 9-11"/></svg>':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>'}</div><div class="rfn">${lang==='el'?rf.spec.el:rf.spec.en}</div><div class="rft">${rf.done?t("med.day")+" "+rf.day:t("med.pending")}</div></div>`).join(""):`<div class="empty">${t("med.noref")}</div>`}
+    </div>
+   </div>
+  </div>
+  <div>
+   <div class="panel">
+    <div class="ph"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3v18M5 8h14M5 16h14"/></svg></span><h3>${t("med.clinical")}</h3></div>
+    <div class="pb">
+     <div class="kv"><span class="k">${t("med.dx")}</span><span class="v">${c.dx}</span></div>
+     <div class="kv"><span class="k">${t("c.class")}</span><span class="v">${SYS[c.sys]} <span class="sys">${c.sys}</span></span></div>
+     <div class="kv"><span class="k">${t("det.wr")}</span><span class="v"><span class="wr ${c.wr==='WR'?'wr-y':'wr-n'}">${c.wr}</span></span></div>
+     <div class="kv"><span class="k">${t("med.clinic")}</span><span class="v">${treating?treating.n:'—'}</span></div>
+     <div class="kv"><span class="k">${t("med.phys")}</span><span class="v">${physFor(c)}</span></div>
+     <div class="kv"><span class="k">${t("med.est")}</span><span class="v">${estFor(c).len} ${t("med.days")} · ${estFor(c).cost}</span></div>
+    </div>
+   </div>
+   <div class="panel">
+    <div class="ph"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="9" r="5"/><path d="M9 13l-1 8 4-2 4 2-1-8"/></svg></span><h3>${t("med.fitness")}</h3></div>
+    <div class="pb">
+     ${c.fitness?`<div class="fitset ${c.fitness}"><div class="fitv">${fitLabel(c.fitness)}</div><div class="fitsub">${c.fitness==='contested'?t("fit.contested.d"):c.fitness==='unfit'?(t("fit.grade")+': Grade 8'):t("fit.closed")}</div></div>`:
+      c.reports.some(r=>r.type==="FINAL")?`<div class="fitpick"><div class="fithint">${t("fit.pick")}</div><button class="fitb" onclick="setFitness('ftw')">${t("fit.ftw")}</button><button class="fitb" onclick="setFitness('fly')">${t("fit.fly")}</button><button class="fitb" onclick="setFitness('rep')">${t("fit.rep")}</button><button class="fitb ub" onclick="setFitness('unfit')">${t("fit.unfit")}</button></div>`:
+      `<div class="empty">${t("fit.await")}</div>`}
+    </div>
+   </div>
+  </div>
+ </div>`;
+}
+function openReport(rid){curReport=rid;view="report";render();}
+function backToMedical(){view="detail";detailTab="medical";render();}
+function renderReport(){
+ const c=curCase,r=c.reports.find(x=>x.rid===curReport);if(!r){go('board');return;}
+ const m=repMeta(r.type),treating=c.hospital?HOSPITALS.find(h=>h.id===c.hospital):null,isFinal=r.type==="FINAL";
+ $("#main").innerHTML=`
+  <a class="back" onclick="backToMedical()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>${t("rep.back")}</a>
+  <div class="report">
+   <div class="rhead">
+     <div><div class="rbrand">Next2<b>PostMed</b> · ${lang==='el'?m.el:m.en}${r.type==='FUR'?' #'+r.no:''}</div><div class="rsub">${t("rep.forcase")} ${c.id} · ${c.sf.n} · ${c.sf.id}</div></div>
+     <div class="rstamp"><div class="cd">${r.dms}</div><div class="rev">rev 1.0 · ${t("rep.signed")}</div></div>
+   </div>
+   <div class="rgrid">
+     <div class="rf"><span class="rl">${t("rep.clinic")}</span>${treating?treating.n:'—'}${treating?' · '+treating.port:''}</div>
+     <div class="rf"><span class="rl">${t("rep.phys")}</span>${physFor(c)}</div>
+     <div class="rf"><span class="rl">${t("rep.date")}</span>${t("med.day")} ${r.day} · 2026</div>
+     <div class="rf"><span class="rl">${t("det.wr")}</span>${r.wr}</div>
+   </div>
+   <div class="rsec"><h4>${t("rep.history")}</h4><p>${t("rep.history.b")} <b>${c.dx}</b>. ${t("rep.arr")} ${c.arr}.</p></div>
+   ${!isFinal?`<div class="rsec"><h4>${t("rep.tests")}</h4><p>${r.tests}.</p></div>
+   <div class="rsec"><h4>${t("rep.dx")}</h4><p><b>${r.dx}</b> — ${SYS[c.sys]}. ${t("rep.wrline")}: <b>${r.wr}</b>.</p></div>
+   <div class="rsec cols"><div><h4>${t("med.len")}</h4><p class="big">${r.estLen} <small>${t("med.days")}</small></p></div><div><h4>${t("med.cost")}</h4><p class="big">${r.estCost}</p></div></div>
+   <div class="rsec"><h4>${t("rep.reco")}</h4><p>${t("rep.reco.b")}</p></div>`:
+   `<div class="rsec"><h4>${t("rep.finaldx")}</h4><p><b>${c.dx}</b> — ${SYS[c.sys]}. ${t("rep.wrline")}: <b>${c.wr}</b>.</p></div>
+   <div class="rsec fit"><h4>${t("med.fitness")}</h4><p class="big">${fitLabel(c.fitness)}</p><p>${c.fitness==='contested'?t("fit.contested.d"):c.fitness==='unfit'?(t("fit.grade")+': Grade 8 (POEA schedule)'):t("rep.cfma")}</p></div>`}
+   <div class="rfootr"><span class="nocopy">NO-COPY · MEDICAL</span> ${t("rep.stored")} <b>Next2DMS</b> · ${r.dms}</div>
   </div>`;
 }
-function pickHospital(cid,hid){const c=CASES.find(x=>x.id===cid);const first=!c.hospital;c.hospital=hid;if(c.stg.med<3)c.stg.med=3;if(c.stg.fin<1)c.stg.fin=1;renderDetail();if(first)toast(t("toast.hospital"));}
+let formType="FUR";
+function openReportForm(type){formType=type||"FUR";view="reportform";render();}
+function renderReportForm(){
+ const c=curCase,e=estFor(c),isFinal=formType==="FINAL";
+ $("#main").innerHTML=`
+  <a class="back" onclick="backToMedical()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>${t("rep.back")}</a>
+  <div class="pagehead"><div><div class="ey">${c.id} · ${c.sf.n}</div><h1>${isFinal?t("med.issuefinal"):t("med.addfur")}</h1></div></div>
+  <div class="form" style="max-width:640px">
+   <div class="fld full"><label>${t("med.dx")} <span style="color:var(--coral)">*</span></label><input id="rf_dx" value="${c.dx}"></div>
+   <div class="fgrid">
+    <div class="fld"><label>${t("det.wr")} <span style="color:var(--coral)">*</span></label><select id="rf_wr"><option ${c.wr==='WR'?'selected':''}>WR</option><option ${c.wr==='NWR'?'selected':''}>NWR</option></select></div>
+    <div class="fld"><label>${t("rep.date")}</label><input value="${t("med.day")} ${daysSince(c.arr)}" disabled style="color:var(--ink-3)"></div>
+    ${!isFinal?`<div class="fld"><label>${t("med.len")} (${t("med.days")}) <span style="color:var(--coral)">*</span></label><input id="rf_len" value="${e.len}"></div><div class="fld"><label>${t("med.cost")} <span style="color:var(--coral)">*</span></label><input id="rf_cost" value="${e.cost}"></div>`:``}
+   </div>
+   <div class="fld full"><label>${isFinal?t("rep.finaldx"):t("rep.progress")}</label><textarea id="rf_note" rows="2" placeholder="${t("rep.note.ph")}"></textarea></div>
+   ${isFinal?`<div class="fld full"><label>${t("med.fitness")} <span style="color:var(--coral)">*</span></label><select id="rf_fit"><option value="ftw">${t("fit.ftw")}</option><option value="fly">${t("fit.fly")}</option><option value="rep">${t("fit.rep")}</option><option value="unfit">${t("fit.unfit")}</option></select></div>`:``}
+   <div class="forced"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>${isFinal?t("rep.forced.final"):t("rep.forced")}</div>
+   <button class="btn primary full" onclick="saveReport()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-11"/></svg>${isFinal?t("rep.issue"):t("rep.file")}</button>
+  </div>`;
+}
+function saveReport(){
+ const c=curCase;
+ if(formType==="FINAL"){const fit=$("#rf_fit").value;c.fitness=fit;c.stg.med=7;if(c.stg.leg<1)c.stg.leg=1;c.reports.push(makeReport(c,"FINAL",1,daysSince(c.arr)));if(fit==="unfit")c.stg.leg=Math.max(c.stg.leg,2);backToMedical();toast(t("toast.final"));return;}
+ const dx=$("#rf_dx").value.trim(),len=$("#rf_len").value.trim(),cost=$("#rf_cost").value.trim();
+ if(!dx||!len||!cost){toast(t("rep.reqmiss"));return;}
+ const no=c.reports.filter(r=>r.type==="FUR").length+1;
+ const r=makeReport(c,"FUR",no,daysSince(c.arr));r.dx=dx;r.estLen=len;r.estCost=cost;r.note=$("#rf_note").value.trim();
+ c.reports.push(r);
+ if(c.stg.med<5)c.stg.med=5;else if(c.stg.med<6&&no>=2)c.stg.med=6;
+ backToMedical();toast(t("toast.fur"));
+}
+function setFitness(f){const c=curCase;c.fitness=f;c.stg.med=7;if(c.stg.leg<1)c.stg.leg=1;if(f==="unfit")c.stg.leg=Math.max(c.stg.leg,2);renderDetail();toast(t("toast.fit"));}
 
 /* ---------------- render: intake ---------------- */
 function renderIntake(){
@@ -795,6 +1002,8 @@ function render(){
  else if(view==="intel")renderIntel();
  else if(view==="guide")renderGuide();
  else if(view==="detail")renderDetail();
+ else if(view==="report")renderReport();
+ else if(view==="reportform")renderReportForm();
 }
 $$(".nav[data-view]").forEach(a=>a.addEventListener("click",()=>go(a.dataset.view)));
 $("#langTog").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;lang=b.dataset.lang;$$("#langTog button").forEach(x=>x.classList.toggle("on",x===b));applyChrome();render();toast(t("toast.lang"));});
