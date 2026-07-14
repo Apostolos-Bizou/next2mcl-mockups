@@ -8,8 +8,8 @@
      PowerShell:  [BitConverter]::ToString((New-Object Security.Cryptography.SHA256Managed).ComputeHash([Text.Encoding]::UTF8.GetBytes("YOURPASS"))) -replace '-','' | % ToLower
 */
 window.MCL_AUTH = {
-  user: "crossworld",
-  hash: "cff890909bb161bf2502f880af3431a425ffeb71de8dcb89acc7e8841d2a6acf"
+  user: "Tolis",
+  hash: "cbe159a333b9eb2d3f171053dd85f251b35581163c99ba6f9d3082832bb217cc"
 };
 
 /* Guard: on any protected page, redirect to the login if not signed in.
