@@ -86,6 +86,53 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}a{text-dec
 .sechead h2{font-family:var(--ff-display);font-size:15px;font-weight:600;margin:0}
 .sechead .hint{font-size:12px;color:var(--ink-3);margin-left:auto}
 
+/* dashboard analytics */
+.dashgrid{display:grid;grid-template-columns:1.55fr 1fr;gap:14px;margin-bottom:14px}
+.pcard{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 18px}
+.pcard .ph{display:flex;align-items:center;gap:9px;margin-bottom:13px}
+.pcard .ph .zn{font-family:var(--ff-mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:5px}
+.zn.legal{background:rgba(123,97,168,.14);color:var(--violet)}.zn.intel{background:rgba(14,140,147,.12);color:var(--teal)}.zn.trend{background:rgba(229,84,75,.13);color:var(--coral-d)}
+.pcard .ph h3{font-family:var(--ff-display);font-size:13.5px;font-weight:600;margin:0}
+.pcard .ph .rt{margin-left:auto;font-size:11px;color:var(--ink-3);font-family:var(--ff-mono)}
+.pfolio{background:linear-gradient(120deg,var(--navy),var(--navy-2) 60%,#123a5c);color:#EAF3F8;border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.pfolio::after{content:"";position:absolute;right:-50px;top:-60px;width:230px;height:230px;background:radial-gradient(circle,rgba(229,84,75,.18),transparent 68%);pointer-events:none}
+.pfolio .lbl{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#7EA2BC;font-weight:600}
+.pfolio .flex{display:flex;gap:22px;align-items:center;margin-top:8px;position:relative;z-index:1;flex-wrap:wrap}
+.pfolio .big{font-family:var(--ff-display);font-weight:700;font-size:46px;line-height:1;letter-spacing:-.02em}
+.pfolio .big small{display:block;font-size:11px;color:#9FBBD0;font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-top:5px}
+.pfolio .leg{display:flex;flex-direction:column;gap:8px}
+.pfolio .leg .it{display:flex;align-items:center;gap:8px;font-size:12px;color:#CFE0EC}
+.pfolio .leg .sw{width:10px;height:10px;border-radius:3px}
+.pfolio .leg .n{font-family:var(--ff-display);font-weight:700;color:#fff;margin-left:auto}
+.pfolio .strip{display:flex;gap:20px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.1);position:relative;z-index:1;flex-wrap:wrap}
+.pfolio .strip .it .k{font-size:9.5px;color:#7EA2BC;letter-spacing:.05em;text-transform:uppercase}
+.pfolio .strip .it .v{font-family:var(--ff-display);font-weight:700;font-size:19px;color:#fff;margin-top:2px}
+.pfolio .strip .it .v small{font-size:11px;color:#9FBBD0;font-weight:500}
+.legalstat .big{font-family:var(--ff-display);font-weight:700;font-size:36px;color:var(--violet);line-height:1}
+.legalstat .big small{font-size:12px;color:var(--ink-3);font-weight:500;margin-left:4px}
+.lbar{display:flex;flex-direction:column;gap:11px;margin-top:15px}
+.lbar .row{display:flex;align-items:center;gap:10px;font-size:12px}
+.lbar .row .lb{flex:0 0 118px;color:var(--ink-2)}
+.lbar .row .tr{flex:1;height:10px;background:var(--mist);border-radius:6px;overflow:hidden}
+.lbar .row .fill{height:100%;border-radius:6px}
+.lbar .row .n{font-family:var(--ff-mono);font-size:11.5px;font-weight:600;color:var(--ink);flex:0 0 24px;text-align:right}
+.chartrow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px}
+.hbars{display:flex;flex-direction:column;gap:7px}
+.hbar{display:flex;align-items:center;gap:9px;font-size:11.5px}
+.hbar .lb{flex:0 0 40px;color:var(--ink-2);font-weight:600}
+.hbar .tr{flex:1;height:13px;background:var(--mist);border-radius:5px;overflow:hidden}
+.hbar .fill{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--teal),var(--teal-2))}
+.hbar .n{flex:0 0 22px;text-align:right;font-family:var(--ff-mono);font-size:11px;color:var(--ink-3)}
+.vbars{display:flex;align-items:flex-end;gap:7px;height:118px;padding-top:6px}
+.vb{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end}
+.vb .n{font-family:var(--ff-mono);font-size:10px;color:var(--ink-3)}
+.vb .col{width:100%;max-width:30px;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--coral-2),var(--coral-d));min-height:4px;transition:.2s}
+.vb .lb{font-size:9px;color:var(--ink-3);text-align:center;line-height:1.15}
+.trendwrap svg{width:100%;display:block;height:118px}
+.livehd{display:flex;align-items:baseline;gap:10px;margin:4px 2px 12px}
+.livehd h2{font-family:var(--ff-display);font-size:15px;font-weight:600;margin:0}
+.livehd .sub{font-size:12px;color:var(--ink-3)}
+@media (max-width:940px){.dashgrid,.chartrow{grid-template-columns:1fr}}
 /* board table */
 .tablewrap{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
 .tbtools{display:flex;align-items:center;gap:9px;padding:12px 15px;border-bottom:1px solid var(--line-2);flex-wrap:wrap}
@@ -313,7 +360,10 @@ let lang="en", view="board", curCase=null, intakeChannel=null;
 const T={
  en:{role:"Operations · Welfare","nav.grp1":"Casework","nav.grp2":"Network","nav.board":"Case Board","nav.intake":"New case","nav.hospitals":"Hospital network","nav.intel":"Safety patterns","nav.guide":"User guide","nav.dms":"Documents (DMS)",
   "board.ey":"Post-medical case management · Manila operations","board.h1":"Case Board","board.rbac":"Role-gated · Entra ID RBAC",
-  "kpi.open":"Open cases","kpi.open.d":"across 9 principals","kpi.risk":"120-day at risk","kpi.risk.d":"deadline within 30 days","kpi.appr":"Pending approvals","kpi.appr.d":"awaiting owner / P&I","kpi.dur":"Avg case duration","kpi.dur.d":"days · closed 2025",
+  "kpi.open":"Open cases","kpi.open.d":"across 9 principals","kpi.risk":"120-day at risk","kpi.risk.d":"deadline within 30 days","kpi.appr":"Pending approvals","kpi.appr.d":"awaiting owner / P&I","kpi.dur":"Avg case duration","kpi.dur.d":"days · book 2025","kpi.inj":"Injury rate","kpi.inj.d":"book · benchmark 25.9%","kpi.dep":"vs deployment","kpi.dep.d":"161 of 7,260 · 2025",
+  "book.book":"Case book · 2025","book.total":"total POME cases","seg.ill":"Illness","seg.inj":"Injury","seg.death":"Death","pf.open":"Open","pf.closed":"Closed","pf.dep":"of deployments","pf.first":"first-time",
+  "leg.title":"Legal exposure","leg.big":"open legal cases","leg.disability":"Pending disability","leg.p2l":"POME → Legal","leg.pure":"Purely legal",
+  "ch.sys":"By medical system","ch.trend":"6-year case trend","ch.principal":"Cases by principal","live.h":"Live cases · this desk","live.sub":"9 active on the Manila desk",
   "f.all":"All open","f.inj":"Injury","f.ill":"Illness","f.legal":"POME→Legal","f.count":"cases",
   "c.id":"Case","c.sf":"Seafarer","c.principal":"Principal","c.vessel":"Vessel","c.type":"Type","c.class":"System","c.stage":"Stage","c.day":"120-day","c.status":"Status",
   "intake.ey":"Intake · the incoming case","intake.h1":"New post-medical case","intake.lead":"How does this case reach us? Pick the channel — it sets the timeline and required documents.",
@@ -334,7 +384,10 @@ const T={
   "gd.title":"Next2PostMed — the case, end to end","gd.intro":"A post-medical case is the most complex, most expensive part of the lifecycle. This console turns a scattered email-and-Excel process into one tracked case: three parallel tracks, live deadline clocks, and a single source of truth."},
  el:{role:"Operations · Welfare","nav.grp1":"Υποθέσεις","nav.grp2":"Δίκτυο","nav.board":"Πίνακας Υποθέσεων","nav.intake":"Νέα υπόθεση","nav.hospitals":"Δίκτυο νοσοκομείων","nav.intel":"Patterns ασφάλειας","nav.guide":"Οδηγός χρήσης","nav.dms":"Έγγραφα (DMS)",
   "board.ey":"Διαχείριση post-medical · λειτουργία Μανίλα","board.h1":"Πίνακας Υποθέσεων","board.rbac":"Role-gated · Entra ID RBAC",
-  "kpi.open":"Ανοιχτές υποθέσεις","kpi.open.d":"σε 9 principals","kpi.risk":"120-day σε κίνδυνο","kpi.risk.d":"προθεσμία εντός 30 ημερών","kpi.appr":"Εκκρεμείς εγκρίσεις","kpi.appr.d":"αναμονή owner / P&I","kpi.dur":"Μέση διάρκεια","kpi.dur.d":"ημέρες · κλειστές 2025",
+  "kpi.open":"Ανοιχτές υποθέσεις","kpi.open.d":"σε 9 principals","kpi.risk":"120-day σε κίνδυνο","kpi.risk.d":"προθεσμία εντός 30 ημερών","kpi.appr":"Εκκρεμείς εγκρίσεις","kpi.appr.d":"αναμονή owner / P&I","kpi.dur":"Μέση διάρκεια","kpi.dur.d":"ημέρες · book 2025","kpi.inj":"Injury rate","kpi.inj.d":"book · benchmark 25.9%","kpi.dep":"vs deployment","kpi.dep.d":"161 από 7.260 · 2025",
+  "book.book":"Βιβλίο υποθέσεων · 2025","book.total":"συνολικές POME","seg.ill":"Ασθένεια","seg.inj":"Τραυματισμός","seg.death":"Θάνατος","pf.open":"Ανοιχτές","pf.closed":"Κλειστές","pf.dep":"των deployments","pf.first":"πρώτη-φορά",
+  "leg.title":"Νομική έκθεση","leg.big":"ανοιχτές νομικές","leg.disability":"Εκκρεμείς disability","leg.p2l":"POME → Νομικά","leg.pure":"Καθαρά νομικά",
+  "ch.sys":"Ανά ιατρικό σύστημα","ch.trend":"6ετές trend υποθέσεων","ch.principal":"Υποθέσεις ανά principal","live.h":"Ζωντανές υποθέσεις · αυτό το desk","live.sub":"9 ενεργές στο desk Μανίλα",
   "f.all":"Όλες ανοιχτές","f.inj":"Τραυματισμός","f.ill":"Ασθένεια","f.legal":"POME→Νομικά","f.count":"υποθέσεις",
   "c.id":"Υπόθεση","c.sf":"Ναυτικός","c.principal":"Principal","c.vessel":"Πλοίο","c.type":"Τύπος","c.class":"Σύστημα","c.stage":"Στάδιο","c.day":"120-day","c.status":"Κατάσταση",
   "intake.ey":"Intake · η εισερχόμενη υπόθεση","intake.h1":"Νέα post-medical υπόθεση","intake.lead":"Πώς μας φτάνει η υπόθεση; Διάλεξε κανάλι — καθορίζει το χρονοδιάγραμμα και τα απαιτούμενα έγγραφα.",
@@ -383,6 +436,30 @@ const CASES=[
 ];
 const SYS={MSK:"Musculoskeletal",GI:"Gastrointestinal",INTG:"Integumentary",GU:"Genitourinary",CV:"Cardiovascular",OPH:"Ophthalmology",NEUR:"Neurological",ENT:"ENT"};
 
+/* aggregate 2025 book (real distribution shape, anonymized principals) */
+const PORTFOLIO={
+ year:2025,total:161,illness:117,injury:44,death:4,open:29,closed:132,deployments:7260,pct:2.22,injuryRate:25.9,firstTime:153,
+ legal:{disability:44,p2l:5,pure:15},
+ systems:[["MSK",54],["GI",21],["GU",16],["INTG",16],["CV",16],["OPH",7],["NEUR",5],["ENT",5],["Oth",21]],
+ trend:[["2020",117],["2021",185],["2022",200],["2023",175],["2024",174],["2025",161]],
+ principals:[["Cyan",34],["Meridian",26],["Poseidon",16],["Kestrel",8],["Orion",7],["Halcyon",6],["Delphi",6]]
+};
+function donutSVG(segs,size,thick){
+ const r=(size-thick)/2,c=2*Math.PI*r,cx=size/2,total=segs.reduce((a,s)=>a+s[0],0);let off=0;
+ const arcs=segs.map(s=>{const len=c*(s[0]/total);const el=`<circle cx="${cx}" cy="${cx}" r="${r}" fill="none" stroke="${s[1]}" stroke-width="${thick}" stroke-dasharray="${len.toFixed(2)} ${(c-len).toFixed(2)}" stroke-dashoffset="${(-off).toFixed(2)}" transform="rotate(-90 ${cx} ${cx})" stroke-linecap="butt"/>`;off+=len;return el;}).join("");
+ return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}"><circle cx="${cx}" cy="${cx}" r="${r}" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="${thick}"/>${arcs}<text x="${cx}" y="${cx-1}" text-anchor="middle" font-family="Sora" font-weight="700" font-size="17" fill="#fff">${total}</text><text x="${cx}" y="${cx+13}" text-anchor="middle" font-family="Inter" font-size="8.5" fill="#9FBBD0">cases</text></svg>`;
+}
+function trendArea(pts,w,h){
+ const pad=10,ih=h-pad*2-10,iw=w-pad*2;const cs=pts.map(p=>p[1]);const max=Math.max(...cs)*1.08,min=Math.min(...cs)*0.8;
+ const x=i=>pad+iw*i/(pts.length-1),y=v=>pad+ih*(1-(v-min)/(max-min));
+ const line=pts.map((p,i)=>`${x(i).toFixed(1)},${y(p[1]).toFixed(1)}`).join(" ");
+ const area=`${pad},${(pad+ih).toFixed(1)} ${line} ${(w-pad).toFixed(1)},${(pad+ih).toFixed(1)}`;
+ const dots=pts.map((p,i)=>`<circle cx="${x(i).toFixed(1)}" cy="${y(p[1]).toFixed(1)}" r="3" fill="#E5544B" stroke="#fff" stroke-width="1.5"/>`).join("");
+ const vals=pts.map((p,i)=>`<text x="${x(i).toFixed(1)}" y="${(y(p[1])-8).toFixed(1)}" font-size="9.5" fill="#4C6072" text-anchor="middle" font-family="IBM Plex Mono">${p[1]}</text>`).join("");
+ const lbls=pts.map((p,i)=>`<text x="${x(i).toFixed(1)}" y="${h-3}" font-size="9" fill="#8AA0B0" text-anchor="middle" font-family="IBM Plex Mono">${p[0]}</text>`).join("");
+ return `<svg viewBox="0 0 ${w} ${h}"><defs><linearGradient id="tg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E5544B" stop-opacity=".26"/><stop offset="1" stop-color="#E5544B" stop-opacity="0"/></linearGradient></defs><polygon points="${area}" fill="url(#tg)"/><polyline points="${line}" fill="none" stroke="#E5544B" stroke-width="2.2" stroke-linejoin="round"/>${dots}${vals}${lbls}</svg>`;
+}
+
 const HOSPITALS=[
  {id:"H1",ab:"BM",n:"Bayview Marine Clinic",port:"Manila, PH",city:"Metro Manila",specs:["General","GI","Surgery"],avail:"free",beds:"12 / 40",cost:"$$",pi:"Manila P&I Corr.",dist:"POME network · in-house"},
  {id:"H2",ab:"MS",n:"Manila Seafarers Medical",port:"Manila, PH",city:"Metro Manila",specs:["Dermatology","Internal Med","Imaging"],avail:"free",beds:"8 / 30",cost:"$$",pi:"Del Rio Corr.",dist:"POME network"},
@@ -410,17 +487,71 @@ function renderBoard(){
  if(boardFilter==="ill")rows=open.filter(c=>c.type==="ill");
  if(boardFilter==="legal")rows=open.filter(c=>c.status==="legal");
  const fchip=(id,lab)=>`<button class="chip ${boardFilter===id?'on':''}" onclick="boardFilter='${id}';renderBoard()">${lab}</button>`;
+ const P=PORTFOLIO;
+ const segs=[[P.illness,'#5B8DB8'],[P.injury,'#E5544B'],[P.death,'#2b2b2b']];
+ const maxSys=Math.max(...P.systems.map(s=>s[1]));
+ const maxPr=Math.max(...P.principals.map(s=>s[1]));
+ const legMax=Math.max(P.legal.disability,P.legal.p2l,P.legal.pure);
+ const legOpen=P.legal.disability+P.legal.p2l+P.legal.pure;
  $("#main").innerHTML=`
   <div class="pagehead">
     <div><div class="ey">${t("board.ey")}</div><h1>${t("board.h1")}</h1></div>
     <div class="rbac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v6c0 4-3.5 7-8 8-4.5-1-8-4-8-8V7z"/><path d="M9 12l2 2 4-4"/></svg>${t("board.rbac")}</div>
   </div>
+
+  <div class="dashgrid">
+    <div class="pfolio">
+      <div class="lbl">${t("book.book")}</div>
+      <div class="flex">
+        <div class="big">${P.total}<small>${t("book.total")}</small></div>
+        <div>${donutSVG(segs,96,15)}</div>
+        <div class="leg">
+          <div class="it"><span class="sw" style="background:#5B8DB8"></span>${t("seg.ill")}<span class="n">${P.illness}</span></div>
+          <div class="it"><span class="sw" style="background:#E5544B"></span>${t("seg.inj")}<span class="n">${P.injury}</span></div>
+          <div class="it"><span class="sw" style="background:#2b2b2b"></span>${t("seg.death")}<span class="n">${P.death}</span></div>
+        </div>
+      </div>
+      <div class="strip">
+        <div class="it"><div class="k">${t("pf.open")}</div><div class="v">${P.open}</div></div>
+        <div class="it"><div class="k">${t("pf.closed")}</div><div class="v">${P.closed}</div></div>
+        <div class="it"><div class="k">${t("kpi.dep")}</div><div class="v">${P.pct}% <small>${t("pf.dep")}</small></div></div>
+        <div class="it"><div class="k">${t("pf.first")}</div><div class="v">${P.firstTime}<small> / ${P.total}</small></div></div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="ph"><span class="zn legal">LEGAL</span><h3>${t("leg.title")}</h3></div>
+      <div class="legalstat"><div class="big">${legOpen}<small>${t("leg.big")}</small></div>
+        <div class="lbar">
+          <div class="row"><span class="lb">${t("leg.disability")}</span><span class="tr"><span class="fill" style="width:${(P.legal.disability/legMax*100).toFixed(0)}%;background:var(--violet)"></span></span><span class="n">${P.legal.disability}</span></div>
+          <div class="row"><span class="lb">${t("leg.p2l")}</span><span class="tr"><span class="fill" style="width:${(P.legal.p2l/legMax*100).toFixed(0)}%;background:var(--coral)"></span></span><span class="n">${P.legal.p2l}</span></div>
+          <div class="row"><span class="lb">${t("leg.pure")}</span><span class="tr"><span class="fill" style="width:${(P.legal.pure/legMax*100).toFixed(0)}%;background:var(--navy-2)"></span></span><span class="n">${P.legal.pure}</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="kpirow">
-    <div class="kpi"><div class="k">${t("kpi.open")}</div><div class="v">${open.length}</div><div class="d">${t("kpi.open.d")}</div></div>
+    <div class="kpi"><div class="k">${t("kpi.open")}</div><div class="v">${open.length}</div><div class="d">${t("live.sub")}</div></div>
     <div class="kpi warn"><div class="k">${t("kpi.risk")}</div><div class="v">${risk}</div><div class="d">${t("kpi.risk.d")}</div></div>
     <div class="kpi"><div class="k">${t("kpi.appr")}</div><div class="v">${appr}</div><div class="d">${t("kpi.appr.d")}</div></div>
     <div class="kpi"><div class="k">${t("kpi.dur")}</div><div class="v">98</div><div class="d">${t("kpi.dur.d")}</div></div>
+    <div class="kpi"><div class="k">${t("kpi.inj")}</div><div class="v">${P.injuryRate}%</div><div class="d">${t("kpi.inj.d")}</div></div>
+    <div class="kpi"><div class="k">${t("kpi.dep")}</div><div class="v">${P.pct}%</div><div class="d">${t("kpi.dep.d")}</div></div>
   </div>
+
+  <div class="chartrow">
+    <div class="pcard"><div class="ph"><span class="zn intel">SYSTEM</span><h3>${t("ch.sys")}</h3><span class="rt">n=${P.total}</span></div>
+      <div class="hbars">${P.systems.map(s=>`<div class="hbar"><span class="lb">${s[0]}</span><span class="tr"><span class="fill" style="width:${(s[1]/maxSys*100).toFixed(0)}%"></span></span><span class="n">${s[1]}</span></div>`).join("")}</div>
+    </div>
+    <div class="pcard"><div class="ph"><span class="zn trend">TREND</span><h3>${t("ch.trend")}</h3><span class="rt">−19% ’22→’25</span></div>
+      <div class="trendwrap">${trendArea(P.trend,300,118)}</div>
+    </div>
+    <div class="pcard"><div class="ph"><span class="zn legal">PRINCIPAL</span><h3>${t("ch.principal")}</h3><span class="rt">top 7</span></div>
+      <div class="vbars">${P.principals.map(p=>`<div class="vb"><span class="n">${p[1]}</span><span class="col" style="height:${(p[1]/maxPr*100).toFixed(0)}%"></span><span class="lb">${p[0]}</span></div>`).join("")}</div>
+    </div>
+  </div>
+
+  <div class="livehd"><h2>${t("live.h")}</h2><span class="sub">${t("live.sub")}</span></div>
   <div class="tablewrap">
     <div class="tbtools">
       ${fchip("all",t("f.all"))}${fchip("inj",t("f.inj"))}${fchip("ill",t("f.ill"))}${fchip("legal",t("f.legal"))}
