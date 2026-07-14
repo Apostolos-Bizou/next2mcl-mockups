@@ -1,19 +1,6 @@
-{
-  "routes": [
-    { "route": "/next2postmed-tracker-v0.1.html", "allowedRoles": ["anonymous"] },
-    { "route": "/next2peme-tracker-v0.6.html", "allowedRoles": ["anonymous"] },
-    { "route": "/next2peme-intake-v0.1.html", "allowedRoles": ["anonymous"] },
-    { "route": "/.auth/*", "allowedRoles": ["anonymous"] },
-    { "route": "/*", "allowedRoles": ["mcl"] }
-  ],
-  "responseOverrides": {
-    "401": {
-      "statusCode": 302,
-      "redirect": "/.auth/login/aad?post_login_redirect_uri=/mcl-shell-v0.2.html"
-    }
-  },
+﻿{
   "navigationFallback": {
-    "rewrite": "/mcl-shell-v0.2.html",
+    "rewrite": "/index.html",
     "exclude": ["/*.{css,js,png,svg,jpg,jpeg,ico,json,webp}"]
   },
   "globalHeaders": {
