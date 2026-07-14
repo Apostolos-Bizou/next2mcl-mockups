@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Next2PostMed · Case Console (Mockup v0.1)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#071E33;--navy-2:#0B2A45;--teal:#0E8C93;--teal-2:#12A7AF;
+  --gold:#E7A33E;--gold-2:#F2B860;--coral:#E5544B;--coral-2:#f0776f;--coral-d:#c73f37;
+  --green:#2FA36B;--amber:#D9902A;--blue:#5B8DB8;--violet:#7B61A8;
+  --mist:#F4F7F9;--paper:#FFFFFF;--ink:#152532;--ink-2:#4C6072;--ink-3:#8AA0B0;
+  --line:#DCE6EC;--line-2:#EAF0F4;--radius:16px;--radius-sm:10px;
+  --shadow:0 1px 2px rgba(7,30,51,.04),0 8px 24px rgba(7,30,51,.06);--shadow-lg:0 16px 44px rgba(7,30,51,.16);
+  --ff-display:'Sora',system-ui,sans-serif;--ff-body:'Inter',system-ui,sans-serif;--ff-mono:'IBM Plex Mono',ui-monospace,monospace;
+  --med:var(--teal);--leg:var(--amber);--fin:var(--green);
+}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{font-family:var(--ff-body);color:var(--ink);background:var(--mist);-webkit-font-smoothing:antialiased;line-height:1.45}
+button{font-family:inherit;cursor:pointer;border:none;background:none}a{text-decoration:none;color:inherit}
+:focus-visible{outline:2px solid var(--coral);outline-offset:2px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.mocktag{position:fixed;top:0;right:0;background:var(--coral);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;padding:3px 10px;border-bottom-left-radius:8px;z-index:90;font-family:var(--ff-mono)}
+
+/* topbar */
+.topbar{background:linear-gradient(100deg,var(--navy),var(--navy-2));color:#EAF3F8;padding:0 22px;height:60px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:40}
+.brand{display:flex;align-items:center;gap:11px}
+.brand .mark{width:34px;height:34px}
+.brand .wm{font-family:var(--ff-display);font-weight:700;font-size:17px;color:#fff;line-height:1}
+.brand .wm b{color:var(--coral-2)}
+.brand .sub{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#6E8DA5;margin-top:2px}
+.mclhome{margin-left:4px;font-family:var(--ff-mono);font-size:11px;color:#9FBBD0;border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:6px 10px;background:rgba(255,255,255,.05)}
+.mclhome:hover{background:rgba(255,255,255,.11);color:#fff}
+.orgsel{margin-left:8px;display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:7px 12px;font-size:13px;font-weight:600;color:#EAF3F8}
+.orgsel .dot{width:8px;height:8px;border-radius:2px;background:var(--coral)}
+.orgsel svg{width:13px;height:13px;opacity:.6}
+.search{margin-left:auto;display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:8px 13px;width:230px;color:#9FBBD0}
+.search svg{width:15px;height:15px}
+.search input{background:none;border:none;color:#EAF3F8;font-family:inherit;font-size:13px;width:100%}
+.search input::placeholder{color:#7893A8}.search input:focus{outline:none}
+.langtog{display:inline-flex;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:2px}
+.langtog button{padding:5px 9px;border-radius:6px;font-size:11.5px;font-weight:600;color:#9FBBD0}
+.langtog button.on{background:var(--coral);color:#fff}
+.rolebadge{display:flex;align-items:center;gap:9px;padding-left:4px}
+.rolebadge .av{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--coral),var(--navy-2));color:#fff;display:grid;place-items:center;font-family:var(--ff-display);font-weight:600;font-size:12px;border:1px solid rgba(255,255,255,.14)}
+.rolebadge .nm{font-size:12px;font-weight:600;line-height:1.2}
+.rolebadge .rl{font-size:10px;color:#7EA2BC}
+
+/* layout */
+.shell{display:grid;grid-template-columns:210px 1fr;min-height:calc(100vh - 60px)}
+.side{background:var(--paper);border-right:1px solid var(--line);padding:16px 12px;display:flex;flex-direction:column;gap:3px;position:sticky;top:60px;height:calc(100vh - 60px);overflow:auto}
+.side .grp{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin:12px 8px 5px}
+.nav{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:10px;font-size:13px;font-weight:500;color:var(--ink-2)}
+.nav svg{width:17px;height:17px;color:var(--ink-3)}
+.nav:hover{background:var(--mist)}
+.nav.on{background:linear-gradient(100deg,rgba(229,84,75,.12),rgba(229,84,75,.05));color:var(--coral-d);font-weight:600}
+.nav.on svg{color:var(--coral)}
+.nav .ct{margin-left:auto;font-family:var(--ff-mono);font-size:11px;background:var(--mist);color:var(--ink-3);padding:1px 7px;border-radius:6px}
+.nav.on .ct{background:rgba(229,84,75,.14);color:var(--coral-d)}
+.side .spacer{flex:1}
+.side .guidebtn{border:1px solid var(--line);border-radius:10px;color:var(--ink-2)}
+.side .guidebtn svg{color:var(--gold)}
+.side .guidebtn.on{background:linear-gradient(100deg,rgba(231,163,62,.14),#fff);color:var(--ink);border-color:rgba(231,163,62,.4)}
+
+.main{padding:22px 26px 70px;max-width:1180px}
+.pagehead{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.pagehead .ey{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--coral);font-weight:600;margin-bottom:5px}
+.pagehead h1{font-family:var(--ff-display);font-weight:600;font-size:23px;letter-spacing:-.02em;margin:0}
+.pagehead .rbac{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--ink-3);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:6px 13px}
+.pagehead .rbac svg{width:13px;height:13px;color:var(--coral)}
+
+/* kpis */
+.kpirow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.kpi{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
+.kpi .k{font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.kpi .v{font-family:var(--ff-display);font-weight:700;font-size:25px;margin-top:5px}
+.kpi .d{font-size:11.5px;color:var(--ink-3);margin-top:2px}
+.kpi.warn .v{color:var(--coral-d)}.kpi.warn{border-color:rgba(229,84,75,.3);background:linear-gradient(180deg,rgba(229,84,75,.05),#fff)}
+
+/* section head */
+.sechead{display:flex;align-items:center;gap:10px;margin:6px 0 13px}
+.sechead h2{font-family:var(--ff-display);font-size:15px;font-weight:600;margin:0}
+.sechead .hint{font-size:12px;color:var(--ink-3);margin-left:auto}
+
+/* board table */
+.tablewrap{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.tbtools{display:flex;align-items:center;gap:9px;padding:12px 15px;border-bottom:1px solid var(--line-2);flex-wrap:wrap}
+.chip{font-size:12px;font-weight:600;color:var(--ink-2);background:var(--mist);border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+.chip.on{background:var(--coral);color:#fff;border-color:var(--coral)}
+.tbtools .rt{margin-left:auto;font-size:11.5px;color:var(--ink-3)}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+thead th{text-align:left;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line-2);white-space:nowrap}
+tbody td{padding:11px 14px;border-bottom:1px solid var(--line-2);vertical-align:middle}
+tbody tr{cursor:pointer;transition:.12s}
+tbody tr:hover{background:var(--mist)}
+tbody tr:last-child td{border-bottom:none}
+.cid{font-family:var(--ff-mono);font-size:11.5px;color:var(--coral-d);font-weight:600}
+.sf .nm{font-weight:600}.sf .mt{font-size:10.5px;color:var(--ink-3);font-family:var(--ff-mono)}
+.tag{font-size:10px;font-weight:700;letter-spacing:.03em;padding:2px 8px;border-radius:6px;font-family:var(--ff-mono);white-space:nowrap;display:inline-block}
+.t-ill{background:rgba(91,141,184,.14);color:#3F6C93}.t-inj{background:rgba(229,84,75,.13);color:var(--coral-d)}.t-death{background:#2b2b2b;color:#fff}
+.sys{font-size:10.5px;font-weight:600;color:var(--ink-2);background:var(--mist);border:1px solid var(--line);padding:2px 7px;border-radius:6px}
+.stg{font-size:11.5px;color:var(--ink-2)}
+.stg .dotrow{display:inline-flex;gap:2px;margin-right:6px;vertical-align:middle}
+.stg .d{width:5px;height:5px;border-radius:50%;background:var(--line)}
+.stg .d.med{background:var(--med)}.stg .d.leg{background:var(--leg)}.stg .d.fin{background:var(--fin)}
+.clock{display:inline-flex;align-items:center;gap:6px;font-family:var(--ff-mono);font-size:11.5px;font-weight:600}
+.clock .ring{width:22px;height:22px;flex:0 0 22px}
+.clock.ok{color:var(--green)}.clock.warn{color:var(--amber)}.clock.crit{color:var(--coral-d)}
+.st{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:999px}
+.st.open{background:rgba(217,144,42,.14);color:var(--amber)}.st.closed{background:rgba(47,163,107,.13);color:var(--green)}.st.legal{background:rgba(123,97,168,.14);color:var(--violet)}
+
+/* ===== case detail ===== */
+.back{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--coral-d);margin-bottom:12px}
+.back svg{width:15px;height:15px}
+.casehdr{background:linear-gradient(120deg,var(--navy),var(--navy-2) 70%,#123a5c);border-radius:var(--radius);color:#EAF3F8;padding:20px 22px;position:relative;overflow:hidden;box-shadow:var(--shadow);margin-bottom:16px}
+.casehdr::after{content:"";position:absolute;right:-50px;top:-60px;width:240px;height:240px;background:radial-gradient(circle,rgba(229,84,75,.22),transparent 68%);pointer-events:none}
+.casehdr .top{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;position:relative;z-index:1}
+.casehdr .sfname{font-family:var(--ff-display);font-weight:700;font-size:22px}
+.casehdr .meta{font-size:12.5px;color:#B9D3E4;margin-top:4px;display:flex;gap:14px;flex-wrap:wrap}
+.casehdr .meta b{color:#EAF3F8;font-weight:600}
+.casehdr .ids{margin-left:auto;text-align:right;display:flex;flex-direction:column;gap:6px}
+.idchip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:9px;padding:6px 11px;font-family:var(--ff-mono);font-size:11.5px}
+.idchip .l{color:#7EA2BC;font-size:9px;letter-spacing:.1em;text-transform:uppercase}
+.idchip .v{color:#fff;font-weight:600}
+.casehdr .clocks{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;position:relative;z-index:1}
+.clk{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:11px;min-width:150px}
+.clk .ring{width:38px;height:38px;flex:0 0 38px}
+.clk .lb{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#7EA2BC;font-weight:600}
+.clk .vl{font-family:var(--ff-display);font-weight:700;font-size:16px;color:#fff;margin-top:1px}
+.clk .sb{font-size:10px;color:#9FBBD0;font-family:var(--ff-mono)}
+
+/* track rail — signature */
+.rail{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:6px 4px 10px;margin-bottom:16px}
+.trk{padding:13px 18px;border-bottom:1px solid var(--line-2)}
+.trk:last-child{border-bottom:none}
+.trk .th{display:flex;align-items:center;gap:9px;margin-bottom:11px}
+.trk .th .dot{width:10px;height:10px;border-radius:3px}
+.trk.med .th .dot{background:var(--med)}.trk.leg .th .dot{background:var(--leg)}.trk.fin .th .dot{background:var(--fin)}
+.trk .th .nm{font-family:var(--ff-display);font-size:13px;font-weight:600}
+.trk .th .sub{font-size:11px;color:var(--ink-3);margin-left:2px}
+.trk .th .pct{margin-left:auto;font-family:var(--ff-mono);font-size:11px;color:var(--ink-3)}
+.steps{display:flex;align-items:flex-start;gap:0;overflow-x:auto;padding-bottom:4px}
+.step{flex:0 0 auto;min-width:96px;position:relative;padding:0 4px;text-align:center}
+.step .node{width:20px;height:20px;border-radius:50%;margin:0 auto 7px;background:var(--paper);border:2px solid var(--line);display:grid;place-items:center;position:relative;z-index:1}
+.step .node svg{width:11px;height:11px;color:#fff}
+.step::before{content:"";position:absolute;top:9px;left:-50%;width:100%;height:2px;background:var(--line)}
+.step:first-child::before{display:none}
+.step .lab{font-size:10.5px;line-height:1.25;color:var(--ink-3);padding:0 3px}
+.step.done .node{background:var(--tc);border-color:var(--tc)}
+.step.done::before{background:var(--tc)}
+.step.cur .node{background:#fff;border-color:var(--tc);box-shadow:0 0 0 4px var(--tcl)}
+.step.cur .lab{color:var(--ink);font-weight:600}
+.step.cur::before{background:var(--tc)}
+.step.esc .node{border-color:var(--violet)}.step.esc.cur .node{box-shadow:0 0 0 4px rgba(123,97,168,.16)}
+.trk.med{--tc:var(--med);--tcl:rgba(14,140,147,.16)}
+.trk.leg{--tc:var(--leg);--tcl:rgba(217,144,42,.18)}
+.trk.fin{--tc:var(--fin);--tcl:rgba(47,163,107,.16)}
+
+/* detail grid */
+.dgrid{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;align-items:start}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:16px;overflow:hidden}
+.panel .ph{display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid var(--line-2)}
+.panel .ph .ic{width:28px;height:28px;border-radius:8px;background:var(--mist);display:grid;place-items:center;color:var(--coral);flex:0 0 28px}
+.panel .ph .ic svg{width:15px;height:15px}
+.panel .ph h3{font-family:var(--ff-display);font-size:13.5px;font-weight:600;margin:0}
+.panel .ph .rt{margin-left:auto;font-size:11px;color:var(--ink-3);font-family:var(--ff-mono)}
+.panel .pb{padding:14px 16px}
+.kv{display:flex;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line-2);font-size:12.5px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:var(--ink-3);flex:0 0 132px}
+.kv .v{color:var(--ink);font-weight:500}
+.kv .v .mono{font-family:var(--ff-mono);font-size:11.5px}
+
+/* hospital selection inside case */
+.hosel .opt{display:flex;gap:12px;padding:12px;border:1px solid var(--line);border-radius:12px;margin-bottom:10px;transition:.14s;cursor:pointer}
+.hosel .opt:hover{border-color:var(--coral);box-shadow:0 4px 14px rgba(229,84,75,.1)}
+.hosel .opt.sel{border-color:var(--coral);background:rgba(229,84,75,.04)}
+.hosel .opt .av{width:40px;height:40px;flex:0 0 40px;border-radius:10px;background:linear-gradient(135deg,var(--navy-2),var(--teal));color:#fff;display:grid;place-items:center;font-family:var(--ff-display);font-weight:700;font-size:13px}
+.hosel .opt .nm{font-weight:600;font-size:13px}
+.hosel .opt .lo{font-size:11px;color:var(--ink-3);margin-top:2px}
+.hosel .opt .tags{display:flex;gap:5px;margin-top:6px;flex-wrap:wrap}
+.avl{font-size:9.5px;font-weight:700;font-family:var(--ff-mono);padding:2px 7px;border-radius:5px}
+.avl.free{background:rgba(47,163,107,.13);color:var(--green)}.avl.ltd{background:rgba(217,144,42,.15);color:var(--amber)}.avl.full{background:var(--mist);color:var(--ink-3)}
+.spec{font-size:9.5px;color:var(--ink-2);background:var(--mist);border:1px solid var(--line);padding:2px 7px;border-radius:5px}
+.hosel .opt .rt{margin-left:auto;text-align:right}
+.hosel .opt .cost{font-family:var(--ff-mono);font-size:12px;font-weight:600;color:var(--ink)}
+.hosel .opt .costl{font-size:9.5px;color:var(--ink-3)}
+.hosel .opt .dist{font-size:10.5px;color:var(--ink-3);margin-top:4px}
+
+/* doc chips / comm log */
+.doc{display:flex;align-items:center;gap:11px;padding:10px;border:1px solid var(--line);border-radius:11px;margin-bottom:9px}
+.doc .fi{width:34px;height:34px;flex:0 0 34px;border-radius:9px;background:var(--mist);display:grid;place-items:center;color:var(--navy-2)}
+.doc .fi svg{width:16px;height:16px}
+.doc .nm{font-size:12.5px;font-weight:600}
+.doc .cd{font-family:var(--ff-mono);font-size:10.5px;color:var(--ink-3);margin-top:1px}
+.doc .rt{margin-left:auto;display:flex;align-items:center;gap:8px}
+.doc .nocopy{font-size:9px;font-weight:700;font-family:var(--ff-mono);color:var(--coral-d);background:rgba(229,84,75,.1);border:1px solid rgba(229,84,75,.3);padding:2px 6px;border-radius:5px}
+.doc .dmslink{font-size:11px;font-weight:600;color:var(--teal)}
+.log{position:relative;padding-left:20px}
+.log .ev{position:relative;padding:0 0 14px 14px;border-left:2px solid var(--line-2)}
+.log .ev:last-child{border-left-color:transparent;padding-bottom:0}
+.log .ev::before{content:"";position:absolute;left:-6px;top:2px;width:10px;height:10px;border-radius:50%;background:var(--coral);border:2px solid #fff}
+.log .ev.sys::before{background:var(--teal)}
+.log .t{font-size:11px;color:var(--ink-3);font-family:var(--ff-mono)}
+.log .m{font-size:12.5px;color:var(--ink-2);margin-top:2px}.log .m b{color:var(--ink)}
+.log .who{font-size:10.5px;color:var(--ink-3)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 16px;border-radius:11px;font-family:var(--ff-display);font-weight:600;font-size:13px;transition:.14s}
+.btn svg{width:16px;height:16px}
+.btn.primary{background:linear-gradient(100deg,var(--coral),var(--coral-d));color:#fff;box-shadow:0 6px 18px rgba(229,84,75,.28)}
+.btn.primary:hover{transform:translateY(-1px)}
+.btn.ghost{border:1px solid var(--line);color:var(--ink-2)}.btn.ghost:hover{background:var(--mist)}
+.btn.full{width:100%}
+
+/* intake */
+.intake{max-width:760px}
+.chanrow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+.chansel{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:15px;text-align:left;transition:.14s}
+.chansel:hover{border-color:var(--coral)}
+.chansel.on{border-color:var(--coral);background:rgba(229,84,75,.04);box-shadow:0 6px 18px rgba(229,84,75,.1)}
+.chansel .ic{width:34px;height:34px;border-radius:10px;background:var(--mist);display:grid;place-items:center;color:var(--coral);margin-bottom:9px}
+.chansel .ic svg{width:18px;height:18px}
+.chansel .t{font-family:var(--ff-display);font-weight:600;font-size:13px}
+.chansel .d{font-size:11px;color:var(--ink-3);margin-top:3px}
+.form{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fld{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.fld.full{grid-column:1/-1}
+.fld label{font-size:11.5px;font-weight:600;color:var(--ink-2)}
+.fld label .req{color:var(--coral)}
+.fld input,.fld select,.fld textarea{padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-family:inherit;font-size:13px;color:var(--ink);background:#fff}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--coral);box-shadow:0 0 0 3px rgba(229,84,75,.1)}
+.fld .hint{font-size:10.5px;color:var(--ink-3)}
+.forced{display:flex;gap:9px;background:rgba(217,144,42,.08);border:1px solid rgba(217,144,42,.28);border-radius:11px;padding:11px 13px;font-size:12px;color:#8a5a12;margin:4px 0 16px}
+.forced svg{width:16px;height:16px;flex:0 0 16px;color:var(--amber);margin-top:1px}
+
+/* hospital network view */
+.hnet{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.hcard{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
+.hcard .hh{display:flex;gap:12px;align-items:flex-start}
+.hcard .av{width:44px;height:44px;flex:0 0 44px;border-radius:11px;background:linear-gradient(135deg,var(--navy-2),var(--teal));color:#fff;display:grid;place-items:center;font-family:var(--ff-display);font-weight:700;font-size:14px}
+.hcard .nm{font-family:var(--ff-display);font-weight:600;font-size:14px}
+.hcard .lo{font-size:11.5px;color:var(--ink-3);margin-top:2px;display:flex;align-items:center;gap:5px}
+.hcard .lo svg{width:12px;height:12px}
+.hcard .body{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+.hcard .specs{display:flex;gap:5px;flex-wrap:wrap}
+.hcard .meta{display:flex;gap:16px;padding-top:11px;border-top:1px solid var(--line-2);font-size:11.5px}
+.hcard .meta .k{color:var(--ink-3)}.hcard .meta .v{font-weight:600;font-family:var(--ff-mono)}
+
+/* guide */
+.gd-wrap{max-width:900px}
+.gd-h{margin-bottom:16px}
+.gd-h .ttl{font-family:var(--ff-display);font-weight:600;font-size:19px}
+.gd-h .in{font-size:13px;color:var(--ink-2);margin-top:6px;line-height:1.5}
+.gd-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 18px;margin-bottom:12px;display:grid;grid-template-columns:44px 1fr;gap:14px}
+.gd-card .em{font-size:26px;line-height:1}
+.gd-card .t{font-family:var(--ff-display);font-weight:600;font-size:14px;margin-bottom:6px}
+.gd-card .r{font-size:12.5px;color:var(--ink-2);line-height:1.5;margin:3px 0}
+.gd-card .r b{color:var(--ink)}
+.gd-card .steps{margin:7px 0 0;padding-left:18px}
+.gd-card .steps li{font-size:12px;color:var(--ink-2);margin:3px 0}
+.gd-res{font-size:12px;color:var(--green);font-weight:600;margin-top:7px}
+
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);opacity:0;background:var(--navy);color:#fff;padding:12px 20px;border-radius:11px;font-size:13px;font-weight:500;box-shadow:var(--shadow-lg);z-index:80;transition:.25s;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.hide{display:none!important}
+
+@media (max-width:940px){.shell{grid-template-columns:1fr}.side{position:static;height:auto;flex-direction:row;flex-wrap:wrap;overflow:visible}.side .grp,.side .spacer{display:none}.dgrid{grid-template-columns:1fr}.hnet,.fgrid{grid-template-columns:1fr}.kpirow{grid-template-columns:1fr 1fr}.chanrow{grid-template-columns:1fr}.search{display:none}}
+</style>
+</head>
+<body>
+<div class="mocktag">next2postmed v0.1 · MOCKUP · fake data</div>
+
+<header class="topbar">
+  <div class="brand">
+    <svg class="mark" viewBox="0 0 40 40" fill="none"><rect x="1.5" y="1.5" width="37" height="37" rx="10" fill="#0B2A45" stroke="#E5544B" stroke-width="1.5"/><path d="M8 25 L14 25 L17 13 L23 28 L26 20 L32 20" stroke="#12A7AF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="8.5" r="2.2" fill="#E5544B"/></svg>
+    <div><div class="wm">Next2<b>PostMed</b></div><div class="sub">Case Console</div></div>
+  </div>
+  <a class="mclhome" href="mcl-shell-v0.2.html" title="Back to MCL Command Center">◄ MCL</a>
+  <button class="orgsel"><span class="dot"></span>Crossworld Marine · Manila<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg></button>
+  <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input placeholder="Search case, seafarer…" id="topSearch"></div>
+  <div class="langtog" id="langTog"><button data-lang="en" class="on">EN</button><button data-lang="el">EL</button></div>
+  <div class="rolebadge"><div class="av">HL</div><div><div class="nm">H. Llanes, R.N.</div><div class="rl" data-i18n="role">Operations · Welfare</div></div></div>
+</header>
+
+<div class="shell">
+  <aside class="side" id="side">
+    <div class="grp" data-i18n="nav.grp1">Casework</div>
+    <a class="nav on" data-view="board"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v16"/></svg><span data-i18n="nav.board">Case Board</span><span class="ct" id="ctBoard">9</span></a>
+    <a class="nav" data-view="intake"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg><span data-i18n="nav.intake">New case</span></a>
+    <div class="grp" data-i18n="nav.grp2">Network</div>
+    <a class="nav" data-view="hospitals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M6 21V7l6-4 6 4v14M10 9h4M10 13h4M10 17h4"/></svg><span data-i18n="nav.hospitals">Hospital network</span><span class="ct" id="ctHosp">8</span></a>
+    <a class="nav" data-view="intel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg><span data-i18n="nav.intel">Safety patterns</span></a>
+    <div class="spacer"></div>
+    <a class="nav guidebtn" data-view="guide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 5.5V20.5"/></svg><span data-i18n="nav.guide">User guide</span></a>
+    <a class="nav" href="next2dms-v0.6.html?tenant=next2mcl&source=postmed" title="Next2DMS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h10l6 6v10a0 0 0 0 1 0 0H4z"/><path d="M14 4v6h6"/></svg><span data-i18n="nav.dms">Documents (DMS)</span></a>
+  </aside>
+
+  <main class="main" id="main"></main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s);const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+let lang="en", view="board", curCase=null, intakeChannel=null;
+
+/* ---------------- i18n ---------------- */
+const T={
+ en:{role:"Operations · Welfare","nav.grp1":"Casework","nav.grp2":"Network","nav.board":"Case Board","nav.intake":"New case","nav.hospitals":"Hospital network","nav.intel":"Safety patterns","nav.guide":"User guide","nav.dms":"Documents (DMS)",
+  "board.ey":"Post-medical case management · Manila operations","board.h1":"Case Board","board.rbac":"Role-gated · Entra ID RBAC",
+  "kpi.open":"Open cases","kpi.open.d":"across 9 principals","kpi.risk":"120-day at risk","kpi.risk.d":"deadline within 30 days","kpi.appr":"Pending approvals","kpi.appr.d":"awaiting owner / P&I","kpi.dur":"Avg case duration","kpi.dur.d":"days · closed 2025",
+  "f.all":"All open","f.inj":"Injury","f.ill":"Illness","f.legal":"POME→Legal","f.count":"cases",
+  "c.id":"Case","c.sf":"Seafarer","c.principal":"Principal","c.vessel":"Vessel","c.type":"Type","c.class":"System","c.stage":"Stage","c.day":"120-day","c.status":"Status",
+  "intake.ey":"Intake · the incoming case","intake.h1":"New post-medical case","intake.lead":"How does this case reach us? Pick the channel — it sets the timeline and required documents.",
+  "ch.onboard":"Onboard doctor","ch.onboard.d":"Disembark recommendation from ShipCare / vessel doctor","ch.72h":"Seafarer (within 72h)","ch.72h.d":"Self-reported within 72 hours of Manila arrival","ch.exit":"Exit interview","ch.exit.d":"Raised by the manning agency on return to Manila",
+  "in.sf":"Seafarer name","in.sfid":"Seafarer ID","in.age":"Age","in.rank":"Rank","in.vessel":"Last vessel","in.principal":"Principal","in.type":"Case type","in.complaint":"Crew statement / complaint","in.reco":"Disembark recommendation","in.reco.urgent":"Urgent (medevac)","in.reco.port":"Next available port","in.reco.out":"Outpatient / stay onboard","in.findings":"Findings abroad",
+  "in.forced":"Forced compliance: a case cannot open without seafarer, principal, vessel and a written crew statement. This is what protects the 120-day clock from starting late.",
+  "in.open":"Open case & start clocks","in.autoid":"Case ID and DMS code are assigned automatically on open.",
+  "hos.ey":"Provider network · availability","hos.h1":"Hospital & clinic network","hos.lead":"Today this is email + phone to the nearest facility. Here it is a live network — location, specialty, availability and indicative cost, per port.",
+  "hos.avail":"Availability","hos.cost":"Cost band","hos.handler":"P&I handler","hos.beds":"Beds","hos.free":"Open","hos.ltd":"Limited","hos.full":"Full",
+  "intel.ey":"Maritime Health Intelligence · preview","intel.h1":"Safety patterns per principal","intel.lead":"Same case data, read as intelligence. Full pattern engine (TCCH / MHIE) lands in a later batch — this is the hook.","intel.soon":"Cross-tabulation, safety-gap matrix and multi-year trend arrive in Batch 4 (Intelligence).",
+  "det.back":"Back to Case Board","det.principal":"Principal","det.vessel":"Vessel","det.pi":"P&I handler","det.arr":"Arrival Manila","det.chan":"Opened via","det.wr":"Work relation",
+  "clk.120":"120-day rule","clk.240":"240-day max","clk.3d":"3-day report","clk.since":"Case age","clk.left":"days left","clk.done":"filed","clk.of":"of",
+  "trk.med":"Medical track","trk.med.s":"treatment & fitness","trk.leg":"Legal track","trk.leg.s":"deadlines & disability","trk.fin":"Financial track","trk.fin.s":"cost & settlement",
+  "p.hos":"Hospital selection","p.hos.pick":"Select provider","p.hos.none":"No provider selected yet — pick one to admit the seafarer.","p.hos.sel":"Selected — admission can proceed.",
+  "p.adm":"Admission","p.adm.gop":"Guarantee of Payment","p.adm.req":"Required to admit: Guarantee of Payment, medical report / master's note, passport.","p.adm.gopwait":"Awaiting Guarantee of Payment from principal.",
+  "p.docs":"Documents","p.docs.dms":"Open in DMS","p.log":"Communication log","p.log.sub":"one thread · all parties","p.summary":"Case summary",
+  "st.done":"done","st.cur":"current","toast.created":"Case opened · clocks started","toast.hospital":"Provider selected · admission unlocked","toast.lang":"Language switched","toast.soon":"Full view arrives in a later batch",
+  "gd.title":"Next2PostMed — the case, end to end","gd.intro":"A post-medical case is the most complex, most expensive part of the lifecycle. This console turns a scattered email-and-Excel process into one tracked case: three parallel tracks, live deadline clocks, and a single source of truth."},
+ el:{role:"Operations · Welfare","nav.grp1":"Υποθέσεις","nav.grp2":"Δίκτυο","nav.board":"Πίνακας Υποθέσεων","nav.intake":"Νέα υπόθεση","nav.hospitals":"Δίκτυο νοσοκομείων","nav.intel":"Patterns ασφάλειας","nav.guide":"Οδηγός χρήσης","nav.dms":"Έγγραφα (DMS)",
+  "board.ey":"Διαχείριση post-medical · λειτουργία Μανίλα","board.h1":"Πίνακας Υποθέσεων","board.rbac":"Role-gated · Entra ID RBAC",
+  "kpi.open":"Ανοιχτές υποθέσεις","kpi.open.d":"σε 9 principals","kpi.risk":"120-day σε κίνδυνο","kpi.risk.d":"προθεσμία εντός 30 ημερών","kpi.appr":"Εκκρεμείς εγκρίσεις","kpi.appr.d":"αναμονή owner / P&I","kpi.dur":"Μέση διάρκεια","kpi.dur.d":"ημέρες · κλειστές 2025",
+  "f.all":"Όλες ανοιχτές","f.inj":"Τραυματισμός","f.ill":"Ασθένεια","f.legal":"POME→Νομικά","f.count":"υποθέσεις",
+  "c.id":"Υπόθεση","c.sf":"Ναυτικός","c.principal":"Principal","c.vessel":"Πλοίο","c.type":"Τύπος","c.class":"Σύστημα","c.stage":"Στάδιο","c.day":"120-day","c.status":"Κατάσταση",
+  "intake.ey":"Intake · η εισερχόμενη υπόθεση","intake.h1":"Νέα post-medical υπόθεση","intake.lead":"Πώς μας φτάνει η υπόθεση; Διάλεξε κανάλι — καθορίζει το χρονοδιάγραμμα και τα απαιτούμενα έγγραφα.",
+  "ch.onboard":"Γιατρός πλοίου","ch.onboard.d":"Σύσταση αποβίβασης από ShipCare / γιατρό πλοίου","ch.72h":"Ναυτικός (εντός 72ω)","ch.72h.d":"Αυτοαναφορά εντός 72 ωρών από άφιξη Μανίλα","ch.exit":"Exit interview","ch.exit.d":"Από το manning agency κατά την επιστροφή στη Μανίλα",
+  "in.sf":"Όνομα ναυτικού","in.sfid":"Seafarer ID","in.age":"Ηλικία","in.rank":"Βαθμός","in.vessel":"Τελευταίο πλοίο","in.principal":"Principal","in.type":"Τύπος","in.complaint":"Δήλωση / παράπονο ναυτικού","in.reco":"Σύσταση αποβίβασης","in.reco.urgent":"Επείγον (medevac)","in.reco.port":"Επόμενο λιμάνι","in.reco.out":"Εξωτερικός / παραμονή","in.findings":"Ευρήματα στο εξωτερικό",
+  "in.forced":"Forced compliance: υπόθεση δεν ανοίγει χωρίς ναυτικό, principal, πλοίο και γραπτή δήλωση. Αυτό προστατεύει το 120-day ρολόι από καθυστερημένη έναρξη.",
+  "in.open":"Άνοιγμα & έναρξη ρολογιών","in.autoid":"Το Case ID και ο DMS κωδικός δίνονται αυτόματα στο άνοιγμα.",
+  "hos.ey":"Δίκτυο παρόχων · διαθεσιμότητα","hos.h1":"Δίκτυο νοσοκομείων & κλινικών","hos.lead":"Σήμερα είναι email + τηλέφωνο στο πλησιέστερο. Εδώ είναι ζωντανό δίκτυο — τοποθεσία, ειδικότητα, διαθεσιμότητα και ενδεικτικό κόστος, ανά λιμάνι.",
+  "hos.avail":"Διαθεσιμότητα","hos.cost":"Ζώνη κόστους","hos.handler":"P&I handler","hos.beds":"Κλίνες","hos.free":"Διαθέσιμο","hos.ltd":"Περιορισμένο","hos.full":"Πλήρες",
+  "intel.ey":"Maritime Health Intelligence · preview","intel.h1":"Patterns ασφάλειας ανά principal","intel.lead":"Τα ίδια δεδομένα, διαβασμένα ως intelligence. Η πλήρης μηχανή (TCCH / MHIE) έρχεται σε επόμενο batch — αυτό είναι το hook.","intel.soon":"Cross-tabulation, safety-gap matrix και multi-year trend έρχονται στο Batch 4 (Intelligence).",
+  "det.back":"Πίσω στον Πίνακα","det.principal":"Principal","det.vessel":"Πλοίο","det.pi":"P&I handler","det.arr":"Άφιξη Μανίλα","det.chan":"Άνοιξε μέσω","det.wr":"Σχέση εργασίας",
+  "clk.120":"Κανόνας 120 ημ.","clk.240":"Μέγιστο 240 ημ.","clk.3d":"Αναφορά 3 ημ.","clk.since":"Ηλικία υπόθεσης","clk.left":"ημέρες","clk.done":"κατατέθηκε","clk.of":"από",
+  "trk.med":"Ιατρικό track","trk.med.s":"θεραπεία & ικανότητα","trk.leg":"Νομικό track","trk.leg.s":"προθεσμίες & αναπηρία","trk.fin":"Οικονομικό track","trk.fin.s":"κόστος & settlement",
+  "p.hos":"Επιλογή νοσοκομείου","p.hos.pick":"Επίλεξε πάροχο","p.hos.none":"Δεν έχει επιλεγεί πάροχος — διάλεξε έναν για εισαγωγή.","p.hos.sel":"Επιλέχθηκε — η εισαγωγή μπορεί να προχωρήσει.",
+  "p.adm":"Εισαγωγή","p.adm.gop":"Guarantee of Payment","p.adm.req":"Για εισαγωγή: Guarantee of Payment, ιατρικό report / note του master, διαβατήριο.","p.adm.gopwait":"Αναμονή Guarantee of Payment από τον principal.",
+  "p.docs":"Έγγραφα","p.docs.dms":"Άνοιγμα στο DMS","p.log":"Ημερολόγιο επικοινωνίας","p.log.sub":"ένα νήμα · όλα τα μέρη","p.summary":"Σύνοψη υπόθεσης",
+  "st.done":"ok","st.cur":"τρέχον","toast.created":"Η υπόθεση άνοιξε · τα ρολόγια ξεκίνησαν","toast.hospital":"Επιλέχθηκε πάροχος · ξεκλείδωσε η εισαγωγή","toast.lang":"Άλλαξε η γλώσσα","toast.soon":"Η πλήρης προβολή έρχεται σε επόμενο batch",
+  "gd.title":"Next2PostMed — η υπόθεση, από άκρη σε άκρη","gd.intro":"Μια post-medical υπόθεση είναι το πιο σύνθετο και ακριβό κομμάτι του κύκλου. Η κονσόλα μετατρέπει μια διάσπαρτη διαδικασία email-και-Excel σε μία παρακολουθούμενη υπόθεση: τρία παράλληλα tracks, ζωντανά ρολόγια προθεσμιών, και μία πηγή αλήθειας."}
+};
+const t=k=>(T[lang][k]??T.en[k]??k);
+
+/* ---------------- data (anonymized, fake) ---------------- */
+// principals & providers are fictional to keep the public mockup safe
+const STAGES={
+ med:["Case Initiation","PEME Baseline","Clinic Selection","Initial Evaluation","Treatment","Follow-up Reports","Final Diagnosis","Fitness"],
+ leg:["120-day start","CFMA","QMA / SW R&R","Contested","3rd-Doctor","Binding / NLRC","240-day","Legal Closure"],
+ fin:["Cost Estimate","Guarantee of Pay","Owner / P&I OK","Cost Tracking","Sick Wages","Settlement","Financial Closure"]
+};
+const STAGES_EL={
+ med:["Άνοιγμα","PEME Baseline","Επιλογή κλινικής","Αρχική εκτίμηση","Θεραπεία","Follow-up","Τελική διάγνωση","Ικανότητα"],
+ leg:["Έναρξη 120","CFMA","QMA / SW R&R","Contested","3ος γιατρός","Binding / NLRC","240-day","Νομικό κλείσιμο"],
+ fin:["Εκτίμηση κόστους","Guarantee","Owner / P&I OK","Παρακολ. κόστους","Sick wages","Settlement","Οικον. κλείσιμο"]
+};
+const escStages=new Set([3,4,5]); // legal contested / 3rd doctor / NLRC
+
+const CASES=[
+ {id:"PM-2026-0042",seq:"0042",sf:{n:"E. Ramos",id:"SF-PH-041188",age:41,rank:"Oiler"},principal:"Halcyon Shipmanagement",vessel:"MV Northern Grace",pi:"Manila P&I Corr.",type:"ill",sys:"GI",dx:"Erosive gastritis, H. pylori +",arr:"2026-01-02",chan:"exit",wr:"WR",stg:{med:3,leg:1,fin:2},hospital:null,status:"open"},
+ {id:"PM-2026-0039",seq:"0039",sf:{n:"K. Trabado",id:"SF-PH-040921",age:24,rank:"Deck Cadet"},principal:"Meridian Marine",vessel:"MV Blue Horizon",pi:"—",type:"ill",sys:"INTG",dx:"Atopic dermatitis, generalized",arr:"2025-12-28",chan:"onboard",wr:"WR",stg:{med:5,leg:1,fin:3},hospital:"H2",status:"open"},
+ {id:"PM-2026-0044",seq:"0044",sf:{n:"D. Sayat",id:"SF-PH-041290",age:37,rank:"3rd Engineer"},principal:"Poseidon Lines",vessel:"MV Amphion",pi:"Pacific Handlers",type:"inj",sys:"MSK",dx:"Bucket-handle meniscal tear, knee",arr:"2026-01-08",chan:"onboard",wr:"WR",stg:{med:2,leg:0,fin:1},hospital:null,status:"open"},
+ {id:"PM-2026-0051",seq:"0051",sf:{n:"R. Melecio",id:"SF-PH-041377",age:27,rank:"OS"},principal:"Kestrel Shipping",vessel:"MV Sea Verity",pi:"Del Rio Corr.",type:"ill",sys:"GI",dx:"Fistula-in-ano, s/p fistulotomy",arr:"2026-01-07",chan:"72h",wr:"NWR",stg:{med:6,leg:2,fin:4},hospital:"H1",status:"open"},
+ {id:"PM-2026-0033",seq:"0033",sf:{n:"A. Montives",id:"SF-PH-040688",age:42,rank:"AB"},principal:"Cyan Maritime",vessel:"MT Great Meridian",pi:"Pacific Handlers",type:"inj",sys:"MSK",dx:"Open fx, proximal phalanx, L index",arr:"2025-11-30",chan:"onboard",wr:"WR",stg:{med:7,leg:5,fin:5},hospital:"H5",status:"legal"},
+ {id:"PM-2026-0047",seq:"0047",sf:{n:"J. Piornato",id:"SF-PH-041322",age:51,rank:"Bosun"},principal:"Orion Bulkers",vessel:"MV Star Pioneer",pi:"Manila P&I Corr.",type:"ill",sys:"CV",dx:"Cerebrovascular disease, infarct",arr:"2026-01-14",chan:"72h",wr:"NWR",stg:{med:4,leg:1,fin:3},hospital:"H1",status:"open"},
+ {id:"PM-2026-0055",seq:"0055",sf:{n:"B. Muaña",id:"SF-PH-041455",age:33,rank:"Oiler"},principal:"Delphi Navigation",vessel:"MV Agnes Bay",pi:"—",type:"inj",sys:"MSK",dx:"Lumbar strain; HNP L4-L5",arr:"2026-02-01",chan:"onboard",wr:"WR",stg:{med:1,leg:0,fin:0},hospital:null,status:"open"},
+ {id:"PM-2026-0058",seq:"0058",sf:{n:"E. Cunanan",id:"SF-PH-041501",age:48,rank:"Oiler"},principal:"Meridian Marine",vessel:"MV Tourmaline",pi:"Del Rio Corr.",type:"ill",sys:"GI",dx:"Acute appendicitis, s/p appendectomy",arr:"2026-02-06",chan:"72h",wr:"NWR",stg:{med:2,leg:1,fin:2},hospital:"H2",status:"open"},
+ {id:"PM-2026-0060",seq:"0060",sf:{n:"R. Pagay",id:"SF-PH-041560",age:39,rank:"Oiler"},principal:"Cyan Maritime",vessel:"MT Coya Reach",pi:"Pacific Handlers",type:"ill",sys:"GU",dx:"Ureterolithiasis; nephrolithiasis",arr:"2026-02-10",chan:"exit",wr:"NWR",stg:{med:3,leg:1,fin:2},hospital:null,status:"open"}
+];
+const SYS={MSK:"Musculoskeletal",GI:"Gastrointestinal",INTG:"Integumentary",GU:"Genitourinary",CV:"Cardiovascular",OPH:"Ophthalmology",NEUR:"Neurological",ENT:"ENT"};
+
+const HOSPITALS=[
+ {id:"H1",ab:"BM",n:"Bayview Marine Clinic",port:"Manila, PH",city:"Metro Manila",specs:["General","GI","Surgery"],avail:"free",beds:"12 / 40",cost:"$$",pi:"Manila P&I Corr.",dist:"POME network · in-house"},
+ {id:"H2",ab:"MS",n:"Manila Seafarers Medical",port:"Manila, PH",city:"Metro Manila",specs:["Dermatology","Internal Med","Imaging"],avail:"free",beds:"8 / 30",cost:"$$",pi:"Del Rio Corr.",dist:"POME network"},
+ {id:"H3",ab:"HH",n:"Harbor Health Center",port:"Cebu, PH",city:"Cebu",specs:["Orthopedics","Trauma","Rehab"],avail:"ltd",beds:"3 / 24",cost:"$$",pi:"Pacific Handlers",dist:"POME network"},
+ {id:"H4",ab:"RP",n:"Rotterdam Port Medical",port:"Rotterdam, NL",city:"Rotterdam",specs:["Emergency","Trauma","Cardio"],avail:"free",beds:"open",cost:"$$$$",pi:"Local correspondent",dist:"Port-of-disembark · EU"},
+ {id:"H5",ab:"SM",n:"Singapore Maritime Hospital",port:"Singapore",city:"Singapore",specs:["Surgery","Ortho","Neuro"],avail:"ltd",beds:"limited",cost:"$$$$",pi:"Local correspondent",dist:"Port-of-disembark · APAC"},
+ {id:"H6",ab:"FM",n:"Fujairah Medical Center",port:"Fujairah, AE",city:"Fujairah",specs:["Emergency","General"],avail:"free",beds:"open",cost:"$$$",pi:"Local correspondent",dist:"Port-of-disembark · Gulf"},
+ {id:"H7",ab:"HG",n:"Hellenic Marine · Piraeus",port:"Piraeus, GR",city:"Piraeus",specs:["Cardio","Imaging","Internal Med"],avail:"free",beds:"open",cost:"$$$",pi:"Local correspondent",dist:"Port-of-disembark · EU"},
+ {id:"H8",ab:"IH",n:"Iloilo Seafarer Health",port:"Iloilo, PH",city:"Iloilo",specs:["General","Rehab","GU"],avail:"full",beds:"0 / 18",cost:"$",pi:"Manila P&I Corr.",dist:"POME network"}
+];
+
+/* deterministic-ish day math from arrival */
+function daysSince(d){const a=new Date(d),n=new Date("2026-03-12");return Math.round((n-a)/864e5);}
+function ring(pct,color,size){const r=size/2-3,c=2*Math.PI*r,off=c*(1-pct);return `<svg class="ring" viewBox="0 0 ${size} ${size}"><circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="#e6edf2" stroke-width="3"/><circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="${color}" stroke-width="3" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${off}" transform="rotate(-90 ${size/2} ${size/2})"/></svg>`;}
+function clockState(day,limit){const left=limit-day;if(left<=15)return"crit";if(left<=45)return"warn";return"ok";}
+
+/* ---------------- render: board ---------------- */
+let boardFilter="all";
+function renderBoard(){
+ const open=CASES.filter(c=>c.status!=="closed");
+ const risk=open.filter(c=>{const d=daysSince(c.arr);return c.status==="open"&&(120-d)<=30;}).length;
+ const appr=open.filter(c=>c.stg.fin===2).length;
+ let rows=open;
+ if(boardFilter==="inj")rows=open.filter(c=>c.type==="inj");
+ if(boardFilter==="ill")rows=open.filter(c=>c.type==="ill");
+ if(boardFilter==="legal")rows=open.filter(c=>c.status==="legal");
+ const fchip=(id,lab)=>`<button class="chip ${boardFilter===id?'on':''}" onclick="boardFilter='${id}';renderBoard()">${lab}</button>`;
+ $("#main").innerHTML=`
+  <div class="pagehead">
+    <div><div class="ey">${t("board.ey")}</div><h1>${t("board.h1")}</h1></div>
+    <div class="rbac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v6c0 4-3.5 7-8 8-4.5-1-8-4-8-8V7z"/><path d="M9 12l2 2 4-4"/></svg>${t("board.rbac")}</div>
+  </div>
+  <div class="kpirow">
+    <div class="kpi"><div class="k">${t("kpi.open")}</div><div class="v">${open.length}</div><div class="d">${t("kpi.open.d")}</div></div>
+    <div class="kpi warn"><div class="k">${t("kpi.risk")}</div><div class="v">${risk}</div><div class="d">${t("kpi.risk.d")}</div></div>
+    <div class="kpi"><div class="k">${t("kpi.appr")}</div><div class="v">${appr}</div><div class="d">${t("kpi.appr.d")}</div></div>
+    <div class="kpi"><div class="k">${t("kpi.dur")}</div><div class="v">98</div><div class="d">${t("kpi.dur.d")}</div></div>
+  </div>
+  <div class="tablewrap">
+    <div class="tbtools">
+      ${fchip("all",t("f.all"))}${fchip("inj",t("f.inj"))}${fchip("ill",t("f.ill"))}${fchip("legal",t("f.legal"))}
+      <span class="rt">${rows.length} ${t("f.count")}</span>
+    </div>
+    <table><thead><tr>
+      <th>${t("c.id")}</th><th>${t("c.sf")}</th><th>${t("c.principal")}</th><th>${t("c.vessel")}</th>
+      <th>${t("c.type")}</th><th>${t("c.class")}</th><th>${t("c.stage")}</th><th>${t("c.day")}</th><th>${t("c.status")}</th>
+    </tr></thead><tbody>
+    ${rows.map(c=>{
+      const d=daysSince(c.arr),left=120-d,cs=clockState(d,120);
+      const stg=lang==="el"?STAGES_EL:STAGES;
+      return `<tr onclick="openCase('${c.id}')">
+        <td><span class="cid">${c.id}</span></td>
+        <td class="sf"><div class="nm">${c.sf.n}</div><div class="mt">${c.sf.id}</div></td>
+        <td>${c.principal}</td><td>${c.vessel}</td>
+        <td><span class="tag ${c.type==='inj'?'t-inj':'t-ill'}">${c.type==='inj'?t("f.inj"):t("f.ill")}</span></td>
+        <td><span class="sys" title="${SYS[c.sys]||c.sys}">${c.sys}</span></td>
+        <td class="stg"><span class="dotrow"><span class="d med"></span><span class="d leg"></span><span class="d fin"></span></span>${stg.med[c.stg.med]}</td>
+        <td><span class="clock ${cs}">${ring(Math.min(d/120,1),cs==='crit'?'#c73f37':cs==='warn'?'#D9902A':'#2FA36B',22)}${left>0?left+'d':'over'}</span></td>
+        <td><span class="st ${c.status}">${c.status==='legal'?'POME→Legal':c.status==='open'?(lang==='el'?'Ανοιχτή':'Open'):'Closed'}</span></td>
+      </tr>`;}).join("")}
+    </tbody></table>
+  </div>`;
+}
+
+/* ---------------- render: case detail ---------------- */
+function trackRow(cls,key,sub,stagesEN,stagesEL,curIdx,pct){
+ const stg=lang==="el"?stagesEL:stagesEN;
+ const steps=stg.map((s,i)=>{
+   const st=i<curIdx?"done":i===curIdx?"cur":"";
+   const esc=(cls==="leg"&&escStages.has(i))?" esc":"";
+   const ic=i<curIdx?`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5 9-11"/></svg>`:"";
+   return `<div class="step ${st}${esc}"><div class="node">${ic}</div><div class="lab">${s}</div></div>`;
+ }).join("");
+ return `<div class="trk ${cls}"><div class="th"><span class="dot"></span><span class="nm">${t("trk."+key)}</span><span class="sub">${t("trk."+key+".s")}</span><span class="pct">${pct}%</span></div><div class="steps">${steps}</div></div>`;
+}
+function openCase(id){
+ curCase=CASES.find(c=>c.id===id);view="detail";syncNav();renderDetail();
+}
+function renderDetail(){
+ const c=curCase,d=daysSince(c.arr);
+ const left120=120-d,left240=240-d;
+ const cs120=clockState(d,120),cs240=clockState(d,240);
+ const col={med:"#0E8C93",leg:"#D9902A",fin:"#2FA36B"};
+ const pct=o=>Math.round((c.stg[o]/(STAGES[o].length-1))*100);
+ const hos=c.hospital?HOSPITALS.find(h=>h.id===c.hospital):null;
+ const chanLabel={onboard:t("ch.onboard"),"72h":t("ch.72h"),exit:t("ch.exit")}[c.chan];
+ $("#main").innerHTML=`
+  <a class="back" onclick="go('board')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>${t("det.back")}</a>
+  <div class="casehdr">
+    <div class="top">
+      <div>
+        <div class="sfname">${c.sf.n} <span style="font-size:13px;color:#7EA2BC;font-weight:500">· ${c.sf.rank} · ${c.sf.age}</span></div>
+        <div class="meta">
+          <span><b>${t("det.principal")}:</b> ${c.principal}</span>
+          <span><b>${t("det.vessel")}:</b> ${c.vessel}</span>
+          <span><b>${t("det.pi")}:</b> ${c.pi}</span>
+          <span><b>${t("det.chan")}:</b> ${chanLabel}</span>
+          <span><b>${t("det.wr")}:</b> ${c.wr}</span>
+        </div>
+      </div>
+      <div class="ids">
+        <div class="idchip"><span class="l">Case</span><span class="v">${c.id}</span></div>
+        <div class="idchip"><span class="l">DMS</span><span class="v">MCL-POST-MNL-CASE-2026-${c.seq}</span></div>
+        <div class="idchip"><span class="l">Seafarer</span><span class="v">${c.sf.id}</span></div>
+      </div>
+    </div>
+    <div class="clocks">
+      <div class="clk">${ring(Math.min(d/120,1),cs120==='crit'?'#f0776f':cs120==='warn'?'#F2B860':'#7ee0b0',38)}<div><div class="lb">${t("clk.120")}</div><div class="vl">${left120>0?left120:0} <span style="font-size:11px;font-weight:500;color:#9FBBD0">${t("clk.left")}</span></div><div class="sb">${d} ${t("clk.of")} 120</div></div></div>
+      <div class="clk">${ring(Math.min(d/240,1),'#B9D3E4',38)}<div><div class="lb">${t("clk.240")}</div><div class="vl">${left240>0?left240:0} <span style="font-size:11px;font-weight:500;color:#9FBBD0">${t("clk.left")}</span></div><div class="sb">${d} ${t("clk.of")} 240</div></div></div>
+      <div class="clk">${ring(1,'#7ee0b0',38)}<div><div class="lb">${t("clk.3d")}</div><div class="vl" style="font-size:13px">${t("clk.done")}</div><div class="sb">POME exam ✓</div></div></div>
+      <div class="clk">${ring(Math.min(d/98,1),'#f0776f',38)}<div><div class="lb">${t("clk.since")}</div><div class="vl">${d} <span style="font-size:11px;font-weight:500;color:#9FBBD0">${t("clk.left")==='days left'?'days':'ημ.'}</span></div><div class="sb">avg 98</div></div></div>
+    </div>
+  </div>
+
+  <div class="rail">
+    ${trackRow("med","med","",STAGES.med,STAGES_EL.med,c.stg.med,pct("med"))}
+    ${trackRow("leg","leg","",STAGES.leg,STAGES_EL.leg,c.stg.leg,pct("leg"))}
+    ${trackRow("fin","fin","",STAGES.fin,STAGES_EL.fin,c.stg.fin,pct("fin"))}
+  </div>
+
+  <div class="dgrid">
+    <div>
+      <div class="panel">
+        <div class="ph"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 21h18M6 21V7l6-4 6 4v14"/></svg></span><h3>${t("p.hos")}</h3><span class="rt">${hos?'✓':'—'}</span></div>
+        <div class="pb hosel">
+          <div style="font-size:12px;color:var(--ink-3);margin-bottom:11px">${hos?t("p.hos.sel"):t("p.hos.none")}</div>
+          ${HOSPITALS.filter(h=>h.avail!=="full").slice(0,3).map(h=>`
+            <div class="opt ${hos&&hos.id===h.id?'sel':''}" onclick="pickHospital('${c.id}','${h.id}')">
+              <div class="av">${h.ab}</div>
+              <div style="flex:1">
+                <div class="nm">${h.n}</div><div class="lo">${h.port} · ${h.dist}</div>
+                <div class="tags"><span class="avl ${h.avail}">${t("hos."+h.avail)}</span>${h.specs.slice(0,3).map(s=>`<span class="spec">${s}</span>`).join("")}</div>
+              </div>
+              <div class="rt"><div class="cost">${h.cost}</div><div class="costl">${t("hos.cost")}</div><div class="dist">${t("hos.beds")}: ${h.beds}</div></div>
+            </div>`).join("")}
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="ph"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M9 12l2 2 4-4M12 3l8 4v6c0 4-3.5 7-8 8-4.5-1-8-4-8-8V7z"/></svg></span><h3>${t("p.adm")}</h3></div>
+        <div class="pb">
+          <div style="font-size:12px;color:var(--ink-3);margin-bottom:11px">${t("p.adm.req")}</div>
+          ${hos?`<div class="doc"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h10l6 6v10H4z"/><path d="M14 4v6h6"/></svg></div><div><div class="nm">${t("p.adm.gop")}</div><div class="cd">MCL-POST-MNL-GOP-2026-${c.seq}</div></div><div class="rt"><span class="dmslink">DMS ▸</span></div></div>`:`<div class="forced"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>${t("p.hos.none")}</div>`}
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="ph"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 4h10l6 6v10H4z"/><path d="M14 4v6h6"/></svg></span><h3>${t("p.docs")}</h3></div>
+        <div class="pb">
+          <div class="doc"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h10l6 6v10H4z"/></svg></div><div><div class="nm">Medical Referral</div><div class="cd">MCL-POST-MNL-MEDR-2026-${c.seq}</div></div><div class="rt"><span class="nocopy">NO-COPY</span><span class="dmslink">DMS ▸</span></div></div>
+          <div class="doc"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h10l6 6v10H4z"/></svg></div><div><div class="nm">Initial Medical Report</div><div class="cd">MCL-POST-MNL-IMR-2026-${c.seq}</div></div><div class="rt"><span class="nocopy">NO-COPY</span><span class="dmslink">DMS ▸</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="panel">
+        <div class="ph"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 4h16v12H8l-4 4z"/></svg></span><h3>${t("p.log")}</h3><span class="rt">${t("p.log.sub")}</span></div>
+        <div class="pb"><div class="log">
+          <div class="ev sys"><div class="t">Day 0 · 08:12</div><div class="m"><b>Case opened</b> via ${chanLabel} — IDs assigned, 120-day clock started</div><div class="who">system</div></div>
+          <div class="ev"><div class="t">Day 0 · 09:40</div><div class="m">Notified <b>principal</b> (${c.principal}) + Claims dept + crewing</div><div class="who">Operations</div></div>
+          <div class="ev"><div class="t">Day 1 · 11:05</div><div class="m">Requested <b>Guarantee of Payment</b> from owner</div><div class="who">Manning agent</div></div>
+          ${hos?`<div class="ev sys"><div class="t">Day 2 · 14:20</div><div class="m">Provider selected: <b>${hos.n}</b> — admission arranged</div><div class="who">Agent</div></div>`:``}
+          ${c.status==="legal"?`<div class="ev"><div class="t">Day 61</div><div class="m"><b>Seafarer contests</b> final assessment — own physician's report received</div><div class="who">Legal</div></div>`:``}
+        </div></div>
+      </div>
+
+      <div class="panel">
+        <div class="ph"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3v18M5 8h14M5 16h14"/></svg></span><h3>${t("p.summary")}</h3></div>
+        <div class="pb">
+          <div class="kv"><span class="k">${t("c.type")}</span><span class="v"><span class="tag ${c.type==='inj'?'t-inj':'t-ill'}">${c.type==='inj'?t("f.inj"):t("f.ill")}</span> · ${SYS[c.sys]}</span></div>
+          <div class="kv"><span class="k">Diagnosis</span><span class="v">${c.dx}</span></div>
+          <div class="kv"><span class="k">${t("det.arr")}</span><span class="v"><span class="mono">${c.arr}</span></span></div>
+          <div class="kv"><span class="k">${t("det.pi")}</span><span class="v">${c.pi}</span></div>
+          ${hos?`<div class="kv"><span class="k">${t("p.hos")}</span><span class="v">${hos.n}</span></div>`:``}
+          ${c.status==="legal"?`<div class="kv"><span class="k">Legal</span><span class="v"><span class="st legal">3rd-Doctor referral</span></span></div>`:``}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+function pickHospital(cid,hid){const c=CASES.find(x=>x.id===cid);const first=!c.hospital;c.hospital=hid;if(c.stg.med<3)c.stg.med=3;if(c.stg.fin<1)c.stg.fin=1;renderDetail();if(first)toast(t("toast.hospital"));}
+
+/* ---------------- render: intake ---------------- */
+function renderIntake(){
+ const ch=(id,ttl,ds,icon)=>`<button class="chansel ${intakeChannel===id?'on':''}" onclick="intakeChannel='${id}';renderIntake()"><div class="ic">${icon}</div><div class="t">${ttl}</div><div class="d">${ds}</div></button>`;
+ $("#main").innerHTML=`
+  <div class="pagehead"><div><div class="ey">${t("intake.ey")}</div><h1>${t("intake.h1")}</h1></div></div>
+  <div class="intake">
+    <div style="font-size:13px;color:var(--ink-2);margin-bottom:15px">${t("intake.lead")}</div>
+    <div class="chanrow">
+      ${ch("onboard",t("ch.onboard"),t("ch.onboard.d"),`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 18l9-14 9 14M3 18a9 4 0 0 0 18 0"/></svg>`)}
+      ${ch("72h",t("ch.72h"),t("ch.72h.d"),`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`)}
+      ${ch("exit",t("ch.exit"),t("ch.exit.d"),`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg>`)}
+    </div>
+    <div class="form">
+      <div class="fgrid">
+        <div class="fld"><label>${t("in.sf")} <span class="req">*</span></label><input id="f_sf" placeholder="Surname, First"></div>
+        <div class="fld"><label>${t("in.sfid")}</label><input value="SF-PH-04____" style="font-family:var(--ff-mono)"><span class="hint">auto-linked to Seafarer 360°</span></div>
+        <div class="fld"><label>${t("in.rank")}</label><select><option>AB</option><option>OS</option><option>Oiler</option><option>3rd Engineer</option><option>Bosun</option><option>Chief Cook</option><option>Fitter</option></select></div>
+        <div class="fld"><label>${t("in.age")}</label><input type="number" placeholder="e.g. 38" style="max-width:120px"></div>
+        <div class="fld"><label>${t("in.vessel")} <span class="req">*</span></label><input id="f_vessel" placeholder="MV / MT …"></div>
+        <div class="fld"><label>${t("in.principal")} <span class="req">*</span></label><select id="f_principal"><option value="">—</option><option>Halcyon Shipmanagement</option><option>Meridian Marine</option><option>Poseidon Lines</option><option>Cyan Maritime</option><option>Orion Bulkers</option><option>Delphi Navigation</option><option>Kestrel Shipping</option></select></div>
+        <div class="fld"><label>${t("in.type")}</label><select id="f_type"><option value="ill">${t("f.ill")}</option><option value="inj">${t("f.inj")}</option></select></div>
+        <div class="fld"><label>${t("in.reco")}</label><select><option>${t("in.reco.urgent")}</option><option>${t("in.reco.port")}</option><option>${t("in.reco.out")}</option></select></div>
+        <div class="fld full"><label>${t("in.complaint")} <span class="req">*</span></label><textarea id="f_complaint" rows="2" placeholder="Written crew statement with the complaint…"></textarea></div>
+        <div class="fld full"><label>${t("in.findings")}</label><textarea rows="2" placeholder="Findings abroad / medical note from master…"></textarea></div>
+      </div>
+      <div class="forced"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>${t("in.forced")}</div>
+      <button class="btn primary full" onclick="createCase()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>${t("in.open")}</button>
+      <div style="font-size:11px;color:var(--ink-3);text-align:center;margin-top:9px">${t("in.autoid")}</div>
+    </div>
+  </div>`;
+}
+function createCase(){
+ const sf=$("#f_sf").value.trim(),vessel=$("#f_vessel").value.trim(),principal=$("#f_principal").value,complaint=$("#f_complaint").value.trim();
+ if(!intakeChannel){toast(lang==='el'?"Διάλεξε κανάλι πρώτα":"Pick a channel first");return;}
+ if(!sf||!vessel||!principal||!complaint){toast(lang==='el'?"Συμπλήρωσε τα υποχρεωτικά πεδία (*)":"Fill the required fields (*)");return;}
+ const seq=String(61+CASES.filter(c=>c.seq>="0060").length).padStart(4,"0");
+ const nc={id:"PM-2026-"+seq,seq,sf:{n:sf,id:"SF-PH-04"+seq,age:38,rank:"AB"},principal,vessel,pi:"—",type:$("#f_type").value,sys:"MSK",dx:"—",arr:"2026-03-10",chan:intakeChannel,wr:"WR",stg:{med:0,leg:0,fin:0},hospital:null,status:"open"};
+ CASES.unshift(nc);intakeChannel=null;openCase(nc.id);toast(t("toast.created"));
+}
+
+/* ---------------- render: hospitals ---------------- */
+function renderHospitals(){
+ $("#main").innerHTML=`
+  <div class="pagehead"><div><div class="ey">${t("hos.ey")}</div><h1>${t("hos.h1")}</h1></div></div>
+  <div style="font-size:13px;color:var(--ink-2);margin-bottom:16px;max-width:760px">${t("hos.lead")}</div>
+  <div class="hnet">
+   ${HOSPITALS.map(h=>`
+     <div class="hcard">
+       <div class="hh"><div class="av">${h.ab}</div><div style="flex:1"><div class="nm">${h.n}</div><div class="lo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>${h.port} · ${h.dist}</div></div><span class="avl ${h.avail}">${t("hos."+h.avail)}</span></div>
+       <div class="body">
+         <div class="specs">${h.specs.map(s=>`<span class="spec">${s}</span>`).join("")}</div>
+         <div class="meta"><span><span class="k">${t("hos.cost")}: </span><span class="v">${h.cost}</span></span><span><span class="k">${t("hos.beds")}: </span><span class="v">${h.beds}</span></span><span><span class="k">${t("hos.handler")}: </span><span class="v">${h.pi}</span></span></div>
+       </div>
+     </div>`).join("")}
+  </div>`;
+}
+
+/* ---------------- render: intel (preview) ---------------- */
+function renderIntel(){
+ const rows=[["Cyan Maritime","MSK · finger/hand","10 of 24 fleet-wide (42%)","HIGH"],["Poseidon Lines","Trauma · severe","air-ambulance + fractures","HIGH"],["Halcyon Shipmanagement","GI concentration","4 of 6 cases (67%)","MED"],["Meridian Marine","Integumentary","8 of 26 (31%)","MED"]];
+ $("#main").innerHTML=`
+  <div class="pagehead"><div><div class="ey">${t("intel.ey")}</div><h1>${t("intel.h1")}</h1></div></div>
+  <div style="font-size:13px;color:var(--ink-2);margin-bottom:16px;max-width:760px">${t("intel.lead")}</div>
+  <div class="tablewrap" style="max-width:820px">
+    <table><thead><tr><th>${t("c.principal")}</th><th>Pattern</th><th>Concentration</th><th>Risk</th></tr></thead>
+    <tbody>${rows.map(r=>`<tr style="cursor:default"><td style="font-weight:600">${r[0]}</td><td>${r[1]}</td><td style="font-family:var(--ff-mono);font-size:11.5px">${r[2]}</td><td><span class="st ${r[3]==='HIGH'?'open':'legal'}" style="${r[3]==='HIGH'?'background:rgba(229,84,75,.13);color:var(--coral-d)':''}">${r[3]}</span></td></tr>`).join("")}</tbody></table>
+  </div>
+  <div class="forced" style="max-width:820px;margin-top:14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>${t("intel.soon")}</div>`;
+}
+
+/* ---------------- render: guide ---------------- */
+const GUIDE=[
+ {em:"📞",t:{en:"The incoming case",el:"Η εισερχόμενη υπόθεση"},r:{en:"A case reaches us three ways: an <b>onboard-doctor</b> disembark recommendation, the <b>seafarer</b> within 72h of Manila, or the manning-agency <b>exit interview</b>.",el:"Μια υπόθεση φτάνει με τρεις τρόπους: σύσταση <b>γιατρού πλοίου</b>, ο <b>ναυτικός</b> εντός 72ω από τη Μανίλα, ή το <b>exit interview</b> του agency."},steps:{en:["Open <b>New case</b>, pick the channel.","Fill seafarer, principal, vessel, crew statement.","On open, a Case ID + DMS code are minted and the 120-day clock starts."],el:["Άνοιξε <b>Νέα υπόθεση</b>, διάλεξε κανάλι.","Συμπλήρωσε ναυτικό, principal, πλοίο, δήλωση.","Στο άνοιγμα, δίνονται Case ID + DMS κωδικός και ξεκινά το 120-day."]},res:{en:"Every case has one ID from minute one — no more loose referral documents.",el:"Κάθε υπόθεση έχει ένα ID από το πρώτο λεπτό — τέλος τα σκόρπια referral."}},
+ {em:"🚦",t:{en:"Three parallel tracks",el:"Τρία παράλληλα tracks"},r:{en:"The case runs on <b>Medical</b>, <b>Legal</b> and <b>Financial</b> tracks at once. The rail shows exactly where each one stands.",el:"Η υπόθεση τρέχει σε <b>Ιατρικό</b>, <b>Νομικό</b> και <b>Οικονομικό</b> track ταυτόχρονα. Το rail δείχνει πού βρίσκεται το καθένα."},steps:{en:["Open a case to see the rail.","Green = done, ringed = current, dim = ahead."],el:["Άνοιξε υπόθεση για να δεις το rail.","Πράσινο = ok, δαχτυλίδι = τρέχον, θαμπό = μπροστά."]},res:{en:"One glance tells you what's blocking closure.",el:"Με μια ματιά ξέρεις τι μπλοκάρει το κλείσιμο."}},
+ {em:"🏥",t:{en:"Hospital availability",el:"Διαθεσιμότητα νοσοκομείου"},r:{en:"Instead of email + phone to the nearest facility, pick from a <b>live network</b>: location, specialty, availability and indicative cost per port.",el:"Αντί για email + τηλέφωνο στο πλησιέστερο, διάλεξε από <b>ζωντανό δίκτυο</b>: τοποθεσία, ειδικότητα, διαθεσιμότητα και ενδεικτικό κόστος ανά λιμάνι."},steps:{en:["From the case, choose a provider.","Selecting one unlocks admission."],el:["Από την υπόθεση, διάλεξε πάροχο.","Η επιλογή ξεκλειδώνει την εισαγωγή."]},res:{en:"The right hospital, matched to the condition and the port.",el:"Το σωστό νοσοκομείο, ταιριασμένο στην πάθηση και το λιμάνι."}},
+ {em:"⏱️",t:{en:"Deadline clocks",el:"Ρολόγια προθεσμιών"},r:{en:"The <b>120/240-day</b> rule and the third-doctor windows (10 / 15 / 30 days) run as live clocks. This is where cases lose time and money today.",el:"Ο κανόνας <b>120/240 ημερών</b> και τα παράθυρα του τρίτου γιατρού (10 / 15 / 30 ημ.) τρέχουν ως ζωντανά ρολόγια. Εδώ χάνεται χρόνος και χρήμα σήμερα."},steps:{en:["Watch the header clocks turn amber → red as deadlines near.","The board flags any case within 30 days of 120."],el:["Δες τα ρολόγια να γίνονται πορτοκαλί → κόκκινα.","Ο πίνακας σημαίνει υποθέσεις εντός 30 ημερών από το 120."]},res:{en:"Deadlines are impossible to miss.",el:"Οι προθεσμίες δεν ξεχνιούνται."}},
+ {em:"⚖️",t:{en:"Contested → third doctor",el:"Ένσταση → τρίτος γιατρός"},r:{en:"If the seafarer contests the final assessment, the case escalates: <b>second opinion → jointly-agreed third doctor</b> (final & binding) → binding grade or an NLRC disability claim.",el:"Αν ο ναυτικός προσβάλλει την τελική εκτίμηση, η υπόθεση κλιμακώνεται: <b>δεύτερη γνώμη → από κοινού τρίτος γιατρός</b> (τελική & δεσμευτική) → binding grade ή αγωγή αναπηρίας στο NLRC."},steps:{en:["The Legal track shows the escalation stages (violet).","Each step carries its own clock."],el:["Το Νομικό track δείχνει τα στάδια κλιμάκωσης (μωβ).","Κάθε βήμα έχει το δικό του ρολόι."]},res:{en:"POME-to-Legal cases are tracked, not lost.",el:"Οι POME-to-Legal υποθέσεις παρακολουθούνται, δεν χάνονται."}},
+ {em:"🗂️",t:{en:"One source of truth",el:"Μία πηγή αλήθειας"},r:{en:"Every document lives once in <b>Next2DMS</b> with the group code <span style='font-family:var(--ff-mono);font-size:11px'>TENANT-PACK-ORIGIN-TYPE-YYYY-SEQ</span>. Medical items are <b>no-copy</b>.",el:"Κάθε έγγραφο ζει μία φορά στο <b>Next2DMS</b> με τον κωδικό <span style='font-family:var(--ff-mono);font-size:11px'>TENANT-PACK-ORIGIN-TYPE-YYYY-SEQ</span>. Τα ιατρικά είναι <b>no-copy</b>."},steps:{en:["Open any document → DMS ▸.","Guarantee of Payment, reports, CFMA all carry a code."],el:["Άνοιξε έγγραφο → DMS ▸.","Guarantee, reports, CFMA — όλα με κωδικό."]},res:{en:"GDPR/MDR handled by design.",el:"GDPR/MDR λύνονται με τον σχεδιασμό."}}
+];
+function renderGuide(){
+ const L=lang;
+ $("#main").innerHTML=`<div class="gd-wrap">
+   <div class="gd-h"><div class="ttl">${t("gd.title")}</div><div class="in">${t("gd.intro")}</div></div>
+   ${GUIDE.map(g=>`<div class="gd-card"><div class="em">${g.em}</div><div><div class="t">${g.t[L]}</div><div class="r">${g.r[L]}</div><ul class="steps">${g.steps[L].map(s=>`<li>${s}</li>`).join("")}</ul><div class="gd-res">→ ${g.res[L]}</div></div></div>`).join("")}
+ </div>`;
+}
+
+/* ---------------- routing ---------------- */
+function go(v){view=v;syncNav();render();}
+function syncNav(){$$(".nav[data-view]").forEach(a=>a.classList.toggle("on",a.dataset.view===view));}
+function render(){
+ if(view==="board")renderBoard();
+ else if(view==="intake")renderIntake();
+ else if(view==="hospitals")renderHospitals();
+ else if(view==="intel")renderIntel();
+ else if(view==="guide")renderGuide();
+ else if(view==="detail")renderDetail();
+}
+$$(".nav[data-view]").forEach(a=>a.addEventListener("click",()=>go(a.dataset.view)));
+$("#langTog").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;lang=b.dataset.lang;$$("#langTog button").forEach(x=>x.classList.toggle("on",x===b));applyChrome();render();toast(t("toast.lang"));});
+function applyChrome(){$$("[data-i18n]").forEach(el=>{const k=el.getAttribute("data-i18n");el.textContent=t(k);});document.documentElement.lang=lang;}
+let toTid;function toast(m){const el=$("#toast");el.textContent=m;el.classList.add("show");clearTimeout(toTid);toTid=setTimeout(()=>el.classList.remove("show"),2100);}
+
+applyChrome();render();
+</script>
+</body>
+</html>
