@@ -6,19 +6,19 @@
 <title>Track a case · Next2PostMed (Mockup v0.1)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#071E33;--navy-2:#0B2A45;--teal:#0E8C93;--teal-2:#12A7AF;
-  --gold:#E7A33E;--gold-2:#F2B860;--coral:#E5544B;--coral-2:#f0776f;--coral-d:#c73f37;
-  --green:#2FA36B;--amber:#D9902A;--blue:#5B8DB8;--violet:#7B61A8;--violet-2:#9a7fc4;
-  --mist:#EEF3F6;--paper:#FFFFFF;--ink:#152532;--ink-2:#4C6072;--ink-3:#8AA0B0;
-  --line:#DCE6EC;--line-2:#EAF0F4;--radius:16px;--radius-sm:10px;
-  --shadow:0 1px 2px rgba(7,30,51,.05),0 10px 30px rgba(7,30,51,.08);
-  --ff-display:'Sora',system-ui,sans-serif;--ff-body:'Inter',system-ui,sans-serif;--ff-mono:'IBM Plex Mono',ui-monospace,monospace;
+  --navy:#26221E;--navy-2:#332C26;--teal:#1B7A6B;--teal-2:#26A08C;
+  --gold:#C77D28;--gold-2:#DDA24E;--coral:#E5433A;--coral-2:#F16A5F;--coral-d:#B93129;
+  --green:#3F8F52;--amber:#C77D28;--blue:#5B84A8;--violet:#8B4FA8;--violet-2:#A87FC0;
+  --mist:#F0EBE3;--paper:#FCFAF6;--panel:#FFFFFF;--ink:#22201C;--ink-2:#5B554C;--ink-3:#9A9187;
+  --line:#E7DFD3;--line-2:#F2ECE3;--radius:14px;--radius-sm:9px;
+  --shadow:0 1px 2px rgba(60,42,20,.05),0 10px 26px rgba(60,42,20,.09);
+  --ff-display:'Bricolage Grotesque',system-ui,sans-serif;--ff-body:'Public Sans',system-ui,sans-serif;--ff-mono:'Space Mono',ui-monospace,monospace;--signal:#E5433A;
 }
 *{box-sizing:border-box}html,body{margin:0;padding:0}
-body{font-family:var(--ff-body);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.45;background:linear-gradient(160deg,#0B2A45,#061829 60%);min-height:100vh}
+body{font-family:var(--ff-body);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.45;background:linear-gradient(160deg,#2A2521,#1B1815 60%);min-height:100vh}
 button{font-family:inherit;cursor:pointer;border:none;background:none}a{text-decoration:none;color:inherit}
 :focus-visible{outline:2px solid var(--coral);outline-offset:2px;border-radius:6px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -27,7 +27,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}a{text-dec
 .phone{max-width:440px;margin:0 auto;min-height:100vh;background:var(--mist);position:relative;box-shadow:0 0 60px rgba(0,0,0,.35)}
 @media(min-width:490px){.phone{margin:22px auto;min-height:auto;border-radius:26px;overflow:hidden}}
 
-.hero{background:linear-gradient(150deg,var(--navy),var(--navy-2) 68%,#123a5c);color:#EAF3F8;padding:16px 20px 20px;position:relative;overflow:hidden}
+.hero{background:linear-gradient(150deg,#2A2521,var(--navy-2) 60%,#3A322A);color:#EAF3F8;padding:16px 20px 20px;position:relative;overflow:hidden}
 .hero::after{content:"";position:absolute;right:-40px;top:-50px;width:200px;height:200px;background:radial-gradient(circle,rgba(229,84,75,.22),transparent 68%);pointer-events:none}
 .htop{display:flex;align-items:center;gap:10px;position:relative;z-index:1}
 .htop .mark{width:32px;height:32px}
@@ -170,7 +170,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}a{text-dec
 <div class="phone">
   <div class="hero">
     <div class="htop">
-      <svg class="mark" viewBox="0 0 40 40" fill="none"><rect x="1.5" y="1.5" width="37" height="37" rx="10" fill="#0B2A45" stroke="#E5544B" stroke-width="1.5"/><path d="M9 24 H15 L17.5 15 L22.5 27 L25 21 H31" stroke="#12A7AF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="9.5" r="2.2" fill="#E5544B"/></svg>
+      <svg class="mark" viewBox="0 0 40 40" fill="none"><rect x="1" y="1" width="38" height="38" rx="11" fill="#E5433A"/><path d="M9 24 H15 L17.5 15 L22.5 27 L25 21 H31" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="9.5" r="2.2" fill="#fff"/></svg>
       <div><div class="wm">Next2<b>PostMed</b></div><div class="clinic" data-i18n="brand">Next2MCL · Case status</div></div>
       <div class="langtog" id="langTog"><button data-lang="en" class="on">EN</button><button data-lang="el">EL</button></div>
     </div>
@@ -271,7 +271,7 @@ function daysSince(d){return Math.round((TODAY-new Date(d))/864e5);}
 function addDays(d,n){const x=new Date(d);x.setDate(x.getDate()+n);return x;}
 function fmtDate(d){return d.toLocaleDateString(lang==="el"?"el-GR":"en-GB",{day:"2-digit",month:"short"});}
 function ring(pct,color,size){const r=size/2-3,c=2*Math.PI*r,off=c*(1-pct);return `<svg class="ring" viewBox="0 0 ${size} ${size}"><circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="#e6edf2" stroke-width="3"/><circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="${color}" stroke-width="3" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${off}" transform="rotate(-90 ${size/2} ${size/2})"/></svg>`;}
-function ringLabel(pct,color,size,label){const r=size/2-4,c=2*Math.PI*r,off=c*(1-pct);return `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}"><circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="4"/><circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="${color}" stroke-width="4" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${off}" transform="rotate(-90 ${size/2} ${size/2})"/><text x="${size/2}" y="${size/2+1}" text-anchor="middle" font-family="Sora" font-weight="700" font-size="15" fill="#fff">${label}</text><text x="${size/2}" y="${size/2+13}" text-anchor="middle" font-family="Inter" font-size="7.5" fill="#9FBBD0">done</text></svg>`;}
+function ringLabel(pct,color,size,label){const r=size/2-4,c=2*Math.PI*r,off=c*(1-pct);return `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}"><circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="4"/><circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="${color}" stroke-width="4" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${off}" transform="rotate(-90 ${size/2} ${size/2})"/><text x="${size/2}" y="${size/2+1}" text-anchor="middle" font-family="Bricolage Grotesque" font-weight="800" font-size="15" fill="#fff">${label}</text><text x="${size/2}" y="${size/2+13}" text-anchor="middle" font-family="Public Sans" font-size="7.5" fill="#c9beb0">done</text></svg>`;}
 
 function detail(m,c){
  if(m.k==="admitted")return c.hospital;
