@@ -4,7 +4,7 @@
 <script src="auth-guard.js"></script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Seafarer 360° · Shared Core / CBMS (Mockup v87)</title>
+<title>Seafarer 360° · Shared Core / CBMS (Mockup v88)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -215,10 +215,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .gd-steps li{counter-increment:s;position:relative;padding-left:36px;font-size:14px;min-height:25px;display:flex;align-items:center}
 .gd-steps li::before{content:counter(s);position:absolute;left:0;top:0;width:25px;height:25px;border-radius:7px;background:#E7A33E;color:#fff;font-weight:700;font-size:12px;display:grid;place-items:center}
 .refrow .dmslink{display:inline-flex;align-items:center;gap:2px;font-size:10px;font-weight:700;color:var(--teal);letter-spacing:.04em;background:color-mix(in srgb,var(--teal) 10%,transparent);padding:3px 7px;border-radius:6px;white-space:nowrap}.refrow .dmslink svg{width:12px;height:12px}
+.appbody{display:flex;align-items:flex-start;gap:0}.lnav{flex:0 0 208px;position:sticky;top:14px;padding:6px 12px 6px 0;border-right:1px solid var(--line)}.lgrp{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:700;padding:6px 10px;margin-top:2px}.larea{display:flex;align-items:center;gap:10px;width:100%;padding:11px 12px;border:none;background:none;border-radius:9px;font-size:14px;font-weight:600;color:var(--ink-2);cursor:pointer;text-align:left;margin-bottom:2px}.larea svg{width:18px;height:18px;flex:0 0 18px}.larea.on{background:color-mix(in srgb,var(--teal) 12%,transparent);color:var(--navy-2)}.larea.on svg{color:var(--teal)}.lcontent{flex:1;min-width:0;padding-left:24px}@media(max-width:820px){.appbody{flex-direction:column}.lnav{position:static;flex:none;width:100%;border-right:none;border-bottom:1px solid var(--line);display:flex;gap:6px}.lcontent{padding-left:0;padding-top:14px}}.regbar{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}.reglead{font-size:18px;font-weight:700}.regsub{font-size:13px;font-weight:400;color:var(--ink-3)}.regsearch{padding:9px 13px;border:1px solid var(--line);border-radius:9px;font-size:13.5px;min-width:230px}.reglist{display:grid;gap:8px;margin-bottom:20px}.regitem{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:11px;background:#fff;cursor:pointer;text-align:left;width:100%}.regitem.on{border-color:var(--teal);box-shadow:0 0 0 2px color-mix(in srgb,var(--teal) 22%,transparent)}.regav{width:38px;height:38px;flex:0 0 38px;border-radius:10px;display:grid;place-items:center;font-weight:700;font-size:12px;color:#fff}.regav.seafarer{background:var(--navy-2)}.regav.family{background:#7a8b99}.regmeta{flex:1;min-width:0}.regmeta b{display:block;font-size:14px}.regmeta span{font-size:12px;color:var(--ink-3)}.regarrow{color:var(--ink-3);font-size:20px}.litecard{max-width:640px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px}.litehd{display:flex;gap:14px;align-items:center;margin-bottom:14px}.liteav{width:52px;height:52px;border-radius:13px;background:#7a8b99;color:#fff;display:grid;place-items:center;font-weight:700;font-size:16px}.litehd h2{font-size:20px}.litesid{font-family:monospace;font-size:12.5px;color:var(--ink-3)}.litenote{font-size:13.5px;color:var(--ink-2);line-height:1.6;margin-bottom:16px}.litedms{display:inline-flex;font-size:13px;font-weight:700;color:var(--teal);text-decoration:none}
 </style>
 </head>
 <body>
-<div class="mocktag">PHASE 1 · v87 · MOCKUP · FAKE DATA</div>
+<div class="mocktag">PHASE 1 · v88 · MOCKUP · FAKE DATA</div>
 
 <div class="corebar">
   <span class="tag">SEAFARER 360°</span>
@@ -232,7 +233,19 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 <div class="wrap">
   <!-- ===== HEADER (demographics on top, per doctor's spec) ===== -->
-  <div class="hdr">
+  <div class="appbody">
+  <aside class="lnav">
+    <div class="lgrp" data-i18n="lnav.grp">MASTER DATA</div>
+    <button class="larea on" id="areaPeopleBtn" onclick="setArea('people')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></svg><span data-i18n="lnav.people">Φάκελοι προσώπων</span></button>
+    <button class="larea" id="areaNetworkBtn" onclick="setArea('network')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="12" cy="18" r="2.4"/><path d="M7.6 7.6l3.2 8M16.4 7.6l-3.2 8"/></svg><span data-i18n="lnav.net">Δίκτυο</span></button>
+  </aside>
+  <div class="lcontent">
+    <div id="areaNetwork" style="display:none"><div id="netPanel"></div><div id="netForm" class="netform"></div></div>
+    <div id="areaPeople">
+      <div id="peopleReg"></div>
+      <div id="personLite" style="display:none"></div>
+      <div id="personFolder">
+<div class="hdr">
     <div class="top">
       <div class="photo">JS</div>
       <div class="who">
@@ -275,7 +288,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   <div class="tabs" id="tabs">
     <button class="tab on" data-tab="overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="5" rx="1.5"/><rect x="13" y="10" width="8" height="11" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/></svg><span data-i18n="tab.overview">Overview</span></button>
     <button class="tab" data-tab="cases"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v6H4z"/><path d="M4 14h16v6H4z"/></svg><span data-i18n="tab.cases">Cases &amp; Care</span><span class="badge">5</span></button>
-    <button class="tab" data-tab="network"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="12" cy="18" r="2.4"/><path d="M7.6 7.6l3.2 8M16.4 7.6l-3.2 8"/></svg><span data-i18n="tab.net">Network</span></button>
     <button class="tab" data-tab="files"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></svg><span data-i18n="tab.files">Files &amp; Exams</span><span class="badge">48</span></button>
     <button class="tab" data-tab="profiles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 8.5c0 5-8 9.5-8 9.5S4 13.5 4 8.5A4 4 0 0 1 12 6a4 4 0 0 1 8 2.5z"/></svg><span data-i18n="tab.profiles">Clinical Profiles</span></button>
     <button class="tab" data-tab="vax"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 4l6 6M17 7l-9 9-4 4 1-5 8-8"/></svg><span data-i18n="tab.vax">Vaccinations</span><span class="badge">18</span></button>
@@ -373,7 +385,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   </div>
 
   <!-- ===== FILES & EXAMS ===== -->
-  <div class="panel" data-panel="network"><div id="netPanel"></div><div id="netForm" class="netform"></div></div>
   <div class="panel" data-panel="files">
     <div class="seclead" data-i18n="files.lead">Documents &amp; exams — references to Next2DMS</div>
     <div class="sub" data-i18n="files.sub">Every document lives once in Next2DMS (single source of truth). The 360° folder shows read-only references; medical items are no-copy and open in DMS under RBAC.</div>
@@ -440,6 +451,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   </div>
 
   <div class="panel" data-panel="guide" id="s360GuidePanel"></div>
+      </div><!--/personFolder--></div><!--/areaPeople--></div><!--/lcontent--></div><!--/appbody-->
 
   <div class="footnote" data-i18n="foot">Seafarer 360° is a Shared Core / CBMS module (Next2MCL Layer 2). Doctor's spec applied — no IDIKA / AMKA / patient-portal fields. Fake data only.</div>
 </div>
@@ -476,6 +488,40 @@ var NET_DOC=[
 var netTab='clinic';
 function netCard(p){var isE=lang==='el';var b=moaBadge(p,isE);
  return '<div class="pcard"><div class="pctop"><div class="pav">'+p.ab+'</div><div class="pmeta"><b>'+p.n+'</b><span>'+p.loc+'</span></div>'+b+'</div><div class="prow">'+(p.lvl&&p.lvl!=='—'?'<span class="pt">'+(isE?'Επίπεδο ':'Level ')+p.lvl+'</span>':'')+'<span class="pt">'+p.tier+'</span><span class="pt">'+billTxt(p,isE)+'</span></div>'+((p.acc&&p.acc.length)?'<div class="accrow">'+p.acc.map(function(a){var ok=dLeft(a.to)>=0;return '<span class="acctag'+(ok?'':' exp')+'">'+(ok?'✓ ':'✕ ')+a.p+'</span>';}).join('')+'</div>':'')+'<div class="psvc">'+p.svc+'</div></div>';}
+
+var PERSONS=[
+ {id:'juan',name:'Juan D. Santos',sid:'SF-PH-039281',role:'Seafarer · Able Seaman',kind:'seafarer',ini:'JS'},
+ {id:'maria',name:'Maria L. Santos',sid:'SF-PH-039281-D1',role:'Spouse · dependent',kind:'family',ini:'MS'},
+ {id:'josh',name:'Josh Santos',sid:'SF-PH-039281-D2',role:'Child · dependent',kind:'family',ini:'JS'},
+ {id:'mia',name:'Mia Santos',sid:'SF-PH-039281-D3',role:'Child · dependent',kind:'family',ini:'MS'},
+ {id:'melecio',name:'R. Melecio',sid:'SF-PH-041377',role:'Seafarer · Bosun',kind:'seafarer',ini:'RM'}
+];
+var curPerson='juan';
+function setArea(a){
+ var n=document.getElementById('areaNetwork'),pe=document.getElementById('areaPeople');
+ if(n)n.style.display=(a==='network')?'block':'none';
+ if(pe)pe.style.display=(a==='people')?'block':'none';
+ var nb=document.getElementById('areaNetworkBtn'),pb=document.getElementById('areaPeopleBtn');
+ if(nb)nb.classList.toggle('on',a==='network');if(pb)pb.classList.toggle('on',a==='people');
+ if(a==='network')renderNet();else renderReg();
+}
+function regRow(p){return '<button class="regitem'+(p.id===curPerson?' on':'')+'" onclick="selectPerson(\''+p.id+'\')"><span class="regav '+p.kind+'">'+p.ini+'</span><span class="regmeta"><b>'+p.name+'</b><span>'+p.sid+' · '+p.role+'</span></span><span class="regarrow">\u203a</span></button>';}
+function renderReg(){var isE=lang==='el';var el=document.getElementById('peopleReg');if(!el)return;
+ el.innerHTML='<div class="regbar"><div class="reglead">'+(isE?'Φάκελοι προσώπων':'Person folders')+' <span class="regsub">'+(isE?'· ναυτικός + οικογένεια · One ID for life':'· seafarer + family · One ID for life')+'</span></div><input class="regsearch" placeholder="'+(isE?'Αναζήτηση προσώπου / ID…':'Search person / ID…')+'" oninput="regFilter(this.value)"></div>'
+  +'<div class="reglist" id="reglist">'+PERSONS.map(regRow).join('')+'</div>';
+}
+function regFilter(q){q=(q||'').toLowerCase();var el=document.getElementById('reglist');if(el)el.innerHTML=PERSONS.filter(function(p){return (p.name+p.sid+p.role).toLowerCase().indexOf(q)>=0;}).map(regRow).join('');}
+function selectPerson(id){curPerson=id;var p=PERSONS.filter(function(x){return x.id===id;})[0];renderReg();
+ var pf=document.getElementById('personFolder'),pl=document.getElementById('personLite');
+ if(id==='juan'){if(pf)pf.style.display='';if(pl)pl.style.display='none';}
+ else{if(pf)pf.style.display='none';if(pl){pl.style.display='';pl.innerHTML=renderLite(p);}}
+}
+function renderLite(p){var isE=lang==='el';var fam=p.kind==='family';
+ var link=(typeof DMS_LINK!=='undefined')?DMS_LINK.replace(/q=[^&]*/,'q='+encodeURIComponent(p.sid)).replace('source=peme','source=360'):'#';
+ return '<div class="litecard"><div class="litehd"><div class="liteav">'+p.ini+'</div><div><h2>'+p.name+'</h2><div class="litesid">'+p.sid+' · '+p.role+'</div></div></div>'
+  +'<div class="litenote">'+(fam?(isE?'Μέλος οικογένειας — καλύπτεται στο Next2Care (PMPM · ναυτικός + οικογένεια). Το πλήρες ιατρικό ιστορικό εμφανίζεται καθώς προκύπτουν episodes φροντίδας. Ίδιο One-ID-for-life πλαίσιο.':'Family member — covered under Next2Care (PMPM · seafarer + family). The full medical folder appears as care episodes occur. Same One-ID-for-life model.'):(isE?'Ναυτικός — ο πλήρης 360° φάκελος (PEME · TPA · on-board · post-medical) χτίζεται καθώς προχωρά η διαδρομή. Όλα τα έγγραφα ζουν στο Next2DMS.':'Seafarer — the full 360° folder (PEME · TPA · on-board · post-medical) builds as the journey progresses. All documents live in Next2DMS.'))+'</div>'
+  +'<a class="litedms" href="'+link+'">'+(isE?'Άνοιγμα εγγράφων στο Next2DMS ▸':'Open documents in Next2DMS ▸')+'</a></div>';
+}
 function renderNet(){var el=document.getElementById('netPanel');if(!el)return;var isE=lang==='el';
  var list=(netTab==='clinic'?NET_PROV:NET_DOC).map(netCard).join('');
  el.innerHTML='<div class="seclead">'+(isE?'Κεντρικό δίκτυο — νοσοκομεία & γιατροί':'Central network — hospitals & doctors')+'</div>'
@@ -548,7 +594,7 @@ const I18N={
     "core.from":"Άνοιξε από","hdr.life":"Ένα Seafarer ID · εφ' όρου ζωής","hdr.fit":"FIT FOR SEA DUTY · 2026",
     "m.rank":"Βαθμός","v.rank":"Ναύτης","m.nat":"Εθνικότητα","m.agency":"Πρακτορείο","m.company":"Ναυτιλιακή","m.dob":"Ημ. γέννησης","m.family":"Οικογένεια","v.family":"Σύζυγος + 2 (Next2Care)",
     "x.care":"<b>Ενεργό μέλος</b> · Gold+ tier · οικογένεια καλυμμένη","x.peme":"<b>PEME ολοκληρώθηκε</b> · FIT FOR SEA DUTY · 2026 · HPDC Manila","x.post":"<b>1 παλιά υπόθεση</b> · 2023 · έκλεισε (fit to return)","x.ship":"<b>1 on-board incident</b> · 2024 · MV Pacific Trader",
-    "tab.overview":"Επισκόπηση","tab.cases":"Υποθέσεις & Φροντίδα","tab.files":"Αρχεία & Εξετάσεις","tab.profiles":"Κλινικά Προφίλ","tab.vax":"Εμβολιασμοί","tab.risk":"Ρίσκο","tab.guide":"Οδηγός","tab.net":"Δίκτυο",
+    "tab.overview":"Επισκόπηση","tab.cases":"Υποθέσεις & Φροντίδα","tab.files":"Αρχεία & Εξετάσεις","tab.profiles":"Κλινικά Προφίλ","tab.vax":"Εμβολιασμοί","tab.risk":"Ρίσκο","tab.guide":"Οδηγός","tab.net":"Δίκτυο","lnav.grp":"MASTER DATA","lnav.people":"Φάκελοι προσώπων","lnav.net":"Δίκτυο",
     "c.genhist":"Γενικό Ιστορικό","k.height":"Ύψος","k.weight":"Βάρος","k.overweight":"υπέρβαρος","k.blood":"Ομάδα αίματος",
     "c.cvd":"Καρδιαγγειακό Προφίλ","c.cvdlead":"Κύριοι παράγοντες κινδύνου ΚΑ","rf.smoker":"Καπνιστής","rf.htn":"Υπέρταση","rf.dysl":"Δυσλιπιδαιμία",
     "c.diab":"Διαβητικό Προφίλ","k.status":"Κατάσταση","k.prediab":"Προ-διαβητικός","c.allerg":"Αλλεργίες","al.rhin":"Αλλεργική ρινίτιδα (άνοιξη)",
@@ -579,11 +625,11 @@ function setLang(l){
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const k=el.dataset.i18n; el.innerHTML=(l==='el'&&I18N.el[k])?I18N.el[k]:EN[k];
   });
-  renderFiles();renderS360Guide();renderNet();
+  renderFiles();renderS360Guide();renderNet();renderReg();
 }
 document.querySelectorAll('#langTog button').forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
-renderNet();
-(function(){var tp=new URLSearchParams(location.search).get('tab');if(tp){var tb=document.querySelector('.tab[data-tab="'+tp+'"]');if(tb)tb.click();}})();
+renderReg();setArea('people');
+(function(){var tp=new URLSearchParams(location.search).get('tab');if(tp==='network'){setArea('network');}else if(tp){var tb=document.querySelector('.tab[data-tab="'+tp+'"]');if(tb)tb.click();}})();
 
 
 /* ---- Files & exams = read-only references to Next2DMS (single source of truth * no-copy) ---- */
@@ -614,7 +660,7 @@ const PEME_REFS=[
   {st:"Certificates",n:"Oath of Undertaking",code:"MCL-MAR-PEME-OATH-2026-065838",t:"Oath",med:false},
   {st:"Records",n:"Flag-state Certificate",code:"MCL-MAR-PEME-FLG-2026-329923",t:"Flag-state Certificate",med:false},
 ];
-const DMS_LINK="next2dms-v87.html?tenant=next2mcl&source=peme&q=SF-PH-039281";
+const DMS_LINK="next2dms-v88.html?tenant=next2mcl&source=peme&q=SF-PH-039281";
 function DMS_DOC(c){return DMS_LINK.replace(/q=[^&]*/,"q="+encodeURIComponent(c)).replace("source=peme","source=360");};
 const STLBL={
   "Intake":["Intake & documents","Παραλαβή & έγγραφα"],
