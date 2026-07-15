@@ -80,7 +80,7 @@
   </form>
 <script>
   const A = window.MCL_AUTH || {};
-  try { if (sessionStorage.getItem("mcl_auth") === A.hash) location.replace("mcl-shell-v80.html"); } catch (e) {}
+  try { if (sessionStorage.getItem("mcl_auth") === A.hash) location.replace("mcl-shell-v81.html"); } catch (e) {}
   async function sha256(str){
     const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
     return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, "0")).join("");
@@ -98,7 +98,7 @@
     try { h = await sha256(p); } catch (_) {}
     if (u === A.user && h === A.hash) {
       try { sessionStorage.setItem("mcl_auth", A.hash); } catch (_) {}
-      location.replace("mcl-shell-v80.html");
+      location.replace("mcl-shell-v81.html");
     } else {
       btn.disabled = false;
       err.classList.add("show");
