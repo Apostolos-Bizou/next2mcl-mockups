@@ -5,7 +5,7 @@ static prototypes with **fake data** — no real records, no PII, no backend.
 
 ## Entry point
 
-**Start here → [`mcl-shell-v0.2.html`](mcl-shell-v0.2.html)**
+**Start here → [`mcl-shell-v74.html`](mcl-shell-v74.html)**
 
 Opening the repo root (`index.html`) redirects there automatically. On GitHub Pages
 the live hub is served from the repo root.
@@ -14,19 +14,19 @@ the live hub is served from the repo root.
 
 | File | Role |
 |------|------|
-| `mcl-shell-v0.2.html` | **MCL Shell** — the hub / entry point that launches the other apps |
-| `next2peme-console-v0.4.html` | **Next2Peme Console** — PEME workflow console |
-| `next2dms-v0.6.html` | **Next2DMS** — document management |
-| `seafarer-360-folder.html` | **Seafarer 360** — the seafarer folder view |
-| `mcl-guide-v0.1.html` | **MCL Guide** — οδηγός χρήσης όλου του οικοσυστήματος (EL/EN) · tabs ανά app (MCL·Peme·360·DMS) + Γλωσσάριο · linked από το shell topbar · κάθε app έχει και δικό του in-app «Οδηγός» |
+| `mcl-shell-v74.html` | **MCL Shell** — the hub / entry point that launches the other apps |
+| `next2peme-console-v74.html` | **Next2Peme Console** — PEME workflow console |
+| `next2dms-v74.html` | **Next2DMS** — document management |
+| `seafarer-360-folder-v74.html` | **Seafarer 360** — the seafarer folder view |
+| `mcl-guide-v74.html` | **MCL Guide** — οδηγός χρήσης όλου του οικοσυστήματος (EL/EN) · tabs ανά app (MCL·Peme·360·DMS) + Γλωσσάριο · linked από το shell topbar · κάθε app έχει και δικό του in-app «Οδηγός» |
 
 ## Link map (how the apps talk to each other)
 
 ```
 MCL Shell ──▶ Next2Peme Console
-          ──▶ Next2DMS            (next2dms-v0.6.html?tenant=next2mcl)
+          ──▶ Next2DMS            (next2dms-v74.html?tenant=next2mcl)
           ──▶ Seafarer 360
-          ──▶ MCL Guide           (mcl-guide-v0.1.html · topbar "📖 Guide")
+          ──▶ MCL Guide           (mcl-guide-v74.html · topbar "📖 Guide")
 
 Next2Peme ──▶ Next2DMS            (?source=peme&q=SF-PH-039281  → seafarer Juan D. Santos)
 
