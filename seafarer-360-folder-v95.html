@@ -4,7 +4,7 @@
 <script src="auth-guard.js"></script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Next2-360 · Shared Core / CBMS (Mockup v94)</title>
+<title>Next2-360 · Shared Core / CBMS (Mockup v95)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -34,6 +34,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   display:flex;align-items:center;gap:12px;padding:8px 20px;font-size:12px;flex-wrap:wrap}
 .corebar .tag{font-family:var(--ff-mono);font-size:10.5px;letter-spacing:.08em;background:rgba(23,167,175,.2);
   color:#8FE3E8;padding:3px 9px;border-radius:6px;border:1px solid rgba(23,167,175,.35)}
+.corebar .mclback{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;color:#CFE0EC;text-decoration:none;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:4px 11px;transition:background .15s}.corebar .mclback:hover{background:rgba(255,255,255,.16);color:#fff}
 .corebar .used{color:#7EA2BC}
 .corebar .used b{color:#DCEAF3;font-weight:600}
 .corebar .lens{margin-left:auto;display:flex;align-items:center;gap:8px}
@@ -219,9 +220,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 </style>
 </head>
 <body>
-<div class="mocktag">PHASE 1 · v94 · MOCKUP · FAKE DATA</div>
+<div class="mocktag">PHASE 1 · v95 · MOCKUP · FAKE DATA</div>
 
 <div class="corebar">
+  <a class="mclback" href="mcl-shell-v95.html" title="MCL hub">◄ MCL</a>
   <span class="tag">NEXT2-360</span>
   <span class="used" data-i18n="core.used">Shared Core · CBMS (Layer 2) — used by <b>Next2Peme</b> · <b>ShipCare</b> · <b>PostMed</b> · <b>Care</b></span>
   <span class="lens">
@@ -689,7 +691,7 @@ const PEME_REFS=[
   {st:"Certificates",n:"Oath of Undertaking",code:"MCL-MAR-PEME-OATH-2026-065838",t:"Oath",med:false},
   {st:"Records",n:"Flag-state Certificate",code:"MCL-MAR-PEME-FLG-2026-329923",t:"Flag-state Certificate",med:false},
 ];
-const DMS_LINK="next2dms-v94.html?tenant=next2mcl&source=peme&q=SF-PH-039281";
+const DMS_LINK="next2dms-v95.html?tenant=next2mcl&source=peme&q=SF-PH-039281";
 function DMS_DOC(c){return DMS_LINK.replace(/q=[^&]*/,"q="+encodeURIComponent(c)).replace("source=peme","source=360");};
 const STLBL={
   "Intake":["Intake & documents","Παραλαβή & έγγραφα"],
