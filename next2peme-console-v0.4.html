@@ -421,6 +421,7 @@ textarea.inp{min-height:78px;resize:vertical}
       <a href="#" data-track="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-i18n="nav.track">Client Tracker</span></a>
       <span class="lbl" data-i18n="nav.help">Help</span>
       <a href="#" data-view="guide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 5.5V20.5"/></svg><span data-i18n="nav.guide">Guide</span></a>
+      <a href="https://raw.githubusercontent.com/Apostolos-Bizou/next2mcl-mockups/main/verification/Next2Peme_Coding_Verification_v1.xlsx" target="_blank" rel="noopener" data-ext="1" title="Coding verification worksheet — LOINC/CPT/CDT/ICD-10 (opens on GitHub)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg><span data-i18n="nav.vsheet">Coding worksheet</span><span class="st">.xlsx</span></a>
     </nav>
     <div class="foot">
       <div class="rolebox"><label data-i18n="role.acting">Acting as</label><select id="roleSel"></select></div>
@@ -627,7 +628,7 @@ const CASE={currentStage:3,done:{2:true},disposition:null,certsIssued:false};
 
 /* ===================== i18n (chrome) ===================== */
 const I18N={en:{
-  "nav.ops":"Operations","nav.help":"Help","nav.guide":"Guide","nav.board":"Case Board","nav.appt":"New Appointment","nav.journey":"PEME Journey",
+  "nav.ops":"Operations","nav.help":"Help","nav.guide":"Guide","nav.vsheet":"Coding worksheet","nav.board":"Case Board","nav.appt":"New Appointment","nav.journey":"PEME Journey",
   "nav.frontdesk":"Frontdesk","nav.core":"Shared Core","nav.folder":"Seafarer 360°",
   "st.LAB":"Laboratory","st.IMG":"Imaging & Cardio","st.VITL":"Vitals & Spiro","st.SPEC":"Specialty Exams","st.PHYS":"Physical Exam","st.MDRV":"MD Review","st.CERT":"Certificates",
   "role.acting":"Acting as","env.tag":"Interim mockup · no live data",
@@ -663,7 +664,7 @@ const I18N={en:{
   "t.saved":"Station completed","t.appt":"Request submitted \u00b7 digital proof to CW","t.md":"Decision issued","t.cert":"Certificates issued","t.lang":"Language changed","t.prio":"PEME flagged urgent",
   "ctx.t":"Shared folder view.","ctx.d":"This is the seafarer's cross-product folder (CBMS \u00b7 Shared Core) \u2014 not the Peme file list. Peme's own files are in the left menu (PEME Journey).","ctx.cur":"CURRENT","acc.full":"full access","acc.ref":"reference \u00b7 RBAC","acc.med":"\ud83d\udd12 fit / not-fit only"
 },el:{
-  "nav.ops":"Λειτουργίες","nav.help":"Βοήθεια","nav.guide":"Οδηγός","nav.board":"Πίνακας Υποθέσεων","nav.appt":"Νέο Ραντεβού","nav.journey":"Διαδρομή PEME",
+  "nav.ops":"Λειτουργίες","nav.help":"Βοήθεια","nav.guide":"Οδηγός","nav.vsheet":"Φύλλο κωδικών","nav.board":"Πίνακας Υποθέσεων","nav.appt":"Νέο Ραντεβού","nav.journey":"Διαδρομή PEME",
   "nav.frontdesk":"Frontdesk","nav.core":"Shared Core","nav.folder":"Φάκελος Ναυτικού 360°",
   "st.LAB":"Εργαστήριο","st.IMG":"Απεικόνιση & Καρδιο","st.VITL":"Ζωτικά & Σπιρο","st.SPEC":"Ειδικές Εξετάσεις","st.PHYS":"Κλινική Εξέταση","st.MDRV":"Έλεγχος Ιατρ. Δ/ντή","st.CERT":"Πιστοποιητικά",
   "role.acting":"Ρόλος","env.tag":"Ενδιάμεσο mockup · χωρίς live data",
@@ -1685,7 +1686,7 @@ function setLang(l){lang=l;document.documentElement.lang=l;$$("#langTog button")
 function init(){
   $$("[data-i18n]").forEach(el=>EN[el.dataset.i18n]=el.textContent);
   const sel=$("#roleSel");sel.innerHTML=ROLES.map(r=>`<option value="${r.id}">${r[lang].name}</option>`).join("");sel.onchange=e=>setRole(e.target.value);
-  $("#nav").addEventListener("click",e=>{const a=e.target.closest("a");if(!a)return;e.preventDefault();
+  $("#nav").addEventListener("click",e=>{const a=e.target.closest("a");if(!a)return;if(a.dataset.ext)return;e.preventDefault();
     if(a.dataset.view)go(a.dataset.view);else if(a.dataset.stage)openStage(+a.dataset.stage);else if(a.dataset.href)location.href=a.dataset.href;else if(a.dataset.track)location.href="next2peme-tracker-v0.6.html?stage="+CASE.currentStage;});
   $$("#langTog button").forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
   applyStatic();go("board");

@@ -409,6 +409,9 @@ tbody tr:last-child td{border-bottom:none}
 .basis{display:flex;gap:8px;align-items:flex-start;margin-top:12px;padding:9px 11px;background:var(--paper);border:1px dashed var(--line);border-radius:9px;font-size:11px;color:var(--ink-2);line-height:1.45}
 .basis svg{width:15px;height:15px;flex:0 0 auto;color:var(--ink-3);margin-top:1px}
 .basis a{color:inherit}
+.vsheet{display:inline-flex;align-items:center;gap:7px;margin-top:9px;padding:8px 12px;font-size:12px;font-weight:600;color:#2f7d64;background:rgba(47,125,100,.08);border:1px solid rgba(47,125,100,.28);border-radius:9px;text-decoration:none}
+.vsheet svg{width:15px;height:15px;flex:0 0 auto}
+.vsheet:hover{background:rgba(47,125,100,.15);border-color:rgba(47,125,100,.45)}
 .win{display:flex;gap:12px;padding:12px 0;border-bottom:1px dashed var(--line-2)}
 .win:last-child{border-bottom:none}
 .win .wn{width:26px;height:26px;flex:0 0 26px;border-radius:8px;display:grid;place-items:center;font-family:var(--ff-display);font-weight:700;font-size:12px;background:var(--mist);color:var(--ink-3)}
@@ -593,7 +596,7 @@ Object.assign(T.en,{
  "lg.cfma.mark.int":"Flag as interim (demo the trap)","lg.cfma.mark.def":"Restore as definite","lg.cfma.view":"Open CFMA",
  "lg.third":"Contest & third-doctor procedure","lg.third.sub":"POEA-SEC §20(A)(3) · binding",
  "lg.third.need":"Available once a final & definite CFMA has been served.",
- "lg.third.default":"No contest recorded. Absent a request from the seafarer, the company-designated physician's assessment stands — final and binding.",
+ "lg.third.default":"No contest recorded. Absent a request from the seafarer, the company-designated physician's assessment stands — final and binding.","lg.third.vsheet":"Legal verification worksheet (.xlsx)",
  "lg.sla":"per Bunayog · SC En Banc 2023","lg.win.of":"of","lg.win.d":"d",
  "lg.w1":"Seafarer signifies disagreement","lg.w1.d":"Contests the CFMA and submits his own physician's assessment, within a reasonable period. The duty to trigger the referral is on the seafarer.",
  "lg.w1.rp":"reasonable period","lg.w1.btn":"Record seafarer contest","lg.consq.w1":"if not raised in a reasonable period → company assessment prevails","lg.wA":"Employer assents to referral","lg.wA.d":"The employer must agree to the third-doctor referral. Assent given beyond 10 days breaches the POEA-SEC.","lg.wA.btn":"Record employer assent","lg.consq.wA":"assent beyond 10 days → POEA-SEC violation; seafarer's doctor may prevail",
@@ -658,7 +661,7 @@ Object.assign(T.el,{
  "lg.cfma.mark.int":"Σήμανση ως ενδιάμεση (δείξε την παγίδα)","lg.cfma.mark.def":"Επαναφορά ως οριστική","lg.cfma.view":"Άνοιγμα CFMA",
  "lg.third":"Αμφισβήτηση & διαδικασία τρίτου γιατρού","lg.third.sub":"POEA-SEC §20(A)(3) · δεσμευτική",
  "lg.third.need":"Διαθέσιμο μόλις επιδοθεί τελική & οριστική CFMA.",
- "lg.third.default":"Καμία αμφισβήτηση. Ελλείψει αιτήματος του ναυτικού, η εκτίμηση του company-designated physician ισχύει — τελική και δεσμευτική.",
+ "lg.third.default":"Καμία αμφισβήτηση. Ελλείψει αιτήματος του ναυτικού, η εκτίμηση του company-designated physician ισχύει — τελική και δεσμευτική.","lg.third.vsheet":"Φύλλο νομικής επαλήθευσης (.xlsx)",
  "lg.sla":"κατά Bunayog · SC En Banc 2023","lg.win.of":"από","lg.win.d":"ημ.",
  "lg.w1":"Ο ναυτικός δηλώνει διαφωνία","lg.w1.d":"Αμφισβητεί το CFMA και καταθέτει τη γνώμη του δικού του γιατρού, εντός εύλογου χρόνου. Η έναρξη της παραπομπής βαρύνει τον ναυτικό.",
  "lg.w1.rp":"εύλογος χρόνος","lg.w1.btn":"Καταγραφή αμφισβήτησης","lg.consq.w1":"αν δεν εγερθεί εντός εύλογου χρόνου → υπερισχύει η εκτίμηση της εταιρείας","lg.wA":"Ο εργοδότης συναινεί στην παραπομπή","lg.wA.d":"Ο εργοδότης οφείλει να συναινέσει στην παραπομπή σε τρίτο γιατρό. Συναίνεση πέραν των 10 ημερών παραβιάζει το POEA-SEC.","lg.wA.btn":"Καταγραφή συναίνεσης εργοδότη","lg.consq.wA":"συναίνεση πέραν των 10 ημ. → παράβαση POEA-SEC· μπορεί να υπερισχύσει ο γιατρός του ναυτικού",
@@ -1279,7 +1282,8 @@ function legalTab(c){
   const w3=`<div class="win ${w3done?"done":w3active?"active":""}"><div class="wn">${w3done?"✓":"4"}</div><div class="wb"><div class="wt">${t("lg.w3")} <span class="propflag">${t("lg.sla")} ${TD_SLA.decision}${t("lg.win.d")}</span></div><div class="wd">${t("lg.w3.d")}<br><span style="color:var(--green)">${t("lg.consq.w3")}</span></div>${w3active?`<button class="btn ghost mini" style="margin-top:8px" onclick="legThird()">${t("lg.w3.btn")}</button>`:""}${w3done?`<button class="btn ghost mini" style="margin-top:8px" onclick="openLegalDoc('THIRD')">${t("lg.w3.view")} ▸</button>`:""}</div><div class="wc">${w3done?`<span class="big st-ok">${t("lg.day")} ${L.decideDay}</span>${t("lg.done")}`:w3active?`<span class="big st-${w3m.st}">${w3m.txt}</span>`:`<span class="big">—</span>`}</div></div>`;
   const head=!L.contested?`<div class="verdict ok">${_icInfo}<div>${t("lg.third.default")}</div></div>`:"";
   const basis=`<div class="basis">${_icInfo}<div>${t("lg.third.basis")}</div></div>`;
-  thirdPanel=head+w1+wA+w2+w3+basis;
+  const vsheet=`<a class="vsheet" href="https://raw.githubusercontent.com/Apostolos-Bizou/next2mcl-mockups/main/verification/Next2PostMed_Legal_Verification_v1.xlsx" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>${t("lg.third.vsheet")}</a>`;
+  thirdPanel=head+w1+wA+w2+w3+basis+vsheet;
  }
 
  // ---- settlement instruments ----
