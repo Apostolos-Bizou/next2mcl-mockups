@@ -4,7 +4,7 @@
 <script src="auth-guard.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Next2MCL — Οδηγός Χρήσης / User Guide · v89</title>
+<title>Next2MCL — Οδηγός Χρήσης / User Guide · v91</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -117,19 +117,20 @@ code,.mono{font-family:var(--ff-m);font-size:.9em;background:var(--mist);padding
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
 :focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-radius:6px}
+.ecowrap{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:18px 18px 14px;margin:18px 0 24px;box-shadow:0 1px 3px rgba(0,0,0,.04)}.ecoh{font-size:15px;font-weight:800;color:#1e293b;margin-bottom:12px}.ecocap{font-size:12px;color:#64748b;margin-top:10px;text-align:center}
 </style>
 </head>
 <body>
 
 <header class="top">
   <div class="wrap row">
-    <a class="brand" href="mcl-shell-v89.html"><span>Next2<span class="n2">MCL</span></span><small data-i18n="brand.sub">Οδηγός Χρήσης</small></a>
+    <a class="brand" href="mcl-shell-v91.html"><span>Next2<span class="n2">MCL</span></span><small data-i18n="brand.sub">Οδηγός Χρήσης</small></a>
     <div class="sp"></div>
     <div class="langtog" role="group" aria-label="Language">
       <button data-lang="el" class="on" onclick="setLang('el')">EL</button>
       <button data-lang="en" onclick="setLang('en')">EN</button>
     </div>
-    <a class="back" href="mcl-shell-v89.html"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg><span data-i18n="back">MCL</span></a>
+    <a class="back" href="mcl-shell-v91.html"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg><span data-i18n="back">MCL</span></a>
   </div>
 </header>
 
@@ -150,7 +151,7 @@ code,.mono{font-family:var(--ff-m);font-size:.9em;background:var(--mist);padding
   <div id="content"></div>
 
   <div class="foot">
-    <span data-i18n="foot">Next2MCL — Οδηγός Χρήσης · mockup (fake data)</span> · <span class="mono">mcl-guide · v89</span>
+    <span data-i18n="foot">Next2MCL — Οδηγός Χρήσης · mockup (fake data)</span> · <span class="mono">mcl-guide · v91</span>
   </div>
 </main>
 
@@ -256,20 +257,45 @@ var GUIDE={
  overview:{ac:"#0E8C93",acw:"#E6F4F5",dot:"#0E8C93",
    tab:{el:"Επισκόπηση",en:"Overview"},icon:"🧭",
    title:{el:"Το οικοσύστημα Next2MCL",en:"The Next2MCL ecosystem"},
-   intro:{el:"Το Next2MCL ψηφιοποιεί ολόκληρο τον κύκλο υγείας του ναυτικού — από τη συνεχή κάλυψη ως το PEME, το on-board, και το post-medical. Αυτός ο οδηγός καλύπτει τις 4 εφαρμογές που χρησιμοποιείς καθημερινά.",
-          en:"Next2MCL digitises the whole health lifecycle of a seafarer — from continuous cover to PEME, on-board, and post-medical. This guide covers the 4 apps you use day-to-day."},
-   who:[{el:"Νέος χρήστης",en:"New user"},{el:"Γραμματεία / Κλινική",en:"Clinic / Front office"},{el:"Manning / Principal",en:"Manning / Principal"}],
+   intro:{el:"Το Next2MCL ψηφιοποιεί ολόκληρο τον κύκλο υγείας του ναυτικού ΚΑΙ της οικογένειάς του — από τη συνεχή κάλυψη, στο PEME πριν το μπάρκο, στην on-board τηλεϊατρική, ως το post-medical. Δεν είναι μία εφαρμογή· είναι ένα οικοσύστημα όπου κάθε προϊόν βλέπει τη δική του φέτα, αλλά όλα μοιράζονται έναν κοινό πυρήνα. Αυτός ο οδηγός εξηγεί τι είναι το καθένα, πού ζει η κάθε πληροφορία, και πώς μιλάνε μεταξύ τους.",
+          en:"Next2MCL digitises the entire health lifecycle of a seafarer AND their family — from continuous cover, to PEME before deployment, to on-board telemedicine, to post-medical. It is not one app; it is an ecosystem where each product sees its own slice but all share a common core. This guide explains what each one is, where every piece of information lives, and how they talk to each other."},
+   who:[{el:"Νέος χρήστης",en:"New user"},{el:"Επενδυτής / Διοίκηση",en:"Investor / Leadership"},{el:"Manning / Principal",en:"Manning / Principal"}],
    sections:[
-     {icon:"🗺️",t:{el:"Οι 4 εφαρμογές",en:"The 4 apps"},
-      see:{el:"Τέσσερα tabs πιο πάνω: MCL (ο κόμβος), Next2Peme (η κλινική ροή PEME), Seafarer 360° (ο κοινός φάκελος του ναυτικού) και Next2DMS (τα έγγραφα).",en:"Four tabs above: MCL (the hub), Next2Peme (the clinical PEME flow), Seafarer 360° (the seafarer's shared folder), and Next2DMS (the documents)."},
-      does:{el:"Κάθε εφαρμογή έχει ρόλο: το MCL σε πάει παντού, το Peme τρέχει την εξέταση, το 360° δείχνει τη συνολική εικόνα, το DMS κρατά τα πρωτότυπα.",en:"Each app has a role: MCL takes you everywhere, Peme runs the exam, 360° shows the whole picture, DMS keeps the originals."},
-      steps:[{el:"Διάλεξε το tab της εφαρμογής που σε ενδιαφέρει.",en:"Pick the tab of the app you care about."},{el:"Διάβασε κάθε κάρτα: Τι βλέπεις → Τι κάνει → Βήμα-βήμα → Αποτέλεσμα.",en:"Read each card: What you see → What it does → Step by step → Result."},{el:"Πάτα «Άνοιξέ το» για να πας στην πραγματική οθόνη.",en:"Hit “Open it” to jump to the real screen."}],
-      result:{el:"Ξέρεις πού να πατήσεις για κάθε δουλειά, χωρίς training.",en:"You know where to click for every task — no training needed."}},
-     {icon:"🧵",t:{el:"Ο χρυσός μίτος (4 αρχές)",en:"The golden thread (4 principles)"},
-      see:{el:"Οι ίδιες 4 αρχές επαναλαμβάνονται σε όλες τις εφαρμογές.",en:"The same 4 principles repeat across every app."},
-      does:{el:"Κρατούν το σύστημα συνεπές και ασφαλές.",en:"They keep the system consistent and safe."},
-      steps:[{el:"One Seafarer ID for life — μία ταυτότητα ανά ναυτικό, παντού.",en:"One Seafarer ID for life — one identity per seafarer, everywhere."},{el:"Το έγγραφο ζει ΜΙΑ φορά στο DMS — οι άλλοι κρατούν reference, ποτέ copy.",en:"A document lives ONCE in DMS — others hold a reference, never a copy."},{el:"Ιατρικά = no-copy — οι άλλοι βλέπουν μόνο fit / not-fit.",en:"Medical = no-copy — others see only fit / not-fit."},{el:"Ό,τι ανοίγεις (έγγραφο, κάρτα) ανοίγει full-screen, ποτέ μικρό παράθυρο.",en:"Anything you open (document, card) opens full-screen, never a small panel."}],
-      result:{el:"Μία αλήθεια για τα δεδομένα, καθαρή ασφάλεια, σταθερή εμπειρία.",en:"One truth for the data, clean security, a consistent experience."}}
+     {icon:"🏛️",t:{el:"Η δομή: 4 προϊόντα + κόμβος + κοινός πυρήνας",en:"The structure: 4 products + hub + shared core"},
+      see:{el:"Τέσσερα προϊόντα καλύπτουν τη ζωή του ναυτικού, ο κόμβος MCL τα ενώνει από πάνω, κι ο κοινός πυρήνας (Shared Core) στέκει από κάτω.",en:"Four products cover the seafarer life, the MCL hub unites them from above, and the Shared Core sits underneath."},
+      does:{el:"Κάθε προϊόν αναλαμβάνει μία φάση· ο κόμβος σε πάει παντού· ο πυρήνας κρατά ό,τι είναι κοινό.",en:"Each product owns one phase; the hub takes you everywhere; the core holds what is common."},
+      steps:[{el:"Next2Peme — η εξέταση PEME πριν μπαρκάρει ο ναυτικός.",en:"Next2Peme — the PEME exam before the seafarer boards."},{el:"Next2ShipCare — τηλεϊατρική όσο είναι στο πλοίο.",en:"Next2ShipCare — telemedicine while on board."},{el:"Next2PostMed — διαχείριση υπόθεσης μετά (ιατρικό / νομικό / οικονομικό).",en:"Next2PostMed — post-medical case management (medical / legal / financial)."},{el:"Next2Care (Polaris) — συνεχής κάλυψη, ναυτικός + οικογένεια.",en:"Next2Care (Polaris) — continuous cover, seafarer + family."},{el:"Κοινός πυρήνας = Seafarer 360° (ο φάκελος) + Next2DMS (τα έγγραφα).",en:"Shared Core = Seafarer 360° (the folder) + Next2DMS (the documents)."}],
+      result:{el:"Ένας κύκλος ζωής, μία πλατφόρμα — όχι τέσσερα ασύνδετα εργαλεία.",en:"One lifecycle, one platform — not four disconnected tools."}},
+     {icon:"📍",t:{el:"Πού ζει τι (η πιο σημαντική αρχή)",en:"Where things live (the most important principle)"},
+      see:{el:"Κάτω από όλα υπάρχουν δύο κοινά μέρη: το Seafarer 360° και το Next2DMS. Δεν είναι το ίδιο πράγμα.",en:"Under everything sit two shared places: Seafarer 360° and Next2DMS. They are not the same thing."},
+      does:{el:"Το δομημένο ιατρικό record ζει στο 360° / Shared Core. Τα ΑΡΧΕΙΑ / έγγραφα ζουν ΜΟΝΟ στο DMS. Το δίκτυο παρόχων ζει μία φορά κεντρικά. Η ταυτότητα (One Seafarer ID) ζει μία φορά.",en:"The structured medical record lives in 360° / Shared Core. The actual FILES / documents live ONLY in DMS. The provider network lives once, centrally. Identity (One Seafarer ID) lives once."},
+      steps:[{el:"Δομημένο record (τιμές, ευρήματα, ιστορικό) → Seafarer 360°.",en:"Structured record (values, findings, history) → Seafarer 360°."},{el:"Αρχεία (PDF, σκαναρίσματα, πιστοποιητικά) → μόνο Next2DMS.",en:"Files (PDFs, scans, certificates) → only Next2DMS."},{el:"Κλινικές & γιατροί → κεντρικό δίκτυο στο Shared Core.",en:"Clinics & doctors → central network in Shared Core."},{el:"Πρόσωπα (ναυτικός + οικογένεια) → μητρώο φακέλων στο 360°.",en:"People (seafarer + family) → folder registry in 360°."}],
+      result:{el:"«Το 360° δείχνει τον φάκελο· το DMS αποθηκεύει τα έγγραφα.» Ποτέ αντίγραφα.",en:"“360° shows the folder; DMS stores the documents.” Never copies."}},
+     {icon:"🔗",t:{el:"Πώς μιλάνε μεταξύ τους (η διασύνδεση)",en:"How they talk to each other (the interconnection)"},
+      see:{el:"Καμία εφαρμογή δεν κρατά δικά της, ασύνδετα δεδομένα. Κάθε μία δείχνει τη φέτα της και συνδέεται με την κοινή αλήθεια.",en:"No app keeps its own disconnected data. Each shows its slice and links to the shared truth."},
+      does:{el:"Deep-links μεταφέρουν από κάθε εφαρμογή στον φάκελο ή στο δίκτυο. Ο φάκελος ενός ναυτικού στο DMS αθροίζει έγγραφα από ΟΛΕΣ τις εφαρμογές.",en:"Deep-links carry you from any app to the folder or the network. A seafarer DMS folder aggregates documents from ALL apps."},
+      steps:[{el:"Peme / PostMed / 360° → «Documents (DMS)» ανοίγει τον φάκελο του ναυτικού με όλες τις πηγές μαζί (PEME + POME + Care).",en:"Peme / PostMed / 360° → “Documents (DMS)” opens the seafarer folder with every source together (PEME + POME + Care)."},{el:"Κάθε εφαρμογή → «➕ στο 360°» για να καταχωρήσεις νέο πάροχο κεντρικά.",en:"Each app → “➕ in 360°” to register a new provider centrally."},{el:"360° → κάθε αρχείο ανοίγει το ΣΥΓΚΕΚΡΙΜΕΝΟ DMS record μέσω αμετάβλητου κωδικού.",en:"360° → each file opens the SPECIFIC DMS record via its immutable code."},{el:"Οι υποθέσεις τραβούν παρόχους από το κεντρικό δίκτυο — όχι δικό τους κατάλογο.",en:"Cases pull providers from the central network — not their own list."}],
+      result:{el:"Ένα νοσοκομείο = ένα νοσοκομείο· ένας φάκελος = ένας φάκελος. Καμία διπλή αλήθεια.",en:"One hospital = one hospital; one folder = one folder. No double truth."}},
+     {icon:"🏥",t:{el:"Το κεντρικό δίκτυο (ένα, με ετικέτες)",en:"The central network (one, tagged)"},
+      see:{el:"Ένας κατάλογος κλινικών & γιατρών στο Shared Core, που εμφανίζεται μέσα σε κάθε εφαρμογή.",en:"One directory of clinics & doctors in Shared Core, shown inside every app."},
+      does:{el:"Κάθε πάροχος έχει accreditation ετικέτες (PEME / POME / Care) με ημερομηνίες ισχύος· κάθε εφαρμογή δείχνει μόνο τη δική της φέτα· η καταχώριση γίνεται μία φορά, κεντρικά.",en:"Each provider carries accreditation tags (PEME / POME / Care) with validity dates; each app shows only its slice; registration happens once, centrally."},
+      steps:[{el:"360° → όλο το δίκτυο · Peme → PEME-accredited · PostMed → POME-accredited · Care → Care-accredited.",en:"360° → the whole network · Peme → PEME-accredited · PostMed → POME-accredited · Care → Care-accredited."},{el:"Ληγμένο MOA → κόκκινο «έληξε», πέφτει από το direct-billing αυτόματα.",en:"Expired MOA → red “expired”, drops from direct-billing automatically."},{el:"Νέος πάροχος καταχωρείται στο 360°· εμφανίζεται παντού με τη σωστή ετικέτα.",en:"A new provider is registered in 360°; it appears everywhere with the right tag."}],
+      result:{el:"Καταχώριση μία φορά, διαθέσιμο παντού, φιλτραρισμένο σωστά ανά εφαρμογή.",en:"Register once, available everywhere, filtered correctly per app."}},
+     {icon:"🆔",t:{el:"One Seafarer ID for life",en:"One Seafarer ID for life"},
+      see:{el:"Ένας μόνιμος εσωτερικός αριθμός ανά πρόσωπο (ναυτικός + οικογένεια), για μια ζωή.",en:"One permanent internal ID per person (seafarer + family), for life."},
+      does:{el:"Διαβατήρια, ονόματα, πρακτορεία αλλάζουν από πάνω· ο αριθμός μένει. Στην εγγραφή, το σύστημα ψάχνει υπάρχοντα φάκελο (PhilHealth → SIRB+DOB → διαβατήριο → όνομα) και προτείνει ταίριασμα — ένωση μόνο με ανθρώπινη επιβεβαίωση.",en:"Passports, names, agencies change on top; the ID stays. On registration, the system checks for an existing folder (PhilHealth → SIRB+DOB → passport → name) and suggests a match — merge only with human confirmation."},
+      steps:[{el:"Νέα εγγραφή → έλεγχος υπαρχόντων φακέλων.",en:"New registration → check existing folders."},{el:"«Πιθανό ταίριασμα» → ο άνθρωπος επιβεβαιώνει «ίδιος» ή «νέος».",en:"“Possible match” → a human confirms “same” or “new”."},{el:"Σύγκρουση ισχυρού στοιχείου → διαφορετικά πρόσωπα, καμία ένωση.",en:"Strong-identifier conflict → different persons, no merge."}],
+      result:{el:"Ποτέ δύο φάκελοι για τον ίδιο· ποτέ ένας φάκελος για δύο.",en:"Never two folders for one person; never one folder for two."}},
+     {icon:"🧵",t:{el:"Ο χρυσός μίτος (αρχές που δεν σπάνε)",en:"The golden thread (principles that never break)"},
+      see:{el:"Οι ίδιες αρχές επαναλαμβάνονται σε όλες τις εφαρμογές.",en:"The same principles repeat across every app."},
+      does:{el:"Κρατούν το σύστημα συνεπές, ασφαλές και συμβατό με τον νόμο.",en:"They keep the system consistent, safe, and legally compliant."},
+      steps:[{el:"One Seafarer ID for life — μία ταυτότητα ανά πρόσωπο, παντού.",en:"One Seafarer ID for life — one identity per person, everywhere."},{el:"Το έγγραφο ζει ΜΙΑ φορά στο DMS — οι άλλοι κρατούν reference, ποτέ copy.",en:"A document lives ONCE in DMS — others hold a reference, never a copy."},{el:"Ιατρικά = no-copy — οι άλλοι βλέπουν μόνο fit / not-fit.",en:"Medical = no-copy — others see only fit / not-fit."},{el:"Ό,τι ανοίγεις (έγγραφο, κάρτα) ανοίγει full-screen, ποτέ μικρό παράθυρο.",en:"Whatever you open (document, card) opens full-screen, never a small panel."}],
+      result:{el:"Μία αλήθεια για τα δεδομένα, καθαρή ασφάλεια, σταθερή εμπειρία.",en:"One truth for the data, clean security, a consistent experience."}},
+     {icon:"📈",t:{el:"Το ατού (moat): γιατί δεν αντιγράφεται",en:"The moat: why it can't be copied"},
+      see:{el:"Επειδή όλα συνδέονται σε μία συνεχή εικόνα, η πλατφόρμα υπολογίζει ό,τι καμία μεμονωμένη εφαρμογή δεν μπορεί.",en:"Because everything connects into one continuous picture, the platform computes what no single app can."},
+      does:{el:"Το Maritime Health Intelligence Engine (MHIE) διαβάζει όλο τον κύκλο ζωής· ο δείκτης Total Cost of Crew Health (TCCH) απαντά «πόσο κοστίζει συνολικά η υγεία ενός πληρώματος».",en:"The Maritime Health Intelligence Engine (MHIE) reads the whole lifecycle; the Total Cost of Crew Health (TCCH) answers “what a crew health really costs”."},
+      steps:[{el:"PEME → TPA → on-board → post-medical, όλα στην ίδια ραχοκοκαλιά.",en:"PEME → TPA → on-board → post-medical, all on the same backbone."},{el:"Το 360° τα δείχνει ως μία γραμμή ζωής ανά ναυτικό.",en:"360° shows them as one lifeline per seafarer."},{el:"Από κει βγαίνει το συνολικό κόστος υγείας — που κανείς άλλος δεν έχει.",en:"From there comes the total health cost — which no one else has."}],
+      result:{el:"Data moat 7+ ετών (30.000+ PEME, 11.000+ TPA μέλη) — αδύνατο να αντιγραφεί.",en:"A 7+ year data moat (30,000+ PEME, 11,000+ TPA members) — impossible to copy."}}
    ]},
 
  mcl:{ac:"#12A0A6",acw:"#E4F4F5",dot:"#12A0A6",
@@ -284,7 +310,7 @@ var GUIDE={
       does:{el:"Είναι το σημείο εισόδου — μία κάρτα ανά προϊόν/module.",en:"It's the entry point — one card per product/module."},
       steps:[{el:"Δες τις 3 ζώνες από πάνω προς τα κάτω.",en:"Scan the 3 zones top to bottom."},{el:"Κλικ σε μια κάρτα προϊόντος για να το ανοίξεις.",en:"Click a product card to open it."},{el:"Επιστροφή εδώ με το «◄ MCL» από οποιαδήποτε εφαρμογή.",en:"Come back here with “◄ MCL” from any app."}],
       result:{el:"Φτάνεις σε οποιοδήποτε εργαλείο με ένα κλικ.",en:"You reach any tool in one click."},
-      open:{href:"mcl-shell-v89.html",l:{el:"Άνοιξε το MCL",en:"Open MCL"}}},
+      open:{href:"mcl-shell-v91.html",l:{el:"Άνοιξε το MCL",en:"Open MCL"}}},
      {icon:"📦",t:{el:"Ζώνη Products (4 προϊόντα)",en:"Products zone (4 products)"},
       see:{el:"Τέσσερις κάρτες: Next2Peme, Next2ShipCare, Next2PostMed, Next2Care (Polaris).",en:"Four cards: Next2Peme, Next2ShipCare, Next2PostMed, Next2Care (Polaris)."},
       does:{el:"Κάθε κάρτα ανοίγει το αντίστοιχο προϊόν (episodic ή continuous κάλυψη).",en:"Each card opens the matching product (episodic or continuous cover)."},
@@ -314,7 +340,7 @@ var GUIDE={
       does:{el:"Είναι η κεντrική λίστα όλων των ενεργών PEME.",en:"It's the central list of all active PEMEs."},
       steps:[{el:"Γράψε στο search (όνομα, Seafarer ID, principal, code) για να φιλτράρεις.",en:"Type in search (name, Seafarer ID, principal, code) to filter."},{el:"Κλικ σε κεφαλίδα στήλης για ταξινόμηση ↑/↓.",en:"Click a column header to sort ↑/↓."},{el:"Φίλτρα Stage/Priority για στόχευση· Reset για καθάρισμα.",en:"Use Stage/Priority filters to narrow; Reset to clear."},{el:"Κλικ σε οποιαδήποτε γραμμή → ανοίγει η κάρτα του ναυτικού.",en:"Click any row → opens that seafarer's card."}],
       result:{el:"Βρίσκεις κάθε υπόθεση σε δευτερόλεπτα.",en:"You find any case in seconds."},
-      open:{href:"next2peme-console-v89.html",l:{el:"Άνοιξε το Peme",en:"Open Peme"}}},
+      open:{href:"next2peme-console-v91.html",l:{el:"Άνοιξε το Peme",en:"Open Peme"}}},
      {icon:"🆕",t:{el:"New Seafarer (εγγραφή)",en:"New Seafarer (registration)"},
       see:{el:"Φόρμα καταχώρισης στο μενού Operations: στοιχεία ναυτικού + δικαιολογητικά προς σκανάρισμα.",en:"A registration form under Operations: seafarer details + intake documents to scan."},
       does:{el:"Είναι το σημείο εισόδου της ροής — δημιουργεί το One Seafarer ID for life.",en:"It's the entry point of the flow — it creates the One Seafarer ID for life."},
@@ -384,7 +410,7 @@ var GUIDE={
       does:{el:"Ενοποιεί ό,τι ξέρουμε γι' αυτόν από όλα τα προϊόντα — μία εικόνα.",en:"Unifies everything we know about them across all products — one picture."},
       steps:[{el:"Άνοιξε το 360° από το MCL ή από την κάρτα του (sample).",en:"Open 360° from MCL or from their card (sample)."},{el:"Δες πάνω την ταυτότητα & το status FIT.",en:"See identity & FIT status up top."}],
       result:{el:"Καταλαβαίνεις τον ναυτικό ολιστικά, όχι κομμάτι-κομμάτι.",en:"You understand the seafarer holistically, not piecemeal."},
-      open:{href:"seafarer-360-folder-v89.html",l:{el:"Άνοιξε το 360°",en:"Open 360°"}}},
+      open:{href:"seafarer-360-folder-v91.html",l:{el:"Άνοιξε το 360°",en:"Open 360°"}}},
      {icon:"🧾",t:{el:"Header — ταυτότητα & FIT",en:"Header — identity & FIT"},
       see:{el:"Πάνω: όνομα, Seafarer ID, principal, και το κλινικό status (π.χ. FIT FOR SEA DUTY · 2026).",en:"Top: name, Seafarer ID, principal, and clinical status (e.g. FIT FOR SEA DUTY · 2026)."},
       does:{el:"Δίνει άμεση απάντηση «είναι ικανός;» χωρίς να ανοίξεις ιατρικά.",en:"Answers “is he fit?” instantly without opening medical records."},
@@ -419,7 +445,7 @@ var GUIDE={
       does:{el:"Κρατά όλα τα έγγραφα του group οργανωμένα κατά κατάσταση.",en:"Keeps all group documents organised by status."},
       steps:[{el:"Διάλεξε view (All/Pending/Signed/Archived).",en:"Pick a view (All/Pending/Signed/Archived)."},{el:"Κλικ σε κεφαλίδα για ταξινόμηση.",en:"Click a header to sort."}],
       result:{el:"Κάθε έγγραφο έχει μία θέση και μία κατάσταση.",en:"Every document has one place and one status."},
-      open:{href:"next2dms-v89.html",l:{el:"Άνοιξε το DMS",en:"Open DMS"}}},
+      open:{href:"next2dms-v91.html",l:{el:"Άνοιξε το DMS",en:"Open DMS"}}},
      {icon:"🔌",t:{el:"Sources (συνδεδεμένα προϊόντα)",en:"Sources (connected products)"},
       see:{el:"Λίστα πηγών: Next2Peme, Next2Care, Next2PostMed, Next2ShipCare — με μετρητή εγγράφων.",en:"A list of sources: Next2Peme, Next2Care, Next2PostMed, Next2ShipCare — each with a document count."},
       does:{el:"Δείχνει από ποιο προϊόν γεννήθηκε κάθε έγγραφο.",en:"Shows which product each document was born from."},
@@ -519,6 +545,40 @@ function sectionCard(s,ac,acw){
     +'</div>'+tip+open+'</article>';
 }
 
+function ecoDiagram(){
+ var e=lang==='el',T=function(a,b){return e?a:b;};
+ var mk=function(x,y,w,h,fill,stroke,tcol,ic,nm,sub){
+   var o='<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="13" fill="'+fill+'" stroke="'+stroke+'" stroke-width="2"/>';
+   o+='<text x="'+(x+w/2)+'" y="'+(y+27)+'" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="'+tcol+'">'+ic+' '+nm+'</text>';
+   if(sub)o+='<text x="'+(x+w/2)+'" y="'+(y+46)+'" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11.5" fill="#64748b">'+sub+'</text>';
+   return o;};
+ var lines=function(x,y,arr){return arr.map(function(t,i){return '<text x="'+x+'" y="'+(y+i*21)+'" font-family="system-ui,sans-serif" font-size="12" fill="#475569">'+t+'</text>';}).join('');};
+ var W=210, PR=[
+  {x:30,f:'#EAF1FE',c:'#2563EB',ic:'🩺',n:'Next2Peme',s:T('PEME πριν το μπάρκο','PEME before boarding')},
+  {x:262,f:'#EEF3F8',c:'#5B8DB8',ic:'📡',n:'Next2ShipCare',s:T('on-board τηλεϊατρική','on-board telemedicine')},
+  {x:494,f:'#FBEAE9',c:'#C0392B',ic:'⚖️',n:'Next2PostMed',s:T('post-medical υπόθεση','post-medical case')},
+  {x:726,f:'#E7F5F1',c:'#159C7A',ic:'🛡️',n:'Next2Care',s:T('κάλυψη + οικογένεια','cover + family')}];
+ var svg='<svg viewBox="0 0 966 700" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">';
+ svg+='<defs><marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0 0L7 3L0 6z" fill="#94a3b8"/></marker><marker id="ahp" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0 0L7 3L0 6z" fill="#0E8C93"/></marker></defs>';
+ svg+=mk(333,18,300,62,'#EEECFB','#5B6CB8','#4a4fb0','🧭','Next2MCL',T('ο κόμβος — σε πάει παντού','the hub — takes you everywhere'));
+ PR.forEach(function(p){svg+=mk(p.x,170,W,88,p.f,p.c,p.c,p.ic,p.n,p.s);});
+ PR.forEach(function(p){svg+='<path d="M483 80 C483 132,'+(p.x+W/2)+' 132,'+(p.x+W/2)+' 168" fill="none" stroke="#cbd5e1" stroke-width="1.6" marker-end="url(#ah)"/>';});
+ svg+='<text x="648" y="120" font-family="system-ui" font-size="11" fill="#94a3b8">'+T('πλοήγηση','navigation')+'</text>';
+ PR.forEach(function(p){svg+='<path d="M'+(p.x+W/2)+' 258 L'+(p.x+W/2)+' 388" fill="none" stroke="#cbd5e1" stroke-width="1.6" marker-end="url(#ah)"/>';});
+ svg+='<text x="483" y="330" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="600" fill="#334155">'+T('δομημένο record → 360°     ·     αρχεία → DMS','structured record → 360°     ·     files → DMS')+'</text>';
+ svg+='<rect x="30" y="394" width="906" height="286" rx="16" fill="#F8FAFC" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="6 5"/>';
+ svg+='<text x="48" y="420" font-family="system-ui" font-size="12" font-weight="700" letter-spacing="1.5" fill="#64748b">SHARED CORE · CBMS</text>';
+ svg+=mk(52,438,420,222,'#FBF6E8','#C9A227','#a07d12','🗂️','Seafarer 360°','');
+ svg+=lines(80,490,[T('▸ ένας φάκελος ανά πρόσωπο','▸ one folder per person'),T('▸ δομημένο record + ιστορικό','▸ structured record + history'),T('▸ κεντρικό δίκτυο παρόχων','▸ central provider network'),T('▸ One Seafarer ID (ναυτικός + οικογένεια)','▸ One Seafarer ID (seafarer + family)'),T('▸ δείχνει references — ποτέ copies','▸ shows references — never copies')]);
+ svg+=mk(494,438,420,222,'#EEF1F3','#556270','#3f4b57','📄','Next2DMS','');
+ svg+=lines(522,490,[T('▸ ΟΛΑ τα έγγραφα ζουν εδώ','▸ ALL documents live here'),T('▸ single source of truth','▸ single source of truth'),T('▸ immutable κωδικός + εκδόσεις','▸ immutable code + versions'),T('▸ no-copy στα ιατρικά','▸ no-copy on medical'),T('▸ ο φάκελος αθροίζει όλες τις πηγές','▸ folder aggregates all sources')]);
+ svg+='<path d="M472 546 L494 546" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#ah)"/><path d="M494 560 L472 560" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#ah)"/>';
+ svg+='<path d="M180 394 C180 300,150 300,150 258" fill="none" stroke="#0E8C93" stroke-width="1.7" stroke-dasharray="5 4" marker-end="url(#ahp)"/>';
+ svg+='<text x="60" y="356" font-family="system-ui" font-size="11" font-weight="700" fill="#0E8C93">'+T('οι εφαρμογές τραβούν:','apps pull:')+'</text>';
+ svg+='<text x="60" y="371" font-family="system-ui" font-size="11" font-weight="700" fill="#0E8C93">'+T('δίκτυο + One ID','network + One ID')+'</text>';
+ svg+='</svg>';
+ return '<div class="ecowrap"><div class="ecoh">🗺️ '+T('Πώς συνδέονται όλα','How it all connects')+'</div>'+svg+'<div class="ecocap">'+T('Τα βελάκια δείχνουν ποιος στέλνει τι πού. Πλήρης ερμηνεία στις κάρτες πιο κάτω.','Arrows show who sends what where. Full interpretation in the cards below.')+'</div></div>';
+}
 function renderContent(){
   var g=GUIDE[active], el=document.getElementById("content");
   var intro='<section class="appintro" style="background:linear-gradient(135deg,'+g.ac+',#071E33 160%)">'
@@ -535,7 +595,7 @@ function renderContent(){
   } else {
     body=g.sections.map(function(s){return sectionCard(s,g.ac,g.acw);}).join("");
   }
-  el.innerHTML=intro+body;
+  el.innerHTML=intro+(active==="overview"?ecoDiagram():"")+body;
   window.scrollTo({top:0,behavior:(matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth')});
 }
 
