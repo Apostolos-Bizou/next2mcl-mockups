@@ -4,7 +4,7 @@
 <script src="auth-guard.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Next2MCL — Οδηγός Χρήσης / User Guide</title>
+<title>Next2MCL — Οδηγός Χρήσης / User Guide · v0.2</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -86,6 +86,14 @@ ol.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:26px
 .open:hover{background:var(--ac);color:#fff}
 .tip{display:flex;gap:10px;align-items:flex-start;background:#FFF8EC;border:1px solid #F3DCA8;border-radius:11px;padding:12px 14px;margin-top:14px;font-size:13.5px;color:#7A5B12}
 .tip.lock{background:#FDECEA;border-color:#F4C0BA;color:#8C332A}
+.blk.src{grid-column:1/-1;background:#F5F1FA;border-color:#E3D8F0}
+.blk.src .lab{color:#7B4FA8}
+.srclist{list-style:none;display:grid;gap:8px}
+.srclist li{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px}
+.srclist a{display:inline-flex;align-items:center;gap:5px;font-family:var(--ff-d);font-weight:600;font-size:13.5px;color:#6A3E8C;text-decoration:none;border-bottom:1.5px solid #D8C6EC}
+.srclist a:hover{color:#4E2A6B;border-color:#6A3E8C}
+.srclist a .ext{font-size:11px;opacity:.75}
+.srclist .srcnote{font-size:12px;color:var(--ink-3,#8A8178)}
 .tip b{font-weight:700}
 code,.mono{font-family:var(--ff-m);font-size:.9em;background:var(--mist);padding:1px 6px;border-radius:5px;color:var(--navy)}
 
@@ -142,7 +150,7 @@ code,.mono{font-family:var(--ff-m);font-size:.9em;background:var(--mist);padding
   <div id="content"></div>
 
   <div class="foot">
-    <span data-i18n="foot">Next2MCL — Οδηγός Χρήσης · mockup (fake data)</span> · <span class="mono">mcl-guide-v0.1</span>
+    <span data-i18n="foot">Next2MCL — Οδηγός Χρήσης · mockup (fake data)</span> · <span class="mono">mcl-guide · v0.2</span>
   </div>
 </main>
 
@@ -164,13 +172,85 @@ var UI={
   "does":{el:"Τι κάνει",en:"What it does"},
   "steps":{el:"Βήμα-βήμα",en:"Step by step"},
   "result":{el:"Αποτέλεσμα",en:"Result"},
+  "sources":{el:"Πηγές & τεκμηρίωση",en:"Sources & evidence"},
   "open":{el:"Άνοιξέ το",en:"Open it"}
 };
 function T(k){return L(UI[k]);}
 
 /* ============================ GUIDE CONTENT ============================ */
 var GUIDE={
- order:["overview","mcl","peme","s360","dms","glossary"],
+ order:["overview","mcl","peme","s360","dms","legal","glossary"],
+ legal:{ac:"#7B4FA8",acw:"#F1E9F7",dot:"#7B4FA8",
+   tab:{el:"Νομικό & Πηγές",en:"Legal & Sources"},icon:"⚖️",
+   title:{el:"Γιατί το κάνουμε έτσι — νομικό & κωδικοποιητικό υπόβαθρο",en:"Why we do it this way — legal & coding basis"},
+   intro:{el:"Κάθε κανόνας που επιβάλλει η πλατφόρμα στηρίζεται σε πηγή: νόμο, απόφαση του Ανωτάτου, ή διεθνές πρότυπο. Εδώ τεκμηριώνουμε το «γιατί» — με συνδέσμους στις πραγματικές πηγές, ώστε κάθε βήμα να αποδεικνύεται.",
+          en:"Every rule the platform enforces rests on a source: a statute, a Supreme Court ruling, or an international standard. Here we document the “why” — with links to the actual sources, so every step is provable."},
+   who:[{el:"Νομική ομάδα",en:"Legal team"},{el:"Κλινική / Coding",en:"Clinical / Coding"},{el:"Principal / P&I",en:"Principal / P&I"}],
+   sections:[
+     {icon:"⏱️",t:{el:"Προθεσμίες: 3 ημέρες · 120 · 240",en:"Statutory clocks: 3 days · 120 · 240"},
+      see:{el:"Το PostMed ξεκινά ρολόγια: 3 εργάσιμες για PEME report, 120 ημέρες για τελική εκτίμηση, 240 ημέρες μέγιστο.",en:"PostMed starts clocks: 3 working days for the PEME report, 120 days for a final assessment, 240 days maximum."},
+      does:{el:"Επιβάλλει τις προθεσμίες του POEA-SEC. Λήξη των 120/240 χωρίς τελική & οριστική εκτίμηση → η προσωρινή ολική αναπηρία γίνεται μόνιμη & ολική «by operation of law».",en:"Enforces the POEA-SEC deadlines. If 120/240 lapse without a final & definite assessment, temporary total disability becomes permanent & total “by operation of law”."},
+      steps:[{el:"3 εργάσιμες: report στον company-designated physician — αλλιώς forfeiture του δικαιώματος.",en:"3 working days: report to the company-designated physician — else forfeiture of the claim."},{el:"120 ημέρες: sickness allowance (βασικός μισθός) ενόσω τρέχει η θεραπεία.",en:"120 days: sickness allowance (basic wage) while treatment runs."},{el:"240 ημέρες: μέγιστο, μόνο με δικαιολογημένη συνέχιση θεραπείας.",en:"240 days: maximum, only with justified continued treatment."}],
+      result:{el:"Οι νόμιμες προθεσμίες προστατεύονται αυτόματα, όχι με χειροκίνητο tracking.",en:"The statutory deadlines are protected automatically, not by manual tracking."},
+      sources:[
+        {t:{el:"POEA-SEC §20 — Standard Terms (κανόνες αναπηρίας/ασθενείας)",en:"POEA-SEC §20 — Standard Terms (disability/sickness rules)"},href:"https://www.respicio.ph/bar/2025/labor-law-and-social-legislation/social-legislation/disability-and-death-benefits/rules-on-referral-to-third-doctor"},
+        {t:{el:"Elburg Shipmanagement v. Quiogue, G.R. No. 211882 (2015) — κανόνας 120/240",en:"Elburg Shipmanagement v. Quiogue, G.R. No. 211882 (2015) — the 120/240 rule"},href:"https://businessmirror.com.ph/2024/07/19/third-doctor-assessment-in-seafarers-claims-should-not-be-limited-to-the-grading-system-of-the-poea-sec-or-cba/"},
+        {t:{el:"Vergara v. Hammonia / Elburg — ανάλυση τελικής εκτίμησης",en:"Vergara v. Hammonia / Elburg — final-assessment analysis"},href:"https://paulinoungosiii.com/an-assessment-reflective-of-the-seafarers-medical-condition/"}
+      ]},
+     {icon:"📋",t:{el:"CFMA: τελική & οριστική εκτίμηση",en:"CFMA: final & definite assessment"},
+      see:{el:"Το CFMA quality gate ελέγχει αν η εκτίμηση του company-designated physician είναι πράγματι τελική & οριστική.",en:"The CFMA quality gate checks whether the company-designated physician's assessment is truly final & definite."},
+      does:{el:"Μια interim / «συνέχισε rehab» / ενδεικτική βαθμολόγηση ΔΕΝ σταματά το ρολόι — η νομολογία την θεωρεί μη-οριστική, άρα το 120/240 συνεχίζει.",en:"An interim / “continue rehab” / suggestive grading does NOT stop the clock — jurisprudence treats it as non-definite, so 120/240 keeps running."},
+      steps:[{el:"Οριστική = σαφές fit ή τελικός βαθμός, work-relatedness, χωρίς εκκρεμότητα.",en:"Definite = clear fit or final grade, work-relatedness, nothing pending."},{el:"Αν λείπει οτιδήποτε → «flag as interim» → το ρολόι τρέχει.",en:"If anything is missing → “flag as interim” → the clock runs."},{el:"Λήξη χωρίς οριστική → μόνιμη ολική αναπηρία.",en:"Lapse without a definite one → permanent total disability."}],
+      result:{el:"Αποφεύγουμε το πιο συχνό λάθος που χάνει υποθέσεις στα δικαστήρια.",en:"We avoid the single most common error that loses cases in court."},
+      sources:[
+        {t:{el:"Abundo v. Magsaysay Maritime, G.R. No. 222348 (2019) — interim ≠ τελική",en:"Abundo v. Magsaysay Maritime, G.R. No. 222348 (2019) — interim ≠ final"},href:"https://ebvlaw.com/2020/05/19/third-doctor-referral-is-not-applicable-if-there-is-no-definitive-disability-assessment-by-the-company-designated-physician/"},
+        {t:{el:"Kestrel Shipping v. Munar, G.R. No. 198501 — απουσία οριστικής → PTD",en:"Kestrel Shipping v. Munar, G.R. No. 198501 — no definite assessment → PTD"},href:"https://paulinoungosiii.com/an-assessment-reflective-of-the-seafarers-medical-condition/"}
+      ]},
+     {icon:"👥",t:{el:"Τρίτος γιατρός: υποχρεωτική παραπομπή",en:"Third doctor: mandatory referral"},
+      see:{el:"Όταν ο ναυτικός αμφισβητεί την εκτίμηση, ανοίγει η διαδικασία τρίτου γιατρού.",en:"When the seafarer contests the assessment, the third-doctor procedure opens."},
+      does:{el:"Η παραπομπή είναι υποχρεωτική. Ο ναυτικός οφείλει να την κινήσει με γραπτό αίτημα + report δικού του γιατρού· η απόφαση του τρίτου γιατρού είναι δεσμευτική και για τα δύο μέρη.",en:"Referral is mandatory. The seafarer must initiate it with a written request + his own doctor's report; the third doctor's decision is binding on both parties."},
+      steps:[{el:"Ο ναυτικός κινεί (η ευθύνη έναρξης είναι δική του).",en:"The seafarer initiates (the burden to start is his)."},{el:"Από κοινού ορισμός τρίτου γιατρού.",en:"Third doctor jointly agreed."},{el:"Χωρίς έγκυρη παραπομπή → υπερισχύει ο company-designated physician.",en:"Without a valid referral → the company-designated physician prevails."}],
+      result:{el:"Σωστή σειρά & ευθύνες, όπως τις ορίζει η νομολογία.",en:"Correct sequence & responsibilities, exactly as jurisprudence defines them."},
+      sources:[
+        {t:{el:"POEA-SEC §20(A)(3) + κανόνες παραπομπής τρίτου γιατρού",en:"POEA-SEC §20(A)(3) + third-doctor referral rules"},href:"https://www.respicio.ph/bar/2025/labor-law-and-social-legislation/social-legislation/disability-and-death-benefits/rules-on-referral-to-third-doctor"},
+        {t:{el:"Sunit v. OSM Maritime, G.R. No. 223035 (2017) — ο τρίτος γιατρός πρέπει να δώσει οριστική εκτίμηση",en:"Sunit v. OSM Maritime, G.R. No. 223035 (2017) — the third doctor must give a definite assessment"},href:"https://www.alburolaw.com/the-third-doctor-rule/"},
+        {t:{el:"Μη-παραπομπή = λόγος απόρριψης της αξίωσης (SC)",en:"Non-referral = cause to dismiss the claim (SC)"},href:"https://delrosariolaw.com/en/e-library/philippines-shipping-update/189-supreme-court-rules-non-referral-to-a-third-doctor-is-cause-for-dismissal-of-seafarers-claim"}
+      ]},
+     {icon:"⭐",t:{el:"Χρονικά όρια τρίτου γιατρού — Bunayog v. Foscon (SC En Banc, 2023)",en:"Third-doctor time windows — Bunayog v. Foscon (SC En Banc, 2023)"},
+      see:{el:"Τα windows του third-doctor (10 / 15 / 30 ημέρες) δεν είναι αυθαίρετα — τα όρισε το Ανώτατο Δικαστήριο.",en:"The third-doctor windows (10 / 15 / 30 days) are not arbitrary — the Supreme Court set them."},
+      does:{el:"Στην Bunayog v. Foscon (En Banc, 2023) το Ανώτατο έθεσε: ο ναυτικός δηλώνει εντός «reasonable period»· ο εργοδότης οφείλει να συναινέσει εντός 10 ημερών (πέραν → παράβαση)· 15 ημέρες για εξασφάλιση τρίτου γιατρού· 30 ημέρες για την επανεκτίμηση.",en:"In Bunayog v. Foscon (En Banc, 2023) the Supreme Court held: the seafarer signifies within a “reasonable period”; the employer must assent within 10 days (beyond → violation); 15 days to secure the third doctor; 30 days for the reassessment."},
+      steps:[{el:"Signify: «reasonable period» (όχι σταθερός αριθμός).",en:"Signify: “reasonable period” (not a fixed number)."},{el:"Employer assent: 10 ημέρες.",en:"Employer assent: 10 days."},{el:"Secure third doctor: 15 ημέρες · Reassessment: 30 ημέρες.",en:"Secure third doctor: 15 days · Reassessment: 30 days."}],
+      result:{el:"Τα SLA μας ευθυγραμμίζονται με controlling Supreme Court guideline — όχι εικασία.",en:"Our SLAs align with a controlling Supreme Court guideline — not guesswork."},
+      tip:{el:"Verification finding (2026-07-15): τα αρχικά μας 15/10/30 αναδομούνται ώστε να ακολουθούν ακριβώς την Bunayog (signify «reasonable period» · assent 10 · secure 15 · reassessment 30).",en:"Verification finding (2026-07-15): our initial 15/10/30 is being restructured to follow Bunayog exactly (signify “reasonable period” · assent 10 · secure 15 · reassessment 30)."},
+      sources:[
+        {t:{el:"Bunayog v. Foscon Shipmanagement, G.R. No. 253480 — επίσημη σελίδα Ανωτάτου (En Banc, 25 Απρ 2023)",en:"Bunayog v. Foscon Shipmanagement, G.R. No. 253480 — official Supreme Court page (En Banc, 25 Apr 2023)"},href:"https://sc.judiciary.gov.ph/sc-sets-guidelines-in-cases-where-seafarer-claiming-disability-benefits-requests-third-doctor-referral/"},
+        {t:{el:"DivinaLaw — ανάλυση των guidelines της Bunayog",en:"DivinaLaw — analysis of the Bunayog guidelines"},href:"https://www.divinalaw.com/dose-of-law/guidelines-on-seafarers-claim-for-disability-benefits-3rd-doctor-referral/"},
+        {t:{el:"NYK-Fil / Ilustricimo — «δεν υπάρχει σταθερή προθεσμία» (πλαίσιο «reasonable time»)",en:"NYK-Fil / Ilustricimo — “no fixed period” (the “reasonable time” backdrop)"},href:"https://cebudailynews.inquirer.net/200190/of-the-third-doctor-referral-in-seafarers-cases"}
+      ]},
+     {icon:"💶",t:{el:"Sickness allowance & Quitclaim (QMA / SW R&R)",en:"Sickness allowance & Quitclaim (QMA / SW R&R)"},
+      see:{el:"Το Financial track δένει το sickness allowance με το 120-day cap· το Legal κλείνει με έγκυρη quitclaim.",en:"The Financial track ties sickness allowance to the 120-day cap; the Legal track closes with a valid quitclaim."},
+      does:{el:"Sickness allowance = βασικός μισθός, μηνιαία, ≤120 ημέρες. Η quitclaim (QMA / Settlement W. R&R) πρέπει να είναι εκούσια, με εύλογο αντάλλαγμα, σαφείς όρους, χωρίς απάτη/εξαναγκασμό — αλλιώς ακυρώνεται.",en:"Sickness allowance = basic wage, monthly, ≤120 days. The quitclaim (QMA / Settlement W. R&R) must be voluntary, with reasonable consideration, clear terms, no fraud/coercion — else it is void."},
+      steps:[{el:"Allowance: βασικός μισθός × μήνες, cap στους 4 μήνες (120 ημ.).",en:"Allowance: basic wage × months, capped at 4 months (120 days)."},{el:"Validity checklist: εκούσια · εύλογο αντάλλαγμα · σαφείς όροι.",en:"Validity checklist: voluntary · reasonable consideration · clear terms."},{el:"e-signature με ισχύ RA 8792.",en:"e-signature with RA 8792 validity."}],
+      result:{el:"Οικονομικό & νομικό κλείσιμο σύμφωνα με τον νόμο.",en:"Financial & legal closure in line with the law."},
+      sources:[
+        {t:{el:"POEA-SEC §20(A)(3) — sickness allowance ≤120 ημ.",en:"POEA-SEC §20(A)(3) — sickness allowance ≤120 days"},href:"https://www.respicio.ph/bar/2025/labor-law-and-social-legislation/social-legislation/disability-and-death-benefits/rules-on-referral-to-third-doctor"},
+        {t:{el:"Εγκυρότητα quitclaim — πάγια νομολογία (πλαίσιο)",en:"Quitclaim validity — settled jurisprudence (context)"},href:"https://delrosariolaw.com/en/e-library/philippines-shipping-update/189-supreme-court-rules-non-referral-to-a-third-doctor-is-cause-for-dismissal-of-seafarers-claim"},
+        {t:{el:"RA 8792 (E-Commerce Act) — νομική ισχύς ηλεκτρονικών υπογραφών",en:"RA 8792 (E-Commerce Act) — legal validity of e-signatures"},href:"https://www.officialgazette.gov.ph/2000/06/14/republic-act-no-8792/"}
+      ]},
+     {icon:"🔬",t:{el:"Κωδικοποίηση: LOINC / CPT / CDT / ICD-10",en:"Coding: LOINC / CPT / CDT / ICD-10"},
+      see:{el:"Κάθε εξέταση φέρει κωδικό LOINC/CPT, κάθε εύρημα κωδικό ICD-10 — διεθνή πρότυπα.",en:"Every test carries a LOINC/CPT code, every finding an ICD-10 code — international standards."},
+      does:{el:"Interoperability από την αρχή (θεμέλιο για MHIE/TCCH analytics). Επίπεδο επαλήθευσης: ICD-10 verified FY2026 (authoritative)· LOINC/CPT/CDT proposed, υπό clinical review.",en:"Interoperability from day one (the foundation for MHIE/TCCH analytics). Verification level: ICD-10 verified FY2026 (authoritative); LOINC/CPT/CDT proposed, under clinical review."},
+      steps:[{el:"Εξέταση → LOINC (εργαστήριο/vitals) ή CPT (imaging/specialty) · οδοντιατρικά → CDT.",en:"Test → LOINC (lab/vitals) or CPT (imaging/specialty) · dental → CDT."},{el:"Εύρημα → ICD-10-CM · encounter → Z02.1 (PEME).",en:"Finding → ICD-10-CM · encounter → Z02.1 (PEME)."},{el:"Το sign-off worksheet καταγράφει proposed vs verified ανά κώδικα.",en:"The sign-off worksheet records proposed vs verified per code."}],
+      result:{el:"Τα δεδομένα «μιλούν» με κάθε άλλο σύστημα υγείας — και αποδεικνύεται από πού προκύπτει κάθε κώδικας.",en:"The data speaks to any other health system — and it's provable where each code comes from."},
+      sources:[
+        {t:{el:"LOINC (Regenstrief) — πρότυπο εξετάσεων",en:"LOINC (Regenstrief) — test standard"},href:"https://loinc.org/"},
+        {t:{el:"CPT (AMA) — διαδικασίες",en:"CPT (AMA) — procedures"},href:"https://www.ama-assn.org/practice-management/cpt"},
+        {t:{el:"CDT (ADA) — οδοντιατρικοί κωδικοί (π.χ. D0150)",en:"CDT (ADA) — dental codes (e.g. D0150)"},href:"https://www.ada.org/publications/cdt"},
+        {t:{el:"ICD-10-CM FY2026 (CMS) — διαγνώσεις (tool-validated)",en:"ICD-10-CM FY2026 (CMS) — diagnoses (tool-validated)"},href:"https://www.cms.gov/medicare/coding-billing/icd-10-codes"},
+        {t:{el:"Τα δικά μας verification worksheets (repo)",en:"Our verification worksheets (repo)"},href:"https://github.com/Apostolos-Bizou/next2mcl-mockups/tree/main/verification"}
+      ]}
+   ]},
+
  overview:{ac:"#0E8C93",acw:"#E6F4F5",dot:"#0E8C93",
    tab:{el:"Επισκόπηση",en:"Overview"},icon:"🧭",
    title:{el:"Το οικοσύστημα Next2MCL",en:"The Next2MCL ecosystem"},
@@ -423,6 +503,7 @@ function renderTabs(){
 
 function sectionCard(s,ac,acw){
   var steps=(s.steps||[]).map(function(st){return '<li>'+esc(L(st))+'</li>';}).join("");
+  var src=(s.sources&&s.sources.length)?'<div class="blk src"><div class="lab">📚 '+T("sources")+'</div><ul class="srclist">'+s.sources.map(function(x){return '<li><a href="'+x.href+'" target="_blank" rel="noopener">'+esc(L(x.t))+'<span class="ext">↗</span></a>'+(x.note?'<span class="srcnote">'+esc(L(x.note))+'</span>':'')+'</li>';}).join("")+'</ul></div>':'';
   var open=s.open?'<a class="open" href="'+s.open.href+'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'+esc(L(s.open.l))+'</a>':'';
   var tip=s.tip?'<div class="tip'+(s.tiplock?' lock':'')+'"><span>💡</span><div>'+esc(L(s.tip))+'</div></div>':'';
   return '<article class="card" style="--ac:'+ac+';--acw:'+acw+'">'
@@ -432,6 +513,7 @@ function sectionCard(s,ac,acw){
       +'<div class="blk does"><div class="lab">⚙ '+T("does")+'</div><p>'+esc(L(s.does))+'</p></div>'
       +'<div class="blk"><div class="lab" style="color:'+ac+'">🔢 '+T("steps")+'</div><ol class="steps" style="--ac:'+ac+'">'+steps+'</ol></div>'
       +'<div class="blk res"><div class="lab">✓ '+T("result")+'</div><p>'+esc(L(s.result))+'</p></div>'
+      +src
     +'</div>'+tip+open+'</article>';
 }
 
