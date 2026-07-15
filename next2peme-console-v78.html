@@ -4,7 +4,7 @@
 <script src="auth-guard.js"></script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Next2Peme Console v77 · full PEME journey (Mockup)</title>
+<title>Next2Peme Console v78 · full PEME journey (Mockup)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -392,7 +392,7 @@ textarea.inp{min-height:78px;resize:vertical}
 </style>
 </head>
 <body>
-<div class="mocktag">v77 · MOCKUP · FAKE DATA</div>
+<div class="mocktag">v78 · MOCKUP · FAKE DATA</div>
 
 <div class="app">
   <aside class="side">
@@ -432,8 +432,8 @@ textarea.inp{min-height:78px;resize:vertical}
   <div class="main">
     <header class="top">
       <div class="crumb">Next2Peme · <b id="crumbView">Case Board</b></div>
-      <a class="ecolink" href="mcl-shell-v77.html" title="Back to MCL">◄ MCL</a>
-      <a class="ecolink alt" href="next2dms-v77.html?tenant=next2mcl&source=peme&q=SF-PH-039281" title="Open this seafarer's documents in Next2DMS">📄 Documents (DMS)</a>
+      <a class="ecolink" href="mcl-shell-v78.html" title="Back to MCL">◄ MCL</a>
+      <a class="ecolink alt" href="next2dms-v78.html?tenant=next2mcl&source=peme&q=SF-PH-039281" title="Open this seafarer's documents in Next2DMS">📄 Documents (DMS)</a>
       <div class="grow"></div>
       <div class="langtog" id="langTog"><button data-lang="en" class="on">EN</button><button data-lang="el">EL</button></div>
       <div class="whoami"><div class="av" id="whoAv">FD</div><div><div class="nm" id="whoName">Frontdesk</div><div class="rl" id="whoRole">Reception</div></div></div>
@@ -452,7 +452,7 @@ const SEAFARERS=[
    nationality:{en:"Filipino",el:"Φιλιππινέζος"},civil:{en:"Married",el:"Έγγαμος"},birthplace:"Cebu City",
    sirb:"SB-2019-448120",passport:"P1234567A",phone:"+63 917 555 0142",email:"juan.santos@crewmail.ph",
    address:"Lapu-Lapu City, Cebu, PH",kin:{name:"Maria Santos",rel:{en:"Wife",el:"Σύζυγος"},phone:"+63 917 555 0199"},
-   principal:"Crossworld Marine",agency:"Manila Crewing Corp.",vessel:"MV Aegean Trader",
+   principal:"Crossworld Marine",agency:"Manila Crewing Corp.",vessel:"MV Pacific Trader",
    bloodType:"O+",allergies:{en:"None known",el:"Καμία γνωστή"},caseId:"PEME-2026-04127",priority:false},
   {id:"SF-PH-041002",first:"Ramon",middle:"T.",last:"Cruz",initials:"RC",
    rank:{en:"2nd Officer",el:"Β΄ Πλοίαρχος"},age:37,dob:"1988-02-03",sex:{en:"Male",el:"Άνδρας"},
@@ -529,7 +529,7 @@ const PRINTABLES=[
   ["Ishihara Examination Form","Sight"],["Ishihara Certification","Sight"],["Dental Health Examination","Dental"],
   ["Psychological Evaluation","Psych"],["Medical History & Physical Exam Questionnaire","Final Eval"],
   ["Certificate for Service at Sea","Final Eval"],["Crew Endorsement Report","Final Eval"],["Oath of Undertaking","Final Eval"],
-  ["Customer Satisfaction Survey","Seafarer"],["Flag-state certificate (Panama)","Records"]];
+  ["Customer Satisfaction Survey","Seafarer"],["Flag-state certificate","Records"]];
 
 /* ---- PEME Dossier: journey document manifest = identical docs/codes registered in Next2DMS, born per station ---- */
 const PEME_DOSSIER=[
@@ -557,7 +557,7 @@ const PEME_DOSSIER=[
   {st:"Certificates",n:"PEME Certificate",code:"MCL-MAR-PEME-PEC-2026-571667",t:"PEME Certificate",med:true},
   {st:"Certificates",n:"Certificate for Service at Sea",code:"MCL-MAR-PEME-COS-2026-202140",t:"Certificate of Service",med:false},
   {st:"Certificates",n:"Oath of Undertaking",code:"MCL-MAR-PEME-OATH-2026-065838",t:"Oath",med:false},
-  {st:"Records",n:"Flag-state Certificate (Panama)",code:"MCL-MAR-PEME-FLG-2026-329923",t:"Flag-state Certificate",med:false},
+  {st:"Records",n:"Flag-state Certificate",code:"MCL-MAR-PEME-FLG-2026-329923",t:"Flag-state Certificate",med:false},
 ];
 const DOSSTLBL={
   "Intake":["Intake & documents","\u03a0\u03b1\u03c1\u03b1\u03bb\u03b1\u03b2\u03ae & \u03ad\u03b3\u03b3\u03c1\u03b1\u03c6\u03b1"],
@@ -571,11 +571,11 @@ const DOSSTLBL={
   "Certificates":["Certificates","\u03a0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03b9\u03b7\u03c4\u03b9\u03ba\u03ac"],
   "Records":["Records / flag-state","\u0391\u03c1\u03c7\u03b5\u03af\u03b1 / flag-state"]
 };
-const DOS_DL="next2dms-v77.html?tenant=next2mcl&source=peme&q=SF-PH-039281";
+const DOS_DL="next2dms-v78.html?tenant=next2mcl&source=peme&q=SF-PH-039281";
 /* ---- 3b: canonical DMS codes per station report (identical to DMS/360/Dossier) + "filed in DMS" chip ---- */
 const DMSIMG={xray:"MCL-MAR-PEME-IMG-2026-076525",kub:"MCL-MAR-PEME-IMG-2026-507097",ecg:"MCL-MAR-PEME-IMG-2026-119875"};
 const DMSSPEC={sight:"MCL-MAR-PEME-SPEC-2026-777379",hearing:"MCL-MAR-PEME-SPEC-2026-896424",dental:"MCL-MAR-PEME-SPEC-2026-538066",psych:"MCL-MAR-PEME-SPEC-2026-310838"};
-const DMSCERT={"Certificate for Service at Sea":"MCL-MAR-PEME-COS-2026-202140","Crew Endorsement Report":"MCL-MAR-PEME-END-2026-782374","Oath of Undertaking":"MCL-MAR-PEME-OATH-2026-065838","Flag-state certificate (Panama)":"MCL-MAR-PEME-FLG-2026-329923","Medical History & Physical Exam Questionnaire":"MCL-MAR-PEME-PE-2026-829748","Dental Health Examination":"MCL-MAR-PEME-SPEC-2026-538066","Psychological Evaluation":"MCL-MAR-PEME-SPEC-2026-310838","COVID-19 Health Declaration":"MCL-MAR-PEME-DEC-2026-939879","HIV Form":"MCL-MAR-PEME-CNS-2026-865900"};
+const DMSCERT={"Certificate for Service at Sea":"MCL-MAR-PEME-COS-2026-202140","Crew Endorsement Report":"MCL-MAR-PEME-END-2026-782374","Oath of Undertaking":"MCL-MAR-PEME-OATH-2026-065838","Flag-state certificate":"MCL-MAR-PEME-FLG-2026-329923","Medical History & Physical Exam Questionnaire":"MCL-MAR-PEME-PE-2026-829748","Dental Health Examination":"MCL-MAR-PEME-SPEC-2026-538066","Psychological Evaluation":"MCL-MAR-PEME-SPEC-2026-310838","COVID-19 Health Declaration":"MCL-MAR-PEME-DEC-2026-939879","HIV Form":"MCL-MAR-PEME-CNS-2026-865900"};
 function dmsFiled(code){return '<a class="dmsfiled" href="'+DOS_DL+'" title="Next2DMS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="4" rx="1"/><path d="M5 8v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8M10 12h4"/></svg><span>'+(lang==='el'?'\u039a\u03b1\u03c4\u03b1\u03c7\u03c9\u03c1\u03ae\u03b8\u03b7\u03ba\u03b5 \u03c3\u03c4\u03bf Next2DMS':'Filed in Next2DMS')+' \u00b7 '+code+'</span></a>';}
 const DOS_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 2h8l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M14 2v4h4"/></svg>';
 function vDossier(){
@@ -1457,7 +1457,7 @@ function vSeafarerCard(sid){
   const iCon=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5a2 2 0 0 1 2-2h2l2 5-2 1a12 12 0 0 0 5 5l1-2 5 2v2a2 2 0 0 1-2 2A16 16 0 0 1 4 5z"/></svg>`;
   const iMed=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v6c0 4-3.5 7-8 8-4.5-1-8-4-8-8V7z"/><path d="M12 8v6M9 11h6"/></svg>`;
   const iPeme=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h4l2 6 4-12 2 6h6"/></svg>`;
-  const dmsLink=`next2dms-v77.html?tenant=next2mcl&source=peme&q=${s.id}`;
+  const dmsLink=`next2dms-v78.html?tenant=next2mcl&source=peme&q=${s.id}`;
   const pemeKV=c?`${kv(t("sf.stage"),`${STAGES[c.stage].code} · ${L(STAGES[c.stage])}`)}${kv(t("sf.casecode"),caseCode(c),true)}`:kv(t("sf.stage"),lang==='el'?'— καμία ενεργή υπόθεση':'— no active case');
   return `<div class="pagehead"><div class="ey">CBMS · Shared Core · ${t("sf.hh")}</div><h1>${s.first} ${s.last}</h1><p>${lang==='el'?'Πλήρες προφίλ ναυτικού — μία ταυτότητα για μια ζωή (One Seafarer ID).':'Full seafarer profile — one identity for life (One Seafarer ID).'}</p></div>
     ${seafarerHero(s)}
@@ -1494,7 +1494,7 @@ function vNewSeafarer(){
     <div class="card" style="margin-top:14px"><div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2h8l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M14 2v4h4"/></svg></div><h3>${t("sf.docs")} & ${t("sf.work")}</h3></div><div class="cb">
       <div class="grid2">${F("nsSirb",t("sf.sirb"),"SB-2026-000000")}${F("nsPass",t("sf.pass"),"P0000000A")}</div>
       <div class="grid2">${F("nsRank",t("sf.rank"),"Able Seaman",true)}${F("nsPrin",t("sf.prin"),"Crossworld Marine",true)}</div>
-      <div class="grid2">${F("nsAgency",t("sf.agency"),"Manila Crewing Corp.")}${F("nsVessel",t("sf.vessel"),"MV Aegean Trader")}</div>
+      <div class="grid2">${F("nsAgency",t("sf.agency"),"Manila Crewing Corp.")}${F("nsVessel",t("sf.vessel"),"MV Pacific Trader")}</div>
       <div class="grid3">${opt("nsCat",t("sf.category"),["SEABASE","OFFICER","RATING"])}${opt("nsPkg",t("sf.package"),["KAPAL Italian Package A (Non-Food Handler)","Diligent Basic PEME (Non-Food Handler)","Standard PEME — Deck","Standard PEME — Engine","Officer Package","First-time seafarer"])}<div class="field"><label>${t("sf.photo")}</label><button type="button" class="scanbtn" id="nsPhotoBtn" onclick="nsPhotoCap(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.2"/><path d="M8 6l1.5-2h5L16 6"/></svg>${t("sf.photocap")}</button></div></div>
     </div></div>
     <div class="card" style="margin-top:14px"><div class="ch"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M12 3v12M7 10l5 5 5-5"/></svg></div><h3>${t("sf.docsscan")}</h3></div><div class="cb">
@@ -1522,7 +1522,7 @@ function registerSeafarer(){
   const pass=Array.from({length:8},()=>cset[Math.floor(Math.random()*cset.length)]).join("");
   const ctrl="HPDC-"+seq, code="MCL-MAR-PEME-C-2026-"+seq, pkg=gv("nsPkg")||"—";
   const email=gv("nsEmail")||uname+"@crewmail.ph";
-  const link="next2peme-intake-v77.html?u="+uname+"&n="+encodeURIComponent(first+" "+last)+"&sid="+sid;
+  const link="next2peme-intake-v78.html?u="+uname+"&n="+encodeURIComponent(first+" "+last)+"&sid="+sid;
   const s={id:sid,first,middle:gv("nsMiddle"),last,initials,
     rank:{en:rank,el:rank},age:dob?ageFrom(dob):"—",dob,
     sex:gv("nsSex"),nationality:gv("nsNat")||"Filipino",civil:gv("nsCivil"),birthplace:gv("nsBirth"),
@@ -1563,7 +1563,7 @@ function vRegDone(){
             <div><div class="cl">${t("reg.pass")}</div><div class="cv">${r.password}</div></div>
           </div>
           <a class="linkchip" href="${r.link}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;vertical-align:-1px"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg> ${r.link}</a>
-          <a class="trackbtn" href="next2peme-tracker-v77.html?stage=1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a9 9 0 0 1 0 18"/></svg>${t("reg.track")}</a>
+          <a class="trackbtn" href="next2peme-tracker-v78.html?stage=1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a9 9 0 0 1 0 18"/></svg>${t("reg.track")}</a>
           <p class="enote">${t("reg.emailnote")}</p>
         </div>
         <div class="sfacts" style="margin-top:16px">
@@ -1687,7 +1687,7 @@ function init(){
   $$("[data-i18n]").forEach(el=>EN[el.dataset.i18n]=el.textContent);
   const sel=$("#roleSel");sel.innerHTML=ROLES.map(r=>`<option value="${r.id}">${r[lang].name}</option>`).join("");sel.onchange=e=>setRole(e.target.value);
   $("#nav").addEventListener("click",e=>{const a=e.target.closest("a");if(!a)return;if(a.dataset.ext)return;e.preventDefault();
-    if(a.dataset.view)go(a.dataset.view);else if(a.dataset.stage)openStage(+a.dataset.stage);else if(a.dataset.href)location.href=a.dataset.href;else if(a.dataset.track)location.href="next2peme-tracker-v77.html?stage="+CASE.currentStage;});
+    if(a.dataset.view)go(a.dataset.view);else if(a.dataset.stage)openStage(+a.dataset.stage);else if(a.dataset.href)location.href=a.dataset.href;else if(a.dataset.track)location.href="next2peme-tracker-v78.html?stage="+CASE.currentStage;});
   $$("#langTog button").forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
   applyStatic();go("board");
 }
