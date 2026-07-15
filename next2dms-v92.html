@@ -4,7 +4,7 @@
 <script src="auth-guard.js"></script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Next2DMS · Document Management (Mockup v91)</title>
+<title>Next2DMS · Document Management (Mockup v92)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -283,7 +283,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 </style>
 </head>
 <body>
-<div class="mocktag">Next2DMS v91 · MOCKUP</div>
+<div class="mocktag">Next2DMS v92 · MOCKUP</div>
 
 <div class="app">
   <aside class="side">
@@ -311,7 +311,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
   <div class="main">
     <header class="top">
-      <a class="mclhome" href="mcl-shell-v91.html" title="Back to MCL Command Center">◄ MCL</a>
+      <a class="mclhome" href="mcl-shell-v92.html" title="Back to MCL Command Center">◄ MCL</a>
       <div class="wl"><span id="wlName">Next2DMS</span> <small data-i18n="wl.docs">· Documents</small></div>
       <button class="tswitch" id="tenantBtn"><span data-i18n="tenant">Tenant</span>: <b id="tenantLabel">Next2MCL</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg></button>
       <div class="planpill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span data-i18n="plan">Regulated · monthly</span></div>
@@ -544,7 +544,7 @@ Object.assign(TYCODE,{'Scanned Document':'SCN','Declaration':'DEC','Consent Form
   rows.forEach(function(r){
     var n=r[0],t=r[1],station=r[2],medical=r[3],when=r[4],sn=r[5],sr=r[6];
     var scan=(station==="Intake");
-    var refBy=medical?["Next2Peme","Seafarer 360\u00b0","Next2MCL"]:["Next2Peme","Seafarer 360\u00b0"];
+    var refBy=medical?["Next2Peme","Next2-360","Next2MCL"]:["Next2Peme","Next2-360"];
     if(t==="Crew Endorsement"||t==="MER")refBy.push("Next2Care");
     bucket.push({
       n:n,t:t,src:"peme",cl:CL,v:1,st:"signed",own:sn||"Frontdesk",
@@ -616,7 +616,7 @@ Object.assign(TYCODE,{'Scanned Document':'SCN','Declaration':'DEC','Consent Form
       if(scan){sn="";sr="";}
       else if(station==="Self-service intake"){sn=sf.nm;sr="Seafarer";}
       else {var sg=signer(station);sn=sg[0];sr=sg[1];}
-      var refBy=medical?["Next2Peme","Seafarer 360\u00b0","Next2MCL"]:["Next2Peme","Seafarer 360\u00b0"];
+      var refBy=medical?["Next2Peme","Next2-360","Next2MCL"]:["Next2Peme","Next2-360"];
       if(typ==="Crew Endorsement"||typ==="MER")refBy.push("Next2Care");
       bucket.push({
         n:n,t:typ,src:"peme",cl:sf.cl,v:1,st:"signed",own:sn||"Frontdesk",
@@ -642,7 +642,7 @@ function dmsLbl(k){var M={see:{el:"Τι βλέπεις",en:"What you see"},does:
       n:tyName+" \u2014 "+nm, t:ty, src:"postmed", cl:prin, v:1, st:"signed", own:owner,
       medical:medical||undefined,
       code:"MCL-MAR-POST-"+typeCode+"-2026-"+pad6(seq),
-      refBy:medical?["Next2PostMed","Seafarer 360\u00b0","Next2Care","Next2MCL"]:["Next2PostMed","Next2MCL"],
+      refBy:medical?["Next2PostMed","Next2-360","Next2Care","Next2MCL"]:["Next2PostMed","Next2MCL"],
       meta:{"Seafarer ID":sid,"Case":"PM-2026-"+seq,"Principal":prin,"Vessel":vsl,"Track":track},
       versions:[[1,"Final signed",owner,when]],
       signers:[[owner,role,"ok"]],
@@ -871,10 +871,10 @@ $("#thead").addEventListener("click",e=>{const th=e.target.closest("th.sortable"
 cacheEN();loadTenant();
 
 /* ---- cross-app navigation ---- */
-function openProduct(src){if(src==='peme'){location.href='next2peme-console-v91.html';return;}
+function openProduct(src){if(src==='peme'){location.href='next2peme-console-v92.html';return;}
   toast(lang==='el'?'Το προϊόν είναι σε planning — δεν ανοίγει ακόμη.':'Product is in planning — not open yet.');}
-function openRef(name){if(name==='Next2Peme'){location.href='next2peme-console-v91.html';return;}
-  if(name==='Next2MCL'){location.href='mcl-shell-v91.html';return;}
+function openRef(name){if(name==='Next2Peme'){location.href='next2peme-console-v92.html';return;}
+  if(name==='Next2MCL'){location.href='mcl-shell-v92.html';return;}
   toast(lang==='el'?'Σε planning — δεν ανοίγει ακόμη.':'In planning — not open yet.');}
 
 /* ---- cross-app fill: every PostMed seafarer also did PEME (peme docs) + flagship TPA (care) ---- */

@@ -4,13 +4,13 @@
 <script src="auth-guard.js"></script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Seafarer 360° · Shared Core / CBMS (Mockup v91)</title>
+<title>Next2-360 · Shared Core / CBMS (Mockup v92)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* =========================================================================
-   Seafarer 360° Folder  ·  Next2MCL Layer 2 — Master Data Hub (CBMS)
+   Next2-360 Folder  ·  Next2MCL Layer 2 — Master Data Hub (CBMS)
    SHARED module: consumed by Next2Peme · ShipCare · PostMed · Care.
    Tokens identical to the Next2Peme mockup → one Tailwind theme later.
    ========================================================================= */
@@ -219,10 +219,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 </style>
 </head>
 <body>
-<div class="mocktag">PHASE 1 · v91 · MOCKUP · FAKE DATA</div>
+<div class="mocktag">PHASE 1 · v92 · MOCKUP · FAKE DATA</div>
 
 <div class="corebar">
-  <span class="tag">SEAFARER 360°</span>
+  <span class="tag">NEXT2-360</span>
   <span class="used" data-i18n="core.used">Shared Core · CBMS (Layer 2) — used by <b>Next2Peme</b> · <b>ShipCare</b> · <b>PostMed</b> · <b>Care</b></span>
   <span class="lens">
     <span class="from" data-i18n="core.from">Opened from</span>
@@ -387,7 +387,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   <!-- ===== FILES & EXAMS ===== -->
   <div class="panel" data-panel="files">
     <div class="seclead" data-i18n="files.lead">Documents &amp; exams — references to Next2DMS</div>
-    <div class="sub" data-i18n="files.sub">Every document lives once in Next2DMS (single source of truth). The 360° folder shows read-only references; medical items are no-copy and open in DMS under RBAC.</div>
+    <div class="sub" data-i18n="files.sub">Every document lives once in Next2DMS (single source of truth). The Next2-360 folder shows read-only references; medical items are no-copy and open in DMS under RBAC.</div>
     <div id="dmsRefs"></div>
   </div>
 
@@ -453,7 +453,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   <div class="panel" data-panel="guide" id="s360GuidePanel"></div>
       </div><!--/personFolder--></div><!--/areaPeople--></div><!--/lcontent--></div><!--/appbody-->
 
-  <div class="footnote" data-i18n="foot">Seafarer 360° is a Shared Core / CBMS module (Next2MCL Layer 2). Doctor's spec applied — no IDIKA / AMKA / patient-portal fields. Fake data only.</div>
+  <div class="footnote" data-i18n="foot">Next2-360 is a Shared Core / CBMS module (Next2MCL Layer 2). Doctor's spec applied — no IDIKA / AMKA / patient-portal fields. Fake data only.</div>
 </div>
 
 <script>
@@ -519,7 +519,7 @@ function selectPerson(id){curPerson=id;var p=PERSONS.filter(function(x){return x
 function renderLite(p){var isE=lang==='el';var fam=p.kind==='family';
  var link=(typeof DMS_LINK!=='undefined')?DMS_LINK.replace(/q=[^&]*/,'q='+encodeURIComponent(p.sid)).replace('source=peme','source=360'):'#';
  return '<div class="litecard"><div class="litehd"><div class="liteav">'+p.ini+'</div><div><h2>'+p.name+'</h2><div class="litesid">'+p.sid+' · '+p.role+'</div></div></div>'
-  +'<div class="litenote">'+(fam?(isE?'Μέλος οικογένειας — καλύπτεται στο Next2Care (PMPM · ναυτικός + οικογένεια). Το πλήρες ιατρικό ιστορικό εμφανίζεται καθώς προκύπτουν episodes φροντίδας. Ίδιο One-ID-for-life πλαίσιο.':'Family member — covered under Next2Care (PMPM · seafarer + family). The full medical folder appears as care episodes occur. Same One-ID-for-life model.'):(isE?'Ναυτικός — ο πλήρης 360° φάκελος (PEME · TPA · on-board · post-medical) χτίζεται καθώς προχωρά η διαδρομή. Όλα τα έγγραφα ζουν στο Next2DMS.':'Seafarer — the full 360° folder (PEME · TPA · on-board · post-medical) builds as the journey progresses. All documents live in Next2DMS.'))+'</div>'
+  +'<div class="litenote">'+(fam?(isE?'Μέλος οικογένειας — καλύπτεται στο Next2Care (PMPM · ναυτικός + οικογένεια). Το πλήρες ιατρικό ιστορικό εμφανίζεται καθώς προκύπτουν episodes φροντίδας. Ίδιο One-ID-for-life πλαίσιο.':'Family member — covered under Next2Care (PMPM · seafarer + family). The full medical folder appears as care episodes occur. Same One-ID-for-life model.'):(isE?'Ναυτικός — ο πλήρης Next2-360 φάκελος (PEME · TPA · on-board · post-medical) χτίζεται καθώς προχωρά η διαδρομή. Όλα τα έγγραφα ζουν στο Next2DMS.':'Seafarer — the full Next2-360 folder (PEME · TPA · on-board · post-medical) builds as the journey progresses. All documents live in Next2DMS.'))+'</div>'
   +'<a class="litedms" href="'+link+'">'+(isE?'Άνοιγμα εγγράφων στο Next2DMS ▸':'Open documents in Next2DMS ▸')+'</a></div>';
 }
 function renderNet(){var el=document.getElementById('netPanel');if(!el)return;var isE=lang==='el';
@@ -606,7 +606,7 @@ const I18N={
     "case.med":"Οξεία αμυγδαλίτιδα + βρογχίτιδα","case.medcx":"Αγωγή αμοξικιλλίνη/clav., αζιθρομυκίνη· πλήρης ανάρρωση. Καταγράφηκε στο προφίλ.","st.closed":"Κλειστό",
     "case.ship":"Τραυματισμός χεριού εν πλω","case.shipcx":"PARON teleconsult · MV Pacific Trader · χωρίς αποβίβαση.",
     "case.pome":"Post-medical case — οσφυϊκή καταπόνηση","case.pomecx":"Tracks Medical · Legal · Financial. Έκλεισε fit-to-return μετά 41 μέρες.","st.fit":"Fit to return",
-    "files.lead":"Έγγραφα & εξετάσεις — αναφορές στο Next2DMS","files.sub":"Κάθε έγγραφο ζει μία φορά στο Next2DMS (single source of truth). Ο φάκελος 360° δείχνει read-only αναφορές· τα ιατρικά είναι no-copy (ανοίγουν στο DMS με RBAC).",
+    "files.lead":"Έγγραφα & εξετάσεις — αναφορές στο Next2DMS","files.sub":"Κάθε έγγραφο ζει μία φορά στο Next2DMS (single source of truth). Ο φάκελος Next2-360 δείχνει read-only αναφορές· τα ιατρικά είναι no-copy (ανοίγουν στο DMS με RBAC).",
     "th.title":"Τίτλος","th.type":"Τύπος","th.date":"Ημ/νία","th.up":"Uploader","ex.cxr":"Ακτινογρ. Θώρακος","ex.blood":"Αιματολογικές","ex.us":"Υπέρηχος","ex.cert":"Πιστοποιητικό","up.doc":"Ιατρός","up.pat":"Ασθενής",
     "prof.lead":"Καρδιαγγειακό Προφίλ","hs.title":"10ετές CVD risk","hs.body":"Αυξημένο για την ηλικία. Οφείλεται σε κάπνισμα + υπέρταση + δυσλιπιδαιμία.","prof.factors":"Παράγοντες κινδύνου",
     "rf.bmi":"BMI 28.4","rf.fam":"Οικογ. ιστορικό (πατέρας ΣΔ)","prof.diab":"Διαβητικό Προφίλ","k.fasting":"Γλυκόζη νηστείας",
@@ -614,7 +614,7 @@ const I18N={
     "risk.lead":"Δείκτες ρίσκου","risk.sub":"Σε ποια risk profiles εμπίπτει ο ναυτικός — το pre-visit σήμα που βλέπει ο Ιατρικός Διευθυντής πριν το PEME.",
     "rk.cvd":"Καρδιαγγειακό","rk.diab":"Διαβητικό","rk.prediab":"Προ-διαβητικός","rk.resp":"Αναπνευστικό","rk.hxonly":"Μόνο ιστορικό","rk.covid":"Covid-19","rk.vaxed":"Εμβολιασμένος ×3",
     "risk.mhie":"<b>MHIE signal (Phase 4):</b> ναυτικοί με αυτό το PEME + claims pattern έχουν ~3,2× πιθανότητα cardiac claim εντός 18 μηνών. Ο άνθρωπος αποφασίζει — το AI μόνο flag-άρει.",
-    "foot":"Το Seafarer 360° είναι Shared Core / CBMS module (Next2MCL Layer 2). Εφαρμόστηκε το spec του γιατρού — χωρίς ΗΔΙΚΑ / AMKA / patient-portal. Μόνο fake data."
+    "foot":"Το Next2-360 είναι Shared Core / CBMS module (Next2MCL Layer 2). Εφαρμόστηκε το spec του γιατρού — χωρίς ΗΔΙΚΑ / AMKA / patient-portal. Μόνο fake data."
   }
 };
 let lang="en";
@@ -660,7 +660,7 @@ const PEME_REFS=[
   {st:"Certificates",n:"Oath of Undertaking",code:"MCL-MAR-PEME-OATH-2026-065838",t:"Oath",med:false},
   {st:"Records",n:"Flag-state Certificate",code:"MCL-MAR-PEME-FLG-2026-329923",t:"Flag-state Certificate",med:false},
 ];
-const DMS_LINK="next2dms-v91.html?tenant=next2mcl&source=peme&q=SF-PH-039281";
+const DMS_LINK="next2dms-v92.html?tenant=next2mcl&source=peme&q=SF-PH-039281";
 function DMS_DOC(c){return DMS_LINK.replace(/q=[^&]*/,"q="+encodeURIComponent(c)).replace("source=peme","source=360");};
 const STLBL={
   "Intake":["Intake & documents","Παραλαβή & έγγραφα"],
@@ -693,9 +693,9 @@ function renderFiles(){
 }
 function s360GL(o){return (o&&typeof o==="object")?(o[lang]||o.en):o;}
 function s360Lbl(k){var M={see:{el:"Τι βλέπεις",en:"What you see"},does:{el:"Τι κάνει",en:"What it does"},steps:{el:"Βήμα-βήμα",en:"Step by step"},result:{el:"Αποτέλεσμα",en:"Result"}};return M[k][lang]||M[k].en;}
-var S360_GUIDE={"title": {"el": "Seafarer 360° — ο κοινός φάκελος", "en": "Seafarer 360° — the shared folder"}, "intro": {"el": "Ένας κοινός φάκελος ανά ναυτικό που δείχνει όλη την cross-product παρουσία του (Peme, ShipCare, PostMed, Care). Shared Core module — τροφοδοτεί το MHIE.", "en": "One shared folder per seafarer showing their whole cross-product presence (Peme, ShipCare, PostMed, Care). A Shared Core module — it feeds the MHIE."}, "sections": [{"icon": "👤", "t": {"el": "Τι είναι το 360°", "en": "What 360° is"}, "see": {"el": "Ο πλήρης φάκελος ενός ναυτικού: ταυτότητα, υποθέσεις & κάλυψη, έγγραφα/εξετάσεις, κλινικά προφίλ, εμβόλια, ρίσκο.", "en": "A seafarer's full folder: identity, cases & care, files/exams, clinical profiles, vaccinations, risk."}, "does": {"el": "Ενοποιεί ό,τι ξέρουμε γι' αυτόν από όλα τα προϊόντα — μία εικόνα.", "en": "Unifies everything we know about them across all products — one picture."}, "steps": [{"el": "Άνοιξε το 360° από το MCL ή από την κάρτα του (sample).", "en": "Open 360° from MCL or from their card (sample)."}, {"el": "Δες πάνω την ταυτότητα & το status.", "en": "See identity & status up top."}], "result": {"el": "Καταλαβαίνεις τον ναυτικό ολιστικά.", "en": "You understand the seafarer holistically."}}, {"icon": "🧾", "t": {"el": "Header — ταυτότητα & FIT", "en": "Header — identity & FIT"}, "see": {"el": "Πάνω: όνομα, Seafarer ID, principal, και το κλινικό status (π.χ. FIT FOR SEA DUTY · 2026).", "en": "Top: name, Seafarer ID, principal, and clinical status (e.g. FIT FOR SEA DUTY · 2026)."}, "does": {"el": "Δίνει άμεση απάντηση «είναι ικανός;» χωρίς να ανοίξεις ιατρικά.", "en": "Answers “is he fit?” instantly without opening medical records."}, "steps": [{"el": "Διάβασε το badge status.", "en": "Read the status badge."}, {"el": "Δες τα cross-product σήματα (Care/PEME/PostMed/ShipCare).", "en": "See the cross-product signals (Care/PEME/PostMed/ShipCare)."}], "result": {"el": "Fit / not-fit με μια ματιά.", "en": "Fit / not-fit at a glance."}}, {"icon": "🗂️", "t": {"el": "Tabs: Overview, Cases, Files & Exams, Clinical, Vaccinations, Risk", "en": "Tabs: Overview, Cases, Files & Exams, Clinical, Vaccinations, Risk"}, "see": {"el": "Καρτέλες που ομαδοποιούν τη ζωή του ναυτικού. Στο «Files & Exams» βλέπεις read-only references στο DMS, ανά σταθμό.", "en": "Tabs grouping the seafarer's record. In “Files & Exams” you see read-only DMS references, by station."}, "does": {"el": "Κάθε tab είναι ένας φακός πάνω στα ίδια κεντρικά δεδομένα.", "en": "Each tab is a lens over the same central data."}, "steps": [{"el": "Άνοιξε «Files & Exams» → κάθε γραμμή = reference στο DMS (όχι copy).", "en": "Open “Files & Exams” → each row = a DMS reference (not a copy)."}, {"el": "Τα ιατρικά έχουν 🔒 no-copy.", "en": "Medical items show 🔒 no-copy."}], "result": {"el": "Βλέπεις έγγραφα & ιστορικό χωρίς να αντιγράφεις τίποτα.", "en": "You see documents & history without copying anything."}}, {"icon": "🔒", "t": {"el": "No-copy & RBAC", "en": "No-copy & RBAC"}, "see": {"el": "Στα ιατρικά, ένδειξη no-copy· κάποια στοιχεία εμφανίζονται ή όχι ανάλογα με τον ρόλο σου.", "en": "On medical items, a no-copy marker; some items appear or not depending on your role."}, "does": {"el": "Επιβάλλει GDPR/MDR με αρχιτεκτονική: references, όχι αντίγραφα· RBAC ορίζει τι ανοίγεις.", "en": "Enforces GDPR/MDR by architecture: references, not copies; RBAC controls what you can open."}, "steps": [{"el": "Δες τα 🔒 στα ιατρικά — δεν κατεβαίνουν/αντιγράφονται αλλού.", "en": "Note the 🔒 on medical — they aren't downloaded/copied elsewhere."}, {"el": "Το άνοιγμα γίνεται στο DMS με RBAC.", "en": "Opening happens in DMS under RBAC."}], "result": {"el": "Ευαίσθητα δεδομένα προστατευμένα εξ ορισμού.", "en": "Sensitive data protected by default."}}, {"icon": "🔭", "t": {"el": "Product lenses & MHIE", "en": "Product lenses & MHIE"}, "see": {"el": "Το Peme εμφανίζεται ως CURRENT· ShipCare/PostMed/Care πιο σβηστά μέχρι να υπάρχουν δεδομένα.", "en": "Peme shows as CURRENT; ShipCare/PostMed/Care appear dimmer until they have data."}, "does": {"el": "Δείχνει ποιο προϊόν «ακουμπάει» τώρα τον ναυτικό — και τροφοδοτεί το MHIE (το moat).", "en": "Shows which product is currently touching the seafarer — and feeds the MHIE (the moat)."}, "steps": [{"el": "Δες τα σήματα ανά προϊόν στο Overview.", "en": "See the per-product signals in Overview."}, {"el": "Στο Risk → το MHIE signal (Phase 4).", "en": "In Risk → the MHIE signal (Phase 4)."}], "result": {"el": "Κατανοείς τη διαδρομή του ναυτικού στο οικοσύστημα.", "en": "You understand the seafarer's journey across the ecosystem."}}]};
+var S360_GUIDE={"title": {"el": "Next2-360 — ο κοινός φάκελος", "en": "Next2-360 — the shared folder"}, "intro": {"el": "Ένας κοινός φάκελος ανά ναυτικό που δείχνει όλη την cross-product παρουσία του (Peme, ShipCare, PostMed, Care). Shared Core module — τροφοδοτεί το MHIE.", "en": "One shared folder per seafarer showing their whole cross-product presence (Peme, ShipCare, PostMed, Care). A Shared Core module — it feeds the MHIE."}, "sections": [{"icon": "👤", "t": {"el": "Τι είναι το Next2-360", "en": "What Next2-360 is"}, "see": {"el": "Ο πλήρης φάκελος ενός ναυτικού: ταυτότητα, υποθέσεις & κάλυψη, έγγραφα/εξετάσεις, κλινικά προφίλ, εμβόλια, ρίσκο.", "en": "A seafarer's full folder: identity, cases & care, files/exams, clinical profiles, vaccinations, risk."}, "does": {"el": "Ενοποιεί ό,τι ξέρουμε γι' αυτόν από όλα τα προϊόντα — μία εικόνα.", "en": "Unifies everything we know about them across all products — one picture."}, "steps": [{"el": "Άνοιξε το Next2-360 από το MCL ή από την κάρτα του (sample).", "en": "Open Next2-360 from MCL or from their card (sample)."}, {"el": "Δες πάνω την ταυτότητα & το status.", "en": "See identity & status up top."}], "result": {"el": "Καταλαβαίνεις τον ναυτικό ολιστικά.", "en": "You understand the seafarer holistically."}}, {"icon": "🧾", "t": {"el": "Header — ταυτότητα & FIT", "en": "Header — identity & FIT"}, "see": {"el": "Πάνω: όνομα, Seafarer ID, principal, και το κλινικό status (π.χ. FIT FOR SEA DUTY · 2026).", "en": "Top: name, Seafarer ID, principal, and clinical status (e.g. FIT FOR SEA DUTY · 2026)."}, "does": {"el": "Δίνει άμεση απάντηση «είναι ικανός;» χωρίς να ανοίξεις ιατρικά.", "en": "Answers “is he fit?” instantly without opening medical records."}, "steps": [{"el": "Διάβασε το badge status.", "en": "Read the status badge."}, {"el": "Δες τα cross-product σήματα (Care/PEME/PostMed/ShipCare).", "en": "See the cross-product signals (Care/PEME/PostMed/ShipCare)."}], "result": {"el": "Fit / not-fit με μια ματιά.", "en": "Fit / not-fit at a glance."}}, {"icon": "🗂️", "t": {"el": "Tabs: Overview, Cases, Files & Exams, Clinical, Vaccinations, Risk", "en": "Tabs: Overview, Cases, Files & Exams, Clinical, Vaccinations, Risk"}, "see": {"el": "Καρτέλες που ομαδοποιούν τη ζωή του ναυτικού. Στο «Files & Exams» βλέπεις read-only references στο DMS, ανά σταθμό.", "en": "Tabs grouping the seafarer's record. In “Files & Exams” you see read-only DMS references, by station."}, "does": {"el": "Κάθε tab είναι ένας φακός πάνω στα ίδια κεντρικά δεδομένα.", "en": "Each tab is a lens over the same central data."}, "steps": [{"el": "Άνοιξε «Files & Exams» → κάθε γραμμή = reference στο DMS (όχι copy).", "en": "Open “Files & Exams” → each row = a DMS reference (not a copy)."}, {"el": "Τα ιατρικά έχουν 🔒 no-copy.", "en": "Medical items show 🔒 no-copy."}], "result": {"el": "Βλέπεις έγγραφα & ιστορικό χωρίς να αντιγράφεις τίποτα.", "en": "You see documents & history without copying anything."}}, {"icon": "🔒", "t": {"el": "No-copy & RBAC", "en": "No-copy & RBAC"}, "see": {"el": "Στα ιατρικά, ένδειξη no-copy· κάποια στοιχεία εμφανίζονται ή όχι ανάλογα με τον ρόλο σου.", "en": "On medical items, a no-copy marker; some items appear or not depending on your role."}, "does": {"el": "Επιβάλλει GDPR/MDR με αρχιτεκτονική: references, όχι αντίγραφα· RBAC ορίζει τι ανοίγεις.", "en": "Enforces GDPR/MDR by architecture: references, not copies; RBAC controls what you can open."}, "steps": [{"el": "Δες τα 🔒 στα ιατρικά — δεν κατεβαίνουν/αντιγράφονται αλλού.", "en": "Note the 🔒 on medical — they aren't downloaded/copied elsewhere."}, {"el": "Το άνοιγμα γίνεται στο DMS με RBAC.", "en": "Opening happens in DMS under RBAC."}], "result": {"el": "Ευαίσθητα δεδομένα προστατευμένα εξ ορισμού.", "en": "Sensitive data protected by default."}}, {"icon": "🔭", "t": {"el": "Product lenses & MHIE", "en": "Product lenses & MHIE"}, "see": {"el": "Το Peme εμφανίζεται ως CURRENT· ShipCare/PostMed/Care πιο σβηστά μέχρι να υπάρχουν δεδομένα.", "en": "Peme shows as CURRENT; ShipCare/PostMed/Care appear dimmer until they have data."}, "does": {"el": "Δείχνει ποιο προϊόν «ακουμπάει» τώρα τον ναυτικό — και τροφοδοτεί το MHIE (το moat).", "en": "Shows which product is currently touching the seafarer — and feeds the MHIE (the moat)."}, "steps": [{"el": "Δες τα σήματα ανά προϊόν στο Overview.", "en": "See the per-product signals in Overview."}, {"el": "Στο Risk → το MHIE signal (Phase 4).", "en": "In Risk → the MHIE signal (Phase 4)."}], "result": {"el": "Κατανοείς τη διαδρομή του ναυτικού στο οικοσύστημα.", "en": "You understand the seafarer's journey across the ecosystem."}}]};
 function renderS360Guide(){var el=document.getElementById('s360GuidePanel');if(!el)return;
-  var h=`<div class="gd-hero"><div class="k">Seafarer 360°</div><h2>🧭 ${s360GL(S360_GUIDE.title)}</h2><p>${s360GL(S360_GUIDE.intro)}</p></div>`;
+  var h=`<div class="gd-hero"><div class="k">Next2-360</div><h2>🧭 ${s360GL(S360_GUIDE.title)}</h2><p>${s360GL(S360_GUIDE.intro)}</p></div>`;
   var cards=S360_GUIDE.sections.map(function(sx){
     var st=sx.steps.map(function(x){return `<li>${s360GL(x)}</li>`;}).join("");
     return `<article class="gd-card"><h3><span class="i">${sx.icon}</span>${s360GL(sx.t)}</h3><div class="gd-blocks">`
