@@ -4,7 +4,7 @@
 <script src="auth-guard.js"></script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Next2DMS · Document Management (Mockup v74)</title>
+<title>Next2DMS · Document Management (Mockup v75)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -282,7 +282,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 </style>
 </head>
 <body>
-<div class="mocktag">Next2DMS v74 · MOCKUP</div>
+<div class="mocktag">Next2DMS v75 · MOCKUP</div>
 
 <div class="app">
   <aside class="side">
@@ -309,7 +309,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
   <div class="main">
     <header class="top">
-      <a class="mclhome" href="mcl-shell-v74.html" title="Back to MCL Command Center">◄ MCL</a>
+      <a class="mclhome" href="mcl-shell-v75.html" title="Back to MCL Command Center">◄ MCL</a>
       <div class="wl"><span id="wlName">Next2DMS</span> <small data-i18n="wl.docs">· Documents</small></div>
       <button class="tswitch" id="tenantBtn"><span data-i18n="tenant">Tenant</span>: <b id="tenantLabel">Next2MCL</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg></button>
       <div class="planpill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span data-i18n="plan">Regulated · monthly</span></div>
@@ -496,7 +496,7 @@ const OCODE={peme:'PEME',care:'CARE',postmed:'POST',ship:'SHIP',corp:'CORP',lit:
 const TYCODE={'Fitness Certificate':'FIT','PEME Certificate':'PEC','Crew Endorsement':'END','STCW Certificate':'STC','ASA / NDA / DPA':'AGR','POME Report':'POM','Incident Report':'INC','Teleconsult Note':'TEL','Contract':'CON','NDA':'NDA','Court Filing':'FIL','Document':'DOC','Form':'FRM','Report':'RPT'};
 function seqOf(d){let h=7;for(const c of d.n)h=(h*31+c.charCodeAt(0))%1000000;return String(h).padStart(6,'0');}
 function yearOf(d){const t=(d.versions&&d.versions.length&&d.versions[d.versions.length-1][3])||'';const m=(''+t).match(/(20\d\d)/);return m?m[1]:'2026';}
-function docCode(d){return `${TCODE[tenant]}-${PCODE[tenant]}-${OCODE[d.src]||'GEN'}-${TYCODE[d.t]||'DOC'}-${yearOf(d)}-${seqOf(d)}`;}
+function docCode(d){if(d.code)return d.code;return `${TCODE[tenant]}-${PCODE[tenant]}-${OCODE[d.src]||'GEN'}-${TYCODE[d.t]||'DOC'}-${yearOf(d)}-${seqOf(d)}`;}
 function docDate(d){const raw=(d.versions&&d.versions[0]&&d.versions[0][3])||'';let s=(''+raw).replace(/\s+\d{1,2}:\d{2}$/,'');
   if(/today/i.test(s))return '2026-07-12';if(/yesterday/i.test(s))return '2026-07-11';
   const m=s.match(/\d{4}-\d{2}-\d{2}/);return m?m[0]:'2026-07-12';}
@@ -629,6 +629,35 @@ Object.assign(TYCODE,{'Scanned Document':'SCN','Declaration':'DEC','Consent Form
 /* ---- in-app guide (coding + metadata standard) ---- */
 function dmsGL(o){return (o&&typeof o==="object")?(o[lang]||o.en):o;}
 function dmsLbl(k){var M={see:{el:"Τι βλέπεις",en:"What you see"},does:{el:"Τι κάνει",en:"What it does"},steps:{el:"Βήμα-βήμα",en:"Step by step"},result:{el:"Αποτέλεσμα",en:"Result"}};return M[k][lang]||M[k].en;}
+
+/* ---- Next2PostMed case documents: each doc BORN in the DMS (single source of truth · no-copy on medical). POME lifecycle: medical reports, CFMA, GOP, third-doctor — same coding scheme as everything else. ---- */
+(function seedPostMedFolder(){
+  var bucket=TENANTS.next2mcl.docs;
+  var pad6=function(s){return ("000000"+s).slice(-6);};
+  var mk=function(seq,nm,sid,prin,vsl,ty,tyName,typeCode,medical,track,owner,role,when){
+    bucket.push({
+      n:tyName+" \u2014 "+nm, t:ty, src:"postmed", cl:prin, v:1, st:"signed", own:owner,
+      medical:medical||undefined,
+      code:"MCL-MAR-POST-"+typeCode+"-2026-"+pad6(seq),
+      refBy:medical?["Next2PostMed","Seafarer 360\u00b0","Next2Care","Next2MCL"]:["Next2PostMed","Next2MCL"],
+      meta:{"Seafarer ID":sid,"Case":"PM-2026-"+seq,"Principal":prin,"Vessel":vsl,"Track":track},
+      versions:[[1,"Final signed",owner,when]],
+      signers:[[owner,role,"ok"]],
+      audit:[["Signed (e-sign \u00b7 RA 8792)",owner+" \u00b7 "+when],["Filed by Next2PostMed \u00b7 "+track,"system \u00b7 "+when]]
+    });
+  };
+  var CASES_PM=[['0042','E. Ramos','SF-PH-041188','Halcyon Shipmanagement','MV Northern Grace',3,1,2,false,'2026-01-02'],['0039','K. Trabado','SF-PH-040921','Meridian Marine','MV Blue Horizon',5,1,3,true,'2025-12-28'],['0044','D. Sayat','SF-PH-041290','Poseidon Lines','MV Amphion',2,0,1,false,'2026-01-08'],['0051','R. Melecio','SF-PH-041377','Kestrel Shipping','MV Sea Verity',6,2,4,true,'2026-01-07'],['0033','A. Montives','SF-PH-040688','Cyan Maritime','MT Great Meridian',7,5,5,true,'2025-11-30'],['0047','J. Piornato','SF-PH-041322','Orion Bulkers','MV Star Pioneer',4,1,3,true,'2026-01-14'],['0055','B. Muaña','SF-PH-041455','Delphi Navigation','MV Agnes Bay',1,0,0,false,'2026-02-01'],['0058','E. Cunanan','SF-PH-041501','Meridian Marine','MV Tourmaline',2,1,2,true,'2026-02-06'],['0060','R. Pagay','SF-PH-041560','Cyan Maritime','MT Coya Reach',3,1,2,false,'2026-02-10']];
+  CASES_PM.forEach(function(r){
+    var seq=r[0],nm=r[1],sid=r[2],prin=r[3],vsl=r[4],med=r[5],leg=r[6],fin=r[7],hasHosp=r[8],arr=r[9];
+    if(med>=3) mk(seq,nm,sid,prin,vsl,"Initial Medical Report","Initial Medical Report","IMR",true,"Medical","Dr. M. Reyes","Attending Physician",arr);
+    if(med>=5) mk(seq,nm,sid,prin,vsl,"Follow-up Report","Follow-up Report #1","FUR1",true,"Medical","Dr. M. Reyes","Attending Physician",arr);
+    if(med>=6) mk(seq,nm,sid,prin,vsl,"Follow-up Report","Follow-up Report #2","FUR2",true,"Medical","Dr. M. Reyes","Attending Physician",arr);
+    if(med>=6) mk(seq,nm,sid,prin,vsl,"Final Medical Assessment (CFMA)","Certificate of Final Medical Assessment","CFMA",true,"Medical","Dr. L. Ocampo","Company-Designated Physician",arr);
+    if(hasHosp) mk(seq,nm,sid,prin,vsl,"Guarantee of Payment","Guarantee of Payment","GOP",false,"Financial",prin,"Principal",arr);
+    if(leg>=5) mk(seq,nm,sid,prin,vsl,"Third-Doctor Assessment","Third-Doctor Final & Binding Assessment","THIRD",true,"Legal","Dr. A. Ferrer","Third Doctor (jointly appointed)",arr);
+  });
+})();
+
 var DMS_GUIDE={"title": {"el": "Next2DMS — τα έγγραφα", "en": "Next2DMS — the documents"}, "intro": {"el": "Το single source of truth για τα έγγραφα: κάθε έγγραφο ζει ΜΙΑ φορά εδώ· κάθε άλλο προϊόν κρατά read-only reference, ποτέ copy. Ιατρικά = no-copy.", "en": "The single source of truth for documents: every document lives ONCE here; every other product holds a read-only reference, never a copy. Medical = no-copy."}, "sections": [{"icon": "📚", "t": {"el": "Η βιβλιοθήκη & πλοήγηση", "en": "The library & navigation"}, "see": {"el": "Columnar πίνακας (Code · Date · Description · Source · Principal · Version · Status) + πλοήγηση: All documents, Pending, Signed, Archived.", "en": "A columnar table (Code · Date · Description · Source · Principal · Version · Status) + navigation: All documents, Pending, Signed, Archived."}, "does": {"el": "Κρατά όλα τα έγγραφα του group οργανωμένα κατά κατάσταση.", "en": "Keeps all group documents organised by status."}, "steps": [{"el": "Διάλεξε view (All/Pending/Signed/Archived).", "en": "Pick a view (All/Pending/Signed/Archived)."}, {"el": "Κλικ σε κεφαλίδα για ταξινόμηση.", "en": "Click a header to sort."}], "result": {"el": "Κάθε έγγραφο έχει μία θέση και μία κατάσταση.", "en": "Every document has one place and one status."}}, {"icon": "🔌", "t": {"el": "Sources (συνδεδεμένα προϊόντα)", "en": "Sources (connected products)"}, "see": {"el": "Λίστα πηγών: Next2Peme, Next2Care, Next2PostMed, Next2ShipCare — με μετρητή εγγράφων.", "en": "A list of sources: Next2Peme, Next2Care, Next2PostMed, Next2ShipCare — each with a count."}, "does": {"el": "Δείχνει από ποιο προϊόν γεννήθηκε κάθε έγγραφο.", "en": "Shows which product each document was born from."}, "steps": [{"el": "Κλικ σε source → φιλτράρεις τα έγγραφά του.", "en": "Click a source → filter its documents."}], "result": {"el": "Ξεκάθαρη προέλευση για κάθε αρχείο.", "en": "Clear provenance for every file."}}, {"icon": "🔎", "t": {"el": "Search, φίλτρα & Reset", "en": "Search, filters & Reset"}, "see": {"el": "Global search (ψάχνει τα πάντα, ακόμη και metadata/Seafarer ID) + φίλτρα type/status + Reset.", "en": "Global search (searches everything, even metadata/Seafarer ID) + type/status filters + Reset."}, "does": {"el": "Σε πάει στο σωστό έγγραφο άμεσα.", "en": "Gets you to the right document instantly."}, "steps": [{"el": "Γράψε Seafarer ID (π.χ. SF-PH-039281) → ο φάκελός του.", "en": "Type a Seafarer ID (e.g. SF-PH-039281) → their folder."}, {"el": "Στένεψε με φίλτρα type/status.", "en": "Narrow with type/status filters."}, {"el": "Reset για όλα.", "en": "Reset for all."}], "result": {"el": "Βρίσκεις οποιοδήποτε έγγραφο, ανά ναυτικό ή τύπο.", "en": "Find any document, by seafarer or type."}}, {"icon": "🏷️", "t": {"el": "Κωδικός, UUID & revision", "en": "Code, UUID & revision"}, "see": {"el": "Κάθε έγγραφο: ανθρώπινος κωδικός TENANT-PACK-ORIGIN-TYPE-YYYY-SEQ + αμετάβλητο UUID + έκδοση. In-app «Coding standard» εξηγεί το σχήμα.", "en": "Each document: a human code TENANT-PACK-ORIGIN-TYPE-YYYY-SEQ + an immutable UUID + a revision. The in-app “Coding standard” explains the scheme."}, "does": {"el": "Δίνει σταθερή, μοναδική ταυτότητα που αναφέρουν οι άλλοι.", "en": "Gives a stable, unique identity that others reference."}, "steps": [{"el": "Άνοιξε έγγραφο → ενότητα «Identifiers».", "en": "Open a document → the “Identifiers” section."}, {"el": "Ο κωδικός δίνεται στην έγκριση· revision χωριστά.", "en": "The code is assigned at approval; revision is separate."}], "result": {"el": "Ένας κωδικός, μία αλήθεια — παντού.", "en": "One code, one truth — everywhere."}}, {"icon": "🖥️", "t": {"el": "Πλήρης προβολή εγγράφου", "en": "Full-screen document view"}, "see": {"el": "Το έγγραφο ανοίγει full-screen, 2 κολόνες, μεγάλα γράμματα — ΠΟΤΕ δεξί modal.", "en": "The document opens full-screen, 2 columns, large type — NEVER a right-side modal."}, "does": {"el": "Δείχνει όλες τις τεχνικές πληροφορίες ευανάγνωστα.", "en": "Shows all technical info, readable."}, "steps": [{"el": "Κλικ σε γραμμή εγγράφου.", "en": "Click a document row."}, {"el": "Δες Identifiers, versions, signers, audit.", "en": "See Identifiers, versions, signers, audit."}], "result": {"el": "Πλήρης εικόνα του εγγράφου, χωρίς στρίμωγμα.", "en": "The full document picture, uncramped."}}, {"icon": "🏢", "t": {"el": "Tenant switcher (white-label)", "en": "Tenant switcher (white-label)"}, "see": {"el": "Επιλογέας tenant (Maritime / Legal / Generic) — header «Tenant : …».", "en": "A tenant selector (Maritime / Legal / Generic) — header “Tenant : …”."}, "does": {"el": "Το ίδιο DMS «φοριέται» ως δικό της κάθε εταιρεία.", "en": "The same DMS is “worn” as their own by each company."}, "steps": [{"el": "Άλλαξε tenant → αλλάζει το vertical pack.", "en": "Switch tenant → the vertical pack changes."}], "result": {"el": "Ένα προϊόν, πολλές εταιρείες-ένοικοι.", "en": "One product, many tenant companies."}}, {"icon": "🛡️", "t": {"el": "No-copy & single source of truth", "en": "No-copy & single source of truth"}, "see": {"el": "Στα ιατρικά, ένδειξη no-copy· στα άλλα προϊόντα μόνο reference + status.", "en": "On medical, a no-copy marker; other products show only a reference + status."}, "does": {"el": "Το πρωτότυπο μένει εδώ· κανείς δεν κρατά αντίγραφο.", "en": "The original stays here; nobody keeps a copy."}, "steps": [{"el": "Δες ότι τα ιατρικά δεν αντιγράφονται.", "en": "Notice medical items aren't copied."}, {"el": "Οι άλλοι βλέπουν fit/not-fit + deep link.", "en": "Others see fit/not-fit + a deep link."}], "result": {"el": "GDPR/MDR λύνονται με τον σχεδιασμό.", "en": "GDPR/MDR solved by design."}}, {"icon": "⚖️", "t": {"el": "Governance (Retention & Audit)", "en": "Governance (Retention & Audit)"}, "see": {"el": "Πληροφορίες διακράτησης/GDPR και audit trail ανά έγγραφο.", "en": "Retention/GDPR info and an audit trail per document."}, "does": {"el": "Καταγράφει ποιος, τι, πότε — και πότε λήγει/διαγράφεται.", "en": "Records who, what, when — and when it expires/is deleted."}, "steps": [{"el": "Άνοιξε έγγραφο → «Audit trail».", "en": "Open a document → “Audit trail”."}, {"el": "Δες retention/legal-hold.", "en": "See retention/legal-hold."}], "result": {"el": "Πλήρης ιχνηλασιμότητα & συμμόρφωση.", "en": "Full traceability & compliance."}}, {"icon": "🌱", "t": {"el": "Κενός φάκελος (context-aware)", "en": "Empty folder (context-aware)"}, "see": {"el": "Ναυτικός χωρίς έγγραφα → «Αυτός ο ναυτικός δεν έχει ακόμη έγγραφα — θα εμφανιστούν καθώς προχωράει η διαδρομή».", "en": "A seafarer with no documents → “This seafarer has no documents yet — they appear as the journey progresses.”"}, "does": {"el": "Δεν σε τρομάζει με «κενό» — εξηγεί ότι ο φάκελος γεμίζει σταδιακά.", "en": "Doesn't scare you with “empty” — it explains the folder fills up as you go."}, "steps": [{"el": "Νέος ναυτικός → κενός φάκελος (φυσιολογικό).", "en": "New seafarer → empty folder (normal)."}, {"el": "Καθώς περνά σταθμούς, τα έγγραφα εμφανίζονται.", "en": "As they pass stations, documents appear."}], "result": {"el": "Καθαρή κατάσταση, χωρίς «χάθηκαν τα έγγραφα».", "en": "Clear state, no “documents lost” confusion."}}]};
 function openAppGuide(){$("#appGuideNav").classList.add("on");$$("#nav a.lib,#nav a.src,#nav a.gov,#nav a.guide").forEach(a=>a.classList.remove("on"));$("#libView").style.display="none";$("#guideView").classList.remove("show");$("#appGuideView").classList.add("show");renderAppGuide();}
 function renderAppGuide(){
@@ -826,10 +855,10 @@ $("#thead").addEventListener("click",e=>{const th=e.target.closest("th.sortable"
 cacheEN();loadTenant();
 
 /* ---- cross-app navigation ---- */
-function openProduct(src){if(src==='peme'){location.href='next2peme-console-v74.html';return;}
+function openProduct(src){if(src==='peme'){location.href='next2peme-console-v75.html';return;}
   toast(lang==='el'?'Το προϊόν είναι σε planning — δεν ανοίγει ακόμη.':'Product is in planning — not open yet.');}
-function openRef(name){if(name==='Next2Peme'){location.href='next2peme-console-v74.html';return;}
-  if(name==='Next2MCL'){location.href='mcl-shell-v74.html';return;}
+function openRef(name){if(name==='Next2Peme'){location.href='next2peme-console-v75.html';return;}
+  if(name==='Next2MCL'){location.href='mcl-shell-v75.html';return;}
   toast(lang==='el'?'Σε planning — δεν ανοίγει ακόμη.':'In planning — not open yet.');}
 
 /* ---- incoming context from other apps (?tenant=&source=&q=) ---- */
