@@ -405,6 +405,10 @@ tbody tr:last-child td{border-bottom:none}
 .verdict.warn{background:rgba(217,144,42,.08);border:1px solid rgba(217,144,42,.28);color:#8a5a12}.verdict.warn svg{color:var(--amber)}
 .verdict.crit{background:rgba(229,67,58,.08);border:1px solid rgba(229,67,58,.3);color:var(--coral-d)}.verdict.crit svg{color:var(--coral-d)}
 .propflag{font-family:var(--ff-mono);font-size:9px;font-weight:700;letter-spacing:.02em;color:#6b4fa0;background:rgba(139,79,168,.1);border:1px solid rgba(139,79,168,.3);padding:2px 6px;border-radius:5px;white-space:nowrap}
+.propflag.rp{color:#2f7d64;background:rgba(47,125,100,.1);border-color:rgba(47,125,100,.32)}
+.basis{display:flex;gap:8px;align-items:flex-start;margin-top:12px;padding:9px 11px;background:var(--paper);border:1px dashed var(--line);border-radius:9px;font-size:11px;color:var(--ink-2);line-height:1.45}
+.basis svg{width:15px;height:15px;flex:0 0 auto;color:var(--ink-3);margin-top:1px}
+.basis a{color:inherit}
 .win{display:flex;gap:12px;padding:12px 0;border-bottom:1px dashed var(--line-2)}
 .win:last-child{border-bottom:none}
 .win .wn{width:26px;height:26px;flex:0 0 26px;border-radius:8px;display:grid;place-items:center;font-family:var(--ff-display);font-weight:700;font-size:12px;background:var(--mist);color:var(--ink-3)}
@@ -590,13 +594,13 @@ Object.assign(T.en,{
  "lg.third":"Contest & third-doctor procedure","lg.third.sub":"POEA-SEC §20(A)(3) · binding",
  "lg.third.need":"Available once a final & definite CFMA has been served.",
  "lg.third.default":"No contest recorded. Absent a request from the seafarer, the company-designated physician's assessment stands — final and binding.",
- "lg.sla":"operational SLA · proposed","lg.win.of":"of","lg.win.d":"d",
- "lg.w1":"Seafarer signifies disagreement","lg.w1.d":"Contests the CFMA and submits his own physician's assessment. The duty to trigger the referral is on the seafarer.",
- "lg.w1.btn":"Record seafarer contest","lg.consq.w1":"if not raised in time → company assessment prevails",
- "lg.w2":"Joint appointment of third doctor","lg.w2.d":"Employer and seafarer jointly agree on a third doctor. If the employer stonewalls, the seafarer's assessment may prevail.",
- "lg.w2.btn":"Appoint third doctor","lg.consq.w2":"if not appointed → seafarer's doctor may prevail",
- "lg.w3":"Third doctor's binding decision","lg.w3.d":"The third doctor's finding is final and binding on both parties and closes the medical dispute.",
- "lg.w3.btn":"Record binding decision","lg.w3.view":"Open decision","lg.consq.w3":"final & binding on both parties",
+ "lg.sla":"per Bunayog · SC En Banc 2023","lg.win.of":"of","lg.win.d":"d",
+ "lg.w1":"Seafarer signifies disagreement","lg.w1.d":"Contests the CFMA and submits his own physician's assessment, within a reasonable period. The duty to trigger the referral is on the seafarer.",
+ "lg.w1.rp":"reasonable period","lg.w1.btn":"Record seafarer contest","lg.consq.w1":"if not raised in a reasonable period → company assessment prevails","lg.wA":"Employer assents to referral","lg.wA.d":"The employer must agree to the third-doctor referral. Assent given beyond 10 days breaches the POEA-SEC.","lg.wA.btn":"Record employer assent","lg.consq.wA":"assent beyond 10 days → POEA-SEC violation; seafarer's doctor may prevail",
+ "lg.w2":"Secure third doctor (mandatory conference)","lg.w2.d":"Both parties jointly secure the third doctor at the mandatory conference, within 15 days.",
+ "lg.w2.btn":"Secure third doctor","lg.consq.w2":"if not secured in time → seafarer's doctor may prevail",
+ "lg.w3":"Third doctor's reassessment — binding decision","lg.w3.d":"The third doctor reassesses and issues a final, binding finding within 30 days — closing the medical dispute.",
+ "lg.w3.btn":"Record binding decision","lg.w3.view":"Open decision","lg.consq.w3":"final & binding on both parties","lg.third.basis":"Time windows per <a href=\"https://sc.judiciary.gov.ph/sc-sets-guidelines-in-cases-where-seafarer-claiming-disability-benefits-requests-third-doctor-referral/\" target=\"_blank\" rel=\"noopener\" style=\"color:inherit;text-decoration:underline\">Bunayog v. Foscon (SC En Banc, 2023)</a>. A governing CBA may set different or stricter timelines that override these defaults.",
  "lg.settle":"Settlement instruments","lg.settle.sub":"signed on closure · e-signature RA 8792",
  "lg.qma":"QMA — Quitclaim & Mutual Agreement","lg.swrr":"SW R&R — Sickness Wages Receipt & Release",
  "lg.sign":"Sign (RA 8792)","lg.signed":"e-signed",
@@ -630,7 +634,7 @@ Object.assign(T.en,{
  "ld.third.finding":"Assessed disability:","ld.gop.body":"The principal guarantees payment to the admitting facility for the medical treatment of the seafarer arising from this case, subject to the coverage terms.",
  "ld.esign":"e-signed · RA 8792","ld.stored":"Stored once in Next2DMS · no-copy",
  "toast.ext":"Extension to 240 recorded","toast.cfmaint":"CFMA flagged interim · clock resumes","toast.cfmadef":"CFMA restored as definite",
- "toast.contest":"Contest recorded · third-doctor window open","toast.appoint":"Third doctor appointed","toast.third":"Binding decision recorded","toast.sign":"Document e-signed","toast.nlrc":"Escalated to NLRC","toast.legclose":"Legal track closed",
+ "toast.contest":"Contest recorded · third-doctor window open","toast.assent":"Employer assent recorded","toast.appoint":"Third doctor appointed","toast.third":"Binding decision recorded","toast.sign":"Document e-signed","toast.nlrc":"Escalated to NLRC","toast.legclose":"Legal track closed",
  "toast.appr":"Owner / P&I approval recorded","toast.gop":"Guarantee of Payment issued","toast.sick":"Monthly sickness allowance recorded","toast.settle":"Settlement recorded","toast.finclose":"Financial track closed"
 });
 Object.assign(T.el,{
@@ -655,13 +659,13 @@ Object.assign(T.el,{
  "lg.third":"Αμφισβήτηση & διαδικασία τρίτου γιατρού","lg.third.sub":"POEA-SEC §20(A)(3) · δεσμευτική",
  "lg.third.need":"Διαθέσιμο μόλις επιδοθεί τελική & οριστική CFMA.",
  "lg.third.default":"Καμία αμφισβήτηση. Ελλείψει αιτήματος του ναυτικού, η εκτίμηση του company-designated physician ισχύει — τελική και δεσμευτική.",
- "lg.sla":"operational SLA · proposed","lg.win.of":"από","lg.win.d":"ημ.",
- "lg.w1":"Ο ναυτικός δηλώνει διαφωνία","lg.w1.d":"Αμφισβητεί το CFMA και καταθέτει τη γνώμη του δικού του γιατρού. Η έναρξη της παραπομπής βαρύνει τον ναυτικό.",
- "lg.w1.btn":"Καταγραφή αμφισβήτησης","lg.consq.w1":"αν δεν εγερθεί εγκαίρως → υπερισχύει η εκτίμηση της εταιρείας",
- "lg.w2":"Από κοινού ορισμός τρίτου γιατρού","lg.w2.d":"Εργοδότης και ναυτικός συμφωνούν από κοινού τον τρίτο γιατρό. Αν ο εργοδότης κωλυσιεργεί, μπορεί να υπερισχύσει η γνώμη του ναυτικού.",
- "lg.w2.btn":"Ορισμός τρίτου γιατρού","lg.consq.w2":"αν δεν οριστεί → μπορεί να υπερισχύσει ο γιατρός του ναυτικού",
- "lg.w3":"Δεσμευτική απόφαση τρίτου γιατρού","lg.w3.d":"Το πόρισμα του τρίτου γιατρού είναι τελικό και δεσμευτικό για τα δύο μέρη και κλείνει την ιατρική διαφορά.",
- "lg.w3.btn":"Καταγραφή δεσμευτικής απόφασης","lg.w3.view":"Άνοιγμα απόφασης","lg.consq.w3":"τελικό & δεσμευτικό για τα δύο μέρη",
+ "lg.sla":"κατά Bunayog · SC En Banc 2023","lg.win.of":"από","lg.win.d":"ημ.",
+ "lg.w1":"Ο ναυτικός δηλώνει διαφωνία","lg.w1.d":"Αμφισβητεί το CFMA και καταθέτει τη γνώμη του δικού του γιατρού, εντός εύλογου χρόνου. Η έναρξη της παραπομπής βαρύνει τον ναυτικό.",
+ "lg.w1.rp":"εύλογος χρόνος","lg.w1.btn":"Καταγραφή αμφισβήτησης","lg.consq.w1":"αν δεν εγερθεί εντός εύλογου χρόνου → υπερισχύει η εκτίμηση της εταιρείας","lg.wA":"Ο εργοδότης συναινεί στην παραπομπή","lg.wA.d":"Ο εργοδότης οφείλει να συναινέσει στην παραπομπή σε τρίτο γιατρό. Συναίνεση πέραν των 10 ημερών παραβιάζει το POEA-SEC.","lg.wA.btn":"Καταγραφή συναίνεσης εργοδότη","lg.consq.wA":"συναίνεση πέραν των 10 ημ. → παράβαση POEA-SEC· μπορεί να υπερισχύσει ο γιατρός του ναυτικού",
+ "lg.w2":"Εξασφάλιση τρίτου γιατρού (mandatory conference)","lg.w2.d":"Τα δύο μέρη εξασφαλίζουν από κοινού τον τρίτο γιατρό στη mandatory conference, εντός 15 ημερών.",
+ "lg.w2.btn":"Εξασφάλιση τρίτου γιατρού","lg.consq.w2":"αν δεν εξασφαλιστεί εγκαίρως → μπορεί να υπερισχύσει ο γιατρός του ναυτικού",
+ "lg.w3":"Επανεκτίμηση τρίτου γιατρού — δεσμευτική απόφαση","lg.w3.d":"Ο τρίτος γιατρός επανεκτιμά και εκδίδει τελικό, δεσμευτικό πόρισμα εντός 30 ημερών — κλείνοντας την ιατρική διαφορά.",
+ "lg.w3.btn":"Καταγραφή δεσμευτικής απόφασης","lg.w3.view":"Άνοιγμα απόφασης","lg.consq.w3":"τελικό & δεσμευτικό για τα δύο μέρη","lg.third.basis":"Χρονικά όρια κατά <a href=\"https://sc.judiciary.gov.ph/sc-sets-guidelines-in-cases-where-seafarer-claiming-disability-benefits-requests-third-doctor-referral/\" target=\"_blank\" rel=\"noopener\" style=\"color:inherit;text-decoration:underline\">Bunayog v. Foscon (SC En Banc, 2023)</a>. Τυχόν ισχύον CBA μπορεί να ορίζει διαφορετικά ή αυστηρότερα όρια που υπερισχύουν.",
  "lg.settle":"Έγγραφα διακανονισμού","lg.settle.sub":"υπογράφονται στο κλείσιμο · e-signature RA 8792",
  "lg.qma":"QMA — Quitclaim & Mutual Agreement","lg.swrr":"SW R&R — Sickness Wages Receipt & Release",
  "lg.sign":"Υπογραφή (RA 8792)","lg.signed":"υπεγράφη",
@@ -695,7 +699,7 @@ Object.assign(T.el,{
  "ld.third.finding":"Εκτιμώμενη αναπηρία:","ld.gop.body":"Ο principal εγγυάται την πληρωμή στο νοσηλευτικό ίδρυμα για την ιατρική περίθαλψη του ναυτικού που προκύπτει από την υπόθεση, υπό τους όρους κάλυψης.",
  "ld.esign":"e-signed · RA 8792","ld.stored":"Αποθηκεύεται μία φορά στο Next2DMS · no-copy",
  "toast.ext":"Καταγράφηκε η παράταση σε 240","toast.cfmaint":"Το CFMA σημάνθηκε ενδιάμεσο · το ρολόι συνεχίζει","toast.cfmadef":"Το CFMA επανήλθε ως οριστικό",
- "toast.contest":"Καταγράφηκε αμφισβήτηση · άνοιξε το παράθυρο τρίτου γιατρού","toast.appoint":"Ορίστηκε τρίτος γιατρός","toast.third":"Καταγράφηκε δεσμευτική απόφαση","toast.sign":"Το έγγραφο υπογράφηκε","toast.nlrc":"Κλιμακώθηκε στο NLRC","toast.legclose":"Έκλεισε το νομικό track",
+ "toast.contest":"Καταγράφηκε αμφισβήτηση · άνοιξε το παράθυρο τρίτου γιατρού","toast.assent":"Καταγράφηκε η συναίνεση του εργοδότη","toast.appoint":"Ορίστηκε τρίτος γιατρός","toast.third":"Καταγράφηκε δεσμευτική απόφαση","toast.sign":"Το έγγραφο υπογράφηκε","toast.nlrc":"Κλιμακώθηκε στο NLRC","toast.legclose":"Έκλεισε το νομικό track",
  "toast.appr":"Καταγράφηκε η έγκριση owner / P&I","toast.gop":"Εκδόθηκε το Guarantee of Payment","toast.sick":"Καταγράφηκε μηνιαία καταβολή","toast.settle":"Καταγράφηκε ο διακανονισμός","toast.finclose":"Έκλεισε το οικονομικό track"
 });
 
@@ -1201,16 +1205,17 @@ function saveReport(){
 function setFitness(f){const c=curCase;c.fitness=f;c.stg.med=7;if(c.stg.leg<1)c.stg.leg=1;if(f==="unfit")c.stg.leg=Math.max(c.stg.leg,2);renderDetail();toast(t("toast.fit"));}
 
 /* ============ Legal + Financial deep tracks ============ */
-const TD_SLA={w1:15,w2:10,w3:30};
+const TD_SLA={assent:10,secure:15,decision:30};
 const _icOK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5 9-11"/></svg>';
 const _icWarn='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>';
 const _icInfo='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="M12 11.5v5M12 7.6v.4"/></svg>';
 function ensureLeg(c){
  if(c.leg)return c.leg;
  const s=c.stg.leg, isLegal=c.status==='legal';
- const L={cfmaInterim:false,contested:(isLegal||s>=3),contestDay:null,thirdAppointed:s>=4,apptDay:null,thirdDecided:false,decideDay:null,ext240:false,qma:false,swrr:false,nlrc:s>=5,closed:s>=7};
+ const L={cfmaInterim:false,contested:(isLegal||s>=3),contestDay:null,assented:s>=4,assentDay:null,thirdAppointed:s>=4,apptDay:null,thirdDecided:false,decideDay:null,ext240:false,qma:false,swrr:false,nlrc:s>=5,closed:s>=7};
  if(L.contested)L.contestDay=(c.id==='PM-2026-0033')?61:daysSince(c.arr);
- if(L.thirdAppointed)L.apptDay=(c.id==='PM-2026-0033')?70:(L.contestDay!=null?L.contestDay+7:daysSince(c.arr));
+ if(L.assented)L.assentDay=(c.id==='PM-2026-0033')?69:(L.contestDay!=null?L.contestDay+6:daysSince(c.arr));
+ if(L.thirdAppointed)L.apptDay=(c.id==='PM-2026-0033')?82:(L.assentDay!=null?L.assentDay+9:daysSince(c.arr));
  c.leg=L;return L;
 }
 function ensureMoney(c){
@@ -1260,18 +1265,21 @@ function legalTab(c){
  let thirdPanel;
  if(!cfmaDef){thirdPanel=`<div class="empty">${t("lg.third.need")}</div>`;}
  else{
-  const cfmaDay=finalDay;
-  // W1 signify
-  const w1done=L.contested, w1el=(L.contested?L.contestDay:d)-cfmaDay, w1m=winMeta(Math.max(0,w1el),TD_SLA.w1);
-  const w1=`<div class="win ${w1done?"done":"active"}"><div class="wn">${w1done?"✓":"1"}</div><div class="wb"><div class="wt">${t("lg.w1")} <span class="propflag">${t("lg.sla")} ${TD_SLA.w1}${t("lg.win.d")}</span></div><div class="wd">${t("lg.w1.d")}<br><span style="color:var(--coral-d)">${t("lg.consq.w1")}</span></div>${!w1done?`<button class="btn ghost mini" style="margin-top:8px" onclick="legContest()">${t("lg.w1.btn")}</button>`:""}</div><div class="wc">${w1done?`<span class="big st-ok">${t("lg.day")} ${L.contestDay}</span>${t("lg.done")}`:`<span class="big st-${w1m.st}">${w1m.txt}</span>`}</div></div>`;
-  // W2 appoint
-  const w2done=L.thirdAppointed, w2active=L.contested&&!L.thirdAppointed, w2el=(w2done?L.apptDay:d)-(L.contestDay!=null?L.contestDay:d), w2m=winMeta(Math.max(0,w2el),TD_SLA.w2);
-  const w2=`<div class="win ${w2done?"done":w2active?"active":""}"><div class="wn">${w2done?"✓":"2"}</div><div class="wb"><div class="wt">${t("lg.w2")} <span class="propflag">${t("lg.sla")} ${TD_SLA.w2}${t("lg.win.d")}</span></div><div class="wd">${t("lg.w2.d")}<br><span style="color:var(--coral-d)">${t("lg.consq.w2")}</span></div>${w2active?`<button class="btn ghost mini" style="margin-top:8px" onclick="legAppoint()">${t("lg.w2.btn")}</button>`:""}</div><div class="wc">${w2done?`<span class="big st-ok">${t("lg.day")} ${L.apptDay}</span>${t("lg.done")}`:w2active?`<span class="big st-${w2m.st}">${w2m.txt}</span>`:`<span class="big">—</span>`}</div></div>`;
-  // W3 decision
-  const w3done=L.thirdDecided, w3active=L.thirdAppointed&&!L.thirdDecided, w3el=(w3done?L.decideDay:d)-(L.apptDay!=null?L.apptDay:d), w3m=winMeta(Math.max(0,w3el),TD_SLA.w3);
-  const w3=`<div class="win ${w3done?"done":w3active?"active":""}"><div class="wn">${w3done?"✓":"3"}</div><div class="wb"><div class="wt">${t("lg.w3")} <span class="propflag">${t("lg.sla")} ${TD_SLA.w3}${t("lg.win.d")}</span></div><div class="wd">${t("lg.w3.d")}<br><span style="color:var(--green)">${t("lg.consq.w3")}</span></div>${w3active?`<button class="btn ghost mini" style="margin-top:8px" onclick="legThird()">${t("lg.w3.btn")}</button>`:""}${w3done?`<button class="btn ghost mini" style="margin-top:8px" onclick="openLegalDoc('THIRD')">${t("lg.w3.view")} ▸</button>`:""}</div><div class="wc">${w3done?`<span class="big st-ok">${t("lg.day")} ${L.decideDay}</span>${t("lg.done")}`:w3active?`<span class="big st-${w3m.st}">${w3m.txt}</span>`:`<span class="big">—</span>`}</div></div>`;
+  // W1 signify — reasonable period (qualitative, no fixed statutory count)
+  const w1done=L.contested;
+  const w1=`<div class="win ${w1done?"done":"active"}"><div class="wn">${w1done?"✓":"1"}</div><div class="wb"><div class="wt">${t("lg.w1")} <span class="propflag rp">${t("lg.w1.rp")}</span></div><div class="wd">${t("lg.w1.d")}<br><span style="color:var(--coral-d)">${t("lg.consq.w1")}</span></div>${!w1done?`<button class="btn ghost mini" style="margin-top:8px" onclick="legContest()">${t("lg.w1.btn")}</button>`:""}</div><div class="wc">${w1done?`<span class="big st-ok">${t("lg.day")} ${L.contestDay}</span>${t("lg.done")}`:`<span class="big st-mut">${t("lg.w1.rp")}</span>`}</div></div>`;
+  // WA employer assent — 10 days
+  const wAdone=L.assented, wAactive=L.contested&&!L.assented, wAel=(wAdone?L.assentDay:d)-(L.contestDay!=null?L.contestDay:d), wAm=winMeta(Math.max(0,wAel),TD_SLA.assent);
+  const wA=`<div class="win ${wAdone?"done":wAactive?"active":""}"><div class="wn">${wAdone?"✓":"2"}</div><div class="wb"><div class="wt">${t("lg.wA")} <span class="propflag">${t("lg.sla")} ${TD_SLA.assent}${t("lg.win.d")}</span></div><div class="wd">${t("lg.wA.d")}<br><span style="color:var(--coral-d)">${t("lg.consq.wA")}</span></div>${wAactive?`<button class="btn ghost mini" style="margin-top:8px" onclick="legAssent()">${t("lg.wA.btn")}</button>`:""}</div><div class="wc">${wAdone?`<span class="big st-ok">${t("lg.day")} ${L.assentDay}</span>${t("lg.done")}`:wAactive?`<span class="big st-${wAm.st}">${wAm.txt}</span>`:`<span class="big">—</span>`}</div></div>`;
+  // W2 secure third doctor (mandatory conference) — 15 days
+  const w2done=L.thirdAppointed, w2active=L.assented&&!L.thirdAppointed, w2el=(w2done?L.apptDay:d)-(L.assentDay!=null?L.assentDay:d), w2m=winMeta(Math.max(0,w2el),TD_SLA.secure);
+  const w2=`<div class="win ${w2done?"done":w2active?"active":""}"><div class="wn">${w2done?"✓":"3"}</div><div class="wb"><div class="wt">${t("lg.w2")} <span class="propflag">${t("lg.sla")} ${TD_SLA.secure}${t("lg.win.d")}</span></div><div class="wd">${t("lg.w2.d")}<br><span style="color:var(--coral-d)">${t("lg.consq.w2")}</span></div>${w2active?`<button class="btn ghost mini" style="margin-top:8px" onclick="legAppoint()">${t("lg.w2.btn")}</button>`:""}</div><div class="wc">${w2done?`<span class="big st-ok">${t("lg.day")} ${L.apptDay}</span>${t("lg.done")}`:w2active?`<span class="big st-${w2m.st}">${w2m.txt}</span>`:`<span class="big">—</span>`}</div></div>`;
+  // W3 reassessment — binding decision — 30 days
+  const w3done=L.thirdDecided, w3active=L.thirdAppointed&&!L.thirdDecided, w3el=(w3done?L.decideDay:d)-(L.apptDay!=null?L.apptDay:d), w3m=winMeta(Math.max(0,w3el),TD_SLA.decision);
+  const w3=`<div class="win ${w3done?"done":w3active?"active":""}"><div class="wn">${w3done?"✓":"4"}</div><div class="wb"><div class="wt">${t("lg.w3")} <span class="propflag">${t("lg.sla")} ${TD_SLA.decision}${t("lg.win.d")}</span></div><div class="wd">${t("lg.w3.d")}<br><span style="color:var(--green)">${t("lg.consq.w3")}</span></div>${w3active?`<button class="btn ghost mini" style="margin-top:8px" onclick="legThird()">${t("lg.w3.btn")}</button>`:""}${w3done?`<button class="btn ghost mini" style="margin-top:8px" onclick="openLegalDoc('THIRD')">${t("lg.w3.view")} ▸</button>`:""}</div><div class="wc">${w3done?`<span class="big st-ok">${t("lg.day")} ${L.decideDay}</span>${t("lg.done")}`:w3active?`<span class="big st-${w3m.st}">${w3m.txt}</span>`:`<span class="big">—</span>`}</div></div>`;
   const head=!L.contested?`<div class="verdict ok">${_icInfo}<div>${t("lg.third.default")}</div></div>`:"";
-  thirdPanel=head+w1+w2+w3;
+  const basis=`<div class="basis">${_icInfo}<div>${t("lg.third.basis")}</div></div>`;
+  thirdPanel=head+w1+wA+w2+w3+basis;
  }
 
  // ---- settlement instruments ----
@@ -1322,6 +1330,7 @@ function legalTab(c){
 function legExt240(){const c=curCase;ensureLeg(c).ext240=true;renderDetail();toast(t("toast.ext"));}
 function legCfmaToggle(){const c=curCase;const L=ensureLeg(c);L.cfmaInterim=!L.cfmaInterim;renderDetail();toast(L.cfmaInterim?t("toast.cfmaint"):t("toast.cfmadef"));}
 function legContest(){const c=curCase;const L=ensureLeg(c);L.contested=true;L.contestDay=daysSince(c.arr);c.status="legal";c.fitness="contested";if(c.stg.leg<3)c.stg.leg=3;renderDetail();toast(t("toast.contest"));}
+function legAssent(){const c=curCase;const L=ensureLeg(c);L.assented=true;L.assentDay=daysSince(c.arr);renderDetail();toast(t("toast.assent"));}
 function legAppoint(){const c=curCase;const L=ensureLeg(c);L.thirdAppointed=true;L.apptDay=daysSince(c.arr);if(c.stg.leg<4)c.stg.leg=4;renderDetail();toast(t("toast.appoint"));}
 function legThird(){const c=curCase;const L=ensureLeg(c);L.thirdDecided=true;L.decideDay=daysSince(c.arr);if(c.stg.leg<5)c.stg.leg=5;renderDetail();toast(t("toast.third"));}
 function legSign(type){const c=curCase;const L=ensureLeg(c);if(type==="QMA")L.qma=true;if(type==="SWRR")L.swrr=true;if(c.stg.leg<2)c.stg.leg=2;renderDetail();toast(t("toast.sign"));}
