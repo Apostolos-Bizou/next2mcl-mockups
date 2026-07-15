@@ -4,7 +4,7 @@
 <script src="auth-guard.js"></script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Next2PostMed · Case Console (Mockup v86)</title>
+<title>Next2PostMed · Case Console (Mockup v87)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -479,14 +479,14 @@ tbody tr:last-child td{border-bottom:none}
 </style>
 </head>
 <body>
-<div class="mocktag">next2postmed v86 · MOCKUP · fake data</div>
+<div class="mocktag">next2postmed v87 · MOCKUP · fake data</div>
 
 <header class="topbar">
   <div class="brand">
     <svg class="mark" viewBox="0 0 40 40" fill="none"><rect x="1" y="1" width="38" height="38" rx="11" fill="#E5433A"/><path d="M8 25 L14 25 L17 13 L23 28 L26 20 L32 20" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="8.5" r="2.2" fill="#fff"/></svg>
     <div><div class="wm">Next2<b>PostMed</b></div><div class="sub">Case Console</div></div>
   </div>
-  <a class="mclhome" href="mcl-shell-v86.html" title="Back to MCL Command Center">◄ MCL</a>
+  <a class="mclhome" href="mcl-shell-v87.html" title="Back to MCL Command Center">◄ MCL</a>
   <button class="orgsel"><span class="dot"></span>Crossworld Marine · Manila<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg></button>
   <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input placeholder="Search case, seafarer…" id="topSearch"></div>
   <div class="langtog" id="langTog"><button data-lang="en" class="on">EN</button><button data-lang="el">EL</button></div>
@@ -503,7 +503,7 @@ tbody tr:last-child td{border-bottom:none}
     <a class="nav" data-view="analysis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg><span data-i18n="nav.intel">Analysis</span></a>
     <div class="spacer"></div>
     <a class="nav guidebtn" data-view="guide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 5.5V20.5"/></svg><span data-i18n="nav.guide">User guide</span></a>
-    <a class="nav" href="next2dms-v86.html?tenant=next2mcl&source=postmed" title="Next2DMS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h10l6 6v10a0 0 0 0 1 0 0H4z"/><path d="M14 4v6h6"/></svg><span data-i18n="nav.dms">Documents (DMS)</span></a>
+    <a class="nav" href="next2dms-v87.html?tenant=next2mcl&source=postmed" title="Next2DMS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h10l6 6v10a0 0 0 0 1 0 0H4z"/><path d="M14 4v6h6"/></svg><span data-i18n="nav.dms">Documents (DMS)</span></a>
   </aside>
 
   <main class="main" id="main"></main>
@@ -988,8 +988,8 @@ function renderDetail(){
         <div class="idchip"><span class="l">Case</span><span class="v">${c.id}</span></div>
         <div class="idchip"><span class="l">DMS</span><span class="v">MCL-MAR-POST-CASE-2026-${("000000"+c.seq).slice(-6)}</span></div>
         <div class="idchip"><span class="l">Seafarer</span><span class="v">${c.sf.id}</span></div>
-        <a class="idchip" href="next2dms-v86.html?tenant=next2mcl&source=postmed&q=${encodeURIComponent(c.sf.id)}" target="_blank" rel="noopener" title="Open this case's documents in Next2DMS" style="color:#8fd0e6;border-color:rgba(90,160,196,.5);background:rgba(90,160,196,.14)"><span class="l" style="color:#8fd0e6">Next2DMS</span><span class="v" style="color:#fff">${lang==='el'?'Έγγραφα':'Docs'} &#9656;</span></a>
-        <a class="idchip" href="next2postmed-tracker-v86.html?case=${c.id}" target="_blank" rel="noopener" title="Open shareable status tracker" style="color:#f5b3ad;border-color:rgba(229,84,75,.45);background:rgba(229,84,75,.16)"><span class="l" style="color:#f5b3ad">Share</span><span class="v" style="color:#fff">Status &#9656;</span></a>
+        <a class="idchip" href="next2dms-v87.html?tenant=next2mcl&source=postmed&q=${encodeURIComponent(c.sf.id)}" target="_blank" rel="noopener" title="Open this case's documents in Next2DMS" style="color:#8fd0e6;border-color:rgba(90,160,196,.5);background:rgba(90,160,196,.14)"><span class="l" style="color:#8fd0e6">Next2DMS</span><span class="v" style="color:#fff">${lang==='el'?'Έγγραφα':'Docs'} &#9656;</span></a>
+        <a class="idchip" href="next2postmed-tracker-v87.html?case=${c.id}" target="_blank" rel="noopener" title="Open shareable status tracker" style="color:#f5b3ad;border-color:rgba(229,84,75,.45);background:rgba(229,84,75,.16)"><span class="l" style="color:#f5b3ad">Share</span><span class="v" style="color:#fff">Status &#9656;</span></a>
       </div>
     </div>
     <div class="clocks">
@@ -1172,7 +1172,7 @@ function renderReport(){
    <div class="rsec"><h4>${t("rep.reco")}</h4><p>${t("rep.reco.b")}</p></div>`:
    `<div class="rsec"><h4>${t("rep.finaldx")}</h4><p><b>${c.dx}</b> — ${SYS[c.sys]}. ${t("rep.wrline")}: <b>${c.wr}</b>.</p></div>
    <div class="rsec fit"><h4>${t("med.fitness")}</h4><p class="big">${fitLabel(c.fitness)}</p><p>${c.fitness==='contested'?t("fit.contested.d"):c.fitness==='unfit'?(t("fit.grade")+': Grade 8 (POEA schedule)'):t("rep.cfma")}</p></div>`}
-   <div class="rfootr"><span class="nocopy">NO-COPY · MEDICAL</span> ${t("rep.stored")} <b>Next2DMS</b> · <a href="next2dms-v86.html?tenant=next2mcl&source=postmed&q=${encodeURIComponent(c.sf.id)}" target="_blank" rel="noopener" style="color:#5aa0c4;font-weight:600;text-decoration:none">${r.dms} &#9656;</a></div>
+   <div class="rfootr"><span class="nocopy">NO-COPY · MEDICAL</span> ${t("rep.stored")} <b>Next2DMS</b> · <a href="next2dms-v87.html?tenant=next2mcl&source=postmed&q=${encodeURIComponent(c.sf.id)}" target="_blank" rel="noopener" style="color:#5aa0c4;font-weight:600;text-decoration:none">${r.dms} &#9656;</a></div>
   </div>`;
 }
 let formType="FUR";
@@ -1442,7 +1442,7 @@ function renderLegalDoc(){
    <div class="rsec"><h4>${t("ld.parties")}</h4><p>${meta.body}</p></div>
    ${detail}
    <div class="stampsig">${meta.sig.map(s=>`<span class="sg"><b>${s}</b>${t("ld.esign")} ✓</span>`).join("")}</div>
-   <div class="rfootr"><span class="nocopy">NO-COPY · LEGAL</span> ${t("ld.stored")} · <a href="next2dms-v86.html?tenant=next2mcl&source=postmed&q=${encodeURIComponent(c.sf.id)}" target="_blank" rel="noopener" style="color:#5aa0c4;font-weight:600;text-decoration:none">${dms} &#9656;</a></div>
+   <div class="rfootr"><span class="nocopy">NO-COPY · LEGAL</span> ${t("ld.stored")} · <a href="next2dms-v87.html?tenant=next2mcl&source=postmed&q=${encodeURIComponent(c.sf.id)}" target="_blank" rel="noopener" style="color:#5aa0c4;font-weight:600;text-decoration:none">${dms} &#9656;</a></div>
   </div>`;
 }
 
@@ -1518,7 +1518,7 @@ function renderHospitals(){var isE=lang==='el';
  }).join('');
  $("#main").innerHTML=`
   <div class="pagehead"><div><div class="ey">${isE?'Κεντρικό δίκτυο · Shared Core':'Central network · Shared Core'}</div><h1>${isE?'Δίκτυο νοσοκομείων & γιατρών':'Hospital & doctor network'}</h1></div>
-   <a class="net360" href="seafarer-360-folder-v86.html?tab=network">➕ ${isE?'Καταχώριση στο 360°':'Register in 360°'}</a></div>
+   <a class="net360" href="seafarer-360-folder-v87.html?tab=network">➕ ${isE?'Καταχώριση στο 360°':'Register in 360°'}</a></div>
   <div style="font-size:13px;color:var(--ink-2);margin-bottom:14px;max-width:780px">${isE?'Ένα κοινό δίκτυο για όλα τα προϊόντα — διαχειρίζεται κεντρικά στο Seafarer 360° / Shared Core. Εδώ read-only (tenant-scoped)· η καταχώριση νέου provider γίνεται στο 360°. Εδώ φαίνονται μόνο POME-accredited providers.':'One shared network for all products — managed centrally in Seafarer 360° / Shared Core. Read-only here (tenant-scoped); registering a new provider happens in 360°. Showing only post-medical (POME)-accredited providers.'}</div>
   <div class="netsubx"><button class="nstx ${pmNetTab!=='doctor'?'on':''}" onclick="setPmNet('clinic')">${isE?'Κλινικές & Νοσοκομεία':'Clinics & Hospitals'}</button><button class="nstx ${pmNetTab==='doctor'?'on':''}" onclick="setPmNet('doctor')">${isE?'Γιατροί':'Doctors'}</button></div>
   <div class="hnet">${list}</div>`;
