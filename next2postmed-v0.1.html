@@ -389,6 +389,48 @@ tbody tr:last-child td{border-bottom:none}
 .fld .hint{font-size:10.5px;color:var(--ink-3)}
 .forced{display:flex;gap:9px;background:rgba(217,144,42,.08);border:1px solid rgba(217,144,42,.28);border-radius:11px;padding:11px 13px;font-size:12px;color:#8a5a12;margin:4px 0 16px}
 .forced svg{width:16px;height:16px;flex:0 0 16px;color:var(--amber);margin-top:1px}
+/* legal + financial deep tabs */
+.dcline{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px dashed var(--line-2)}
+.dcline:last-child{border-bottom:none}
+.dcline .dck{flex:0 0 128px}.dcline .dck b{font-size:12px;color:var(--ink);display:block}.dcline .dck small{font-size:10.5px;color:var(--ink-3)}
+.dctrack{flex:1;height:8px;border-radius:6px;background:var(--line-2);overflow:hidden;position:relative}
+.dctrack .fill{position:absolute;left:0;top:0;bottom:0;border-radius:6px}
+.dcline .dcn{flex:0 0 auto;font-family:var(--ff-mono);font-size:11px;font-weight:700;min-width:70px;text-align:right}
+.st-ok{color:var(--green)}.st-warn{color:var(--amber)}.st-crit{color:var(--coral-d)}
+.bg-ok{background:var(--green)}.bg-warn{background:var(--amber)}.bg-crit{background:var(--coral-d)}.bg-mut{background:var(--ink-3)}
+.verdict{border-radius:11px;padding:11px 13px;font-size:12px;margin:2px 0 12px;display:flex;gap:9px;align-items:flex-start}
+.verdict svg{width:16px;height:16px;flex:0 0 16px;margin-top:1px}
+.verdict b{font-weight:700}
+.verdict.ok{background:rgba(47,163,107,.09);border:1px solid rgba(47,163,107,.28);color:#1f6b3f}.verdict.ok svg{color:var(--green)}
+.verdict.warn{background:rgba(217,144,42,.08);border:1px solid rgba(217,144,42,.28);color:#8a5a12}.verdict.warn svg{color:var(--amber)}
+.verdict.crit{background:rgba(229,67,58,.08);border:1px solid rgba(229,67,58,.3);color:var(--coral-d)}.verdict.crit svg{color:var(--coral-d)}
+.propflag{font-family:var(--ff-mono);font-size:9px;font-weight:700;letter-spacing:.02em;color:#6b4fa0;background:rgba(139,79,168,.1);border:1px solid rgba(139,79,168,.3);padding:2px 6px;border-radius:5px;white-space:nowrap}
+.win{display:flex;gap:12px;padding:12px 0;border-bottom:1px dashed var(--line-2)}
+.win:last-child{border-bottom:none}
+.win .wn{width:26px;height:26px;flex:0 0 26px;border-radius:8px;display:grid;place-items:center;font-family:var(--ff-display);font-weight:700;font-size:12px;background:var(--mist);color:var(--ink-3)}
+.win.done .wn{background:rgba(47,163,107,.14);color:var(--green)}
+.win.active .wn{background:rgba(139,79,168,.16);color:var(--violet)}
+.win .wb{flex:1;min-width:0}
+.win .wt{font-size:12.5px;font-weight:600;color:var(--ink);display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.win .wd{font-size:11px;color:var(--ink-3);margin-top:3px;line-height:1.4}
+.win .wc{margin-left:auto;text-align:right;font-family:var(--ff-mono);font-size:10px;color:var(--ink-3);flex:0 0 auto;padding-left:6px}
+.win .wc .big{font-size:13px;font-weight:700;display:block}
+.btn.mini{padding:8px 12px;font-size:11.5px}
+.chk{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+.chk span{font-size:10px;font-weight:600;color:#1f6b3f;background:rgba(47,163,107,.1);border:1px solid rgba(47,163,107,.26);padding:2px 7px;border-radius:6px}
+.varbar{height:28px;border-radius:8px;background:var(--line-2);position:relative;overflow:hidden;margin:10px 0 4px}
+.varbar .est{position:absolute;top:0;bottom:0;left:0;background:rgba(27,122,107,.16);border-right:2px dashed var(--teal)}
+.varbar .act{position:absolute;top:0;bottom:0;left:0;background:linear-gradient(90deg,rgba(199,125,40,.55),rgba(199,125,40,.3))}
+.varbar .vl{position:absolute;right:9px;top:50%;transform:translateY(-50%);font-family:var(--ff-mono);font-size:10.5px;font-weight:700;color:var(--ink)}
+.ftile{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px dashed var(--line-2);font-size:12.5px}
+.ftile:last-child{border-bottom:none}.ftile .fl{color:var(--ink-3)}.ftile .fv{font-family:var(--ff-mono);font-weight:700;color:var(--ink)}
+.ledger{border:1px solid var(--line);border-radius:11px;overflow:hidden;margin-top:8px}
+.ledger .lr{display:flex;justify-content:space-between;padding:8px 12px;font-size:12px;border-bottom:1px solid var(--line-2);background:var(--paper)}
+.ledger .lr:last-child{border-bottom:none}.ledger .lr .n{font-family:var(--ff-mono);font-weight:600;color:var(--ink)}
+.stampsig{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.stampsig .sg{font-size:11px;color:var(--ink-2);border:1px solid var(--line);border-radius:8px;padding:6px 10px;background:var(--paper)}
+.stampsig .sg b{display:block;font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);font-weight:700;margin-bottom:2px}
+.lgdoc .rsec.plum h4{color:var(--violet)}.lgdoc .rsec.ochre h4{color:var(--gold)}
 
 /* hospital network view */
 .hnet{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
@@ -521,6 +563,137 @@ const T={
   "gd.title":"Next2PostMed — η υπόθεση, από άκρη σε άκρη","gd.intro":"Μια post-medical υπόθεση είναι το πιο σύνθετο και ακριβό κομμάτι του κύκλου. Η κονσόλα μετατρέπει μια διάσπαρτη διαδικασία email-και-Excel σε μία παρακολουθούμενη υπόθεση: τρία παράλληλα tracks, ζωντανά ρολόγια προθεσμιών, και μία πηγή αλήθειας."}
 };
 const t=k=>(T[lang][k]??T.en[k]??k);
+Object.assign(T.en,{
+ "tab.leg":"Legal","tab.fin":"Financial",
+ "lg.day":"Day","lg.left":"left","lg.over":"over","lg.stopped":"stopped","lg.done":"done",
+ "lg.clocks":"Statutory deadlines","lg.clocks.sub":"POEA-SEC §20 · from repatriation",
+ "lg.3d":"3-day PEME report","lg.3d.d":"report to company-designated physician","lg.3d.done":"filed ✓",
+ "lg.120":"120-day assessment","lg.120.d":"final & definite assessment due",
+ "lg.240":"240-day maximum","lg.240.d":"absolute limit · extension only if treatment ongoing",
+ "lg.within":"Within the 120-day window — the company-designated physician must still issue a final & definite CFMA.",
+ "lg.gate.stopped":"A final & definite CFMA was issued — the 120/240 clock is stopped and the contest window opens.",
+ "lg.ext.btn":"Justify extension to 240 days","lg.ext.on":"Extension to 240 justified — ongoing treatment documented.",
+ "lg.ext.need":"120 days lapsing with no final assessment. Issue the CFMA or justify the extension to 240 in writing — otherwise the disability becomes permanent & total by operation of law.",
+ "lg.ptd":"No final assessment within 240 days → permanent & total disability by operation of law.",
+ "lg.cfma":"Certificate of Final Medical Assessment","lg.cfma.sub":"the document that stops the clock",
+ "lg.cfma.await":"Awaiting a final & definite assessment — record fitness in the Medical tab.",
+ "lg.cfma.def":"Final & definite","lg.cfma.int":"Interim / not definite",
+ "lg.cfma.defv":"States fitness or an exact disability grade, work-relatedness, no further condition — a valid CFMA. It stopped the clock and opened the contest window.",
+ "lg.cfma.intv":"An interim / “continue rehabilitation” or merely suggestive grading is NOT a final assessment. The 120/240 clock keeps running — and if it lapses, the seafarer is permanently & totally disabled by operation of law.",
+ "lg.cfma.chk1":"fitness / exact grade","lg.cfma.chk2":"work-relatedness","lg.cfma.chk3":"no further treatment","lg.cfma.chk4":"served to seafarer",
+ "lg.cfma.mark.int":"Flag as interim (demo the trap)","lg.cfma.mark.def":"Restore as definite","lg.cfma.view":"Open CFMA",
+ "lg.third":"Contest & third-doctor procedure","lg.third.sub":"POEA-SEC §20(A)(3) · binding",
+ "lg.third.need":"Available once a final & definite CFMA has been served.",
+ "lg.third.default":"No contest recorded. Absent a request from the seafarer, the company-designated physician's assessment stands — final and binding.",
+ "lg.sla":"operational SLA · proposed","lg.win.of":"of","lg.win.d":"d",
+ "lg.w1":"Seafarer signifies disagreement","lg.w1.d":"Contests the CFMA and submits his own physician's assessment. The duty to trigger the referral is on the seafarer.",
+ "lg.w1.btn":"Record seafarer contest","lg.consq.w1":"if not raised in time → company assessment prevails",
+ "lg.w2":"Joint appointment of third doctor","lg.w2.d":"Employer and seafarer jointly agree on a third doctor. If the employer stonewalls, the seafarer's assessment may prevail.",
+ "lg.w2.btn":"Appoint third doctor","lg.consq.w2":"if not appointed → seafarer's doctor may prevail",
+ "lg.w3":"Third doctor's binding decision","lg.w3.d":"The third doctor's finding is final and binding on both parties and closes the medical dispute.",
+ "lg.w3.btn":"Record binding decision","lg.w3.view":"Open decision","lg.consq.w3":"final & binding on both parties",
+ "lg.settle":"Settlement instruments","lg.settle.sub":"signed on closure · e-signature RA 8792",
+ "lg.qma":"QMA — Quitclaim & Mutual Agreement","lg.swrr":"SW R&R — Sickness Wages Receipt & Release",
+ "lg.sign":"Sign (RA 8792)","lg.signed":"e-signed",
+ "lg.valid.title":"A valid quitclaim requires:","lg.valid1":"voluntary","lg.valid2":"reasonable consideration","lg.valid3":"clear terms","lg.valid4":"no fraud / duress",
+ "lg.nlrc":"Adjudication ladder","lg.nlrc.sub":"if not resolved medically",
+ "lg.nlrc.d":"Unresolved contests proceed to the labor tribunal. Third-doctor referral is the mandatory step before this.",
+ "lg.nlrc.btn":"Escalate to NLRC","lg.nlrc.on":"NLRC case filed — legal exposure open.",
+ "lg.ladder1":"NLRC","lg.ladder2":"Court of Appeals","lg.ladder3":"Supreme Court",
+ "lg.close":"Legal closure","lg.close.d":"All legal obligations discharged.","lg.close.btn":"Close legal track",
+ "lg.close.need":"Sign the settlement instruments (QMA + SW R&R) or record a binding decision first.","lg.close.done":"Legal track closed","lg.outcome":"Outcome",
+ "fn.est":"Cost estimate vs actual","fn.est.sub":"USD · trajectory model",
+ "fn.initial":"Initial estimate","fn.actual":"Actual to date","fn.variance":"Variance",
+ "fn.est.note":"Estimate from the trajectory model by medical system; actuals accrue as the clinic reports costs.",
+ "fn.appr":"Approvals & Guarantee of Payment","fn.appr.sub":"owner / P&I → admission",
+ "fn.appr.owner":"Owner / P&I approval","fn.appr.btn":"Record owner / P&I approval",
+ "fn.gop":"Guarantee of Payment","fn.gop.btn":"Issue GOP","fn.gop.need":"needs approval","fn.gop.issued":"issued",
+ "fn.approved":"approved","fn.await":"awaiting",
+ "fn.sick":"Sickness allowance","fn.sick.sub":"basic wage · capped at 120 days",
+ "fn.sick.wage":"Basic monthly wage","fn.sick.paid":"Paid to date","fn.sick.months":"months",
+ "fn.sick.cap":"120-day cap reached — sickness allowance stops here (POEA-SEC §20(A)(3)).",
+ "fn.sick.btn":"Record monthly payment","fn.sick.link":"tied to the 120-day clock in Legal",
+ "fn.settle":"Settlement & closure","fn.settle.sub":"disability / amicable settlement",
+ "fn.settle.btn":"Record final settlement","fn.settle.on":"settled","fn.close.btn":"Close financial track","fn.close.done":"Financial track closed",
+ "ld.back":"Back to Legal track","ld.back.fin":"Back to Financial track",
+ "ld.cfma.t":"Certificate of Final Medical Assessment","ld.qma.t":"Quitclaim & Mutual Agreement","ld.swrr.t":"Sickness Wages Receipt & Release","ld.third.t":"Third-Doctor Final & Binding Assessment","ld.gop.t":"Guarantee of Payment",
+ "ld.issued":"Issued","ld.parties":"Statement","ld.employer":"Employer / Principal","ld.seafarer":"Seafarer","ld.finding":"Finding","ld.consideration":"Consideration","ld.terms":"Terms",
+ "ld.cfma.body":"The company-designated physician certifies the following as the final and definite medical assessment of the seafarer, issued within the statutory 120/240-day window.",
+ "ld.qma.body":"The seafarer, having received the consideration set out below, executes this Quitclaim and Mutual Agreement, releasing the employer from further liability arising from this case — freely and with full understanding of its terms.",
+ "ld.swrr.body":"The seafarer acknowledges receipt of sickness wages for the period of temporary total disability (not exceeding 120 days) and releases the employer from further claim for the said wages.",
+ "ld.third.body":"Jointly appointed by both parties under POEA-SEC §20(A)(3), the third doctor issues the following assessment — final and binding on the employer and the seafarer.",
+ "ld.third.finding":"Assessed disability:","ld.gop.body":"The principal guarantees payment to the admitting facility for the medical treatment of the seafarer arising from this case, subject to the coverage terms.",
+ "ld.esign":"e-signed · RA 8792","ld.stored":"Stored once in Next2DMS · no-copy",
+ "toast.ext":"Extension to 240 recorded","toast.cfmaint":"CFMA flagged interim · clock resumes","toast.cfmadef":"CFMA restored as definite",
+ "toast.contest":"Contest recorded · third-doctor window open","toast.appoint":"Third doctor appointed","toast.third":"Binding decision recorded","toast.sign":"Document e-signed","toast.nlrc":"Escalated to NLRC","toast.legclose":"Legal track closed",
+ "toast.appr":"Owner / P&I approval recorded","toast.gop":"Guarantee of Payment issued","toast.sick":"Monthly sickness allowance recorded","toast.settle":"Settlement recorded","toast.finclose":"Financial track closed"
+});
+Object.assign(T.el,{
+ "tab.leg":"Νομικό","tab.fin":"Οικονομικό",
+ "lg.day":"Ημέρα","lg.left":"μένουν","lg.over":"εκτός","lg.stopped":"σταμάτησε","lg.done":"ok",
+ "lg.clocks":"Νόμιμες προθεσμίες","lg.clocks.sub":"POEA-SEC §20 · από τον επαναπατρισμό",
+ "lg.3d":"Αναφορά PEME 3 ημ.","lg.3d.d":"αναφορά στον company-designated physician","lg.3d.done":"κατατέθηκε ✓",
+ "lg.120":"Εκτίμηση 120 ημ.","lg.120.d":"οφείλεται τελική & οριστική εκτίμηση",
+ "lg.240":"Μέγιστο 240 ημ.","lg.240.d":"απόλυτο όριο · παράταση μόνο αν συνεχίζεται θεραπεία",
+ "lg.within":"Εντός του παραθύρου 120 ημερών — ο company-designated physician οφείλει ακόμη να εκδώσει τελική & οριστική CFMA.",
+ "lg.gate.stopped":"Εκδόθηκε τελική & οριστική CFMA — το ρολόι 120/240 σταμάτησε και ανοίγει το παράθυρο αμφισβήτησης.",
+ "lg.ext.btn":"Αιτιολόγηση παράτασης σε 240 ημ.","lg.ext.on":"Η παράταση σε 240 αιτιολογήθηκε — τεκμηριωμένη συνεχιζόμενη θεραπεία.",
+ "lg.ext.need":"Οι 120 ημέρες λήγουν χωρίς τελική εκτίμηση. Έκδοσε CFMA ή αιτιολόγησε γραπτώς την παράταση σε 240 — αλλιώς η αναπηρία γίνεται μόνιμη & ολική by operation of law.",
+ "lg.ptd":"Καμία τελική εκτίμηση εντός 240 ημερών → μόνιμη & ολική αναπηρία by operation of law.",
+ "lg.cfma":"Certificate of Final Medical Assessment","lg.cfma.sub":"το έγγραφο που σταματά το ρολόι",
+ "lg.cfma.await":"Αναμονή τελικής & οριστικής εκτίμησης — κατέγραψε την ικανότητα στο Ιατρικό tab.",
+ "lg.cfma.def":"Τελική & οριστική","lg.cfma.int":"Ενδιάμεση / μη οριστική",
+ "lg.cfma.defv":"Δηλώνει ικανότητα ή ακριβή βαθμό αναπηρίας, σχέση εργασίας, χωρίς περαιτέρω όρο — έγκυρο CFMA. Σταμάτησε το ρολόι και άνοιξε το παράθυρο αμφισβήτησης.",
+ "lg.cfma.intv":"Μια ενδιάμεση / «συνέχιση αποκατάστασης» ή απλώς ενδεικτική βαθμολόγηση ΔΕΝ είναι τελική εκτίμηση. Το ρολόι 120/240 συνεχίζει — κι αν λήξει, ο ναυτικός είναι μόνιμα & ολικά ανίκανος by operation of law.",
+ "lg.cfma.chk1":"ικανότητα / ακριβής βαθμός","lg.cfma.chk2":"σχέση εργασίας","lg.cfma.chk3":"χωρίς περαιτέρω θεραπεία","lg.cfma.chk4":"επιδόθηκε στον ναυτικό",
+ "lg.cfma.mark.int":"Σήμανση ως ενδιάμεση (δείξε την παγίδα)","lg.cfma.mark.def":"Επαναφορά ως οριστική","lg.cfma.view":"Άνοιγμα CFMA",
+ "lg.third":"Αμφισβήτηση & διαδικασία τρίτου γιατρού","lg.third.sub":"POEA-SEC §20(A)(3) · δεσμευτική",
+ "lg.third.need":"Διαθέσιμο μόλις επιδοθεί τελική & οριστική CFMA.",
+ "lg.third.default":"Καμία αμφισβήτηση. Ελλείψει αιτήματος του ναυτικού, η εκτίμηση του company-designated physician ισχύει — τελική και δεσμευτική.",
+ "lg.sla":"operational SLA · proposed","lg.win.of":"από","lg.win.d":"ημ.",
+ "lg.w1":"Ο ναυτικός δηλώνει διαφωνία","lg.w1.d":"Αμφισβητεί το CFMA και καταθέτει τη γνώμη του δικού του γιατρού. Η έναρξη της παραπομπής βαρύνει τον ναυτικό.",
+ "lg.w1.btn":"Καταγραφή αμφισβήτησης","lg.consq.w1":"αν δεν εγερθεί εγκαίρως → υπερισχύει η εκτίμηση της εταιρείας",
+ "lg.w2":"Από κοινού ορισμός τρίτου γιατρού","lg.w2.d":"Εργοδότης και ναυτικός συμφωνούν από κοινού τον τρίτο γιατρό. Αν ο εργοδότης κωλυσιεργεί, μπορεί να υπερισχύσει η γνώμη του ναυτικού.",
+ "lg.w2.btn":"Ορισμός τρίτου γιατρού","lg.consq.w2":"αν δεν οριστεί → μπορεί να υπερισχύσει ο γιατρός του ναυτικού",
+ "lg.w3":"Δεσμευτική απόφαση τρίτου γιατρού","lg.w3.d":"Το πόρισμα του τρίτου γιατρού είναι τελικό και δεσμευτικό για τα δύο μέρη και κλείνει την ιατρική διαφορά.",
+ "lg.w3.btn":"Καταγραφή δεσμευτικής απόφασης","lg.w3.view":"Άνοιγμα απόφασης","lg.consq.w3":"τελικό & δεσμευτικό για τα δύο μέρη",
+ "lg.settle":"Έγγραφα διακανονισμού","lg.settle.sub":"υπογράφονται στο κλείσιμο · e-signature RA 8792",
+ "lg.qma":"QMA — Quitclaim & Mutual Agreement","lg.swrr":"SW R&R — Sickness Wages Receipt & Release",
+ "lg.sign":"Υπογραφή (RA 8792)","lg.signed":"υπεγράφη",
+ "lg.valid.title":"Έγκυρη quitclaim απαιτεί:","lg.valid1":"εκούσια","lg.valid2":"εύλογο αντάλλαγμα","lg.valid3":"σαφείς όροι","lg.valid4":"χωρίς απάτη / εξαναγκασμό",
+ "lg.nlrc":"Κλίμακα εκδίκασης","lg.nlrc.sub":"αν δεν λυθεί ιατρικά",
+ "lg.nlrc.d":"Άλυτες αμφισβητήσεις προχωρούν στο labor tribunal. Η παραπομπή σε τρίτο γιατρό είναι το υποχρεωτικό βήμα πριν από αυτό.",
+ "lg.nlrc.btn":"Κλιμάκωση στο NLRC","lg.nlrc.on":"Κατατέθηκε υπόθεση NLRC — ανοιχτή νομική έκθεση.",
+ "lg.ladder1":"NLRC","lg.ladder2":"Εφετείο","lg.ladder3":"Ανώτατο",
+ "lg.close":"Νομικό κλείσιμο","lg.close.d":"Όλες οι νομικές υποχρεώσεις εκπληρώθηκαν.","lg.close.btn":"Κλείσιμο νομικού track",
+ "lg.close.need":"Υπόγραψε πρώτα τα έγγραφα διακανονισμού (QMA + SW R&R) ή κατέγραψε δεσμευτική απόφαση.","lg.close.done":"Το νομικό track έκλεισε","lg.outcome":"Έκβαση",
+ "fn.est":"Εκτίμηση vs πραγματικό","fn.est.sub":"USD · μοντέλο trajectory",
+ "fn.initial":"Αρχική εκτίμηση","fn.actual":"Πραγματικό μέχρι σήμερα","fn.variance":"Απόκλιση",
+ "fn.est.note":"Εκτίμηση από το μοντέλο trajectory ανά ιατρικό σύστημα· τα πραγματικά συσσωρεύονται καθώς η κλινική αναφέρει κόστη.",
+ "fn.appr":"Εγκρίσεις & Guarantee of Payment","fn.appr.sub":"owner / P&I → εισαγωγή",
+ "fn.appr.owner":"Έγκριση owner / P&I","fn.appr.btn":"Καταγραφή έγκρισης owner / P&I",
+ "fn.gop":"Guarantee of Payment","fn.gop.btn":"Έκδοση GOP","fn.gop.need":"χρειάζεται έγκριση","fn.gop.issued":"εκδόθηκε",
+ "fn.approved":"εγκρίθηκε","fn.await":"αναμονή",
+ "fn.sick":"Επίδομα ασθενείας","fn.sick.sub":"βασικός μισθός · πλαφόν 120 ημ.",
+ "fn.sick.wage":"Βασικός μηνιαίος μισθός","fn.sick.paid":"Καταβλήθηκε","fn.sick.months":"μήνες",
+ "fn.sick.cap":"Το πλαφόν 120 ημερών συμπληρώθηκε — το επίδομα σταματά εδώ (POEA-SEC §20(A)(3)).",
+ "fn.sick.btn":"Καταγραφή μηνιαίας καταβολής","fn.sick.link":"δεμένο με το ρολόι 120 ημ. στο Νομικό",
+ "fn.settle":"Διακανονισμός & κλείσιμο","fn.settle.sub":"αναπηρία / φιλικός διακανονισμός",
+ "fn.settle.btn":"Καταγραφή τελικού διακανονισμού","fn.settle.on":"διακανονίστηκε","fn.close.btn":"Κλείσιμο οικονομικού track","fn.close.done":"Το οικονομικό track έκλεισε",
+ "ld.back":"Πίσω στο Νομικό track","ld.back.fin":"Πίσω στο Οικονομικό track",
+ "ld.cfma.t":"Certificate of Final Medical Assessment","ld.qma.t":"Quitclaim & Mutual Agreement","ld.swrr.t":"Sickness Wages Receipt & Release","ld.third.t":"Τελική & Δεσμευτική Εκτίμηση Τρίτου Γιατρού","ld.gop.t":"Guarantee of Payment",
+ "ld.issued":"Εκδόθηκε","ld.parties":"Δήλωση","ld.employer":"Εργοδότης / Principal","ld.seafarer":"Ναυτικός","ld.finding":"Πόρισμα","ld.consideration":"Αντάλλαγμα","ld.terms":"Όροι",
+ "ld.cfma.body":"Ο company-designated physician πιστοποιεί το ακόλουθο ως την τελική και οριστική ιατρική εκτίμηση του ναυτικού, εντός της νόμιμης προθεσμίας 120/240 ημερών.",
+ "ld.qma.body":"Ο ναυτικός, έχοντας λάβει το κατωτέρω αντάλλαγμα, υπογράφει το παρόν Quitclaim and Mutual Agreement, απαλλάσσοντας τον εργοδότη από περαιτέρω ευθύνη για την υπόθεση — ελεύθερα και με πλήρη κατανόηση των όρων.",
+ "ld.swrr.body":"Ο ναυτικός βεβαιώνει τη λήψη sickness wages για την περίοδο προσωρινής ολικής ανικανότητας (όχι πέραν των 120 ημερών) και απαλλάσσει τον εργοδότη από περαιτέρω αξίωση για τα εν λόγω wages.",
+ "ld.third.body":"Ορισμένος από κοινού από τα δύο μέρη βάσει POEA-SEC §20(A)(3), ο τρίτος γιατρός εκδίδει την ακόλουθη εκτίμηση — τελική και δεσμευτική για τον εργοδότη και τον ναυτικό.",
+ "ld.third.finding":"Εκτιμώμενη αναπηρία:","ld.gop.body":"Ο principal εγγυάται την πληρωμή στο νοσηλευτικό ίδρυμα για την ιατρική περίθαλψη του ναυτικού που προκύπτει από την υπόθεση, υπό τους όρους κάλυψης.",
+ "ld.esign":"e-signed · RA 8792","ld.stored":"Αποθηκεύεται μία φορά στο Next2DMS · no-copy",
+ "toast.ext":"Καταγράφηκε η παράταση σε 240","toast.cfmaint":"Το CFMA σημάνθηκε ενδιάμεσο · το ρολόι συνεχίζει","toast.cfmadef":"Το CFMA επανήλθε ως οριστικό",
+ "toast.contest":"Καταγράφηκε αμφισβήτηση · άνοιξε το παράθυρο τρίτου γιατρού","toast.appoint":"Ορίστηκε τρίτος γιατρός","toast.third":"Καταγράφηκε δεσμευτική απόφαση","toast.sign":"Το έγγραφο υπογράφηκε","toast.nlrc":"Κλιμακώθηκε στο NLRC","toast.legclose":"Έκλεισε το νομικό track",
+ "toast.appr":"Καταγράφηκε η έγκριση owner / P&I","toast.gop":"Εκδόθηκε το Guarantee of Payment","toast.sick":"Καταγράφηκε μηνιαία καταβολή","toast.settle":"Καταγράφηκε ο διακανονισμός","toast.finclose":"Έκλεισε το οικονομικό track"
+});
+
 
 /* ---------------- data (anonymized, fake) ---------------- */
 // principals & providers are fictional to keep the public mockup safe
@@ -823,8 +996,10 @@ function renderDetail(){
   <div class="dtabs">
     <button class="dtab ${detailTab==='overview'?'on':''}" onclick="setTab('overview')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16M4 12h16M4 19h10"/></svg>${t("tab.ov")}</button>
     <button class="dtab ${detailTab==='medical'?'on':''}" onclick="setTab('medical')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v6M9 6h6"/><path d="M6 21a6 6 0 0 1 12 0"/><circle cx="12" cy="13.5" r="1.6"/></svg>${t("tab.med")}<span class="c">${(c.reports||[]).length}</span></button>
+    <button class="dtab ${detailTab==='legal'?'on':''}" onclick="setTab('legal')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M6 21h12M7 7h10M7 7l-3 6a3 3 0 0 0 6 0zM17 7l-3 6a3 3 0 0 0 6 0z"/></svg>${t("tab.leg")}</button>
+    <button class="dtab ${detailTab==='financial'?'on':''}" onclick="setTab('financial')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h9l3 3v15l-3-2-3 2-3-2-3 2V3z"/><path d="M9 8h5M9 12h6M9 16h4"/></svg>${t("tab.fin")}</button>
   </div>
-  ${detailTab==='medical'?medicalTab(c):`<div class="dgrid">
+  ${detailTab==='medical'?medicalTab(c):detailTab==='legal'?legalTab(c):detailTab==='financial'?financialTab(c):`<div class="dgrid">
     <div>
       <div class="panel">
         <div class="ph"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 21h18M6 21V7l6-4 6 4v14"/></svg></span><h3>${t("p.hos")}</h3><span class="rt">${hos?'✓':'—'}</span></div>
@@ -1019,6 +1194,239 @@ function saveReport(){
  backToMedical();toast(t("toast.fur"));
 }
 function setFitness(f){const c=curCase;c.fitness=f;c.stg.med=7;if(c.stg.leg<1)c.stg.leg=1;if(f==="unfit")c.stg.leg=Math.max(c.stg.leg,2);renderDetail();toast(t("toast.fit"));}
+
+/* ============ Legal + Financial deep tracks ============ */
+const TD_SLA={w1:15,w2:10,w3:30};
+const _icOK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5 9-11"/></svg>';
+const _icWarn='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>';
+const _icInfo='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="M12 11.5v5M12 7.6v.4"/></svg>';
+function ensureLeg(c){
+ if(c.leg)return c.leg;
+ const s=c.stg.leg, isLegal=c.status==='legal';
+ const L={cfmaInterim:false,contested:(isLegal||s>=3),contestDay:null,thirdAppointed:s>=4,apptDay:null,thirdDecided:false,decideDay:null,ext240:false,qma:false,swrr:false,nlrc:s>=5,closed:s>=7};
+ if(L.contested)L.contestDay=(c.id==='PM-2026-0033')?61:daysSince(c.arr);
+ if(L.thirdAppointed)L.apptDay=(c.id==='PM-2026-0033')?70:(L.contestDay!=null?L.contestDay+7:daysSince(c.arr));
+ c.leg=L;return L;
+}
+function ensureMoney(c){
+ if(c.money)return c.money;
+ const wage={Captain:2600,"Chief Engineer":2500,"2nd Engineer":1900,"3rd Engineer":1500,"Chief Mate":2000,Bosun:1250,AB:1050,"Deck Cadet":600,Oiler:1150,OS:950}[c.sf.rank]||1200;
+ const s=c.stg.fin;
+ c.money={wage,approved:s>=2,gop:!!c.hospital,sickMonths:Math.min(Math.floor(daysSince(c.arr)/30),4),settled:s>=5,amount:0,closed:s>=6};
+ return c.money;
+}
+function money(n){return "$"+Math.round(n).toLocaleString("en-US");}
+function estMid(c){const m=(estFor(c).cost.match(/\d+/g)||["15","30"]).map(Number);const lo=m[0]*1000,hi=(m[1]||m[0])*1000;return {lo,hi,mid:(lo+hi)/2};}
+function winMeta(elapsed,limit){const left=limit-elapsed;const st=left<0?"crit":left<=2?"crit":left<=5?"warn":"ok";const txt=left<0?t("lg.over"):elapsed+" "+t("lg.win.of")+" "+limit+t("lg.win.d");return {st,left,txt};}
+
+function legalTab(c){
+ const L=ensureLeg(c), d=daysSince(c.arr);
+ const fr=(c.reports||[]).find(r=>r.type==="FINAL"), finalDay=fr?fr.day:null;
+ const hasCFMA=!!fr && !!c.fitness, cfmaDef=hasCFMA && !L.cfmaInterim;
+ const cs120=clockState(d,120), cs240=clockState(d,240), left120=120-d, left240=240-d, seq=c.seq;
+ const bar=(k,kd,pct,state,num)=>`<div class="dcline"><div class="dck"><b>${k}</b><small>${kd}</small></div><div class="dctrack"><div class="fill bg-${state}" style="width:${Math.max(4,Math.round(pct*100))}%"></div></div><div class="dcn st-${state}">${num}</div></div>`;
+ const st120=cfmaDef?"ok":cs120;
+ const n120=cfmaDef?`${t("lg.day")} ${finalDay} · ${t("lg.stopped")}`:(left120>0?`${left120} ${t("lg.left")}`:t("lg.over"));
+ const st240=cfmaDef?"ok":(d>240?"crit":(L.ext240?cs240:"mut"));
+ const n240=cfmaDef?t("lg.stopped"):(left240>0?`${left240} ${t("lg.left")}`:t("lg.over"));
+ // gate verdict
+ let gate="";
+ if(cfmaDef)gate=`<div class="verdict ok">${_icOK}<div><b>${t("lg.day")} ${finalDay}.</b> ${t("lg.gate.stopped")}</div></div>`;
+ else if(d>240)gate=`<div class="verdict crit">${_icWarn}<div><b>PTD.</b> ${t("lg.ptd")}</div></div>`;
+ else if(d>120&&!L.ext240)gate=`<div class="verdict crit">${_icWarn}<div>${t("lg.ext.need")}</div></div><button class="btn ghost mini" onclick="legExt240()">${_icOK}${t("lg.ext.btn")}</button>`;
+ else if(L.ext240)gate=`<div class="verdict warn">${_icInfo}<div>${t("lg.ext.on")}</div></div>`;
+ else gate=`<div class="verdict warn">${_icInfo}<div>${t("lg.within")}</div></div>`;
+
+ // ---- CFMA panel ----
+ let cfmaPanel;
+ if(!hasCFMA){cfmaPanel=`<div class="empty">${t("lg.cfma.await")}</div>`;}
+ else{
+  const chk=`<div class="chk"><span>${t("lg.cfma.chk1")}</span><span>${t("lg.cfma.chk2")}</span><span>${t("lg.cfma.chk3")}</span><span>${t("lg.cfma.chk4")}</span></div>`;
+  const verdict=cfmaDef
+   ?`<div class="verdict ok">${_icOK}<div><b>${t("lg.cfma.def")}.</b> ${t("lg.cfma.defv")}${chk}</div></div>`
+   :`<div class="verdict crit">${_icWarn}<div><b>${t("lg.cfma.int")}.</b> ${t("lg.cfma.intv")}</div></div>`;
+  cfmaPanel=`
+   <div class="doc"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2h8l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M9 13l2 2 4-4"/></svg></div><div><div class="nm">${t("lg.cfma")}</div><div class="cd">MCL-POST-MNL-CFMA-2026-${seq}</div></div><div class="rt"><span class="nocopy">NO-COPY</span><span class="dmslink" onclick="openLegalDoc('CFMA')">${t("lg.cfma.view")} ▸</span></div></div>
+   ${verdict}
+   <button class="btn ghost mini" onclick="legCfmaToggle()">${cfmaDef?t("lg.cfma.mark.int"):t("lg.cfma.mark.def")}</button>`;
+ }
+
+ // ---- third-doctor windows ----
+ let thirdPanel;
+ if(!cfmaDef){thirdPanel=`<div class="empty">${t("lg.third.need")}</div>`;}
+ else{
+  const cfmaDay=finalDay;
+  // W1 signify
+  const w1done=L.contested, w1el=(L.contested?L.contestDay:d)-cfmaDay, w1m=winMeta(Math.max(0,w1el),TD_SLA.w1);
+  const w1=`<div class="win ${w1done?"done":"active"}"><div class="wn">${w1done?"✓":"1"}</div><div class="wb"><div class="wt">${t("lg.w1")} <span class="propflag">${t("lg.sla")} ${TD_SLA.w1}${t("lg.win.d")}</span></div><div class="wd">${t("lg.w1.d")}<br><span style="color:var(--coral-d)">${t("lg.consq.w1")}</span></div>${!w1done?`<button class="btn ghost mini" style="margin-top:8px" onclick="legContest()">${t("lg.w1.btn")}</button>`:""}</div><div class="wc">${w1done?`<span class="big st-ok">${t("lg.day")} ${L.contestDay}</span>${t("lg.done")}`:`<span class="big st-${w1m.st}">${w1m.txt}</span>`}</div></div>`;
+  // W2 appoint
+  const w2done=L.thirdAppointed, w2active=L.contested&&!L.thirdAppointed, w2el=(w2done?L.apptDay:d)-(L.contestDay!=null?L.contestDay:d), w2m=winMeta(Math.max(0,w2el),TD_SLA.w2);
+  const w2=`<div class="win ${w2done?"done":w2active?"active":""}"><div class="wn">${w2done?"✓":"2"}</div><div class="wb"><div class="wt">${t("lg.w2")} <span class="propflag">${t("lg.sla")} ${TD_SLA.w2}${t("lg.win.d")}</span></div><div class="wd">${t("lg.w2.d")}<br><span style="color:var(--coral-d)">${t("lg.consq.w2")}</span></div>${w2active?`<button class="btn ghost mini" style="margin-top:8px" onclick="legAppoint()">${t("lg.w2.btn")}</button>`:""}</div><div class="wc">${w2done?`<span class="big st-ok">${t("lg.day")} ${L.apptDay}</span>${t("lg.done")}`:w2active?`<span class="big st-${w2m.st}">${w2m.txt}</span>`:`<span class="big">—</span>`}</div></div>`;
+  // W3 decision
+  const w3done=L.thirdDecided, w3active=L.thirdAppointed&&!L.thirdDecided, w3el=(w3done?L.decideDay:d)-(L.apptDay!=null?L.apptDay:d), w3m=winMeta(Math.max(0,w3el),TD_SLA.w3);
+  const w3=`<div class="win ${w3done?"done":w3active?"active":""}"><div class="wn">${w3done?"✓":"3"}</div><div class="wb"><div class="wt">${t("lg.w3")} <span class="propflag">${t("lg.sla")} ${TD_SLA.w3}${t("lg.win.d")}</span></div><div class="wd">${t("lg.w3.d")}<br><span style="color:var(--green)">${t("lg.consq.w3")}</span></div>${w3active?`<button class="btn ghost mini" style="margin-top:8px" onclick="legThird()">${t("lg.w3.btn")}</button>`:""}${w3done?`<button class="btn ghost mini" style="margin-top:8px" onclick="openLegalDoc('THIRD')">${t("lg.w3.view")} ▸</button>`:""}</div><div class="wc">${w3done?`<span class="big st-ok">${t("lg.day")} ${L.decideDay}</span>${t("lg.done")}`:w3active?`<span class="big st-${w3m.st}">${w3m.txt}</span>`:`<span class="big">—</span>`}</div></div>`;
+  const head=!L.contested?`<div class="verdict ok">${_icInfo}<div>${t("lg.third.default")}</div></div>`:"";
+  thirdPanel=head+w1+w2+w3;
+ }
+
+ // ---- settlement instruments ----
+ const sigDoc=(name,code,signed,type)=>`<div class="doc"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h10l6 6v10H4z"/><path d="M8 14h6M8 17h4"/></svg></div><div><div class="nm">${name}</div><div class="cd">${code}</div></div><div class="rt">${signed?`<span class="dmslink" style="color:var(--green)">${t("lg.signed")} ✓</span>`:`<button class="btn ghost mini" onclick="legSign('${type}')">${t("lg.sign")}</button>`}<span class="dmslink" onclick="openLegalDoc('${type}')">▸</span></div></div>`;
+ const settle=`
+  ${sigDoc(t("lg.qma"),"MCL-POST-MNL-QMA-2026-"+seq,L.qma,"QMA")}
+  ${sigDoc(t("lg.swrr"),"MCL-POST-MNL-SWRR-2026-"+seq,L.swrr,"SWRR")}
+  <div class="verdict warn" style="margin-top:10px">${_icInfo}<div><b>${t("lg.valid.title")}</b> ${t("lg.valid1")} · ${t("lg.valid2")} · ${t("lg.valid3")} · ${t("lg.valid4")}</div></div>`;
+
+ // ---- adjudication ladder ----
+ const ladder=`<div class="stampsig"><span class="sg" style="${L.nlrc?"border-color:var(--violet)":""}"><b>1</b>${t("lg.ladder1")}</span><span class="sg"><b>2</b>${t("lg.ladder2")}</span><span class="sg"><b>3</b>${t("lg.ladder3")}</span></div>`;
+ const nlrcPanel=`<div class="wd" style="margin-bottom:8px">${t("lg.nlrc.d")}</div>${ladder}${L.nlrc?`<div class="verdict crit" style="margin-top:10px">${_icWarn}<div>${t("lg.nlrc.on")}</div></div>`:(L.contested&&!L.thirdDecided?`<button class="btn ghost mini" style="margin-top:10px" onclick="legNlrc()">${t("lg.nlrc.btn")}</button>`:"")}`;
+
+ // ---- legal closure ----
+ const canClose=(L.qma&&L.swrr)||L.thirdDecided;
+ const closePanel=L.closed
+  ?`<div class="verdict ok">${_icOK}<div><b>${t("lg.close.done")}.</b> ${t("lg.outcome")}: ${fitLabel(c.fitness)}</div></div>`
+  :canClose?`<div class="wd" style="margin-bottom:10px">${t("lg.close.d")}</div><button class="btn primary mini" onclick="legClose()">${_icOK}${t("lg.close.btn")}</button>`
+  :`<div class="empty">${t("lg.close.need")}</div>`;
+
+ const P=(icon,title,sub,body)=>`<div class="panel"><div class="ph"><span class="ic">${icon}</span><h3>${title}</h3>${sub?`<span class="rt">${sub}</span>`:""}</div><div class="pb">${body}</div></div>`;
+ const icClock='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>';
+ const icDoc='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M6 2h8l4 4v16H6z"/><path d="M14 2v4h4"/></svg>';
+ const icScale='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v18M6 21h12M7 7h10M7 7l-3 6a3 3 0 0 0 6 0zM17 7l-3 6a3 3 0 0 0 6 0z"/></svg>';
+ const icPen='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 20h16M6 16l9-9 3 3-9 9H6z"/></svg>';
+ const icGavel='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M14 5l5 5M9 10l5-5 4 4-5 5zM11 12l-6 6M3 21h7"/></svg>';
+ const icLock='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
+
+ return `<div class="mgrid">
+  <div>
+   ${P(icClock,t("lg.clocks"),t("lg.clocks.sub"),`
+     ${bar(t("lg.3d"),t("lg.3d.d"),1,"ok",t("lg.3d.done"))}
+     ${bar(t("lg.120"),t("lg.120.d"),cfmaDef?(finalDay/120):Math.min(d/120,1),st120,n120)}
+     ${bar(t("lg.240"),t("lg.240.d"),cfmaDef?(finalDay/240):Math.min(d/240,1),st240,n240)}
+     <div style="height:12px"></div>${gate}`)}
+   ${P(icDoc,t("lg.cfma"),t("lg.cfma.sub"),cfmaPanel)}
+   ${P(icScale,t("lg.third"),t("lg.third.sub"),thirdPanel)}
+  </div>
+  <div>
+   ${P(icPen,t("lg.settle"),t("lg.settle.sub"),settle)}
+   ${P(icGavel,t("lg.nlrc"),t("lg.nlrc.sub"),nlrcPanel)}
+   ${P(icLock,t("lg.close"),"",closePanel)}
+  </div>
+ </div>`;
+}
+
+/* ---- legal actions ---- */
+function legExt240(){const c=curCase;ensureLeg(c).ext240=true;renderDetail();toast(t("toast.ext"));}
+function legCfmaToggle(){const c=curCase;const L=ensureLeg(c);L.cfmaInterim=!L.cfmaInterim;renderDetail();toast(L.cfmaInterim?t("toast.cfmaint"):t("toast.cfmadef"));}
+function legContest(){const c=curCase;const L=ensureLeg(c);L.contested=true;L.contestDay=daysSince(c.arr);c.status="legal";c.fitness="contested";if(c.stg.leg<3)c.stg.leg=3;renderDetail();toast(t("toast.contest"));}
+function legAppoint(){const c=curCase;const L=ensureLeg(c);L.thirdAppointed=true;L.apptDay=daysSince(c.arr);if(c.stg.leg<4)c.stg.leg=4;renderDetail();toast(t("toast.appoint"));}
+function legThird(){const c=curCase;const L=ensureLeg(c);L.thirdDecided=true;L.decideDay=daysSince(c.arr);if(c.stg.leg<5)c.stg.leg=5;renderDetail();toast(t("toast.third"));}
+function legSign(type){const c=curCase;const L=ensureLeg(c);if(type==="QMA")L.qma=true;if(type==="SWRR")L.swrr=true;if(c.stg.leg<2)c.stg.leg=2;renderDetail();toast(t("toast.sign"));}
+function legNlrc(){const c=curCase;ensureLeg(c).nlrc=true;if(c.stg.leg<5)c.stg.leg=5;renderDetail();toast(t("toast.nlrc"));}
+function legClose(){const c=curCase;ensureLeg(c).closed=true;c.stg.leg=7;renderDetail();toast(t("toast.legclose"));}
+
+function financialTab(c){
+ const M=ensureMoney(c), d=daysSince(c.arr), seq=c.seq;
+ const est=estMid(c);
+ const act=Math.round(est.lo+(est.mid-est.lo)*Math.min(d/90,1));
+ const variance=act-est.mid, vpct=Math.round((act-est.mid)/est.mid*100);
+ const barW=x=>Math.max(3,Math.min(100,Math.round(x/est.hi*100)));
+ const sickCap=M.sickMonths>=4;
+ const sickPaid=M.wage*M.sickMonths;
+ // ledger rows
+ let led="";for(let i=1;i<=M.sickMonths;i++)led+=`<div class="lr"><span>${t("lg.day")} ${i*30} · ${t("fn.sick")} #${i}</span><span class="n">${money(M.wage)}</span></div>`;
+ if(!M.sickMonths)led=`<div class="lr"><span class="empty" style="padding:2px">${t("fn.await")}…</span></div>`;
+
+ const P=(icon,title,sub,body)=>`<div class="panel"><div class="ph"><span class="ic">${icon}</span><h3>${title}</h3>${sub?`<span class="rt">${sub}</span>`:""}</div><div class="pb">${body}</div></div>`;
+ const icCoin='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>';
+ const icShield='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v6c0 4-3.5 7-8 8-4.5-1-8-4-8-8V7z"/><path d="M9 12l2 2 4-4"/></svg>';
+ const icWallet='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M16 12h3M3 9h13a2 2 0 0 1 0 4"/></svg>';
+ const icHand='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 11V4a1.5 1.5 0 0 1 3 0v7M9 11V6a1.5 1.5 0 0 1 3 0v5"/><path d="M6 12v-2a1.5 1.5 0 0 1 3 0v3M18 11a1.5 1.5 0 0 1 3 0v3a6 6 0 0 1-6 6h-3a6 6 0 0 1-5.2-3L4 15"/></svg>';
+
+ const estPanel=`
+  <div class="ftile"><span class="fl">${t("fn.initial")}</span><span class="fv">${estFor(c).cost}</span></div>
+  <div class="varbar"><div class="est" style="width:${barW(est.mid)}%"></div><div class="act" style="width:${barW(act)}%"></div><div class="vl">${money(act)} / ${money(est.mid)}</div></div>
+  <div class="ftile"><span class="fl">${t("fn.actual")}</span><span class="fv">${money(act)}</span></div>
+  <div class="ftile"><span class="fl">${t("fn.variance")}</span><span class="fv st-${vpct>10?"crit":vpct>0?"warn":"ok"}">${variance>=0?"+":""}${money(variance)} · ${vpct>=0?"+":""}${vpct}%</span></div>
+  <div class="wd" style="margin-top:8px">${t("fn.est.note")}</div>`;
+
+ const apprPanel=`
+  <div class="ftile"><span class="fl">${t("fn.appr.owner")}</span><span class="fv st-${M.approved?"ok":"warn"}">${M.approved?t("fn.approved")+" ✓":t("fn.await")}</span></div>
+  ${!M.approved?`<button class="btn ghost mini" onclick="finApprove()">${t("fn.appr.btn")}</button>`:""}
+  <div class="doc" style="margin-top:10px"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h10l6 6v10H4z"/></svg></div><div><div class="nm">${t("fn.gop")}</div><div class="cd">MCL-POST-MNL-GOP-2026-${seq}</div></div><div class="rt">${M.gop?`<span class="dmslink" style="color:var(--green)">${t("fn.gop.issued")} ✓</span><span class="dmslink" onclick="openLegalDoc('GOP')">▸</span>`:(M.approved?`<button class="btn ghost mini" onclick="finGop()">${t("fn.gop.btn")}</button>`:`<span class="nocopy" style="color:var(--ink-3);background:var(--mist);border-color:var(--line)">${t("fn.gop.need")}</span>`)}</div></div>`;
+
+ const sickPanel=`
+  <div class="ftile"><span class="fl">${t("fn.sick.wage")}</span><span class="fv">${money(M.wage)}/mo</span></div>
+  <div class="ftile"><span class="fl">${t("fn.sick.paid")}</span><span class="fv">${money(sickPaid)} · ${M.sickMonths} ${t("fn.sick.months")}</span></div>
+  <div class="ledger">${led}</div>
+  ${sickCap?`<div class="verdict warn" style="margin-top:10px">${_icWarn}<div>${t("fn.sick.cap")}</div></div>`:`<button class="btn ghost mini" style="margin-top:10px" onclick="finSick()">${t("fn.sick.btn")}</button>`}
+  <div class="chk"><span style="color:#6b4fa0;background:rgba(139,79,168,.1);border-color:rgba(139,79,168,.3)">↔ ${t("fn.sick.link")}</span></div>`;
+
+ const settlePanel=M.closed
+  ?`<div class="verdict ok">${_icOK}<div><b>${t("fn.close.done")}.</b> ${M.settled?money(M.amount||est.mid):t("fit.ftw")}</div></div>`
+  :`
+  <div class="ftile"><span class="fl">${t("fn.settle.on")}</span><span class="fv st-${M.settled?"ok":"warn"}">${M.settled?money(M.amount||est.mid)+" ✓":t("fn.await")}</span></div>
+  ${!M.settled?`<button class="btn ghost mini" onclick="finSettle()">${t("fn.settle.btn")}</button>`:`<button class="btn primary mini" onclick="finClose()">${_icOK}${t("fn.close.btn")}</button>`}`;
+
+ return `<div class="mgrid">
+  <div>
+   ${P(icCoin,t("fn.est"),t("fn.est.sub"),estPanel)}
+   ${P(icShield,t("fn.appr"),t("fn.appr.sub"),apprPanel)}
+  </div>
+  <div>
+   ${P(icWallet,t("fn.sick"),t("fn.sick.sub"),sickPanel)}
+   ${P(icHand,t("fn.settle"),t("fn.settle.sub"),settlePanel)}
+  </div>
+ </div>`;
+}
+
+/* ---- financial actions ---- */
+function finApprove(){const c=curCase;ensureMoney(c).approved=true;if(c.stg.fin<2)c.stg.fin=2;renderDetail();toast(t("toast.appr"));}
+function finGop(){const c=curCase;ensureMoney(c).gop=true;if(c.stg.fin<3)c.stg.fin=3;renderDetail();toast(t("toast.gop"));}
+function finSick(){const c=curCase;const M=ensureMoney(c);if(M.sickMonths<4)M.sickMonths++;if(c.stg.fin<4)c.stg.fin=4;renderDetail();toast(t("toast.sick"));}
+function finSettle(){const c=curCase;const M=ensureMoney(c);M.settled=true;M.amount=estMid(c).mid;if(c.stg.fin<5)c.stg.fin=5;renderDetail();toast(t("toast.settle"));}
+function finClose(){const c=curCase;ensureMoney(c).closed=true;c.stg.fin=6;renderDetail();toast(t("toast.finclose"));}
+
+/* ---- full-screen legal / financial documents ---- */
+let curLegalDoc=null;
+function openLegalDoc(type){curLegalDoc=type;view="legaldoc";render();}
+function backToLegal(){view="detail";detailTab=(curLegalDoc==="GOP")?"financial":"legal";render();}
+function renderLegalDoc(){
+ const c=curCase,type=curLegalDoc;if(!c){go("board");return;}
+ const L=ensureLeg(c),M=ensureMoney(c),seq=c.seq;
+ const meta={
+  CFMA:{code:"CFMA",cls:"plum",title:t("ld.cfma.t"),body:t("ld.cfma.body"),sig:["Company-Designated Physician","Medical Director"]},
+  THIRD:{code:"THIRD",cls:"plum",title:t("ld.third.t"),body:t("ld.third.body"),sig:["Third Doctor (jointly appointed)","Witness"]},
+  QMA:{code:"QMA",cls:"plum",title:t("ld.qma.t"),body:t("ld.qma.body"),sig:["Seafarer","Employer / Principal","Witness"]},
+  SWRR:{code:"SWRR",cls:"plum",title:t("ld.swrr.t"),body:t("ld.swrr.body"),sig:["Seafarer","Paymaster"]},
+  GOP:{code:"GOP",cls:"ochre",title:t("ld.gop.t"),body:t("ld.gop.body"),sig:["Principal","Admitting Facility"]}
+ }[type]||{};
+ const dms="MCL-POST-MNL-"+meta.code+"-2026-"+seq;
+ const est=estMid(c);
+ let detail="";
+ if(type==="CFMA")detail=`<div class="rsec ${meta.cls}"><h4>${t("ld.finding")}</h4><p><b>${c.dx}</b> — ${SYS[c.sys]}. ${t("rep.wrline")}: <b>${c.wr}</b>. ${t("med.fitness")}: <b>${fitLabel(c.fitness)}</b>${c.fitness==="unfit"?" · "+t("fit.grade")+" 8 (POEA §32)":""}.</p></div>`;
+ else if(type==="THIRD")detail=`<div class="rsec ${meta.cls}"><h4>${t("ld.finding")}</h4><p>${t("ld.third.finding")} <b>${c.fitness==="unfit"?t("fit.grade")+" 8":t("fit.ftw")}</b>. ${t("lg.consq.w3")}.</p></div>`;
+ else if(type==="QMA")detail=`<div class="rsec ${meta.cls}"><h4>${t("ld.consideration")}</h4><p class="big">${money(M.amount||est.mid)}</p></div><div class="rsec"><h4>${t("ld.terms")}</h4><p>${t("lg.valid1")} · ${t("lg.valid2")} · ${t("lg.valid3")} · ${t("lg.valid4")}.</p></div>`;
+ else if(type==="SWRR")detail=`<div class="rsec ${meta.cls}"><h4>${t("fn.sick.paid")}</h4><p class="big">${money(M.wage*M.sickMonths)}</p><p>${M.sickMonths} ${t("fn.sick.months")} × ${money(M.wage)} · ${t("fn.sick.sub")}.</p></div>`;
+ else if(type==="GOP")detail=`<div class="rsec ${meta.cls}"><h4>${t("ld.consideration")}</h4><p>${t("fn.initial")}: <b>${estFor(c).cost}</b>. ${c.hospital?HOSPITALS.find(h=>h.id===c.hospital).n:"—"}.</p></div>`;
+ $("#main").innerHTML=`
+  <a class="back" onclick="backToLegal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>${type==="GOP"?t("ld.back.fin"):t("ld.back")}</a>
+  <div class="report lgdoc">
+   <div class="rhead">
+     <div><div class="rbrand">Next2<b>PostMed</b> · ${meta.title}</div><div class="rsub">${t("rep.forcase")} ${c.id} · ${c.sf.n} · ${c.sf.id}</div></div>
+     <div class="rstamp"><div class="cd">${dms}</div><div class="rev">rev 1.0 · ${t("ld.esign")}</div></div>
+   </div>
+   <div class="rgrid">
+     <div class="rf"><span class="rl">${t("ld.issued")}</span>${t("lg.day")} ${daysSince(c.arr)} · 2026</div>
+     <div class="rf"><span class="rl">${t("ld.employer")}</span>${c.principal}</div>
+     <div class="rf"><span class="rl">${t("ld.seafarer")}</span>${c.sf.n} · ${c.sf.rank}</div>
+     <div class="rf"><span class="rl">${t("det.pi")}</span>${c.pi}</div>
+   </div>
+   <div class="rsec"><h4>${t("ld.parties")}</h4><p>${meta.body}</p></div>
+   ${detail}
+   <div class="stampsig">${meta.sig.map(s=>`<span class="sg"><b>${s}</b>${t("ld.esign")} ✓</span>`).join("")}</div>
+   <div class="rfootr"><span class="nocopy">NO-COPY · LEGAL</span> ${t("ld.stored")} · ${dms}</div>
+  </div>`;
+}
+
 
 /* ---------------- render: intake ---------------- */
 function renderIntake(){
@@ -1257,6 +1665,7 @@ function render(){
  else if(view==="detail")renderDetail();
  else if(view==="report")renderReport();
  else if(view==="reportform")renderReportForm();
+ else if(view==="legaldoc")renderLegalDoc();
 }
 $$(".nav[data-view]").forEach(a=>a.addEventListener("click",()=>go(a.dataset.view)));
 $("#langTog").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;lang=b.dataset.lang;$$("#langTog button").forEach(x=>x.classList.toggle("on",x===b));applyChrome();render();toast(t("toast.lang"));});
