@@ -4,7 +4,7 @@
 <script src="auth-guard.js"></script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Next2PostMed · Case Console (Mockup v88)</title>
+<title>Next2PostMed · Case Console (Mockup v89)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -479,14 +479,14 @@ tbody tr:last-child td{border-bottom:none}
 </style>
 </head>
 <body>
-<div class="mocktag">next2postmed v88 · MOCKUP · fake data</div>
+<div class="mocktag">next2postmed v89 · MOCKUP · fake data</div>
 
 <header class="topbar">
   <div class="brand">
     <svg class="mark" viewBox="0 0 40 40" fill="none"><rect x="1" y="1" width="38" height="38" rx="11" fill="#E5433A"/><path d="M8 25 L14 25 L17 13 L23 28 L26 20 L32 20" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="8.5" r="2.2" fill="#fff"/></svg>
     <div><div class="wm">Next2<b>PostMed</b></div><div class="sub">Case Console</div></div>
   </div>
-  <a class="mclhome" href="mcl-shell-v88.html" title="Back to MCL Command Center">◄ MCL</a>
+  <a class="mclhome" href="mcl-shell-v89.html" title="Back to MCL Command Center">◄ MCL</a>
   <button class="orgsel"><span class="dot"></span>Crossworld Marine · Manila<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg></button>
   <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input placeholder="Search case, seafarer…" id="topSearch"></div>
   <div class="langtog" id="langTog"><button data-lang="en" class="on">EN</button><button data-lang="el">EL</button></div>
@@ -503,7 +503,7 @@ tbody tr:last-child td{border-bottom:none}
     <a class="nav" data-view="analysis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg><span data-i18n="nav.intel">Analysis</span></a>
     <div class="spacer"></div>
     <a class="nav guidebtn" data-view="guide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 5.5V20.5"/></svg><span data-i18n="nav.guide">User guide</span></a>
-    <a class="nav" href="next2dms-v88.html?tenant=next2mcl&source=postmed" title="Next2DMS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h10l6 6v10a0 0 0 0 1 0 0H4z"/><path d="M14 4v6h6"/></svg><span data-i18n="nav.dms">Documents (DMS)</span></a>
+    <a class="nav" href="next2dms-v89.html?tenant=next2mcl&source=postmed" title="Next2DMS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h10l6 6v10a0 0 0 0 1 0 0H4z"/><path d="M14 4v6h6"/></svg><span data-i18n="nav.dms">Documents (DMS)</span></a>
   </aside>
 
   <main class="main" id="main"></main>
@@ -723,13 +723,13 @@ const escStages=new Set([3,4,5]); // legal contested / 3rd doctor / NLRC
 
 const CASES=[
  {id:"PM-2026-0042",seq:"0042",sf:{n:"E. Ramos",id:"SF-PH-041188",age:41,rank:"Oiler"},principal:"Halcyon Shipmanagement",vessel:"MV Northern Grace",pi:"Manila P&I Corr.",type:"ill",sys:"GI",dx:"Erosive gastritis, H. pylori +",arr:"2026-01-02",chan:"exit",wr:"WR",stg:{med:3,leg:1,fin:2},hospital:null,status:"open"},
- {id:"PM-2026-0039",seq:"0039",sf:{n:"K. Trabado",id:"SF-PH-040921",age:24,rank:"Deck Cadet"},principal:"Meridian Marine",vessel:"MV Blue Horizon",pi:"—",type:"ill",sys:"INTG",dx:"Atopic dermatitis, generalized",arr:"2025-12-28",chan:"onboard",wr:"WR",stg:{med:5,leg:1,fin:3},hospital:"H2",status:"open"},
+ {id:"PM-2026-0039",seq:"0039",sf:{n:"K. Trabado",id:"SF-PH-040921",age:24,rank:"Deck Cadet"},principal:"Meridian Marine",vessel:"MV Blue Horizon",pi:"—",type:"ill",sys:"INTG",dx:"Atopic dermatitis, generalized",arr:"2025-12-28",chan:"onboard",wr:"WR",stg:{med:5,leg:1,fin:3},hospital:"SL",status:"open"},
  {id:"PM-2026-0044",seq:"0044",sf:{n:"D. Sayat",id:"SF-PH-041290",age:37,rank:"3rd Engineer"},principal:"Poseidon Lines",vessel:"MV Amphion",pi:"Pacific Handlers",type:"inj",sys:"MSK",dx:"Bucket-handle meniscal tear, knee",arr:"2026-01-08",chan:"onboard",wr:"WR",stg:{med:2,leg:0,fin:1},hospital:null,status:"open"},
- {id:"PM-2026-0051",seq:"0051",sf:{n:"R. Melecio",id:"SF-PH-041377",age:27,rank:"OS"},principal:"Kestrel Shipping",vessel:"MV Sea Verity",pi:"Del Rio Corr.",type:"ill",sys:"GI",dx:"Fistula-in-ano, s/p fistulotomy",arr:"2026-01-07",chan:"72h",wr:"NWR",stg:{med:6,leg:2,fin:4},hospital:"H1",status:"open"},
- {id:"PM-2026-0033",seq:"0033",sf:{n:"A. Montives",id:"SF-PH-040688",age:42,rank:"AB"},principal:"Cyan Maritime",vessel:"MT Great Meridian",pi:"Pacific Handlers",type:"inj",sys:"MSK",dx:"Open fx, proximal phalanx, L index",arr:"2025-11-30",chan:"onboard",wr:"WR",stg:{med:7,leg:5,fin:5},hospital:"H5",status:"legal"},
- {id:"PM-2026-0047",seq:"0047",sf:{n:"J. Piornato",id:"SF-PH-041322",age:51,rank:"Bosun"},principal:"Orion Bulkers",vessel:"MV Star Pioneer",pi:"Manila P&I Corr.",type:"ill",sys:"CV",dx:"Cerebrovascular disease, infarct",arr:"2026-01-14",chan:"72h",wr:"NWR",stg:{med:4,leg:1,fin:3},hospital:"H1",status:"open"},
+ {id:"PM-2026-0051",seq:"0051",sf:{n:"R. Melecio",id:"SF-PH-041377",age:27,rank:"OS"},principal:"Kestrel Shipping",vessel:"MV Sea Verity",pi:"Del Rio Corr.",type:"ill",sys:"GI",dx:"Fistula-in-ano, s/p fistulotomy",arr:"2026-01-07",chan:"72h",wr:"NWR",stg:{med:6,leg:2,fin:4},hospital:"MD",status:"open"},
+ {id:"PM-2026-0033",seq:"0033",sf:{n:"A. Montives",id:"SF-PH-040688",age:42,rank:"AB"},principal:"Cyan Maritime",vessel:"MT Great Meridian",pi:"Pacific Handlers",type:"inj",sys:"MSK",dx:"Open fx, proximal phalanx, L index",arr:"2025-11-30",chan:"onboard",wr:"WR",stg:{med:7,leg:5,fin:5},hospital:"MK",status:"legal"},
+ {id:"PM-2026-0047",seq:"0047",sf:{n:"J. Piornato",id:"SF-PH-041322",age:51,rank:"Bosun"},principal:"Orion Bulkers",vessel:"MV Star Pioneer",pi:"Manila P&I Corr.",type:"ill",sys:"CV",dx:"Cerebrovascular disease, infarct",arr:"2026-01-14",chan:"72h",wr:"NWR",stg:{med:4,leg:1,fin:3},hospital:"MD",status:"open"},
  {id:"PM-2026-0055",seq:"0055",sf:{n:"B. Muaña",id:"SF-PH-041455",age:33,rank:"Oiler"},principal:"Delphi Navigation",vessel:"MV Agnes Bay",pi:"—",type:"inj",sys:"MSK",dx:"Lumbar strain; HNP L4-L5",arr:"2026-02-01",chan:"onboard",wr:"WR",stg:{med:1,leg:0,fin:0},hospital:null,status:"open"},
- {id:"PM-2026-0058",seq:"0058",sf:{n:"E. Cunanan",id:"SF-PH-041501",age:48,rank:"Oiler"},principal:"Meridian Marine",vessel:"MV Tourmaline",pi:"Del Rio Corr.",type:"ill",sys:"GI",dx:"Acute appendicitis, s/p appendectomy",arr:"2026-02-06",chan:"72h",wr:"NWR",stg:{med:2,leg:1,fin:2},hospital:"H2",status:"open"},
+ {id:"PM-2026-0058",seq:"0058",sf:{n:"E. Cunanan",id:"SF-PH-041501",age:48,rank:"Oiler"},principal:"Meridian Marine",vessel:"MV Tourmaline",pi:"Del Rio Corr.",type:"ill",sys:"GI",dx:"Acute appendicitis, s/p appendectomy",arr:"2026-02-06",chan:"72h",wr:"NWR",stg:{med:2,leg:1,fin:2},hospital:"SL",status:"open"},
  {id:"PM-2026-0060",seq:"0060",sf:{n:"R. Pagay",id:"SF-PH-041560",age:39,rank:"Oiler"},principal:"Cyan Maritime",vessel:"MT Coya Reach",pi:"Pacific Handlers",type:"ill",sys:"GU",dx:"Ureterolithiasis; nephrolithiasis",arr:"2026-02-10",chan:"exit",wr:"NWR",stg:{med:3,leg:1,fin:2},hospital:null,status:"open"}
 ];
 const SYS={MSK:"Musculoskeletal",GI:"Gastrointestinal",INTG:"Integumentary",GU:"Genitourinary",CV:"Cardiovascular",OPH:"Ophthalmology",NEUR:"Neurological",ENT:"ENT"};
@@ -829,16 +829,6 @@ function trendArea(pts,w,h){
  return `<svg viewBox="0 0 ${w} ${h}"><defs><linearGradient id="tg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E5433A" stop-opacity=".26"/><stop offset="1" stop-color="#E5433A" stop-opacity="0"/></linearGradient></defs><polygon points="${area}" fill="url(#tg)"/><polyline points="${line}" fill="none" stroke="#E5433A" stroke-width="2.2" stroke-linejoin="round"/>${dots}${vals}${lbls}</svg>`;
 }
 
-const HOSPITALS=[
- {id:"H1",ab:"BM",n:"Bayview Marine Clinic",port:"Manila, PH",city:"Metro Manila",specs:["General","GI","Surgery"],avail:"free",beds:"12 / 40",cost:"$$",pi:"Manila P&I Corr.",dist:"POME network · in-house"},
- {id:"H2",ab:"MS",n:"Manila Seafarers Medical",port:"Manila, PH",city:"Metro Manila",specs:["Dermatology","Internal Med","Imaging"],avail:"free",beds:"8 / 30",cost:"$$",pi:"Del Rio Corr.",dist:"POME network"},
- {id:"H3",ab:"HH",n:"Harbor Health Center",port:"Cebu, PH",city:"Cebu",specs:["Orthopedics","Trauma","Rehab"],avail:"ltd",beds:"3 / 24",cost:"$$",pi:"Pacific Handlers",dist:"POME network"},
- {id:"H4",ab:"DS",n:"Davao Seafarers Medical",port:"Davao, PH",city:"Davao",specs:["Emergency","Trauma","Cardio"],avail:"free",beds:"open",cost:"$$$$",pi:"Manila P&I Corr.",dist:"Port-of-disembark · EU"},
- {id:"H5",ab:"BP",n:"Batangas Port Medical",port:"Batangas, PH",city:"Batangas",specs:["Surgery","Ortho","Neuro"],avail:"ltd",beds:"limited",cost:"$$$$",pi:"Manila P&I Corr.",dist:"Port-of-disembark · APAC"},
- {id:"H6",ab:"ZM",n:"Zamboanga Marine Clinic",port:"Zamboanga, PH",city:"Zamboanga",specs:["Emergency","General"],avail:"free",beds:"open",cost:"$$$",pi:"Manila P&I Corr.",dist:"Port-of-disembark · Gulf"},
- {id:"H7",ab:"CM",n:"Cagayan Marine Health",port:"Cagayan de Oro, PH",city:"Cagayan de Oro",specs:["Cardio","Imaging","Internal Med"],avail:"free",beds:"open",cost:"$$$",pi:"Manila P&I Corr.",dist:"Port-of-disembark · EU"},
- {id:"H8",ab:"IH",n:"Iloilo Seafarer Health",port:"Iloilo, PH",city:"Iloilo",specs:["General","Rehab","GU"],avail:"full",beds:"0 / 18",cost:"$",pi:"Manila P&I Corr.",dist:"POME network"}
-];
 
 /* deterministic-ish day math from arrival */
 function daysSince(d){const a=new Date(d),n=new Date("2026-03-12");return Math.round((n-a)/864e5);}
@@ -968,7 +958,7 @@ function renderDetail(){
  const cs120=clockState(d,120),cs240=clockState(d,240);
  const col={med:"#0E8C93",leg:"#D9902A",fin:"#2FA36B"};
  const pct=o=>Math.round((c.stg[o]/(STAGES[o].length-1))*100);
- const hos=c.hospital?HOSPITALS.find(h=>h.id===c.hospital):null;
+ const hos=c.hospital?NET_PROV.find(h=>h.ab===c.hospital):null;
  const chanLabel={onboard:t("ch.onboard"),"72h":t("ch.72h"),exit:t("ch.exit")}[c.chan];
  $("#main").innerHTML=`
   <a class="back" onclick="go('board')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>${t("det.back")}</a>
@@ -988,8 +978,8 @@ function renderDetail(){
         <div class="idchip"><span class="l">Case</span><span class="v">${c.id}</span></div>
         <div class="idchip"><span class="l">DMS</span><span class="v">MCL-MAR-POST-CASE-2026-${("000000"+c.seq).slice(-6)}</span></div>
         <div class="idchip"><span class="l">Seafarer</span><span class="v">${c.sf.id}</span></div>
-        <a class="idchip" href="next2dms-v88.html?tenant=next2mcl&source=postmed&q=${encodeURIComponent(c.sf.id)}" target="_blank" rel="noopener" title="Open this case's documents in Next2DMS" style="color:#8fd0e6;border-color:rgba(90,160,196,.5);background:rgba(90,160,196,.14)"><span class="l" style="color:#8fd0e6">Next2DMS</span><span class="v" style="color:#fff">${lang==='el'?'Έγγραφα':'Docs'} &#9656;</span></a>
-        <a class="idchip" href="next2postmed-tracker-v88.html?case=${c.id}" target="_blank" rel="noopener" title="Open shareable status tracker" style="color:#f5b3ad;border-color:rgba(229,84,75,.45);background:rgba(229,84,75,.16)"><span class="l" style="color:#f5b3ad">Share</span><span class="v" style="color:#fff">Status &#9656;</span></a>
+        <a class="idchip" href="next2dms-v89.html?tenant=next2mcl&source=postmed&q=${encodeURIComponent(c.sf.id)}" target="_blank" rel="noopener" title="Open this case's documents in Next2DMS" style="color:#8fd0e6;border-color:rgba(90,160,196,.5);background:rgba(90,160,196,.14)"><span class="l" style="color:#8fd0e6">Next2DMS</span><span class="v" style="color:#fff">${lang==='el'?'Έγγραφα':'Docs'} &#9656;</span></a>
+        <a class="idchip" href="next2postmed-tracker-v89.html?case=${c.id}" target="_blank" rel="noopener" title="Open shareable status tracker" style="color:#f5b3ad;border-color:rgba(229,84,75,.45);background:rgba(229,84,75,.16)"><span class="l" style="color:#f5b3ad">Share</span><span class="v" style="color:#fff">Status &#9656;</span></a>
       </div>
     </div>
     <div class="clocks">
@@ -1017,16 +1007,16 @@ function renderDetail(){
       <div class="panel">
         <div class="ph"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 21h18M6 21V7l6-4 6 4v14"/></svg></span><h3>${t("p.hos")}</h3><span class="rt">${hos?'✓':'—'}</span></div>
         <div class="pb hosel">
-          <div style="font-size:12px;color:var(--ink-3);margin-bottom:11px">${hos?t("p.hos.sel"):t("p.hos.none")}</div>
-          ${HOSPITALS.filter(h=>h.avail!=="full").slice(0,3).map(h=>`
-            <div class="opt ${hos&&hos.id===h.id?'sel':''}" onclick="pickHospital('${c.id}','${h.id}')">
+          <div style="font-size:12px;color:var(--ink-3);margin-bottom:4px">${hos?t("p.hos.sel"):t("p.hos.none")}</div><div style="font-size:11px;color:var(--ink-3);margin-bottom:11px">${lang==='el'?'Από το κεντρικό δίκτυο Shared Core (POME-accredited) · ':'From the central Shared-Core network (POME-accredited) · '}<a href="seafarer-360-folder-v89.html?tab=network" target="_blank" rel="noopener" style="color:#0E8C93;font-weight:700;text-decoration:none">${lang==='el'?'δίκτυο ▸':'network ▸'}</a></div>
+          ${NET_PROV.filter(h=>accOK(h,'POME')).slice(0,4).map(h=>{var st=moaStat(h);var av=st==='expired'?'full':st==='expiring'?'ltd':'free';var stt=st==='expired'?(lang==='el'?'MOA έληξε':'MOA expired'):st==='expiring'?(lang==='el'?'MOA λήγει':'MOA expiring'):st==='pending'?(lang==='el'?'MOA εκκρεμεί':'MOA pending'):(lang==='el'?'MOA ενεργό':'MOA active');return `
+            <div class="opt ${hos&&hos.ab===h.ab?'sel':''}" onclick="pickHospital('${c.id}','${h.ab}')">
               <div class="av">${h.ab}</div>
               <div style="flex:1">
-                <div class="nm">${h.n}</div><div class="lo">${h.port} · ${h.dist}</div>
-                <div class="tags"><span class="avl ${h.avail}">${t("hos."+h.avail)}</span>${h.specs.slice(0,3).map(s=>`<span class="spec">${s}</span>`).join("")}</div>
+                <div class="nm">${h.n}</div><div class="lo">${h.loc} · ${h.tier}</div>
+                <div class="tags"><span class="avl ${av}">${stt}</span><span class="spec">✓ POME</span><span class="spec">${h.bill}</span></div>
               </div>
-              <div class="rt"><div class="cost">${h.cost}</div><div class="costl">${t("hos.cost")}</div><div class="dist">${t("hos.beds")}: ${h.beds}</div></div>
-            </div>`).join("")}
+              <div class="rt"><div class="cost" style="font-size:10px;font-weight:700;color:#7EA2BC">SHARED<br>CORE</div></div>
+            </div>`;}).join("")}
         </div>
       </div>
 
@@ -1098,7 +1088,7 @@ function seedReports(c){
 function repMeta(type){return {IMR:{en:"Initial Medical Report",el:"Initial Medical Report",cls:"r-imr"},FUR:{en:"Follow-up Report",el:"Follow-up Report",cls:"r-fur"},FINAL:{en:"Final Assessment (CFMA)",el:"Τελική Εκτίμηση (CFMA)",cls:"r-fin"}}[type];}
 function fitLabel(f){return {ftw:t("fit.ftw"),fly:t("fit.fly"),rep:t("fit.rep"),unfit:t("fit.unfit"),contested:t("fit.contested")}[f]||t("fit.pending");}
 function medicalTab(c){
- const treating=c.hospital?HOSPITALS.find(h=>h.id===c.hospital):null;
+ const treating=c.hospital?NET_PROV.find(h=>h.ab===c.hospital):null;
  const canFinal=c.stg.med>=5&&!c.reports.some(r=>r.type==="FINAL");
  return `<div class="mgrid">
   <div>
@@ -1151,7 +1141,7 @@ function openReport(rid){curReport=rid;view="report";render();}
 function backToMedical(){view="detail";detailTab="medical";render();}
 function renderReport(){
  const c=curCase,r=c.reports.find(x=>x.rid===curReport);if(!r){go('board');return;}
- const m=repMeta(r.type),treating=c.hospital?HOSPITALS.find(h=>h.id===c.hospital):null,isFinal=r.type==="FINAL";
+ const m=repMeta(r.type),treating=c.hospital?NET_PROV.find(h=>h.ab===c.hospital):null,isFinal=r.type==="FINAL";
  $("#main").innerHTML=`
   <a class="back" onclick="backToMedical()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>${t("rep.back")}</a>
   <div class="report">
@@ -1172,7 +1162,7 @@ function renderReport(){
    <div class="rsec"><h4>${t("rep.reco")}</h4><p>${t("rep.reco.b")}</p></div>`:
    `<div class="rsec"><h4>${t("rep.finaldx")}</h4><p><b>${c.dx}</b> — ${SYS[c.sys]}. ${t("rep.wrline")}: <b>${c.wr}</b>.</p></div>
    <div class="rsec fit"><h4>${t("med.fitness")}</h4><p class="big">${fitLabel(c.fitness)}</p><p>${c.fitness==='contested'?t("fit.contested.d"):c.fitness==='unfit'?(t("fit.grade")+': Grade 8 (POEA schedule)'):t("rep.cfma")}</p></div>`}
-   <div class="rfootr"><span class="nocopy">NO-COPY · MEDICAL</span> ${t("rep.stored")} <b>Next2DMS</b> · <a href="next2dms-v88.html?tenant=next2mcl&source=postmed&q=${encodeURIComponent(c.sf.id)}" target="_blank" rel="noopener" style="color:#5aa0c4;font-weight:600;text-decoration:none">${r.dms} &#9656;</a></div>
+   <div class="rfootr"><span class="nocopy">NO-COPY · MEDICAL</span> ${t("rep.stored")} <b>Next2DMS</b> · <a href="next2dms-v89.html?tenant=next2mcl&source=postmed&q=${encodeURIComponent(c.sf.id)}" target="_blank" rel="noopener" style="color:#5aa0c4;font-weight:600;text-decoration:none">${r.dms} &#9656;</a></div>
   </div>`;
 }
 let formType="FUR";
@@ -1425,7 +1415,7 @@ function renderLegalDoc(){
  else if(type==="THIRD")detail=`<div class="rsec ${meta.cls}"><h4>${t("ld.finding")}</h4><p>${t("ld.third.finding")} <b>${c.fitness==="unfit"?t("fit.grade")+" 8":t("fit.ftw")}</b>. ${t("lg.consq.w3")}.</p></div>`;
  else if(type==="QMA")detail=`<div class="rsec ${meta.cls}"><h4>${t("ld.consideration")}</h4><p class="big">${money(M.amount||est.mid)}</p></div><div class="rsec"><h4>${t("ld.terms")}</h4><p>${t("lg.valid1")} · ${t("lg.valid2")} · ${t("lg.valid3")} · ${t("lg.valid4")}.</p></div>`;
  else if(type==="SWRR")detail=`<div class="rsec ${meta.cls}"><h4>${t("fn.sick.paid")}</h4><p class="big">${money(M.wage*M.sickMonths)}</p><p>${M.sickMonths} ${t("fn.sick.months")} × ${money(M.wage)} · ${t("fn.sick.sub")}.</p></div>`;
- else if(type==="GOP")detail=`<div class="rsec ${meta.cls}"><h4>${t("ld.consideration")}</h4><p>${t("fn.initial")}: <b>${estFor(c).cost}</b>. ${c.hospital?HOSPITALS.find(h=>h.id===c.hospital).n:"—"}.</p></div>`;
+ else if(type==="GOP")detail=`<div class="rsec ${meta.cls}"><h4>${t("ld.consideration")}</h4><p>${t("fn.initial")}: <b>${estFor(c).cost}</b>. ${c.hospital?NET_PROV.find(h=>h.ab===c.hospital).n:"—"}.</p></div>`;
  $("#main").innerHTML=`
   <a class="back" onclick="backToLegal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>${type==="GOP"?t("ld.back.fin"):t("ld.back")}</a>
   <div class="report lgdoc">
@@ -1442,7 +1432,7 @@ function renderLegalDoc(){
    <div class="rsec"><h4>${t("ld.parties")}</h4><p>${meta.body}</p></div>
    ${detail}
    <div class="stampsig">${meta.sig.map(s=>`<span class="sg"><b>${s}</b>${t("ld.esign")} ✓</span>`).join("")}</div>
-   <div class="rfootr"><span class="nocopy">NO-COPY · LEGAL</span> ${t("ld.stored")} · <a href="next2dms-v88.html?tenant=next2mcl&source=postmed&q=${encodeURIComponent(c.sf.id)}" target="_blank" rel="noopener" style="color:#5aa0c4;font-weight:600;text-decoration:none">${dms} &#9656;</a></div>
+   <div class="rfootr"><span class="nocopy">NO-COPY · LEGAL</span> ${t("ld.stored")} · <a href="next2dms-v89.html?tenant=next2mcl&source=postmed&q=${encodeURIComponent(c.sf.id)}" target="_blank" rel="noopener" style="color:#5aa0c4;font-weight:600;text-decoration:none">${dms} &#9656;</a></div>
   </div>`;
 }
 
@@ -1518,7 +1508,7 @@ function renderHospitals(){var isE=lang==='el';
  }).join('');
  $("#main").innerHTML=`
   <div class="pagehead"><div><div class="ey">${isE?'Κεντρικό δίκτυο · Shared Core':'Central network · Shared Core'}</div><h1>${isE?'Δίκτυο νοσοκομείων & γιατρών':'Hospital & doctor network'}</h1></div>
-   <a class="net360" href="seafarer-360-folder-v88.html?tab=network">➕ ${isE?'Καταχώριση στο 360°':'Register in 360°'}</a></div>
+   <a class="net360" href="seafarer-360-folder-v89.html?tab=network">➕ ${isE?'Καταχώριση στο 360°':'Register in 360°'}</a></div>
   <div style="font-size:13px;color:var(--ink-2);margin-bottom:14px;max-width:780px">${isE?'Ένα κοινό δίκτυο για όλα τα προϊόντα — διαχειρίζεται κεντρικά στο Seafarer 360° / Shared Core. Εδώ read-only (tenant-scoped)· η καταχώριση νέου provider γίνεται στο 360°. Εδώ φαίνονται μόνο POME-accredited providers.':'One shared network for all products — managed centrally in Seafarer 360° / Shared Core. Read-only here (tenant-scoped); registering a new provider happens in 360°. Showing only post-medical (POME)-accredited providers.'}</div>
   <div class="netsubx"><button class="nstx ${pmNetTab!=='doctor'?'on':''}" onclick="setPmNet('clinic')">${isE?'Κλινικές & Νοσοκομεία':'Clinics & Hospitals'}</button><button class="nstx ${pmNetTab==='doctor'?'on':''}" onclick="setPmNet('doctor')">${isE?'Γιατροί':'Doctors'}</button></div>
   <div class="hnet">${list}</div>`;
